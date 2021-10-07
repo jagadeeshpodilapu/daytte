@@ -14,7 +14,7 @@ class ProfileView extends StatelessWidget {
           children: [
             Container(
               child: Stack(
-                overflow: Overflow.visible,
+                clipBehavior: Clip.none,
                 children: [
                   Container(
                     decoration: BoxDecoration(

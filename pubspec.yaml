@@ -16,7 +16,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   get:
   http:
-  device_preview:
+  
   eva_icons_flutter: ^3.0.2
   intl:
   pin_code_fields:
@@ -28,6 +28,11 @@ dependencies:
   flutter_custom_clippers: ^2.0.0
   dotted_border: ^2.0.0+1
   google_fonts: ^2.1.0
+  dio: ^4.0.0
+  get_storage: ^2.0.3
+  
+  
+  
   
 
 

@@ -4,6 +4,7 @@ import 'package:daytte/consts/image_constants.dart';
 import 'package:daytte/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -17,16 +18,25 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(Duration(seconds: 4), () => Get.toNamed(AppRoutes.LOGINVIEW));
   }
 
+  getDeviceToken() async {
+// Get the token each time the application loads
+  /*   String? token = await FirebaseMessaging.instance.getToken();
+    if (token != null) {
+      print(token);
+      storeage.writeIfNull("token", '$token');
+    } */
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-          height: double.infinity,
-          width: double.infinity,
+            height: double.infinity,
+            width: double.infinity,
             child: Image.asset(
-      ImageConstants.splash,
-      fit: BoxFit.cover,
-    ))
+              ImageConstants.splash,
+              fit: BoxFit.cover,
+            ))
 
         /* SafeArea(
         child: Stack(

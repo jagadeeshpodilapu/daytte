@@ -1,7 +1,7 @@
-import 'package:daytte/controllers/premiumpackageController/premium_package_controller.dart';
-import 'package:daytte/utils/common_functions.dart';
-import 'package:daytte/view/screens/matchscreen/match_screen.dart';
-import 'package:daytte/view/widgets/button_widget.dart';
+import '../../../controllers/premiumpackageController/premium_package_controller.dart';
+import '../../../utils/common_functions.dart';
+import '../../screens/matchscreen/match_screen.dart';
+import '../../widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';

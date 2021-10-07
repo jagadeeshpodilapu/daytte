@@ -1,4 +1,5 @@
 import 'package:daytte/controllers/imagepickercontroller/image_picker_binding.dart';
+import 'package:daytte/controllers/otpController/otp_binding.dart';
 import 'package:daytte/controllers/signupcontroller/signup_binding.dart';
 import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/view/screens/choosegender/choose_gender.dart';
@@ -20,7 +21,7 @@ class AppPages {
     GetPage(name: AppRoutes.SIGNUPVIEW, page: () => SignUp(), bindings: [
       SignupBinding(),
     ]),
-    GetPage(name: AppRoutes.OTPVERIFICATION, page: () => OtpVerification()),
+    GetPage(name: AppRoutes.OTPVERIFICATION, page: () => OtpVerification(),bindings:[OtpBinding()] ),
     GetPage(name: AppRoutes.CHOOSEGENDER, page: () => ChooseGender()),
     GetPage(name: AppRoutes.PASSION, page: () => PassionSCreen()),
     GetPage(

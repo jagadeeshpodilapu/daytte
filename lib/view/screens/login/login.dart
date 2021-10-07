@@ -1,5 +1,7 @@
+import 'package:daytte/controllers/loginController/login_controller.dart';
 import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/consts/constants.dart';
+import 'package:daytte/services/base_service/base_client.dart';
 import 'package:daytte/themes/app_styles.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
@@ -9,7 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class Login extends StatelessWidget {
-  const Login({Key? key}) : super(key: key);
+  final controller = LoginController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,12 @@ class Login extends StatelessWidget {
                 mobileNumberWidget(),
                 SizedBox(height: 30),
                 GestureDetector(
-                  onTap: () => Get.toNamed(AppRoutes.OTPVERIFICATION),
+                  onTap: () async {
+                    var payload = {"mobile_number": "+91${controller.mobileController.text}"};
+                    controller.sendOtp(payload);
+
+                    // Get.toNamed(AppRoutes.OTPVERIFICATION);
+                  },
                   child: requestOtpButtonWidget(),
                 ),
                 SizedBox(height: 30),
@@ -46,15 +53,15 @@ class Login extends StatelessWidget {
                       text: TextSpan(
                         text: Constants.already_member,
                         style: TextStyle(
-                            color: Colors.white.withOpacity(0.4),
-                            fontSize: 20),
+                            color: Colors.white.withOpacity(0.4), fontSize: 20),
                         children: <TextSpan>[
                           TextSpan(
                               text: Constants.sign_in,
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 20),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
                               recognizer: TapGestureRecognizer()
-                                ..onTap = ()=>Get.toNamed(AppRoutes.SIGNUPVIEW))
+                                ..onTap =
+                                    () => Get.toNamed(AppRoutes.SIGNUPVIEW))
                         ],
                       ),
                     ),
@@ -89,8 +96,6 @@ class Login extends StatelessWidget {
     );
   }
 
-
-
   Widget socialIconButton(Color color, IconData icon, String text) {
     return Container(
       height: 50.0,
@@ -113,10 +118,11 @@ class Login extends StatelessWidget {
             SizedBox(
               width: 5.0,
             ),
-            Text(
-              text,
-              style:AppStyles.title.copyWith(color: color,fontFamily: 'Roboto',fontWeight: FontWeight.w700)
-            ),
+            Text(text,
+                style: AppStyles.title.copyWith(
+                    color: color,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.w700)),
           ],
         ),
       ),
@@ -140,16 +146,16 @@ class Login extends StatelessWidget {
 
   Widget mobileNumberWidget() {
     return TextFormField(
+      controller: controller.mobileController,
       decoration: InputDecoration(
         hintText: "Mobile Number",
         hintStyle: TextStyle(color: Color(0x66ffffff)),
         fillColor: Color(0xFF433088),
-       enabledBorder:OutlineInputBorder(
-            borderSide:  BorderSide.none,
-            borderRadius: BorderRadius.circular(8.0),
-          ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(8.0),
+        ),
         errorBorder: InputBorder.none,
-       
         focusedBorder: InputBorder.none,
         counterText: '',
         filled: true,

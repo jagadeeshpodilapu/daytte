@@ -1,10 +1,13 @@
 import 'dart:async';
 
+import 'package:daytte/controllers/loginController/login_controller.dart';
+import 'package:daytte/controllers/otpController/otp_controller.dart';
 import 'package:daytte/utils/common_functions.dart';
 import 'package:daytte/view/screens/passion/passion_screen.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -14,10 +17,12 @@ class OtpVerification extends StatefulWidget {
 }
 
 class _OtpVerificationState extends State<OtpVerification> {
-  // TextEditingController controller = TextEditingController();
   Timer? _timer;
 
-  int _start = 10;
+  TextEditingController otpInput = TextEditingController();
+  final otpController = Get.find<OtpController>();
+  int _start = 30;
+  late String mobileNumber;
 
   void startTimer() {
     const oneSec = const Duration(seconds: 1);
@@ -48,6 +53,8 @@ class _OtpVerificationState extends State<OtpVerification> {
   @override
   void initState() {
     super.initState();
+    mobileNumber = Get.arguments;
+    print("Mobile Number $mobileNumber");
     startTimer();
   }
 
@@ -79,7 +86,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text("+91 9886551773",
+                      child: Text("+91$mobileNumber",
                           style: buildTextStyle(Colors.white, 24)),
                     ),
                     Center(
@@ -90,7 +97,11 @@ class _OtpVerificationState extends State<OtpVerification> {
                         child: PinCodeTextField(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           length: 4,
-                          // controller: controller,
+                          controller: otpInput,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                          keyboardType: TextInputType.number,
                           boxShadows: [
                             BoxShadow(
                               offset: Offset(0, 1),
@@ -125,9 +136,9 @@ class _OtpVerificationState extends State<OtpVerification> {
                       height: 50,
                       child: ButtonWidget(
                         buttonTitle: "GET OTP",
-                        action: () => Get.to(
-                          PassionSCreen(),
-                        ),
+                        action: () {
+                          otpController.verifyOtp(otpInput.text, mobileNumber);
+                        },
                       ),
                     ),
                     SizedBox(
@@ -138,9 +149,14 @@ class _OtpVerificationState extends State<OtpVerification> {
                       children: [
                         Text("if you didn't receivea code !  ",
                             style: buildTextStyle(Colors.white54, 16)),
-                        Text(
-                          "Resend OTP",
-                          style: buildTextStyle(Colors.white, 18),
+                        GestureDetector(
+                          onTap: () {
+                            otpController.reSendOtp("+91$mobileNumber");
+                          },
+                          child: Text(
+                            "Resend OTP",
+                            style: buildTextStyle(Colors.white, 18),
+                          ),
                         )
                       ],
                     ),
