@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 4), () => Get.toNamed(AppRoutes.LOGINVIEW));
+    Timer(Duration(seconds: 4), () => Get.offNamed(AppRoutes.LOGINVIEW));
   }
 
   getDeviceToken() async {

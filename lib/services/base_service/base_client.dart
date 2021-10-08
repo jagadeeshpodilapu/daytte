@@ -33,6 +33,21 @@ class BaseClient {
       throw ApiNotRespondingException('API not responded in time', uri.toString());
     }
   }
+  
+  //patch
+  
+  Future<dynamic> patch(String baseUrl, String api, dynamic payloadObj) async {
+    var uri = Uri.parse(baseUrl + api);
+    var payload = json.encode(payloadObj);
+    try {
+      var response = await Dio().post(baseUrl + api, data: payload).timeout(Duration(seconds: TIME_OUT_DURATION));
+      return _processResponse(response);
+    } on SocketException {
+      throw FetchDataException('No Internet connection', uri.toString());
+    } on TimeoutException {
+      throw ApiNotRespondingException('API not responded in time', uri.toString());
+    }
+  }
 
   //DELETE
   //OTHER

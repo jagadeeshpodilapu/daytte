@@ -11,17 +11,21 @@ import 'package:daytte/view/screens/pick_images_sources/pick_source_images.dart'
 import 'package:daytte/view/screens/signup/signup.dart';
 import 'package:daytte/view/splash_screen.dart';
 
-
 import 'package:get/get.dart';
 
 class AppPages {
   static List<GetPage> routes = [
-    GetPage(name: AppRoutes.SPLASHVIEW, page: () => SplashScreen(), bindings: []),
+    GetPage(
+        name: AppRoutes.SPLASHVIEW, page: () => SplashScreen(), bindings: []),
     GetPage(name: AppRoutes.LOGINVIEW, page: () => Login(), bindings: []),
-    GetPage(name: AppRoutes.SIGNUPVIEW, page: () => SignUp(), bindings: [
-      SignupBinding(),
-    ]),
-    GetPage(name: AppRoutes.OTPVERIFICATION, page: () => OtpVerification(),bindings:[OtpBinding()] ),
+    GetPage(
+        name: AppRoutes.SIGNUPVIEW,
+        page: () => SignUp(),
+        bindings: [SignupBinding()]),
+    GetPage(
+        name: AppRoutes.OTPVERIFICATION,
+        page: () => OtpVerification(),
+        bindings: [OtpBinding()]),
     GetPage(name: AppRoutes.CHOOSEGENDER, page: () => ChooseGender()),
     GetPage(name: AppRoutes.PASSION, page: () => PassionSCreen()),
     GetPage(

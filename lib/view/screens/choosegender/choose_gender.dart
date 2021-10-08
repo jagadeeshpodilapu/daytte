@@ -72,7 +72,7 @@ class ChooseGender extends StatelessWidget {
                       ),
                     )
                   : BoxDecoration(
-                      color: Color(0xFFc86dd7),
+                      color: Color(0xFFc86dd7).withOpacity(0.4),
                       shape: BoxShape.circle,
                     ),
               child: CircleAvatar(

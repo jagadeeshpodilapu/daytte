@@ -1,12 +1,12 @@
 class AppRoutes{
+   static const SPLASHVIEW='/splash';
   static const LOGINVIEW='/login';
   static const SIGNUPVIEW='/SIGNUP';
- static const CHOOSEGENDER='/gender';
- static const OTPVERIFICATION='/otp';
+  static const OTPVERIFICATION='/otp';
+  static const CHOOSEGENDER='/gender';
   static const PASSION='/passion';
-  static const CHOOSEIMAGE='/image';
+  static const INTERESTED='/interested';
+  static const CHOOSEIMAGE='/selecteimages';
   static const HOMEVIEW='/home';
-  static const SPLASHVIEW='/splash';
-
-   
+  static const PROFILEVIEW='/profile';   
 }

@@ -19,7 +19,7 @@ class OtpController extends GetxController {
     print("response Otp $response");
     DialogHelper.hideLoading();
     if (response != null) {
-      Get.toNamed(AppRoutes.PASSION);
+      Get.toNamed(AppRoutes.SIGNUPVIEW);
     }
   }
 
