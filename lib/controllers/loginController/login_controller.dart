@@ -11,7 +11,7 @@ class LoginController extends GetxController {
   void sendOtp(payload) async {
     DialogHelper.showLoading('Sending Otp');
     final response = await BaseClient()
-        .post('http://65.0.174.202:8000', '/auth/sendOtp', payload)
+        .post('/auth/sendOtp', payload)
         .catchError(BaseController().handleError);
 
     DialogHelper.hideLoading();

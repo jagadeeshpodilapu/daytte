@@ -1,4 +1,3 @@
-
 import 'routes/app_pages.dart';
 import 'routes/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +6,10 @@ import 'package:get_storage/get_storage.dart';
 import 'controllers/imagepickercontroller/image_picker_binding.dart';
 
 void main() async {
+  
   await GetStorage.init();
-//  await Firebase.initializeApp();
-  runApp(/* DevicePreview(builder: (_) => */ MyApp());
+   runApp(MyApp());
+
 }
 
 class MyApp extends StatelessWidget {
