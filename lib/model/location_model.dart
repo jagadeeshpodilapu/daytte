@@ -1,6 +1,6 @@
 class LocationModel {
-  final String lat;
-  final String lang;
+  final double lat;
+  final double lang;
 
   LocationModel({required this.lat, required this.lang});
 }

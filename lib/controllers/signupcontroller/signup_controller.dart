@@ -13,7 +13,7 @@ import 'package:intl/intl.dart';
 
 class SignupController extends GetxController {
   final List<String> gender = ["Male", "Female"];
-
+  LocationModel? locationModel;
   Position? currentPostion;
 
   TextEditingController firstName = TextEditingController();
@@ -32,6 +32,12 @@ class SignupController extends GetxController {
     update();
   } */
 
+  @override
+  void onInit() {
+    _getUserLocation();
+    super.onInit();
+  }
+
   Future<void> selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
         context: context,
@@ -48,7 +54,8 @@ class SignupController extends GetxController {
   void _getUserLocation() async {
     var position = await GeolocatorPlatform.instance
         .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    // currentPostion = LocationModel( lang:position.longitude, lat:position!.latitude) as Position?;
+    locationModel =
+        LocationModel(lang: position.longitude, lat: position.latitude);
   }
 
   Future postUserInfo() async {
@@ -57,8 +64,8 @@ class SignupController extends GetxController {
       "lastname": lastName.text,
       "email": email.text,
       "dob": dateformate,
-      "lat": 0.006180,
-      "long": 0.005836
+      "lat": locationModel!.lat,
+      "long": locationModel!.lang
     };
 
     DialogHelper.showLoading('Loading...');
@@ -67,7 +74,7 @@ class SignupController extends GetxController {
             payload, storage.read('token'))
         .catchError(BaseController().handleError);
     print(
-        "response Otp $response  ${storage.read('token')} ${controller.userInfoModel!.userProperties.user!.id}");
+        "response Otp $payload");
     DialogHelper.hideLoading();
     if (response != null) {
       Get.toNamed(AppRoutes.CHOOSEGENDER);
