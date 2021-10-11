@@ -1,7 +1,6 @@
 import 'dart:convert';
-
-import 'package:daytte/controllers/base_controller/baseController.dart';
-import 'package:daytte/model/user_info_model.dart';
+import '../base_controller/baseController.dart';
+import '../../model/user_info_model.dart';
 import 'package:daytte/routes/app_routes.dart';
 import 'package:get_storage/get_storage.dart';
 import '../../services/base_service/base_client.dart';
@@ -27,7 +26,7 @@ class OtpController extends GetxController {
         .catchError(BaseController().handleError);
 
     userInfoModel = userInfoModelFromJson(json.encode(response));
-    print("user details ${response}");
+
     storage.write("token", userInfoModel!.userProperties.accessToken);
 
     DialogHelper.hideLoading();
