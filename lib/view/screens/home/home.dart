@@ -1,11 +1,12 @@
-import 'package:daytte/consts/image_constants.dart';
-import 'package:daytte/view/screens/chatlist/chat_list.dart';
-import 'package:daytte/view/screens/discoverpartner/discover_partner.dart';
-import 'package:daytte/view/screens/editdetails/edit_details.dart';
-import 'package:daytte/view/screens/likedetails/like_details.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../../consts/image_constants.dart';
+import '../chatlist/chat_list.dart';
+import '../discoverpartner/discover_partner.dart';
+import '../editdetails/edit_details.dart';
+import '../likedetails/like_details.dart';
 
 class Home extends StatefulWidget {
   @override

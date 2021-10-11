@@ -1,6 +1,7 @@
-import 'package:daytte/utils/common_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../utils/common_functions.dart';
 
 Widget linearGradientBackground() {
   return Container(
@@ -9,9 +10,8 @@ Widget linearGradientBackground() {
         end: Alignment.topRight,
         begin: Alignment.bottomLeft,
         colors: [
-           Color(0xFF3c0fc7),
+          Color(0xFF3c0fc7),
           Color(0xFFc86dd7),
-         
         ],
          /* stops: [
             0.4,

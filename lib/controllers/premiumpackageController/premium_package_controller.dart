@@ -1,12 +1,14 @@
-import 'package:daytte/model/premium_offer_model.dart';
-import 'package:daytte/model/premium_package_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 import 'package:get/utils.dart';
 
+import '../../model/premium_offer_model.dart';
+import '../../model/premium_package_model.dart';
+
 class PremiumPackageController extends GetxController {
   var selectedPageIndex = 0.obs;
   var selectedPremiumType = 1.obs;
+
   bool get isLastPage => selectedPageIndex.value == onboardingPages.length - 1;
   var pageController = PageController();
 

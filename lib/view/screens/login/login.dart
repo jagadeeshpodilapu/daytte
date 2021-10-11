@@ -1,15 +1,15 @@
-import 'package:daytte/view/widgets/extensions.dart';
-
-import '../../../controllers/loginController/login_controller.dart';
-import '../../../routes/app_routes.dart';
-import '../../../consts/constants.dart';
-import '../../../themes/app_styles.dart';
-import '../../widgets/common_widgets.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+
+import '../../../consts/constants.dart';
+import '../../../controllers/loginController/login_controller.dart';
+import '../../../routes/app_routes.dart';
+import '../../../themes/app_styles.dart';
+import '../../widgets/common_widgets.dart';
+import '../../widgets/extensions.dart';
 
 class Login extends StatelessWidget {
   final controller = LoginController();

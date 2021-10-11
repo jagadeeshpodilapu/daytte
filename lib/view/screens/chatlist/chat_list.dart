@@ -1,7 +1,8 @@
-import 'package:daytte/view/screens/chatrequest/chat_request.dart';
-import 'package:daytte/view/screens/chatscreen/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../chatrequest/chat_request.dart';
+import '../chatscreen/chat_screen.dart';
 
 class ChatList extends StatefulWidget {
   const ChatList({Key? key}) : super(key: key);

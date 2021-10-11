@@ -1,7 +1,8 @@
-import 'package:daytte/view/widgets/button_widget.dart';
-import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../widgets/button_widget.dart';
+import '../../widgets/common_widgets.dart';
 
 class InterestedScreen extends StatefulWidget {
   @override

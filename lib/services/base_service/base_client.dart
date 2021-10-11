@@ -9,11 +9,17 @@ class BaseClient {
   static const String baseUrl = 'http://65.0.174.202:8000';
 
   //GET
-  Future<dynamic> get(String api) async {
+  Future<dynamic> get(String api, String token) async {
     var uri = Uri.parse(baseUrl + api);
     try {
       var response = await Dio()
-          .get(baseUrl + api)
+          .get(
+            baseUrl + api,
+            options: Options(headers: {
+              'Content-Type': 'application/json',
+              'Authorization': "Bearer $token",
+            }),
+          )
           .timeout(Duration(seconds: TIME_OUT_DURATION));
       return _processResponse(response);
     } on SocketException {

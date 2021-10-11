@@ -1,4 +1,4 @@
-import 'package:daytte/view/widgets/common_widgets.dart';
+import '../../widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 
 class LikesPage extends StatefulWidget {

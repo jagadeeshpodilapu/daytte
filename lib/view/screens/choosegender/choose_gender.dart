@@ -30,7 +30,7 @@ class ChooseGender extends StatelessWidget {
           ),
           Spacer(),
           GestureDetector(
-            onTap: () => Get.to(SelectImagesSource()),
+            onTap: () => controller.updateGenderStatus(),
             child: Container(
               height: 45,
               width: Get.width * 0.85,

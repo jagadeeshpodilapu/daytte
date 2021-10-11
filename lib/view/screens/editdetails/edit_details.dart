@@ -1,7 +1,6 @@
-
-import 'package:daytte/consts/image_constants.dart';
-import 'package:daytte/controllers/imagepickercontroller/select_image_controller.dart';
-import 'package:daytte/view/screens/findnearest/find_nearest.dart';
+import '../../../consts/image_constants.dart';
+import '../../../controllers/imagepickercontroller/select_image_controller.dart';
+import '../findnearest/find_nearest.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

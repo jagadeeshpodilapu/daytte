@@ -1,9 +1,10 @@
 import 'package:daytte/controllers/base_controller/baseController.dart';
 import 'package:daytte/routes/app_routes.dart';
-import 'package:daytte/services/base_service/base_client.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:daytte/view/dialogs/dialogHelper.dart';
+
+import '../../services/base_service/base_client.dart';
+import '../../view/dialogs/dialogHelper.dart';
 
 class LoginController extends GetxController {
   TextEditingController mobileController = TextEditingController();

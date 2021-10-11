@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:daytte/consts/image_constants.dart';
-import 'package:daytte/routes/app_routes.dart';
+import '../consts/image_constants.dart';
+import '../routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

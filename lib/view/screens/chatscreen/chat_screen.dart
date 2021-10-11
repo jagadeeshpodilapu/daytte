@@ -1,10 +1,9 @@
-import 'package:daytte/consts/image_constants.dart';
-import 'package:daytte/utils/common_functions.dart';
-import 'package:daytte/view/screens/video_Audio/video_audio.dart';
+import '../../../consts/image_constants.dart';
+import '../../../utils/common_functions.dart';
+import '../video_Audio/video_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-
 
 class ChatScreen extends StatefulWidget {
   @override

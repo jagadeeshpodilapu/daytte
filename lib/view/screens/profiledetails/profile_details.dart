@@ -1,12 +1,10 @@
-import 'package:daytte/consts/image_constants.dart';
-import 'package:daytte/themes/app_styles.dart';
+import '../../../consts/image_constants.dart';
+import '../../../themes/app_styles.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
-
 class ProfileView extends StatelessWidget {
-
- @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(

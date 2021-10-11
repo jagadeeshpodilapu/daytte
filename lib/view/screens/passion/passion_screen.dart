@@ -1,6 +1,6 @@
-import 'package:daytte/routes/app_routes.dart';
-import 'package:daytte/view/widgets/button_widget.dart';
-import 'package:daytte/view/widgets/common_widgets.dart';
+import '../../../routes/app_routes.dart';
+import '../../widgets/button_widget.dart';
+import '../../widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:group_button/group_button.dart';
@@ -102,7 +102,7 @@ class _PassionSCreenState extends State<PassionSCreen> {
                 child: ButtonWidget(
                   buttonTitle: "Continue",
                   action: () {
-                    Get.toNamed(AppRoutes.CHOOSEGENDER);
+                    Get.toNamed(AppRoutes.UNIVERSITY);
                   },
                 ),
               ),
