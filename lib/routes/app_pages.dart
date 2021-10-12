@@ -1,5 +1,5 @@
-import 'package:daytte/controllers/aboutus_controller/about_us_binding.dart';
-import 'package:daytte/view/screens/aboutus/aboutus.dart';
+import '../controllers/aboutus_controller/about_us_binding.dart';
+import '../view/screens/aboutus/aboutus.dart';
 
 import '../controllers/imagepickercontroller/image_picker_binding.dart';
 import '../controllers/otpController/otp_binding.dart';
