@@ -1,3 +1,6 @@
+import 'package:daytte/controllers/aboutus_controller/about_us_binding.dart';
+import 'package:daytte/view/screens/aboutus/aboutus.dart';
+
 import '../controllers/imagepickercontroller/image_picker_binding.dart';
 import '../controllers/otpController/otp_binding.dart';
 import '../controllers/signupcontroller/signup_binding.dart';
@@ -38,6 +41,10 @@ class AppPages {
         name: AppRoutes.UNIVERSITY,
         page: () => UniversityView(),
         bindings: [UniversityBinding()]),
+    GetPage(
+        name: AppRoutes.ABOUTVIEW,
+        page: () => AboutUs(),
+        bindings: [AboutUsBinding()]),
     GetPage(
         name: AppRoutes.HOMEVIEW,
         page: () => Home(),
