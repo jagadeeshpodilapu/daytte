@@ -1,4 +1,5 @@
 import 'package:daytte/controllers/university/university_controller.dart';
+import 'package:daytte/view/screens/interested/interested.dart';
 
 import '../../widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
@@ -34,12 +35,17 @@ class UniversityView extends StatelessWidget {
                           .universityListModel?.universityList.totalCount ??
                       0,
                   shrinkWrap: true,
-                  itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 8),
-                    child: Text(
-                      "${controller.universityListModel!.universityList.passion[index].name}",
-                      style: TextStyle(fontSize: 20),
+                  itemBuilder: (context, index) => GestureDetector(
+                    onTap: () {
+                      Get.to(() => InterestedScreen());
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 8),
+                      child: Text(
+                        "${controller.universityListModel!.universityList.passion[index].name}",
+                        style: TextStyle(fontSize: 20),
+                      ),
                     ),
                   ),
                 )

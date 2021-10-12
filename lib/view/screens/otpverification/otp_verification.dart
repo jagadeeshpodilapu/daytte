@@ -13,8 +13,7 @@ class OtpVerification extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Obx(
-          () => Stack(
+        body:  Stack(
             children: [
               linearGradientBackground(),
               Positioned(
@@ -87,8 +86,7 @@ class OtpVerification extends StatelessWidget {
                         child: ButtonWidget(
                           buttonTitle: "GET OTP",
                           action: () {
-                            controller.otpController.verifyOtp(
-                                controller.otpInput.text,
+                            controller.verifyOtp(controller.otpInput.text,
                                 controller.mobileNumber);
                           },
                         ),
@@ -104,8 +102,7 @@ class OtpVerification extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               controller
-                                ..otpController
-                                    .reSendOtp("+91${controller.mobileNumber}");
+                                  .reSendOtp("+91${controller.mobileNumber}");
                             },
                             child: Text(
                               "Resend OTP",
@@ -121,7 +118,7 @@ class OtpVerification extends StatelessWidget {
                 ),
               ),
             ],
-          ),
+          
         ));
   }
 

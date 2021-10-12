@@ -16,8 +16,7 @@ class SignUp extends StatelessWidget {
     return Scaffold(
       appBar: appBarWidget(Constants.sign_up),
       body: SingleChildScrollView(
-        child: Obx(
-          () => Form(
+        child: Form(
             key: controller.key,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -159,7 +158,7 @@ class SignUp extends StatelessWidget {
             ),
           ),
         ),
-      ),
+      
     );
   }
 

@@ -17,7 +17,7 @@ class OtpController extends GetxController {
   Timer? _timer;
 
   TextEditingController otpInput = TextEditingController();
-  final otpController = Get.find<OtpController>();
+  
   int start = 30;
   late String mobileNumber;
   UserInfoModel? userInfoModel;

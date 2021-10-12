@@ -1,3 +1,5 @@
+import 'package:daytte/view/screens/editdetails/edit_details.dart';
+
 import '../../widgets/button_widget.dart';
 import '../../widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +10,7 @@ class AboutUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: appBarWidget("About Us"),
+      appBar: appBarWidget("About Me"),
       body: Column(
         children: [
           Container(
@@ -28,7 +30,13 @@ class AboutUs extends StatelessWidget {
               ),
             ),
           ),
-          ButtonWidget(buttonTitle: "Next", action: () {})
+          Container(
+              height: 40,
+              child: ButtonWidget(
+                  buttonTitle: "Next",
+                  action: () {
+                    Get.to(() => EditDetails());
+                  }))
         ],
       ),
     );

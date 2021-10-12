@@ -14,8 +14,7 @@ class PassionSCreen extends StatelessWidget {
     return Scaffold(
       appBar: appBarWidget("Passion"),
       body: SingleChildScrollView(
-        child: Obx(
-          () => Card(
+        child: Card(
             color: Colors.grey[200],
             elevation: 1,
             child: Column(
@@ -78,7 +77,7 @@ class PassionSCreen extends StatelessWidget {
             ),
           ),
         ),
-      ),
+      
     );
   }
 }
