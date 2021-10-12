@@ -34,7 +34,7 @@ class DiscoverPartner extends StatelessWidget {
             width: Get.width,
             margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: GestureDetector(
-              onTap: () {}, // => Get.to(() => ProfileView()),
+              onTap: () {},
               child: Stack(
                 children: [
                   Stack(
