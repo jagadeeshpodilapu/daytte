@@ -188,22 +188,23 @@ class DiscoverPartner extends StatelessWidget {
                                             height: 15,
                                           ),
                                           Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              children: [
-                                                buildContainer(
-                                                    ImageConstants.ic_rewind,
-                                                    24,
-                                                    24),
-                                                buildContainer(
-                                                    ImageConstants.ic_love,
-                                                    26,
-                                                    26),
-                                                buildContainer(
-                                                    ImageConstants.ic_close,
-                                                    20,
-                                                    20),
-                                              ])
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              buildContainer(
+                                                  ImageConstants.ic_rewind,
+                                                  24,
+                                                  24),
+                                              buildContainer(
+                                                  ImageConstants.ic_love,
+                                                  26,
+                                                  26),
+                                              buildContainer(
+                                                  ImageConstants.ic_close,
+                                                  20,
+                                                  20),
+                                            ],
+                                          )
                                         ],
                                       ),
                                     ),
