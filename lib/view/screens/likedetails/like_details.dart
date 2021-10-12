@@ -1,26 +1,18 @@
-import '../../widgets/common_widgets.dart';
+import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 
-class LikesPage extends StatefulWidget {
-  @override
-  _LikesPageState createState() => _LikesPageState();
-}
-
-class _LikesPageState extends State<LikesPage> {
-  bool isActive = false;
-
+class LikesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBarWidget("Likes Details"),
       backgroundColor: Colors.white,
-      body: getBody(),
+      body: getBody(context),
       //  bottomSheet: getFooter(),
     );
   }
 
-  Widget getBody() {
-    var size = MediaQuery.of(context).size;
+  Widget getBody(BuildContext context) {
     return Column(
       children: [
         Padding(
@@ -28,7 +20,6 @@ class _LikesPageState extends State<LikesPage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              
               Text(
                 " 0 Likes",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),

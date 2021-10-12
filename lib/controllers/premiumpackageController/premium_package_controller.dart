@@ -1,3 +1,5 @@
+import 'package:daytte/model/premium_offer_model.dart';
+import 'package:daytte/model/premium_package_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 import 'package:get/utils.dart';

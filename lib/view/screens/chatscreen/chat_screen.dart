@@ -1,16 +1,12 @@
-import '../../../consts/image_constants.dart';
-import '../../../utils/common_functions.dart';
-import '../video_Audio/video_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-class ChatScreen extends StatefulWidget {
-  @override
-  _ChatScreenState createState() => _ChatScreenState();
-}
+import '../../../consts/image_constants.dart';
+import '../../../utils/common_functions.dart';
+import '../video_Audio/video_audio.dart';
 
-class _ChatScreenState extends State<ChatScreen> {
+class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,8 +37,9 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
           GestureDetector(
             onTap: () => Get.to(
-              () =>
-              AudioVideoCall(isVideoCall: true,),
+              () => AudioVideoCall(
+                isVideoCall: true,
+              ),
             ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -372,7 +369,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                                   decoration: BoxDecoration(
                                                     color: Colors.yellow,
                                                     borderRadius:
-                                                        BorderRadius.all(
+                                                    BorderRadius.all(
                                                       Radius.circular(20),
                                                     ),
                                                   ),
@@ -401,7 +398,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                                   decoration: BoxDecoration(
                                                     color: Colors.yellow,
                                                     borderRadius:
-                                                        BorderRadius.all(
+                                                    BorderRadius.all(
                                                       Radius.circular(20),
                                                     ),
                                                   ),
@@ -463,9 +460,9 @@ class _ChatScreenState extends State<ChatScreen> {
                                     minLines: 1,
                                     maxLines: 5,
                                     onChanged: (value) {
-                                      setState(() {
-                                        // message = value;
-                                      });
+                                      // setState(() {
+                                      //   // message = value;
+                                      // });
                                     },
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 15.0),
@@ -497,7 +494,7 @@ class _ChatScreenState extends State<ChatScreen> {
               width: double.infinity,
               decoration: BoxDecoration(
                   border:
-                      Border(top: BorderSide(color: Colors.grey, width: 0.5)),
+                  Border(top: BorderSide(color: Colors.grey, width: 0.5)),
                   color: Colors.white),
             ),
           ),

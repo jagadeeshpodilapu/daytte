@@ -3,16 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-class AudioVideoCall extends StatefulWidget {
+class AudioVideoCall extends StatelessWidget {
   final bool isVideoCall;
 
-  const AudioVideoCall({Key? key, required this.isVideoCall}) : super(key: key);
+  const AudioVideoCall({required this.isVideoCall});
 
-  @override
-  State<AudioVideoCall> createState() => _AudioVideoCallState();
-}
-
-class _AudioVideoCallState extends State<AudioVideoCall> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +69,7 @@ class _AudioVideoCallState extends State<AudioVideoCall> {
                     BoxDecoration(color: Colors.white, shape: BoxShape.circle),
                 child: Image.asset('assets/images/mic.png'),
               ),
-              widget.isVideoCall
+              isVideoCall
                   ? Container(
                       height: 50,
                       width: 50,

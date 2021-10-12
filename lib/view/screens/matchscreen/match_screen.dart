@@ -1,46 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class MatchScreen extends StatefulWidget {
-  const MatchScreen({Key? key}) : super(key: key);
-
-  @override
-  _MatchScreenState createState() => _MatchScreenState();
-}
-
-class _MatchScreenState extends State<MatchScreen> {
+class MatchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return
-      Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        elevation: 0,
-        // backgroundColor: Colors.transparent,
-        child: Container(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Stack(
-                // mainAxisSize: MainAxisSize.min,
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-
-                  CustomPaint(
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.width,
-                    ),
-                    painter: HeaderCurvedContainer(),
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      elevation: 0,
+      // backgroundColor: Colors.transparent,
+      child: Container(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Stack(
+              // mainAxisSize: MainAxisSize.min,
+              // crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CustomPaint(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.width,
                   ),
-
-                  Column(
-                    children: [
-                      SizedBox(
-                        height: 10,
-                      ),
-                      SafeArea(child: Text("It's Match!",style:
+                  painter: HeaderCurvedContainer(),
+                ),
+                Column(
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    SafeArea(child: Text("It's Match!",style:
                       TextStyle(fontSize: 32, fontWeight: FontWeight.normal, color: Colors.white))),
 
                       Padding(
