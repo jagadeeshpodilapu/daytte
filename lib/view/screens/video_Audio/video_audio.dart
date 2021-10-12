@@ -1,4 +1,4 @@
-import 'package:daytte/utils/common_functions.dart';
+import '../../../utils/common_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';

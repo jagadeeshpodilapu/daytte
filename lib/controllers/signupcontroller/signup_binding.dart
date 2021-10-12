@@ -1,4 +1,4 @@
-import 'package:daytte/controllers/signupcontroller/signup_controller.dart';
+import 'signup_controller.dart';
 import 'package:get/get.dart';
 
 class SignupBinding extends Bindings{

@@ -1,5 +1,5 @@
-import 'package:daytte/controllers/university/university_controller.dart';
-import 'package:daytte/view/screens/interested/interested.dart';
+import '../../../controllers/university/university_controller.dart';
+import '../interested/interested.dart';
 
 import '../../widgets/common_widgets.dart';
 import 'package:flutter/material.dart';

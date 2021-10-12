@@ -1,5 +1,5 @@
-import 'package:daytte/controllers/base_controller/baseController.dart';
-import 'package:daytte/routes/app_routes.dart';
+import '../base_controller/baseController.dart';
+import '../../routes/app_routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 

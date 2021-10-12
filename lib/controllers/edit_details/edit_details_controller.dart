@@ -1,4 +1,4 @@
-import 'package:daytte/view/screens/editdetails/edit_details.dart';
+import '../../view/screens/editdetails/edit_details.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 

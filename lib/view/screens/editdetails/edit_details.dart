@@ -1,12 +1,12 @@
-import 'package:daytte/controllers/edit_details/edit_details_controller.dart';
-import 'package:daytte/routes/app_routes.dart';
+import '../../../controllers/edit_details/edit_details_controller.dart';
+import '../../../routes/app_routes.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../consts/image_constants.dart';
-import '../findnearest/find_nearest.dart';
+
 
 enum SingingCharacter { male, female }
 

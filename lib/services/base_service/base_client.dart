@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:daytte/services/base_service/app_exceptions.dart';
+import 'app_exceptions.dart';
 import 'package:dio/dio.dart';
 
 class BaseClient {

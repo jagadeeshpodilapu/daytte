@@ -1,7 +1,7 @@
-import 'package:daytte/consts/constants.dart';
-import 'package:daytte/consts/image_constants.dart';
-import 'package:daytte/controllers/signupcontroller/signup_controller.dart';
-import 'package:daytte/view/widgets/common_widgets.dart';
+import '../../../consts/constants.dart';
+import '../../../consts/image_constants.dart';
+import '../../../controllers/signupcontroller/signup_controller.dart';
+import '../../widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/colors/gf_color.dart';

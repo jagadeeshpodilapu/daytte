@@ -1,6 +1,6 @@
-import 'package:daytte/controllers/otpController/otp_controller.dart';
-import 'package:daytte/view/widgets/button_widget.dart';
-import 'package:daytte/view/widgets/common_widgets.dart';
+import '../../../controllers/otpController/otp_controller.dart';
+import '../../widgets/button_widget.dart';
+import '../../widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';

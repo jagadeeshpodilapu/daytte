@@ -1,6 +1,4 @@
-import 'package:daytte/controllers/choosegenderController/choose_gender_controller.dart';
-import 'package:daytte/view/screens/otpverification/otp_verification.dart';
-import 'package:daytte/view/screens/pick_images_sources/pick_source_images.dart';
+import '../../../controllers/choosegenderController/choose_gender_controller.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

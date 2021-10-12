@@ -1,9 +1,9 @@
-import 'package:daytte/controllers/base_controller/baseController.dart';
-import 'package:daytte/controllers/otpController/otp_controller.dart';
-import 'package:daytte/model/location_model.dart';
-import 'package:daytte/routes/app_routes.dart';
-import 'package:daytte/services/base_service/base_client.dart';
-import 'package:daytte/view/dialogs/dialogHelper.dart';
+import '../base_controller/baseController.dart';
+import '../otpController/otp_controller.dart';
+import '../../model/location_model.dart';
+import '../../routes/app_routes.dart';
+import '../../services/base_service/base_client.dart';
+import '../../view/dialogs/dialogHelper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';

@@ -1,7 +1,6 @@
 import '../../../consts/image_constants.dart';
 import '../../../controllers/home/home_controller.dart';
 import '../chatlist/chat_list.dart';
-
 import '../editdetails/edit_details.dart';
 import '../findnearest/find_nearest.dart';
 import '../likedetails/like_details.dart';

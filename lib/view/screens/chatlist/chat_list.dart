@@ -1,6 +1,6 @@
-import 'package:daytte/controllers/chatlist_controller/chatlist_controller.dart';
-import 'package:daytte/view/screens/chatrequest/chat_request.dart';
-import 'package:daytte/view/screens/chatscreen/chat_screen.dart';
+import '../../../controllers/chatlist_controller/chatlist_controller.dart';
+import '../chatrequest/chat_request.dart';
+import '../chatscreen/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

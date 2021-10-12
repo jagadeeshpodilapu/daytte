@@ -1,5 +1,5 @@
-import 'package:daytte/consts/image_constants.dart';
-import 'package:daytte/controllers/discover_partner/discover_partner_controller.dart';
+import '../../../consts/image_constants.dart';
+import '../../../controllers/discover_partner/discover_partner_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:story_view/widgets/story_view.dart';

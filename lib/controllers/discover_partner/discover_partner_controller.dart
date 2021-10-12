@@ -1,4 +1,4 @@
-import 'package:daytte/model/content_images.dart';
+import '../../model/content_images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:story_view/story_view.dart';

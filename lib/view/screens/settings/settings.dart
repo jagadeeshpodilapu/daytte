@@ -1,4 +1,4 @@
-import 'package:daytte/consts/image_constants.dart';
+import '../../../consts/image_constants.dart';
 import 'package:daytte/utils/common_functions.dart';
 import 'package:daytte/view/screens/aboutus/aboutus.dart';
 import 'package:daytte/view/screens/interested/interested.dart';

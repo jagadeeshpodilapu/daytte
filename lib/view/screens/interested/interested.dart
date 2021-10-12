@@ -1,7 +1,7 @@
-import 'package:daytte/controllers/interests/interests_controller.dart';
-import 'package:daytte/view/screens/aboutus/aboutus.dart';
-import 'package:daytte/view/widgets/button_widget.dart';
-import 'package:daytte/view/widgets/common_widgets.dart';
+import '../../../controllers/interests/interests_controller.dart';
+import '../aboutus/aboutus.dart';
+import '../../widgets/button_widget.dart';
+import '../../widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,5 +1,5 @@
-import 'package:daytte/utils/common_functions.dart';
-import 'package:daytte/view/dialogs/premium_dialogs/platinum_package.dart';
+import '../../../utils/common_functions.dart';
+import '../../dialogs/premium_dialogs/platinum_package.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

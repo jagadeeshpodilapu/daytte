@@ -1,4 +1,4 @@
-import 'package:daytte/view/screens/editdetails/edit_details.dart';
+import '../editdetails/edit_details.dart';
 
 import '../../widgets/button_widget.dart';
 import '../../widgets/common_widgets.dart';

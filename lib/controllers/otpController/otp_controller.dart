@@ -1,16 +1,14 @@
 import 'dart:async';
 
-import 'package:daytte/controllers/base_controller/baseController.dart';
-import 'package:daytte/model/user_info_model.dart';
-import 'package:daytte/routes/app_routes.dart';
+import '../base_controller/baseController.dart';
+import '../../model/user_info_model.dart';
+import '../../routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../model/user_info_model.dart';
 import '../../services/base_service/base_client.dart';
 import '../../view/dialogs/dialogHelper.dart';
-import '../base_controller/baseController.dart';
 
 class OtpController extends GetxController {
   final storage = GetStorage();
