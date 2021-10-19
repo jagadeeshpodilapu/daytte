@@ -83,16 +83,16 @@ class SignupController extends GetxController {
   // GenderEnum selectGender = GenderEnum.Male;
 
   String groupValue = '';
-  bool check = false;
-  bool shareLocation = false;
+  RxBool check = false.obs;
+  RxBool shareLocation = false.obs;
 
   void handlecheckbox(bool value) {
-    check = value;
+    check.value = value;
     update();
   }
 
   void handleSharelocation(bool value) {
-    shareLocation = value;
+    shareLocation.value = value;
     update();
   }
 }

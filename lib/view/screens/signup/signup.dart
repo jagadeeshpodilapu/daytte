@@ -93,35 +93,41 @@ class SignUp extends StatelessWidget {
                             decoration: InputDecoration(
                                 hintText: "XXXX", isDense: true),
                           ),
+                          SizedBox(height: 10),
                           Align(
                             alignment: Alignment.topLeft,
-                            child: Row(
-                              children: [
-                                Text("Share My Location"),
-                                Spacer(),
-                                Switch(
-                                  value: controller.shareLocation,
-                                  activeTrackColor: Colors.green,
-                                  onChanged: (value) =>
-                                      controller.handleSharelocation(value),
-                                  activeColor: Colors.white,
-                                )
-                              ],
+                            child: Obx(()=>
+                               Row(
+                                children: [
+                                  Text("Share My Location"),
+                                  Spacer(),
+                                  Switch(
+                                    value: controller.shareLocation.value,
+                                    activeTrackColor: Colors.green,
+                                    onChanged: (value) =>
+                                        controller.handleSharelocation(value),
+                                    activeColor: Colors.white,
+                                  )
+                                ],
+                              ),
                             ),
                           ),
+                          SizedBox(height: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              GFCheckbox(
-                                size: 20,
-                                type: GFCheckboxType.custom,
-                                value: controller.check,
-                                onChanged: (value) =>
-                                    controller.handlecheckbox(value),
-                                customBgColor: GFColors.INFO,
-                                activeIcon: Icon(
-                                  Icons.crop_square,
+                              Obx(()=>
+                                 GFCheckbox(
                                   size: 20,
+                                  type: GFCheckboxType.custom,
+                                  value: controller.check.value,
+                                  onChanged: (value) =>
+                                      controller.handlecheckbox(value),
+                                  customBgColor: GFColors.INFO,
+                                  activeIcon: Icon(
+                                    Icons.crop_square,
+                                    size: 20,
+                                  ),
                                 ),
                               ),
                               SizedBox(width: 5),
@@ -136,12 +142,12 @@ class SignUp extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 15),
                 Center(
                   child: ElevatedButton(
                       onPressed: () {
                         if (controller.key.currentState!.validate()) {
-                          if (controller.check) {
+                          if (controller.check.value) {
                             controller.postUserInfo();
                           }
                         }
@@ -153,7 +159,7 @@ class SignUp extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 16),
                       )),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 15),
               ],
             ),
           ),
