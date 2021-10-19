@@ -1,9 +1,11 @@
-import 'package:get/get.dart';
+import '../controllers/aboutus_controller/about_us_binding.dart';
+import '../view/screens/aboutus/aboutus.dart';
 
 import '../controllers/imagepickercontroller/image_picker_binding.dart';
 import '../controllers/otpController/otp_binding.dart';
 import '../controllers/signupcontroller/signup_binding.dart';
 import '../controllers/university/university_binding.dart';
+import 'app_routes.dart';
 import '../view/screens/choosegender/choose_gender.dart';
 import '../view/screens/home/home.dart';
 import '../view/screens/login/login.dart';
@@ -13,7 +15,8 @@ import '../view/screens/pick_images_sources/pick_source_images.dart';
 import '../view/screens/signup/signup.dart';
 import '../view/screens/university/university.dart';
 import '../view/splash_screen.dart';
-import 'app_routes.dart';
+
+import 'package:get/get.dart';
 
 class AppPages {
   static List<GetPage> routes = [
@@ -38,6 +41,10 @@ class AppPages {
         name: AppRoutes.UNIVERSITY,
         page: () => UniversityView(),
         bindings: [UniversityBinding()]),
+    GetPage(
+        name: AppRoutes.ABOUTVIEW,
+        page: () => AboutUs(),
+        bindings: [AboutUsBinding()]),
     GetPage(
         name: AppRoutes.HOMEVIEW,
         page: () => Home(),
