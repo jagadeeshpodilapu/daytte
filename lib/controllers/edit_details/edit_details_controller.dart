@@ -1,6 +1,7 @@
-import '../../view/screens/editdetails/edit_details.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../view/screens/editdetails/edit_details.dart';
 
 class EditDetailsController extends GetxController {
   SingingCharacter? character = SingingCharacter.male;

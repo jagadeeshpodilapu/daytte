@@ -1,17 +1,18 @@
-import '../../../consts/image_constants.dart';
-import '../../../controllers/discover_partner/discover_partner_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:story_view/widgets/story_view.dart';
 import 'package:swipe_cards/swipe_cards.dart';
 
+import '../../../consts/image_constants.dart';
+import '../../../controllers/discover_partner/discover_partner_controller.dart';
+
 class DiscoverPartner extends StatelessWidget {
-  final controller = Get.put(DiscoverPartnerController());
+  //final controller = Get.put(DiscoverPartnerController());
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Scaffold(
+    return GetBuilder<DiscoverPartnerController>(builder: (controller) {
+      return Scaffold(
           key: controller.scaffoldKey,
           appBar: AppBar(
             leading: IconButton(
@@ -194,15 +195,18 @@ class DiscoverPartner extends StatelessWidget {
                                               buildContainer(
                                                   ImageConstants.ic_rewind,
                                                   24,
-                                                  24),
+                                                  24,
+                                                  controller),
                                               buildContainer(
                                                   ImageConstants.ic_love,
                                                   26,
-                                                  26),
+                                                  26,
+                                                  controller),
                                               buildContainer(
                                                   ImageConstants.ic_close,
                                                   20,
-                                                  20),
+                                                  20,
+                                                  controller),
                                             ],
                                           )
                                         ],
@@ -227,11 +231,12 @@ class DiscoverPartner extends StatelessWidget {
                 ],
               ),
             ),
-          )),
-    );
+          ));
+    });
   }
 
-  Container buildContainer(String icon, double height, double width) {
+  Container buildContainer(String icon, double height, double width,
+      DiscoverPartnerController controller) {
     return Container(
         color: Colors.white,
         height: 50,

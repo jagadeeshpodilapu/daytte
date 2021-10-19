@@ -1,12 +1,14 @@
-import '../../../consts/constants.dart';
-import '../../../consts/image_constants.dart';
-import '../../../controllers/signupcontroller/signup_controller.dart';
-import '../../widgets/common_widgets.dart';
+import 'package:daytte/view/screens/interested/interested.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/colors/gf_color.dart';
 import 'package:getwidget/components/checkbox/gf_checkbox.dart';
 import 'package:getwidget/types/gf_checkbox_type.dart';
+
+import '../../../consts/constants.dart';
+import '../../../consts/image_constants.dart';
+import '../../../controllers/signupcontroller/signup_controller.dart';
+import '../../widgets/common_widgets.dart';
 
 class SignUp extends StatelessWidget {
   final controller = Get.put(SignupController());
@@ -17,7 +19,7 @@ class SignUp extends StatelessWidget {
       appBar: appBarWidget(Constants.sign_up),
       body: SingleChildScrollView(
         child: Form(
-            key: controller.key,
+          key: controller.key,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
@@ -140,10 +142,11 @@ class SignUp extends StatelessWidget {
                 Center(
                   child: ElevatedButton(
                       onPressed: () {
-                        if (controller.key.currentState!.validate()) {
+                      if (controller.key.currentState!.validate()) {
                           if (controller.check) {
                             controller.postUserInfo();
-                          }
+                          Get.to(() => InterestedScreen());
+                        }
                         }
                       },
                       style: ElevatedButton.styleFrom(

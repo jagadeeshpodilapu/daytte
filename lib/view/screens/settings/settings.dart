@@ -1,4 +1,3 @@
-import '../../../consts/image_constants.dart';
 import 'package:daytte/utils/common_functions.dart';
 import 'package:daytte/view/screens/aboutus/aboutus.dart';
 import 'package:daytte/view/screens/interested/interested.dart';
@@ -8,6 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
+
+import '../../../consts/image_constants.dart';
 
 class Settings extends StatelessWidget {
   @override

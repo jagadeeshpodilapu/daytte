@@ -1,7 +1,7 @@
-import '../../../controllers/choosegenderController/choose_gender_controller.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../controllers/choosegenderController/choose_gender_controller.dart';
 
 class ChooseGender extends StatelessWidget {
   final controller = Get.put(ChooseGenderController());

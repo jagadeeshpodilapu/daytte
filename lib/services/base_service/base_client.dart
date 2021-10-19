@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'app_exceptions.dart';
+
 import 'package:dio/dio.dart';
+
+import 'app_exceptions.dart';
 
 class BaseClient {
   static const int TIME_OUT_DURATION = 20;

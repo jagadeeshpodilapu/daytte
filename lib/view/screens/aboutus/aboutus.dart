@@ -1,9 +1,9 @@
-import '../editdetails/edit_details.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../widgets/button_widget.dart';
 import '../../widgets/common_widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import '../editdetails/edit_details.dart';
 
 class AboutUs extends StatelessWidget {
   @override

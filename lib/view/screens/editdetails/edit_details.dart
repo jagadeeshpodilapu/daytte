@@ -1,12 +1,11 @@
-import '../../../controllers/edit_details/edit_details_controller.dart';
-import '../../../routes/app_routes.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../consts/image_constants.dart';
-
+import '../../../controllers/edit_details/edit_details_controller.dart';
+import '../../../routes/app_routes.dart';
 
 enum SingingCharacter { male, female }
 

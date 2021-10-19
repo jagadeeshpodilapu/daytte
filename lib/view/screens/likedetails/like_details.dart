@@ -1,5 +1,8 @@
-import '../../widgets/common_widgets.dart';
+import 'package:daytte/view/screens/discoverpartner/discover_partner.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../widgets/common_widgets.dart';
 
 class LikesPage extends StatelessWidget {
   @override
@@ -48,98 +51,109 @@ class LikesPage extends StatelessWidget {
               children: [
                 Expanded(
                     child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Stack(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black12,
-                                  spreadRadius: 1,
-                                  blurRadius: 2)
-                            ]),
-                        height: 280,
-                        child: Padding(
-                          padding: EdgeInsets.only(bottom: 18.0),
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(bottom: 4.0),
-                                  child: Text("Rose Ward",
-                                      style: TextStyle(fontSize: 16)),
-                                ),
-                                Text("Active Now",
-                                    style: TextStyle(fontSize: 12)),
-                              ],
+                      padding: const EdgeInsets.all(8.0),
+                  child: GestureDetector(
+                    child: Stack(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    spreadRadius: 1,
+                                    blurRadius: 2)
+                              ]),
+                          height: 280,
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: 18.0),
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(bottom: 4.0),
+                                    child: Text("Rose Ward",
+                                        style: TextStyle(fontSize: 16)),
+                                  ),
+                                  Text("Active Now",
+                                      style: TextStyle(fontSize: 12)),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: NetworkImage(
-                                  "https://wallup.net/wp-content/uploads/2016/05/13/334355-people-model-fashion-forest-dress-portrait.jpg"),
-                              fit: BoxFit.cover),
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.orange,
+                        Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                    "https://wallup.net/wp-content/uploads/2016/05/13/334355-people-model-fashion-forest-dress-portrait.jpg"),
+                                fit: BoxFit.cover),
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.orange,
+                          ),
+                          height: 200,
                         ),
-                        height: 200,
-                      ),
-                    ],
+                      ],
+                    ),
+                    onTap: () {
+                      Get.to(() => DiscoverPartner());
+                    },
                   ),
                 )),
                 Expanded(
                     child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Stack(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.white,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black12,
-                                  spreadRadius: 1,
-                                  blurRadius: 2)
-                            ]),
-                        height: 280,
-                        child: Padding(
-                          padding: EdgeInsets.only(bottom: 18.0),
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(bottom: 4.0),
-                                  child: Text("Rose Ward",
-                                      style: TextStyle(fontSize: 16)),
-                                ),
-                                Text("Active Now",
-                                    style: TextStyle(fontSize: 12)),
-                              ],
+                      padding: const EdgeInsets.all(8.0),
+                  child: GestureDetector(
+                    child: Stack(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    spreadRadius: 1,
+                                    blurRadius: 2)
+                              ]),
+                          height: 280,
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: 18.0),
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(bottom: 4.0),
+                                    child: Text("Rose Ward",
+                                        style: TextStyle(fontSize: 16)),
+                                  ),
+                                  Text("Active Now",
+                                      style: TextStyle(fontSize: 12)),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: NetworkImage(
-                                  "https://wallup.net/wp-content/uploads/2016/05/13/334355-people-model-fashion-forest-dress-portrait.jpg"),
-                              fit: BoxFit.cover),
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.orange,
+                        Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                    "https://wallup.net/wp-content/uploads/2016/05/13/334355-people-model-fashion-forest-dress-portrait.jpg"),
+                                fit: BoxFit.cover),
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.orange,
+                          ),
+                          height: 200,
                         ),
-                        height: 200,
-                      ),
-                    ],
+                      ],
+                    ),
+                    onTap: () {
+                      Get.to(() => DiscoverPartner());
+                      print("DiscoverPartner");
+                    },
                   ),
                 )),
               ],
