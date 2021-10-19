@@ -7,6 +7,7 @@ class Constants{
   static const String already_member='Already a member?';
   static const String sign_in='  Sign In';
   static const String sign_up='  Sign up';
+
   static const String social_connect='Or connect with social';
   static const String facebook='Facebook';
   static const String google='Google';
