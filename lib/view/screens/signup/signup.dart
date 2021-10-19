@@ -1,14 +1,12 @@
-import 'package:daytte/view/screens/interested/interested.dart';
+import '../../../consts/constants.dart';
+import '../../../consts/image_constants.dart';
+import '../../../controllers/signupcontroller/signup_controller.dart';
+import '../../widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/colors/gf_color.dart';
 import 'package:getwidget/components/checkbox/gf_checkbox.dart';
 import 'package:getwidget/types/gf_checkbox_type.dart';
-
-import '../../../consts/constants.dart';
-import '../../../consts/image_constants.dart';
-import '../../../controllers/signupcontroller/signup_controller.dart';
-import '../../widgets/common_widgets.dart';
 
 class SignUp extends StatelessWidget {
   final controller = Get.put(SignupController());
@@ -19,7 +17,7 @@ class SignUp extends StatelessWidget {
       appBar: appBarWidget(Constants.sign_up),
       body: SingleChildScrollView(
         child: Form(
-          key: controller.key,
+            key: controller.key,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
@@ -95,35 +93,41 @@ class SignUp extends StatelessWidget {
                             decoration: InputDecoration(
                                 hintText: "XXXX", isDense: true),
                           ),
+                          SizedBox(height: 10),
                           Align(
                             alignment: Alignment.topLeft,
-                            child: Row(
-                              children: [
-                                Text("Share My Location"),
-                                Spacer(),
-                                Switch(
-                                  value: controller.shareLocation,
-                                  activeTrackColor: Colors.green,
-                                  onChanged: (value) =>
-                                      controller.handleSharelocation(value),
-                                  activeColor: Colors.white,
-                                )
-                              ],
+                            child: Obx(()=>
+                               Row(
+                                children: [
+                                  Text("Share My Location"),
+                                  Spacer(),
+                                  Switch(
+                                    value: controller.shareLocation.value,
+                                    activeTrackColor: Colors.green,
+                                    onChanged: (value) =>
+                                        controller.handleSharelocation(value),
+                                    activeColor: Colors.white,
+                                  )
+                                ],
+                              ),
                             ),
                           ),
+                          SizedBox(height: 10),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              GFCheckbox(
-                                size: 20,
-                                type: GFCheckboxType.custom,
-                                value: controller.check,
-                                onChanged: (value) =>
-                                    controller.handlecheckbox(value),
-                                customBgColor: GFColors.INFO,
-                                activeIcon: Icon(
-                                  Icons.crop_square,
+                              Obx(()=>
+                                 GFCheckbox(
                                   size: 20,
+                                  type: GFCheckboxType.custom,
+                                  value: controller.check.value,
+                                  onChanged: (value) =>
+                                      controller.handlecheckbox(value),
+                                  customBgColor: GFColors.INFO,
+                                  activeIcon: Icon(
+                                    Icons.crop_square,
+                                    size: 20,
+                                  ),
                                 ),
                               ),
                               SizedBox(width: 5),
@@ -138,15 +142,14 @@ class SignUp extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 15),
                 Center(
                   child: ElevatedButton(
                       onPressed: () {
-                      if (controller.key.currentState!.validate()) {
-                          if (controller.check) {
+                        if (controller.key.currentState!.validate()) {
+                          if (controller.check.value) {
                             controller.postUserInfo();
-                          Get.to(() => InterestedScreen());
-                        }
+                          }
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -156,7 +159,7 @@ class SignUp extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 16),
                       )),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 15),
               ],
             ),
           ),
