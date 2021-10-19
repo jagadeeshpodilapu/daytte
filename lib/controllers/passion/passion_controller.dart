@@ -1,62 +1,56 @@
+import 'package:daytte/model/response_model.dart';
+
+import '../base_controller/baseController.dart';
+import '../otpController/otp_controller.dart';
+import '../../model/pasion_model.dart';
+import '../../routes/app_routes.dart';
+import '../../services/base_service/base_client.dart';
+import '../../view/dialogs/dialogHelper.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class PassionController extends GetxController {
-  List? companies;
-  List<String>? _filters;
-  bool changeColor = false;
-  int? intVar;
-
-  List<String> get passionList {
-    return [
-      'Working out',
-      'Vegetarian',
-      'Musician',
-      'Cricket1',
-      'Language Exchange1',
-      'Netflix1',
-      'Working out1',
-      'Vegetarian1',
-      'Musician1',
-      'Cricket2',
-      'Language Exchange2',
-      'Netflix2',
-      'Working out2',
-      'Vegetarian2',
-      'Musician2',
-      'Cricket3',
-      'Language Exchange3',
-      'Netflix3',
-      'Working out3',
-      'Vegetarian3',
-    ];
-  }
-
+  final storage = GetStorage();
+  int page = 0, limit = 20;
+  PassionModel? passionModel;
+  ResponseModel? responseModel;
+  List<String> listName = [];
+  List<String> listId = [];
+  List<String> selected = [];
+  final otpController = Get.find<OtpController>();
   @override
   void onInit() {
-    // TODO: implement onInit
+    fetchPassion();
     super.onInit();
-    _filters = <String>[];
-    List<String> companies = <String>[
-      'Working out',
-      'Vegetarian',
-      'Musician',
-      'Cricket1',
-      'Language Exchange1',
-      'Netflix1',
-      'Working out1',
-      'Vegetarian1',
-      'Musician1',
-      'Cricket2',
-      'Language Exchange2',
-      'Netflix2',
-      'Working out2',
-      'Vegetarian2',
-      'Musician2',
-      'Cricket3',
-      'Language Exchange3',
-      'Netflix3',
-      'Working out3',
-      'Vegetarian3',
-    ];
+  }
+
+  Future fetchPassion() async {
+    final response = await BaseClient()
+        .get('/passion?skip=$page&limit=$limit', storage.read('token'))
+        .catchError(BaseController().handleError);
+
+    if (response != null) {
+      passionModel = PassionModel.fromJson(response);
+      passionModel!.data.passion!.forEach((element) {
+        listName.add(element.name.toString());
+        listId.add(element.id.toString());
+      });
+    }
+    update();
+  }
+
+  Future postPassition() async {
+    Map<String, dynamic> payload = {"passion": listId};
+    DialogHelper.showLoading('Loading...');
+    final response = await BaseClient()
+        .patch('/users/${otpController.userInfoModel?.userProperties.user?.id}',
+            payload, storage.read('token'))
+        .catchError(BaseController().handleError);
+
+    DialogHelper.hideLoading();
+    if (response != null) {
+      responseModel = ResponseModel.fromJson(response);
+      Get.toNamed(AppRoutes.UNIVERSITY);
+    }
   }
 }

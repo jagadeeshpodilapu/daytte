@@ -7,68 +7,53 @@ import 'package:get/get.dart';
 import 'package:group_button/group_button.dart';
 
 class PassionSCreen extends StatelessWidget {
-  final controller = Get.put(PassionController());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBarWidget("Passion"),
-      body: SingleChildScrollView(
-        child: Card(
+      body: GetBuilder<PassionController>(
+        init: PassionController(),
+        builder: (controller) => SingleChildScrollView(
+          child: Card(
             color: Colors.grey[200],
             elevation: 1,
             child: Column(
               children: [
                 SizedBox(height: 20),
-                Theme(
-                  data: ThemeData(
-                    primarySwatch: Colors.pink,
-                    backgroundColor: Colors.grey,
-                  ),
-                  child: GroupButton(
-                    spacing: 10,
-                    isRadio: false,
-                    selectedShadow: const [],
-                    unselectedShadow: const [],
-                    selectedBorderColor: Colors.pink,
-                    unselectedBorderColor: Colors.grey,
-                    unselectedTextStyle: const TextStyle(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(30),
-                    onSelected: (index, isSelected) {},
-                    buttons: controller.passionList,
-                    selectedButtons: const [2, 3, 6, 5],
-                  ),
-                ),
-
-                /* FilterChip(
-                              backgroundColor: Colors.grey[400],
-                              showCheckmark: false,
-                              labelStyle: TextStyle(color: Colors.white),
-                              label: Text(
-                                _companies![index],
-                              ),
-                              selected: _filters!.contains(_companies![index]),
-                              selectedColor: Colors.pinkAccent,
-                              onSelected: (bool selected) {
-                                setState(() {
-                                  if (selected) {
-                                    _filters!.add(_companies![index]);
-                                  } else {
-                                    _filters!.removeWhere((String name) {
-                                      return name == _companies![index];
-                                    });
-                                  }
-                                });
-                              },
-                            ), */
-
+                ...List.generate(1, (index) {
+                  return Theme(
+                    data: ThemeData(
+                      primarySwatch: Colors.pink,
+                      backgroundColor: Colors.grey,
+                    ),
+                    child: GroupButton(
+                      spacing: 5,
+                      isRadio: false,
+                      selectedShadow: const [],
+                      unselectedShadow: const [],
+                      selectedBorderColor: Colors.pink,
+                      unselectedBorderColor: Colors.grey,
+                      unselectedTextStyle: const TextStyle(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(30),
+                      onSelected: (index, isSelected) =>
+                          controller.selected.add(controller.listId[index]),
+                      buttons: controller.listName,
+                      selectedButtons: [],
+                    ),
+                  );
+                }),
                 SizedBox(height: 20),
                 Container(
                   height: 50,
                   child: ButtonWidget(
                     buttonTitle: "Continue",
-                    action: () {
-                      Get.toNamed(AppRoutes.UNIVERSITY);
+                    action: () async {
+                      await controller.postPassition();
+                      if (controller.responseModel != null) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content:
+                                Text("${controller.responseModel?.message}")));
+                      }
                     },
                   ),
                 ),
@@ -77,7 +62,7 @@ class PassionSCreen extends StatelessWidget {
             ),
           ),
         ),
-      
+      ),
     );
   }
 }

@@ -38,19 +38,17 @@ class AboutUs extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-                height: 40,
-                child: ButtonWidget(
-                    buttonTitle: "Next",
-                    action: () {
-                      if (_key.currentState!.validate()) {
-                        print("form is validated");
-                        controller.updateShortDescription();
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text("Please tell about YourSelf")));
-                      }
-                    }))
+            ButtonWidget(
+                buttonTitle: "Next",
+                action: () {
+                  if (controller.shortDisc.text.isNotEmpty) {
+                    print("form is validated");
+                    controller.updateShortDescription();
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("Please tell about YourSelf")));
+                  }
+                })
           ],
         ),
       ),

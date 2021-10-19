@@ -30,25 +30,33 @@ class UniversityView extends StatelessWidget {
                     textAlignVertical: TextAlignVertical.center,
                   ),
                 ),
-                ListView.builder(
-                  itemCount: controller
-                          .universityListModel?.universityList.totalCount ??
-                      0,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) => GestureDetector(
-                    onTap: () {
-                      Get.to(() => InterestedScreen());
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0, vertical: 8),
-                      child: Text(
-                        "${controller.universityListModel!.universityList.passion[index].name}",
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
-                  ),
-                )
+                controller.universityListModel?.universityList.totalCount != 0
+                    ? ListView.builder(
+                        itemCount: controller.universityListModel
+                                ?.universityList.totalCount ??
+                            0,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) => GestureDetector(
+                          onTap: () async {
+                            await controller.postUniversityList(
+                                "${controller.universityListModel!.universityList.passion[index].name}");
+                            if (controller.responseModel != null) {
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  content: Text(
+                                      "${controller.responseModel?.message}")));
+                            }
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 8),
+                            child: Text(
+                              "${controller.universityListModel!.universityList.passion[index].name}",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ),
+                        ),
+                      )
+                    : Center(child: CircularProgressIndicator.adaptive())
               ],
             ),
           ),

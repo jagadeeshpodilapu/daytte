@@ -56,8 +56,14 @@ class InterestedScreen extends StatelessWidget {
             ),
             ButtonWidget(
               buttonTitle: "Next",
-              action: () {
-                controller.updateInterestedStatus();
+              action: ()async {
+                await controller.updateInterestedStatus();
+                 if (controller.responseModel != null) {
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  content: Text(
+                                      "${controller.responseModel?.message}")));
+                            }
+                
               },
             )
           ],
