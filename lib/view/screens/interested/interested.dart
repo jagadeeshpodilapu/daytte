@@ -28,7 +28,7 @@ class InterestedScreen extends StatelessWidget {
                       trailing: Radio(
                           activeColor: Color(0xFFfc5185),
                           value: 'men',
-                          groupValue: controller.groupValue,
+                          groupValue: controller.selctedGender,
                           onChanged: (value) =>
                               controller.handleGenderChange(value)),
                     ),
@@ -37,7 +37,7 @@ class InterestedScreen extends StatelessWidget {
                       trailing: Radio(
                           activeColor: Color(0xFFfc5185),
                           value: 'women',
-                          groupValue: controller.groupValue,
+                          groupValue: controller.selctedGender,
                           onChanged: (value) =>
                               controller.handleGenderChange(value)),
                     ),
@@ -46,7 +46,7 @@ class InterestedScreen extends StatelessWidget {
                       trailing: Radio(
                           value: 'other',
                           activeColor: Color(0xFFfc5185),
-                          groupValue: controller.groupValue,
+                          groupValue: controller.selctedGender,
                           onChanged: (value) =>
                               controller.handleGenderChange(value)),
                     ),

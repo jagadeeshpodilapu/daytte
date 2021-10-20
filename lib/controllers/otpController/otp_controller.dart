@@ -1,21 +1,21 @@
 import 'dart:async';
 
-import '../base_controller/baseController.dart';
-import '../../model/user_info_model.dart';
-import '../../routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../model/user_info_model.dart';
+import '../../routes/app_routes.dart';
 import '../../services/base_service/base_client.dart';
 import '../../view/dialogs/dialogHelper.dart';
+import '../base_controller/baseController.dart';
 
 class OtpController extends GetxController {
   final storage = GetStorage();
   Timer? _timer;
 
   TextEditingController otpInput = TextEditingController();
-  
+
   int start = 30;
   late String mobileNumber;
   UserInfoModel? userInfoModel;

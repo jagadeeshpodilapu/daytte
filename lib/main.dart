@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       initialBinding: ImagePickerBinding(),
-      initialRoute: AppRoutes.SPLASHVIEW,
+      initialRoute: AppRoutes.EdITDETAILS,
       getPages: AppPages.routes,
     );
   }

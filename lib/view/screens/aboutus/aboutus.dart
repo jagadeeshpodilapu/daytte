@@ -1,11 +1,9 @@
 import 'package:daytte/controllers/aboutus_controller/about_us_controller.dart';
-
-import '../editdetails/edit_details.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../widgets/button_widget.dart';
 import '../../widgets/common_widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class AboutUs extends StatelessWidget {
   GlobalKey<FormState> _key = GlobalKey<FormState>();
@@ -39,18 +37,23 @@ class AboutUs extends StatelessWidget {
               ),
             ),
             Container(
-                height: 40,
-                child: ButtonWidget(
-                    buttonTitle: "Next",
-                    action: () {
-                      if (_key.currentState!.validate()) {
-                        print("form is validated");
-                        controller.updateShortDescription();
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text("Please tell about YourSelf")));
-                      }
-                    }))
+              height: 40,
+              child: ButtonWidget(
+                buttonTitle: "Next",
+                action: () {
+                  if (_key.currentState!.validate()) {
+                    print("form is validated");
+                    controller.updateShortDescription();
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("Please tell about YourSelf"),
+                      ),
+                    );
+                  }
+                },
+              ),
+            )
           ],
         ),
       ),

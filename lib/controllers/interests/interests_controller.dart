@@ -12,7 +12,7 @@ class InterestController extends GetxController {
   final controller = Get.find<OtpController>();
   final storage = GetStorage();
 
-  handleGenderChange(Gender? value) {
+  handleGenderChange(value) {
     selctedGender = value!;
     update();
   }

@@ -33,36 +33,36 @@ class EditDetails extends StatelessWidget {
           ListView(
             children: [
               Center(
-                  child: Column(
-                children: [
-                  Padding(
-                      padding: EdgeInsets.only(top: 8.0),
-                      child: Text("Add Photo",
-                          style: GoogleFonts.sourceSerifPro(
-                              textStyle: TextStyle(
-                                  fontWeight: FontWeight.w500, fontSize: 24)))),
-                  Padding(
-                    padding: EdgeInsets.only(top: 5, bottom: 25),
-                    child: Text(
-                      "Add at least 2 photos to continue",
-                      style: GoogleFonts.sourceSerifPro(
-                          textStyle: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 12,
-                              color: Colors.black26)),
+                child: Column(
+                  children: [
+                    Padding(
+                        padding: EdgeInsets.only(top: 8.0),
+                        child: Text("Add Photo",
+                            style: GoogleFonts.sourceSerifPro(
+                                textStyle: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 24)))),
+                    Padding(
+                      padding: EdgeInsets.only(top: 5, bottom: 25),
+                      child: Text(
+                        "Add at least 2 photos to continue",
+                        style: GoogleFonts.sourceSerifPro(
+                            textStyle: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 12,
+                                color: Colors.black26)),
+                      ),
                     ),
-                  ),
-                ],
-              )),
+                  ],
+                ),
+              ),
               Padding(
                 padding: EdgeInsets.only(left: 24.0),
                 child: Wrap(
                   spacing: 10,
                   children: [
                     InkWell(
-                        onTap: () {
-                          //  getImageFromCamera();
-                        },
+                        onTap: () {},
                         child: DottedBorder(
                           dashPattern: [5, 6],
                           child: Container(
@@ -331,7 +331,7 @@ class EditDetails extends StatelessWidget {
                           ),
                         ],
                       ),
-                     /*  Row(
+                      /*  Row(
                         children: <Widget>[
                           Radio<String>(
                             value: "Male",

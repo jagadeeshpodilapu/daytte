@@ -1,3 +1,6 @@
+import 'package:daytte/controllers/edit_details/edit_detail_binding.dart';
+import 'package:daytte/view/screens/editdetails/edit_details.dart';
+
 import '../controllers/aboutus_controller/about_us_binding.dart';
 import '../view/screens/aboutus/aboutus.dart';
 
@@ -49,5 +52,9 @@ class AppPages {
         name: AppRoutes.HOMEVIEW,
         page: () => Home(),
         bindings: [ImagePickerBinding()]),
+    GetPage(
+        name: AppRoutes.EdITDETAILS,
+        page: () => EditDetails(),
+        bindings: [EditDetailsBinding()]),
   ];
 }
