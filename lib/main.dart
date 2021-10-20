@@ -6,10 +6,8 @@ import 'package:get_storage/get_storage.dart';
 import 'controllers/imagepickercontroller/image_picker_binding.dart';
 
 void main() async {
-  
   await GetStorage.init();
-   runApp(MyApp());
-
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -23,6 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       initialBinding: ImagePickerBinding(),
       initialRoute: AppRoutes.SPLASHVIEW,
+      defaultTransition: Transition.rightToLeft,
       getPages: AppPages.routes,
     );
   }

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ChatList extends StatelessWidget {
-  final controller = Get.put(ChatListController());
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +12,8 @@ class ChatList extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(120.0),
         child: SafeArea(
-          child: Obx(
-            () => Column(
+          child: GetBuilder<ChatListController>(
+            builder:(controller) => Column(
               children: [
                 Row(
                   children: [

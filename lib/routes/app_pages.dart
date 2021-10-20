@@ -1,4 +1,6 @@
+import 'package:daytte/controllers/findnearest/find_nearest_binding.dart';
 import 'package:daytte/controllers/passion/passion_binding.dart';
+import 'package:daytte/view/screens/findnearest/find_nearest.dart';
 
 import '../controllers/aboutus_controller/about_us_binding.dart';
 import '../view/screens/aboutus/aboutus.dart';
@@ -47,13 +49,13 @@ class AppPages {
         name: AppRoutes.ABOUTVIEW,
         page: () => AboutUs(),
         bindings: [AboutUsBinding()]),
-        GetPage(
+    GetPage(
         name: AppRoutes.PASSION,
         page: () => PassionSCreen(),
         bindings: [PassionBinding()]),
     GetPage(
         name: AppRoutes.HOMEVIEW,
         page: () => Home(),
-        bindings: [ImagePickerBinding()]),
+        bindings: [FindNearestBinding()]),
   ];
 }

@@ -5,5 +5,6 @@ class HomeController extends GetxController {
 
   void onTapped(int index) {
     currentIndex = index;
+    update();
   }
 }

@@ -165,18 +165,23 @@ class Login extends StatelessWidget {
           hintText: "Mobile Number",
           hintStyle: TextStyle(color: Color(0x66ffffff)),
           fillColor: Color(0xFF433088),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          errorBorder: InputBorder.none,
-          focusedBorder: InputBorder.none,
+          enabledBorder: oulineBorder(),
+          errorBorder: oulineBorder(),
+          focusedErrorBorder: oulineBorder(),
+          focusedBorder: oulineBorder(),
           filled: true,
           isDense: true,
           contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 6)),
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       keyboardType: TextInputType.number,
       style: TextStyle(color: Colors.white),
+    );
+  }
+
+  OutlineInputBorder oulineBorder() {
+    return OutlineInputBorder(
+      borderSide: BorderSide.none,
+      borderRadius: BorderRadius.circular(8.0),
     );
   }
 }

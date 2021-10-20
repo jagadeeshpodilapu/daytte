@@ -11,4 +11,5 @@ class AppRoutes{
   static const PROFILEVIEW = '/profile';
   static const UNIVERSITY = '/university';
   static const ABOUTVIEW = '/about';
+  static const FINDNEAR = '/find';
 }

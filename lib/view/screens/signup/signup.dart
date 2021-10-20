@@ -17,45 +17,49 @@ class SignUp extends StatelessWidget {
       appBar: appBarWidget(Constants.sign_up),
       body: SingleChildScrollView(
         child: Form(
-            key: controller.key,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Card(
-                  elevation: 4,
+          key: controller.key,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Card(
+                elevation: 4,
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: 2, vertical: 5),
                   child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 2, vertical: 5),
-                    child: Container(
-                      margin: EdgeInsets.symmetric(horizontal: 6, vertical: 5),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: 10,
+                    margin: EdgeInsets.symmetric(horizontal: 6, vertical: 5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Center(
+                          child: Image.asset(
+                            ImageConstants.daytte_logo,
+                            height: 120,
+                            width: 120,
                           ),
-                          Center(
-                            child: Image.asset(
-                              ImageConstants.daytte_logo,
-                              height: 120,
-                              width: 120,
-                            ),
-                          ),
-                          SizedBox(height: 30),
-                          textFieldName("First Name"),
-                          TextFormField(
-                            controller: controller.firstName,
-                            decoration: InputDecoration(
-                                hintText: "XXXX", isDense: true),
-                          ),
-                          textFieldName("Last Name"),
-                          TextFormField(
-                            controller: controller.lastName,
-                            decoration: InputDecoration(
-                                hintText: "XXXX", isDense: true),
-                          ),
-                          SizedBox(height: 5),
-                          /*  Row(
+                        ),
+                        SizedBox(height: 30),
+                        textFieldName("First Name"),
+                        TextFormField(
+                          controller: controller.firstName,
+                          decoration:
+                              InputDecoration(hintText: "XXXX", isDense: true),
+                          validator: (value) =>
+                              validateText(value!, 'first Name'),
+                        ),
+                        textFieldName("Last Name"),
+                        TextFormField(
+                          controller: controller.lastName,
+                          decoration:
+                              InputDecoration(hintText: "XXXX", isDense: true),
+                          validator: (value) =>
+                              validateText(value!, 'last Name'),
+                        ),
+                        SizedBox(height: 5),
+                        /*  Row(
                             children: <Widget>[
                               Radio<String>(
                                 value: "Male",
@@ -73,98 +77,113 @@ class SignUp extends StatelessWidget {
                               Text("Female"),
                             ],
                           ), */
-                          textFieldName("Date of Birth"),
-                          GetBuilder<SignupController>(
-                            builder: (controller) => TextFormField(
-                              textAlignVertical: TextAlignVertical.center,
-                              readOnly: true,
-                              controller: controller.dob,
-                              onTap: () => controller.selectDate(context),
-                              decoration: InputDecoration(
-                                hintText: "XXXX",
-                                // isCollapsed: true,
-                                prefixIcon: Icon(Icons.calendar_today_outlined),
-                              ),
-                            ),
-                          ),
-                          textFieldName("Email ID "),
-                          TextFormField(
-                            controller: controller.email,
+                        textFieldName("Date of Birth"),
+                        GetBuilder<SignupController>(
+                          builder: (controller) => TextFormField(
+                            textAlignVertical: TextAlignVertical.center,
+                            readOnly: true,
+                            controller: controller.dob,
+                            validator: (value) =>
+                                validateText(value!, 'date of birth'),
+                            onTap: () => controller.selectDate(context),
                             decoration: InputDecoration(
-                                hintText: "XXXX", isDense: true),
-                          ),
-                          SizedBox(height: 10),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Obx(()=>
-                               Row(
-                                children: [
-                                  Text("Share My Location"),
-                                  Spacer(),
-                                  Switch(
-                                    value: controller.shareLocation.value,
-                                    activeTrackColor: Colors.green,
-                                    onChanged: (value) =>
-                                        controller.handleSharelocation(value),
-                                    activeColor: Colors.white,
-                                  )
-                                ],
-                              ),
+                              hintText: "XXXX",
+                              // isCollapsed: true,
+                              prefixIcon: Icon(Icons.calendar_today_outlined),
                             ),
                           ),
-                          SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Obx(()=>
-                                 GFCheckbox(
-                                  size: 20,
-                                  type: GFCheckboxType.custom,
-                                  value: controller.check.value,
+                        ),
+                        textFieldName("Email ID "),
+                        TextFormField(
+                          controller: controller.email,
+                          decoration:
+                              InputDecoration(hintText: "XXXX", isDense: true),
+                          validator: (value) {
+                            if (value!.isEmail) {
+                              return null;
+                            } else {
+                              return 'enter valid email';
+                            }
+                          },
+                        ),
+                        SizedBox(height: 10),
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Obx(
+                            () => Row(
+                              children: [
+                                Text("Share My Location"),
+                                Spacer(),
+                                Switch(
+                                  value: controller.shareLocation.value,
+                                  activeTrackColor: Colors.green,
                                   onChanged: (value) =>
-                                      controller.handlecheckbox(value),
-                                  customBgColor: GFColors.INFO,
-                                  activeIcon: Icon(
-                                    Icons.crop_square,
-                                    size: 20,
-                                  ),
+                                      controller.handleSharelocation(value),
+                                  activeColor: Colors.white,
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Obx(
+                              () => GFCheckbox(
+                                size: 20,
+                                type: GFCheckboxType.custom,
+                                value: controller.check.value,
+                                onChanged: (value) =>
+                                    controller.handlecheckbox(value),
+                                customBgColor: GFColors.INFO,
+                                activeIcon: Icon(
+                                  Icons.crop_square,
+                                  size: 20,
                                 ),
                               ),
-                              SizedBox(width: 5),
-                              /* Checkbox(
+                            ),
+                            SizedBox(width: 5),
+                            /* Checkbox(
                                   value: check,
                                   onChanged: (value) => _handlecheckbox(value!)), */
-                              Text("I have read the Terms & Condition")
-                            ],
-                          ),
-                        ],
-                      ),
+                            Text("I have read the Terms & Condition")
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                SizedBox(height: 15),
-                Center(
-                  child: ElevatedButton(
-                      onPressed: () {
-                        if (controller.key.currentState!.validate()) {
-                          if (controller.check.value) {
-                            controller.postUserInfo();
-                          }
+              ),
+              SizedBox(height: 15),
+              Center(
+                child: ElevatedButton(
+                    onPressed: () {
+                      if (controller.key.currentState!.validate()) {
+                        if (controller.check.value) {
+                          controller.postUserInfo();
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content:
+                                  Text("Accept our terms and conditions")));
                         }
-                      },
-                      style: ElevatedButton.styleFrom(
-                          primary: Color(0xFF9e49f6), fixedSize: Size(340, 40)),
-                      child: Text(
-                        Constants.sign_up.toUpperCase(),
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                      )),
-                ),
-                SizedBox(height: 15),
-              ],
-            ),
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("All Fields Required")));
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                        primary: Color(0xFF9e49f6), fixedSize: Size(340, 40)),
+                    child: Text(
+                      Constants.sign_up.toUpperCase(),
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    )),
+              ),
+              SizedBox(height: 15),
+            ],
           ),
         ),
-      
+      ),
     );
   }
 
@@ -172,5 +191,13 @@ class SignUp extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.only(top: 8.0),
         child: Text(name, style: TextStyle(color: Color(0xFF8d9aaf))));
+  }
+
+  validateText(String input, String hint) {
+    if (input.isEmpty) {
+      return "$hint is Required";
+    }
+
+    return null;
   }
 }
