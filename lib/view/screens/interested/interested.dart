@@ -1,11 +1,10 @@
 import 'package:daytte/view/widgets/enums.dart';
-
-import '../../../controllers/interests/interests_controller.dart';
-import '../aboutus/aboutus.dart';
-import '../../widgets/button_widget.dart';
-import '../../widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../controllers/interests/interests_controller.dart';
+import '../../widgets/button_widget.dart';
+import '../../widgets/common_widgets.dart';
 
 class InterestedScreen extends StatelessWidget {
   @override

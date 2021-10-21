@@ -1,5 +1,6 @@
-import 'select_image_controller.dart';
 import 'package:get/get.dart';
+
+import 'select_image_controller.dart';
 
 class ImagePickerBinding extends Bindings {
   @override

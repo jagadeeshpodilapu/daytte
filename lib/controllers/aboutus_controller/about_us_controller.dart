@@ -1,11 +1,12 @@
-import '../base_controller/baseController.dart';
-import '../otpController/otp_controller.dart';
-import '../../routes/app_routes.dart';
-import '../../services/base_service/base_client.dart';
-import '../../view/dialogs/dialogHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+
+import '../../routes/app_routes.dart';
+import '../../services/base_service/base_client.dart';
+import '../../view/dialogs/dialogHelper.dart';
+import '../base_controller/baseController.dart';
+import '../otpController/otp_controller.dart';
 
 class AboutUsController extends GetxController {
   TextEditingController shortDisc = TextEditingController();

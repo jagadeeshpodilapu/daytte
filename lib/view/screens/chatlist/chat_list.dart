@@ -1,11 +1,11 @@
-import '../../../controllers/chatlist_controller/chatlist_controller.dart';
-import '../chatrequest/chat_request.dart';
-import '../chatscreen/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ChatList extends StatelessWidget {
+import '../../../controllers/chatlist_controller/chatlist_controller.dart';
+import '../chatrequest/chat_request.dart';
+import '../chatscreen/chat_screen.dart';
 
+class ChatList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +26,7 @@ class ChatList extends StatelessWidget {
                     MaterialButton(
                       //color: Colors.yellow,
                       child:
-                          buildColumn("Chat Request", 100, controller.isChat),
+                      buildColumn("Chat Request", 100, controller.isChat),
                       //Text("Chat Request",style: TextStyle(color: Colors.black)),
                       onPressed: () {
                         controller.funcIsAll(false, true);
@@ -78,9 +78,9 @@ class ChatList extends StatelessWidget {
                           alignment: Alignment(1, -0.7),
                           child: controller.profileImages[index]["isOnline"]
                               ? CircleAvatar(
-                                  radius: 5,
-                                  backgroundColor: Colors.green,
-                                )
+                            radius: 5,
+                            backgroundColor: Colors.green,
+                          )
                               : SizedBox(),
                         ),
                       ),
@@ -134,11 +134,9 @@ class ChatList extends StatelessWidget {
     );
   }
 
-  Column buildColumn(
-    String text,
-    double width,
-    bool boolAll,
-  ) {
+  Column buildColumn(String text,
+      double width,
+      bool boolAll,) {
     return Column(
       children: [
         Text(text, style: TextStyle(color: Colors.black)),
@@ -147,13 +145,13 @@ class ChatList extends StatelessWidget {
         ),
         boolAll
             ? Container(
-                height: 3,
-                width: width,
-                color: Color(0xFF3c0fc7),
-              )
+          height: 3,
+          width: width,
+          color: Color(0xFF3c0fc7),
+        )
             : SizedBox(
-                height: 5,
-              )
+          height: 5,
+        )
       ],
     );
   }

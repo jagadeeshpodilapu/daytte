@@ -1,13 +1,13 @@
 import 'package:daytte/model/response_model.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
-import '../base_controller/baseController.dart';
-import '../otpController/otp_controller.dart';
 import '../../model/pasion_model.dart';
 import '../../routes/app_routes.dart';
 import '../../services/base_service/base_client.dart';
 import '../../view/dialogs/dialogHelper.dart';
-import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import '../base_controller/baseController.dart';
+import '../otpController/otp_controller.dart';
 
 class PassionController extends GetxController {
   final storage = GetStorage();

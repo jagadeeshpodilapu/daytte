@@ -1,7 +1,8 @@
-import '../../../utils/common_functions.dart';
-import '../../dialogs/premium_dialogs/platinum_package.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../utils/common_functions.dart';
+import '../../dialogs/premium_dialogs/platinum_package.dart';
 
 class FindTheNearest extends StatelessWidget {
   @override

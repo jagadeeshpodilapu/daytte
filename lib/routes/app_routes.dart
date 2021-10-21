@@ -12,4 +12,5 @@ class AppRoutes{
   static const UNIVERSITY = '/university';
   static const ABOUTVIEW = '/about';
   static const FINDNEAR = '/find';
+  static const EDITDETAILS = '/editDetails';
 }

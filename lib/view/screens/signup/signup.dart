@@ -1,12 +1,13 @@
-import '../../../consts/constants.dart';
-import '../../../consts/image_constants.dart';
-import '../../../controllers/signupcontroller/signup_controller.dart';
-import '../../widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/colors/gf_color.dart';
 import 'package:getwidget/components/checkbox/gf_checkbox.dart';
 import 'package:getwidget/types/gf_checkbox_type.dart';
+
+import '../../../consts/constants.dart';
+import '../../../consts/image_constants.dart';
+import '../../../controllers/signupcontroller/signup_controller.dart';
+import '../../widgets/common_widgets.dart';
 
 class SignUp extends StatelessWidget {
   final controller = Get.put(SignupController());

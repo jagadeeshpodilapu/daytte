@@ -1,9 +1,8 @@
-import '../../../controllers/university/university_controller.dart';
-import '../interested/interested.dart';
-
-import '../../widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../controllers/university/university_controller.dart';
+import '../../widgets/common_widgets.dart';
 
 class UniversityView extends StatelessWidget {
   @override

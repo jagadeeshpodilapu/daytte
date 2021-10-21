@@ -1,12 +1,10 @@
-import 'package:daytte/view/screens/otpverification/otp_verification.dart';
-
-import '../base_controller/baseController.dart';
-import '../../routes/app_routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../../routes/app_routes.dart';
 import '../../services/base_service/base_client.dart';
 import '../../view/dialogs/dialogHelper.dart';
+import '../base_controller/baseController.dart';
 
 class LoginController extends GetxController {
   TextEditingController mobileController = TextEditingController();

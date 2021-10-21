@@ -1,10 +1,11 @@
-import '../../../controllers/otpController/otp_controller.dart';
-import '../../widgets/button_widget.dart';
-import '../../widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+
+import '../../../controllers/otpController/otp_controller.dart';
+import '../../widgets/button_widget.dart';
+import '../../widgets/common_widgets.dart';
 
 class OtpVerification extends StatelessWidget {
   final controller = Get.put(OtpController());
@@ -13,9 +14,9 @@ class OtpVerification extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        body:  Stack(
-            children: [
-              linearGradientBackground(),
+        body: Stack(
+          children: [
+            linearGradientBackground(),
               Positioned(
                   top: 40,
                   right: 10,
