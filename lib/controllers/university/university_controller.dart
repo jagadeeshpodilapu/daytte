@@ -12,7 +12,7 @@ class UniversityController extends GetxController {
   UniversityListModel? universityListModel;
   ResponseModel? responseModel;
   int page = 0;
-  int limit = 10;
+  int limit = 15;
 
   final storage = GetStorage();
 

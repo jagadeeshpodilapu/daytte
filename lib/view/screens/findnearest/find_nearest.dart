@@ -30,58 +30,65 @@ class FindTheNearest extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 6.0, vertical: 8),
         child: GetBuilder<FindNearestController>(
           init: FindNearestController(),
-          builder: (controller) => Column(
-            children: [
-              expiryBanner(context),
-              Expanded(
-                child: LazyLoadScrollView(
-                    onEndOfPage: () => loadMore(),
-                    child: GridView.builder(
-                      itemCount: controller.users.value,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 6.0,
-                          childAspectRatio: 2.6 / 4,
-                          mainAxisSpacing: 6.0),
-                      itemBuilder: (BuildContext context, int index) {
-                        return GestureDetector(
-                          onTap: () => Get.to(() => DiscoverPartner()),
-                          child: Card(
-                            elevation: 4,
-                            color: Colors.white,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12)),
-                              child: Column(
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(12),
-                                    child: Image.network(
-                                      "${controller.findNearestModel?.data.users?[index].profileImg?.imgPath ?? Constants.emtptyImageUrl}",
-                                      fit: BoxFit.fitWidth,
-                                      width: Get.width,
-                                      height: 200,
+          builder: (controller) => controller.users.value != 0
+              ? Column(
+                  children: [
+                    expiryBanner(context),
+                    Expanded(
+                      child: LazyLoadScrollView(
+                          onEndOfPage: () => loadMore(),
+                          child: GridView.builder(
+                            itemCount: controller.users.value,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 6.0,
+                                    childAspectRatio: 2.6 / 4,
+                                    mainAxisSpacing: 6.0),
+                            itemBuilder: (BuildContext context, int index) {
+                              return GestureDetector(
+                                onTap: () => Get.to(() => DiscoverPartner()),
+                                child: Card(
+                                  elevation: 4,
+                                  color: Colors.white,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                    child: Column(
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                          child: Image.network(
+                                            "${controller.findNearestModel?.data.users?[index].profileImg?.imgPath ?? Constants.emtptyImageUrl}",
+                                            fit: BoxFit.fitWidth,
+                                            width: Get.width,
+                                            height: 200,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              bottom: 4.0, top: 6),
+                                          child: Text(
+                                              "${controller.findNearestModel?.data.users?[index].firstname} ${controller.findNearestModel?.data.users?[index].lastname}",
+                                              style: TextStyle(fontSize: 16)),
+                                        ),
+                                        Text("Active Now",
+                                            style: TextStyle(fontSize: 12)),
+                                      ],
                                     ),
                                   ),
-                                  Padding(
-                                    padding:
-                                        EdgeInsets.only(bottom: 4.0, top: 6),
-                                    child: Text(
-                                        "${controller.findNearestModel?.data.users?[index].firstname} ${controller.findNearestModel?.data.users?[index].lastname}",
-                                        style: TextStyle(fontSize: 16)),
-                                  ),
-                                  Text("Active Now",
-                                      style: TextStyle(fontSize: 12)),
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    )),
-              ),
-            ],
-          ),
+                                ),
+                              );
+                            },
+                          )),
+                    ),
+                  ],
+                )
+              : Center(
+                  child: CircularProgressIndicator.adaptive(),
+                ),
         ),
       ),
     );
