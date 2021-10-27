@@ -75,10 +75,25 @@ flutter:
           weight: 400
         - asset: assets/fonts/Roboto-Bold.ttf
           weight: 700
+    
+    - family: Muli
+      fonts:
+        - asset: assets/fonts/Muli-Light.ttf
+             
 
     - family: Helvetica
       fonts:
         - asset: assets/fonts/Helvetica.ttf
+    
+    - family: ProximaNovaSoft
+      fonts:
+        - asset: assets/fonts/proxima-nova-soft.otf
+    
+    - family: Avenir
+      fonts:
+        - asset: assets/fonts/Avenir-Medium.ttf   
+    
+
 
   #
   # For details regarding fonts from package dependencies,

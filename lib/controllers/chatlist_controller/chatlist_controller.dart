@@ -81,6 +81,7 @@ class ChatListController extends GetxController {
   funcIsAll(bool all, bool chat) {
     isAll = all;
     isChat = chat;
+    update();
   }
 
   @override

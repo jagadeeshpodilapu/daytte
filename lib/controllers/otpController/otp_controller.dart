@@ -15,7 +15,7 @@ class OtpController extends GetxController {
   Timer? _timer;
 
   TextEditingController otpInput = TextEditingController();
-  
+
   int start = 30;
   late String mobileNumber;
   UserInfoModel? userInfoModel;
@@ -44,7 +44,7 @@ class OtpController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    mobileNumber = Get.arguments;
+    mobileNumber = Get.arguments ?? "";
     startTimer();
   }
 

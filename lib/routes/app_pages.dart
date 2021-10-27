@@ -1,5 +1,6 @@
 import 'package:daytte/controllers/findnearest/find_nearest_binding.dart';
 import 'package:daytte/controllers/passion/passion_binding.dart';
+import 'package:daytte/view/screens/likedetails/like_details.dart';
 import 'package:daytte/view/screens/profiledetails/profile_details.dart';
 import 'package:get/get.dart';
 
@@ -57,5 +58,6 @@ class AppPages {
         bindings: [FindNearestBinding()]),
     GetPage(
         name: AppRoutes.PROFILEVIEW, page: () => ProfileView(), bindings: []),
+    GetPage(name: AppRoutes.LIKESVIEW, page: () => LikesPage(), bindings: []),
   ];
 }

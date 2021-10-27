@@ -14,10 +14,11 @@ class UniversityView extends StatelessWidget {
         builder: (controller) => Container(
           // margin: EdgeInsets.all(10),
           padding: EdgeInsets.all(8),
-          height: Get.height * 0.8,
+          height: Get.height * 0.9,
           child: Card(
             elevation: 4,
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(12.0),
@@ -31,31 +32,33 @@ class UniversityView extends StatelessWidget {
                 ),
                 controller.universityListModel?.universityList.passion.length !=
                         0
-                    ? ListView.builder(
-                        itemCount: controller.universityListModel
-                                ?.universityList.passion.length ??
-                            0,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) => GestureDetector(
-                          onTap: () async {
-                            await controller.postUniversityList(
-                                "${controller.universityListModel!.universityList.passion[index].name}");
-                            if (controller.responseModel != null) {
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                  content: Text(
-                                      "${controller.responseModel?.message}")));
-                            }
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 16.0, vertical: 8),
-                            child: Text(
-                              "${controller.universityListModel!.universityList.passion[index].name}",
-                              style: TextStyle(fontSize: 20),
+                    ? Expanded(
+                      child: ListView.builder(
+                          itemCount: controller.universityListModel
+                                  ?.universityList.passion.length ??
+                              0,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) => GestureDetector(
+                            onTap: () async {
+                              await controller.postUniversityList(
+                                  "${controller.universityListModel!.universityList.passion[index].name}");
+                              if (controller.responseModel != null) {
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    content: Text(
+                                        "${controller.responseModel?.message}")));
+                              }
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16.0, vertical: 8),
+                              child: Text(
+                                "${controller.universityListModel!.universityList.passion[index].name}",
+                                style: TextStyle(fontSize: 20),
+                              ),
                             ),
                           ),
                         ),
-                      )
+                    )
                     : Center(child: CircularProgressIndicator.adaptive())
               ],
             ),

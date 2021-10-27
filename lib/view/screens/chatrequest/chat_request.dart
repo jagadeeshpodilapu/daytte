@@ -13,15 +13,17 @@ class ChatRequest extends StatelessWidget {
             minVerticalPadding: 5,
             leading: CircleAvatar(
               radius: 30.0,
-              backgroundImage:
-              AssetImage('assets/images/girl.jpg'),
+              backgroundImage: AssetImage('assets/images/girl.jpg'),
               backgroundColor: Colors.transparent,
             ),
             title: Padding(
               padding: const EdgeInsets.only(left: 15.0),
               child: Text(
                 "Seema khan",
-                style: TextStyle(fontSize: 20),
+                style: const TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "Avenir",
+                    fontSize: 16.0),
               ),
             ),
             trailing: Row(

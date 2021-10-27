@@ -34,7 +34,7 @@ class UniversityController extends GetxController {
     update();
   }
 
- Future postUniversityList(String university) async {
+  Future postUniversityList(String university) async {
     Map<String, dynamic> payload = {"name": university};
     DialogHelper.showLoading('Loading...');
     final response = await BaseClient()
@@ -44,7 +44,7 @@ class UniversityController extends GetxController {
     DialogHelper.hideLoading();
     if (response != null) {
       responseModel = ResponseModel.fromJson(response);
-       Get.to(() => InterestedScreen());
+      Get.to(() => InterestedScreen());
     }
     update();
   }
