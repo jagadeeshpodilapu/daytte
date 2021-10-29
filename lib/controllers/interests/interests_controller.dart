@@ -31,6 +31,7 @@ class InterestController extends GetxController {
     DialogHelper.hideLoading();
     if (response != null) {
       responseModel = ResponseModel.fromJson(response);
+      storage.write("page", "5");
       Get.toNamed(AppRoutes.ABOUTVIEW);
     }
   }

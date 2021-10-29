@@ -1,11 +1,12 @@
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+
 import '../../consts/image_constants.dart';
-import '../base_controller/baseController.dart';
-import '../otpController/otp_controller.dart';
 import '../../routes/app_routes.dart';
 import '../../services/base_service/base_client.dart';
 import '../../view/dialogs/dialogHelper.dart';
-import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import '../base_controller/baseController.dart';
+import '../otpController/otp_controller.dart';
 
 class ChooseGenderController extends GetxController {
   final controller = Get.find<OtpController>();
@@ -26,11 +27,12 @@ class ChooseGenderController extends GetxController {
     DialogHelper.showLoading('Loading...');
     final response = await BaseClient()
         .patch('/users/${controller.userInfoModel!.userProperties.user!.id}',
-            payload, storage.read('token'))
+        payload, storage.read('token'))
         .catchError(BaseController().handleError);
     print("response Otp $response");
     DialogHelper.hideLoading();
     if (response != null) {
+      storage.write("page", "2");
       Get.toNamed(AppRoutes.PASSION);
     }
   }
