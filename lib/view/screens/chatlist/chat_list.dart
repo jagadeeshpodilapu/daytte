@@ -13,7 +13,8 @@ class ChatList extends StatelessWidget {
         preferredSize: const Size.fromHeight(120.0),
         child: SafeArea(
           child: GetBuilder<ChatListController>(
-            builder:(controller) => Column(
+            init: ChatListController(),
+            builder: (controller) => Column(
               children: [
                 Row(
                   children: [
@@ -24,38 +25,38 @@ class ChatList extends StatelessWidget {
                       },
                     ),
                     MaterialButton(
-                      //color: Colors.yellow,
-                      child:
-                      buildColumn("Chat Request", 100, controller.isChat),
-                      //Text("Chat Request",style: TextStyle(color: Colors.black)),
-                      onPressed: () {
-                        controller.funcIsAll(false, true);
-                        Get.to(() => ChatRequest());
-                      },
+                          //color: Colors.yellow,
+                          child:
+                          buildColumn("Chat Request", 100, controller.isChat),
+                          //Text("Chat Request",style: TextStyle(color: Colors.black)),
+                          onPressed: () {
+                            controller.funcIsAll(false, true);
+                            Get.to(() => ChatRequest());
+                          },
+                        )
+                      ],
+                    ),
+                    AppBar(
+                      automaticallyImplyLeading: false,
+                      backgroundColor: Colors.transparent,
+                      elevation: 0.0,
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 12.0),
+                            child: Text("Messages",
+                                style: TextStyle(color: Colors.black)),
+                          ),
+                          Icon(
+                            Icons.more_vert,
+                            color: Colors.black,
+                          )
+                        ],
+                      ),
                     )
                   ],
                 ),
-                AppBar(
-                  automaticallyImplyLeading: false,
-                  backgroundColor: Colors.transparent,
-                  elevation: 0.0,
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 12.0),
-                        child: Text("Messages",
-                            style: TextStyle(color: Colors.black)),
-                      ),
-                      Icon(
-                        Icons.more_vert,
-                        color: Colors.black,
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
           ),
         ),
       ),

@@ -1,52 +1,56 @@
-import 'package:multi_image_picker2/multi_image_picker2.dart';
+import 'dart:io';
 
-import '../../view/screens/editdetails/edit_details.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../view/screens/editdetails/edit_details.dart';
+
 class EditDetailsController extends GetxController {
   SingingCharacter? character = SingingCharacter.male;
-  List<Asset> pickedImages = <Asset>[];
-  String _error = 'No Error Dectected';
-  List<XFile> images = [];
 
-  //final controller = Get.put(SelectImagesController());
+  final ImagePicker _picker = ImagePicker();
   String groupValue = 'male';
-
-  Future getImageFromCamera() async {
-    var image = await getImageFromCamera();
-    images.add(image);
-  }
+  List<XFile>? imageFileList;
 
   void handleGenderChange(String? value) {
     groupValue = value!;
+    update();
   }
 
-  Future<void> loadAssets() async {
-    List<Asset> resultList = <Asset>[];
-    String error = 'No Error Detected';
+  List<File> pickedImages = [];
+  File? imageStore;
 
-    try {
-      resultList = await MultiImagePicker.pickImages(
-        maxImages: 300,
-        enableCamera: true,
-        selectedAssets: pickedImages,
-        cupertinoOptions: CupertinoOptions(
-          takePhotoIcon: "chat",
-          doneButtonTitle: "Fatto",
-        ),
-        materialOptions: MaterialOptions(
-          actionBarColor: "#abcdef",
-          actionBarTitle: "Example App",
-          allViewTitle: "All Photos",
-          useDetailsView: false,
-          selectCircleStrokeColor: "#000000",
-        ),
-      );
-    } on Exception catch (e) {
-      error = e.toString();
+//Pick an image
+  openGallery() async {
+    XFile? image = await _picker.pickImage(
+        maxHeight: 100,
+        maxWidth: 100,
+        imageQuality: 100,
+        source: ImageSource.gallery);
+    if (image != null) {
+      imageStore = File(image.path);
+      pickedImages.add(imageStore!);
     }
-    pickedImages = resultList;
+    update();
+  }
+
+  // Capture a photo
+  openCamera() async {
+    XFile? image = await _picker.pickImage(
+        maxHeight: 100,
+        maxWidth: 100,
+        imageQuality: 100,
+        source: ImageSource.camera);
+    if (image != null) {
+      imageStore = File(image.path);
+      pickedImages.add(imageStore!);
+    }
+
+    update();
+  }
+
+  removeImage(File item) {
+    pickedImages.remove(item);
     update();
   }
 }

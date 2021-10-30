@@ -239,7 +239,7 @@ packages:
       name: image_picker
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.4+1"
+    version: "0.8.4+4"
   image_picker_for_web:
     dependency: transitive
     description:
@@ -289,13 +289,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
-  multi_image_picker2:
-    dependency: "direct main"
-    description:
-      name: multi_image_picker2
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "5.0.02"
   path:
     dependency: transitive
     description:
