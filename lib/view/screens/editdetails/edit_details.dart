@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/view/screens/matchscreen/match_screen.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 
@@ -30,64 +33,68 @@ class EditDetails extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.white,
       ),
-      body: ListView(
-        children: [
-          addPhotoHeadingWidget,
-          Padding(
-            padding: EdgeInsets.only(left: 24.0),
-            child: Wrap(
-              spacing: 10,
-              children: [
-                InkWell(
-                    onTap: () {
-                      //  getImageFromCamera();
-                    },
-                    child: DottedBorder(
-                      dashPattern: [5, 6],
-                      child: Container(
-                        height: 80,
-                        // width: 80,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
-                              child: Image.asset('assets/icons/Photo.png',
-                                  width: 45, height: 30),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text("Add Photo",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 14,
-                                      color: Colors.black54)),
-                            ),
-                          ],
+      body: GetBuilder<EditDetailsController>(
+        init: EditDetailsController(),
+        builder: (controller) => ListView(
+          children: [
+            addPhotoHeadingWidget,
+            Padding(
+              padding: EdgeInsets.only(left: 24.0),
+              child: Wrap(
+                spacing: 10,
+                children: [
+                  InkWell(
+                      onTap: () {
+                        controller.openGallery();
+                      },
+                      child: DottedBorder(
+                        dashPattern: [5, 6],
+                        child: Container(
+                          height: 80,
+                          // width: 80,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 10.0),
+                                child: Image.asset('assets/icons/Photo.png',
+                                    width: 45, height: 30),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text("Add Photo",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        color: Colors.black54)),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    )),
-                for (var item in controller.images) listOfImagesSelected(item),
-              ],
+                      )),
+                  for (var item in controller.pickedImages)
+                    listOfImagesSelected(item),
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          addMediaButtonWidget(),
-          detailsWidget(),
-          SizedBox(
-            height: 10,
-          ),
-          ButtonWidget(
-              buttonTitle: "Save Changes",
-              action: () => Get.to(() => MatchScreen())),
-          SizedBox(
-            height: 20,
-          ),
-        ],
+            SizedBox(
+              height: 10,
+            ),
+            addMediaButtonWidget(),
+            detailsWidget(),
+            SizedBox(
+              height: 10,
+            ),
+            ButtonWidget(
+                buttonTitle: "Save Changes",
+                action: () => Get.to(() => MatchScreen())),
+            SizedBox(
+              height: 20,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -278,30 +285,38 @@ class EditDetails extends StatelessWidget {
     );
   }
 
-  Stack listOfImagesSelected(item) {
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        Container(
-          height: 80,
-          width: 80,
-          child: Image.asset(ImageConstants.daytte_logo),
+  Widget listOfImagesSelected(item) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 15.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(5.0),
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Container(
+                height: 80,
+                width: 80,
+                child: Image.file(
+                  File(item.path),
+                  fit: BoxFit.cover,
+                )),
+            Positioned(
+              right: -7,
+              top: -7,
+              child: InkWell(
+                onTap: () {
+                  controller.removeImage(item);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle, color: Colors.white),
+                  child: Icon(Icons.clear),
+                ),
+              ),
+            )
+          ],
         ),
-        Positioned(
-          right: -7,
-          top: -7,
-          child: InkWell(
-            onTap: () {
-              controller.images.remove(item);
-            },
-            child: Container(
-              decoration:
-                  BoxDecoration(shape: BoxShape.circle, color: Colors.white),
-              child: Icon(Icons.clear),
-            ),
-          ),
-        )
-      ],
+      ),
     );
   }
 

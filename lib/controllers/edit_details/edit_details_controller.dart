@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
@@ -7,12 +9,18 @@ import '../../view/screens/editdetails/edit_details.dart';
 class EditDetailsController extends GetxController {
   SingingCharacter? character = SingingCharacter.male;
 
-  final storage = GetStorage();
-
-  List<XFile> images = [];
-
-  //final controller = Get.put(SelectImagesController());
+  final ImagePicker _picker = ImagePicker();
   String groupValue = 'male';
+  List<XFile>? imageFileList;
+
+  void handleGenderChange(String? value) {
+    groupValue = value!;
+    update();
+  }
+
+  List<File> pickedImages = [];
+  File? imageStore;
+  final storage = GetStorage();
 
   @override
   void onInit() {
@@ -20,12 +28,37 @@ class EditDetailsController extends GetxController {
     super.onInit();
   }
 
-  Future getImageFromCamera() async {
-    var image = await getImageFromCamera();
-    images.add(image);
+//Pick an image
+  openGallery() async {
+    XFile? image = await _picker.pickImage(
+        maxHeight: 100,
+        maxWidth: 100,
+        imageQuality: 100,
+        source: ImageSource.gallery);
+    if (image != null) {
+      imageStore = File(image.path);
+      pickedImages.add(imageStore!);
+    }
+    update();
   }
 
-  void handleGenderChange(String? value) {
-    groupValue = value!;
+  // Capture a photo
+  openCamera() async {
+    XFile? image = await _picker.pickImage(
+        maxHeight: 100,
+        maxWidth: 100,
+        imageQuality: 100,
+        source: ImageSource.camera);
+    if (image != null) {
+      imageStore = File(image.path);
+      pickedImages.add(imageStore!);
+    }
+
+    update();
+  }
+
+  removeImage(File item) {
+    pickedImages.remove(item);
+    update();
   }
 }
