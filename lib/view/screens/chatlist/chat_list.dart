@@ -83,7 +83,7 @@ class ChatList extends StatelessWidget {
                 return ListTile(
                   onTap: () => Get.to(() => ChatScreen()),
                   title: Container(
-                    width: MediaQuery.of(context).size.width,
+                    width: Get.width,
                     child: Row(
                       children: [
                         CircleAvatar(
