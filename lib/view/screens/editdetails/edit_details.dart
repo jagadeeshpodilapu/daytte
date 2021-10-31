@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/view/screens/matchscreen/match_screen.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -102,7 +103,7 @@ class EditDetails extends StatelessWidget {
             ),
             ButtonWidget(
                 buttonTitle: "Save Changes",
-                action: () => Get.to(() => MatchScreen())),
+                action: () => Get.offAndToNamed(AppRoutes.HOMEVIEW)),
             SizedBox(
               height: 20,
             ),
@@ -323,41 +324,6 @@ class EditDetails extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   item != null ? controller.removeImage(item) : null;
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle, color: Colors.white),
-                  child: Icon(Icons.clear),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget listOfImagesSelected(item) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 15.0),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(5.0),
-        child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Container(
-                height: 80,
-                width: 80,
-                child: Image.file(
-                  File(item.path),
-                  fit: BoxFit.cover,
-                )),
-            Positioned(
-              right: -7,
-              top: -7,
-              child: InkWell(
-                onTap: () {
-                  controller.removeImage(item);
                 },
                 child: Container(
                   decoration: BoxDecoration(

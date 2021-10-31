@@ -56,7 +56,7 @@ class OtpController extends GetxController {
     _timer!.cancel();
   }
 
-  verifyOtp(String otp, String mobile) async {
+  Future verifyOtp(String otp, String mobile) async {
     Map<String, dynamic> payload = {
       "mobile_number": "+91$mobile",
       "otp": otp,
@@ -71,14 +71,17 @@ class OtpController extends GetxController {
     userInfoModel = UserInfoModel.fromJson(response);
 
     storage.write("token", userInfoModel?.userProperties.accessToken);
+    storage.write("id", userInfoModel?.userProperties.user?.id);
 
     printData(className: this.runtimeType, data: response);
 
     DialogHelper.hideLoading();
     if (response != null) {
       if (userInfoModel != null) {
-        if (userInfoModel!.userProperties.user!.newUser!) {
-          gotoPage();
+       
+        if (userInfoModel!.userProperties.user!.newUser==false) {
+           storage.write('page', "1");
+            Get.toNamed(AppRoutes.SIGNUPVIEW);
         } else {
           Get.toNamed(AppRoutes.HOMEVIEW);
         }
@@ -97,32 +100,5 @@ class OtpController extends GetxController {
         .catchError(BaseController().handleError);
     print("response resend $response");
     DialogHelper.hideLoading();
-  }
-
-  void gotoPage() {
-    final String pageNumber = storage.read('page');
-    switch (pageNumber) {
-      case '1':
-        Get.toNamed(AppRoutes.SIGNUPVIEW);
-        break;
-      case '2':
-        Get.toNamed(AppRoutes.CHOOSEGENDER);
-        break;
-      case '3':
-        Get.toNamed(AppRoutes.PASSION);
-        break;
-      case '4':
-        Get.toNamed(AppRoutes.UNIVERSITY);
-        break;
-      case '5':
-        Get.toNamed(AppRoutes.INTERESTED);
-        break;
-      case '6':
-        Get.toNamed(AppRoutes.ABOUTVIEW);
-        break;
-      case '7':
-        Get.toNamed(AppRoutes.PROFILEVIEW);
-        break;
-    }
   }
 }

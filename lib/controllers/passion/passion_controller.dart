@@ -17,7 +17,7 @@ class PassionController extends GetxController {
   List<String> listName = [];
   List<String> listId = [];
   List<String> selected = [];
-  final otpController = Get.find<OtpController>();
+  
   @override
   void onInit() {
     fetchPassion();
@@ -43,7 +43,7 @@ class PassionController extends GetxController {
     Map<String, dynamic> payload = {"passion": listId};
     DialogHelper.showLoading('Loading...');
     final response = await BaseClient()
-        .patch('/users/${otpController.userInfoModel?.userProperties.user?.id}',
+        .patch('/users/${storage.read("id")}',
             payload, storage.read('token'))
         .catchError(BaseController().handleError);
 

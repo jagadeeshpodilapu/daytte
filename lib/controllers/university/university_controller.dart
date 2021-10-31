@@ -45,7 +45,7 @@ class UniversityController extends GetxController {
     if (response != null) {
       responseModel = ResponseModel.fromJson(response);
       storage.write("page", "4");
-      Get.toNamed(AppRoutes.INTERESTED);
+      Get.offAndToNamed(AppRoutes.INTERESTED);
     }
     update();
   }

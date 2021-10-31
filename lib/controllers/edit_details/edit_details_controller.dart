@@ -25,7 +25,7 @@ class EditDetailsController extends GetxController {
 
   @override
   void onReady() {
-    // TODO: implement onReady
+  
     super.onReady();
     gettingImages(
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYTdiMmYyZjE5MzNkMTE0NTMyM2E2ZSIsImlhdCI6MTYwNDgyNTg0MiwiZXhwIjoxNjA0ODI2NzQyfQ.a5x5ktqPb2NAxUc-bKMgY8660zrFB_vK-q59S0SudDg");

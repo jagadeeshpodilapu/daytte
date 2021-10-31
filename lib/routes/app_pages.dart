@@ -1,5 +1,6 @@
 import 'package:daytte/controllers/edit_details/edit_detail_binding.dart';
 import 'package:daytte/controllers/findnearest/find_nearest_binding.dart';
+import 'package:daytte/controllers/loginController/login_bining.dart';
 import 'package:daytte/controllers/passion/passion_binding.dart';
 import 'package:daytte/view/screens/editdetails/edit_details.dart';
 import 'package:daytte/view/screens/interested/interested.dart';
@@ -27,12 +28,12 @@ import 'app_routes.dart';
 class AppPages {
   static List<GetPage> routes = [
     GetPage(
-        name: AppRoutes.SPLASHVIEW, page: () => SplashScreen(), bindings: []),
-    GetPage(name: AppRoutes.LOGINVIEW, page: () => Login(), bindings: []),
+        name: AppRoutes.SPLASHVIEW, page: () => SplashScreen(), bindings: [SignupBinding()]),
+    GetPage(name: AppRoutes.LOGINVIEW, page: () => Login(), bindings: [LoginBinding(),OtpBinding()]),
     GetPage(
         name: AppRoutes.SIGNUPVIEW,
         page: () => SignUp(),
-        bindings: [SignupBinding()]),
+        bindings: [SignupBinding(),OtpBinding()]),
     GetPage(
         name: AppRoutes.OTPVERIFICATION,
         page: () => OtpVerification(),

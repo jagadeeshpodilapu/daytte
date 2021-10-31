@@ -76,7 +76,7 @@ class FindTheNearest extends StatelessWidget {
                                                 "${controller.findNearestModel?.data.users?[index].profileImg?.imgPath ?? Constants.emtptyImageUrl}",
                                                 fit: BoxFit.fitWidth,
                                                 width: Get.width,
-                                                height: 230,
+                                                height: 210,
                                               ),
                                             ),
                                             Padding(
@@ -96,7 +96,7 @@ class FindTheNearest extends StatelessWidget {
                                             ),
                                             Padding(
                                               padding:
-                                                  const EdgeInsets.all(8.0),
+                                                  const EdgeInsets.only(bottom:4.0),
                                               child: Text("Active Now",
                                                   style: const TextStyle(
                                                       color: const Color(

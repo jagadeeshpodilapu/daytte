@@ -1,7 +1,8 @@
 import 'dart:async';
 
+import 'package:daytte/controllers/splash_controller/splashController.dart';
+
 import '../consts/image_constants.dart';
-import '../routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,17 +14,8 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    Timer(4.seconds, () => Get.find<SplashController>().gotoPage());
     super.initState();
-    Timer(Duration(seconds: 4), () => Get.offNamed(AppRoutes.LOGINVIEW));
-  }
-
-  getDeviceToken() async {
-// Get the token each time the application loads
-    /*   String? token = await FirebaseMessaging.instance.getToken();
-    if (token != null) {
-      print(token);
-      storeage.writeIfNull("token", '$token');
-    } */
   }
 
   @override

@@ -10,14 +10,14 @@ import '../otpController/otp_controller.dart';
 
 class AboutUsController extends GetxController {
   TextEditingController shortDisc = TextEditingController();
-  final controller = Get.find<OtpController>();
+  
   final storage = GetStorage();
 
   updateShortDescription() async {
     final payload = {"shortDescription": shortDisc.text};
     DialogHelper.showLoading('Loading...');
     final response = await BaseClient()
-        .patch('/users/${controller.userInfoModel?.userProperties.user?.id}',
+        .patch('/users/${storage.read("id")}',
             payload, storage.read('token'))
         .catchError(BaseController().handleError);
     print("response Gender $response");
@@ -25,7 +25,7 @@ class AboutUsController extends GetxController {
     if (response != null) {
       print("result of gender $response");
       storage.write("page", "6");
-      Get.toNamed(AppRoutes.PROFILEVIEW);
+      Get.offAndToNamed(AppRoutes.EDITDETAILS);
     }
   }
 }

@@ -1,3 +1,4 @@
+import 'package:daytte/controllers/splash_controller/splash_binding.dart';
 import 'package:daytte/services/internet_connect_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget with WidgetsBindingObserver {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialBinding: ImagePickerBinding(),
+      initialBinding: SplashBinding(),
       initialRoute: AppRoutes.SPLASHVIEW,
       defaultTransition: Transition.rightToLeft,
       getPages: AppPages.routes,

@@ -16,13 +16,13 @@ class SignupController extends GetxController {
   final List<String> gender = ["Male", "Female"];
   LocationModel? locationModel;
   Position? currentPostion;
-  GlobalKey<FormState> key = GlobalKey<FormState>();
+  final GlobalKey<FormState> key = GlobalKey<FormState>();
   TextEditingController firstName = TextEditingController();
   TextEditingController lastName = TextEditingController();
   TextEditingController dob = TextEditingController();
   TextEditingController email = TextEditingController();
 
-  final controller = Get.find<OtpController>();
+  
 
   String dateformate = '';
   DateTime selectedDate = DateTime.now();
@@ -71,14 +71,14 @@ class SignupController extends GetxController {
 
     DialogHelper.showLoading('Loading...');
     final response = await BaseClient()
-        .patch('/users/${controller.userInfoModel!.userProperties.user!.id}',
+        .patch('/users/${storage.read('id')}',
             payload, storage.read('token'))
         .catchError(BaseController().handleError);
     print("response Otp $payload");
     DialogHelper.hideLoading();
     if (response != null) {
       storage.write("page", "1");
-      Get.toNamed(AppRoutes.CHOOSEGENDER);
+      Get.offAndToNamed(AppRoutes.CHOOSEGENDER);
     }
   }
 

@@ -10,7 +10,7 @@ import 'package:get_storage/get_storage.dart';
 
 class InterestController extends GetxController {
   Gender selctedGender = Gender.Male;
-  final controller = Get.find<OtpController>();
+ 
   final storage = GetStorage();
   ResponseModel? responseModel;
   handleGenderChange(Gender? value) {
@@ -24,7 +24,7 @@ class InterestController extends GetxController {
     };
     DialogHelper.showLoading('Loading...');
     final response = await BaseClient()
-        .patch('/users/${controller.userInfoModel?.userProperties.user?.id}',
+        .patch('/users/${storage.read("id")}',
             payload, storage.read('token'))
         .catchError(BaseController().handleError);
     print("response Gender $response");
@@ -32,7 +32,7 @@ class InterestController extends GetxController {
     if (response != null) {
       responseModel = ResponseModel.fromJson(response);
       storage.write("page", "5");
-      Get.toNamed(AppRoutes.ABOUTVIEW);
+      Get.offAndToNamed(AppRoutes.ABOUTVIEW);
     }
   }
 }

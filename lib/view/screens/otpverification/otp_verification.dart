@@ -27,7 +27,7 @@ class OtpVerification extends StatelessWidget {
                       sentOtpText(),
                       mobileNumberWidget(controller),
                       otpTextFieldsWidget(context, controller),
-                      getOtpButton(controller),
+                      getOtpButton(controller, context),
                       SizedBox(height: 30),
                       resendAndRelaventTextWidget(controller),
                       otpTimerWidget(controller),
@@ -64,11 +64,16 @@ class OtpVerification extends StatelessWidget {
     );
   }
 
-  ButtonWidget getOtpButton(OtpController controller) {
+  ButtonWidget getOtpButton(OtpController controller, BuildContext context) {
     return ButtonWidget(
       buttonTitle: "GET OTP",
-      action: () {
-        controller.verifyOtp(controller.otpInput.text, controller.mobileNumber);
+      action: () async {
+        await controller.verifyOtp(
+            controller.otpInput.text, controller.mobileNumber);
+        if (controller.userInfoModel != null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text("${controller.userInfoModel?.message}")));
+        }
       },
     );
   }
