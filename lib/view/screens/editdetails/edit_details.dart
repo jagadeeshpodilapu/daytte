@@ -1,15 +1,12 @@
 import 'dart:io';
 
-import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/view/screens/matchscreen/match_screen.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
-
-import '../../../controllers/edit_details/edit_details_controller.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../consts/image_constants.dart';
+import '../../../controllers/edit_details/edit_details_controller.dart';
 
 enum SingingCharacter { male, female }
 
@@ -74,8 +71,24 @@ class EditDetails extends StatelessWidget {
                           ),
                         ),
                       )),
+                  // for (var item in controller.pickedImages)
+                  //   listOfImagesSelected(item),
                   for (var item in controller.pickedImages)
-                    listOfImagesSelected(item),
+                    buildPaddingImage(
+                        item: item,
+                        controller: controller,
+                        image: Image.file(
+                          File(item.path),
+                          fit: BoxFit.cover,
+                        )),
+                  for (var im in controller.getImages)
+                    buildPaddingImage(
+                        controller: controller,
+                        image: Image.network(
+                          im,
+                          fit: BoxFit.cover,
+                        ),
+                        file: im),
                 ],
               ),
             ),
@@ -281,7 +294,46 @@ class EditDetails extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ButtonWidget(
-          buttonTitle: "Add Media", action: () => Get.to(() => MatchScreen())),
+          buttonTitle: "Add Media",
+          action: () {
+            if (controller.pickedImages.length >= 2) {
+              controller.baseConvert();
+            }
+          }),
+    );
+  }
+
+  Padding buildPaddingImage({
+    File? item,
+    required EditDetailsController controller,
+    required Widget image,
+    String? file,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 15.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(5.0),
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Container(height: 80, width: 80, child: image),
+            Positioned(
+              right: -7,
+              top: -7,
+              child: InkWell(
+                onTap: () {
+                  item != null ? controller.removeImage(item) : null;
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle, color: Colors.white),
+                  child: Icon(Icons.clear),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 

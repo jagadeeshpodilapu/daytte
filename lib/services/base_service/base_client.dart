@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'app_exceptions.dart';
+
 import 'package:dio/dio.dart';
+
+import 'app_exceptions.dart';
 
 class BaseClient {
   static const int TIME_OUT_DURATION = 20;
@@ -62,6 +64,27 @@ class BaseClient {
               options: Options(headers: {
                 'Content-Type': 'application/json',
                 'Authorization': "Bearer $token",
+              }))
+          .timeout(Duration(seconds: TIME_OUT_DURATION));
+      return _processResponse(response);
+    } on SocketException {
+      throw FetchDataException('No Internet connection', uri.toString());
+    } on TimeoutException {
+      throw ApiNotRespondingException(
+          'API not responded in time', uri.toString());
+    }
+  }
+
+  Future<dynamic> delete(String api, dynamic payloadObj, String token) async {
+    var uri = Uri.parse(baseUrl + api);
+    var payload = json.encode(payloadObj);
+    try {
+      var response = await Dio()
+          .delete(baseUrl + api,
+              data: payload,
+              options: Options(headers: {
+                'Content-Type': 'application/json',
+                // 'Authorization': "Bearer $token",
               }))
           .timeout(Duration(seconds: TIME_OUT_DURATION));
       return _processResponse(response);
