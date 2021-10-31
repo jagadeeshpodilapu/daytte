@@ -11,6 +11,7 @@ class BaseClient {
   static const String baseUrl = 'http://65.0.174.202:8000';
 
   //GET
+
   Future<dynamic> get(String api, String token) async {
     var uri = Uri.parse(baseUrl + api);
     try {
