@@ -32,6 +32,7 @@ class ChooseGenderController extends GetxController {
     print("response Otp $response");
     DialogHelper.hideLoading();
     if (response != null) {
+      storage.write("page", "2");
       Get.toNamed(AppRoutes.PASSION);
     }
   }

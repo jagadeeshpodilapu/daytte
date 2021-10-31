@@ -20,29 +20,7 @@ class AudioVideoCall extends StatelessWidget {
             child: Icon(Icons.call_end, color: Colors.white, size: 40)),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: /* Container(
-        clipBehavior:Clip.antiAliasWithSaveLayer,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.topRight,
-              colors: [
-                Color(0xFF3c0fc7),
-                Color(0xFFc86dd7),
-              ],
-            ),),
-        child: CurvedNavigationBar(
-          index: 1,
-          backgroundColor: Colors.black,
-          buttonBackgroundColor: Colors.white,
-          items: [
-          Icon(Icons.mic),
-            Icon(Icons.video_call_outlined),
-            Icon(Icons.speaker_phone_outlined)
-          ],
-        ),
-      ), */
-          BottomAppBar(
+      bottomNavigationBar: BottomAppBar(
         clipBehavior: Clip.antiAlias,
         shape: CircularNotchedRectangle(),
         notchMargin: 10,

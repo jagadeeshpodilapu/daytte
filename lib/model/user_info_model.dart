@@ -45,7 +45,7 @@ class UserProperties {
 
   Map<String, dynamic> toJson() => {
         "access_token": accessToken,
-        "user": user!.toJson(),
+        "user": user?.toJson(),
       };
 }
 

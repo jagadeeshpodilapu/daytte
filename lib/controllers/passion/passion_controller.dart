@@ -50,6 +50,7 @@ class PassionController extends GetxController {
     DialogHelper.hideLoading();
     if (response != null) {
       responseModel = ResponseModel.fromJson(response);
+      storage.write("page", "3");
       Get.toNamed(AppRoutes.UNIVERSITY);
     }
   }

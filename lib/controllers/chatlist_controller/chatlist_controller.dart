@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 class ChatListController extends GetxController {
   bool isAll = true;
   bool isChat = false;
-  List<Map> profileImages = [
+  List<Map<String, dynamic>> profileImages = [
     {
       "profileImage": "assets/images/girl.jpg",
       "profileName": "Julia Morris",
@@ -81,6 +81,7 @@ class ChatListController extends GetxController {
   funcIsAll(bool all, bool chat) {
     isAll = all;
     isChat = chat;
+    update();
   }
 
   @override

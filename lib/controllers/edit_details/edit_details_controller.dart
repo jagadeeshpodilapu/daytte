@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import '../../view/screens/editdetails/edit_details.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -19,6 +18,13 @@ class EditDetailsController extends GetxController {
 
   List<File> pickedImages = [];
   File? imageStore;
+  final storage = GetStorage();
+
+  @override
+  void onInit() {
+    storage.write("page", "7");
+    super.onInit();
+  }
 
 //Pick an image
   openGallery() async {

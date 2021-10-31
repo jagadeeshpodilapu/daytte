@@ -24,7 +24,8 @@ class AboutUsController extends GetxController {
     DialogHelper.hideLoading();
     if (response != null) {
       print("result of gender $response");
-      Get.toNamed(AppRoutes.HOMEVIEW);
+      storage.write("page", "6");
+      Get.toNamed(AppRoutes.PROFILEVIEW);
     }
   }
 }

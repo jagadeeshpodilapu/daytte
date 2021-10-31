@@ -71,10 +71,7 @@ class Settings extends StatelessWidget {
           ListTile(
             title: Text(
               "Maximum Distance",
-              style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
+              style: _textStyle,
             ),
             trailing: Text(
               "50mi",
@@ -95,10 +92,7 @@ class Settings extends StatelessWidget {
             onTap: () => Get.to(() => InterestedScreen()),
             title: Text(
               "Gender",
-              style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
+              style: _textStyle,
             ),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
@@ -119,10 +113,7 @@ class Settings extends StatelessWidget {
           ListTile(
             title: Text(
               "Age Range",
-              style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
+              style: _textStyle,
             ),
             trailing: Text(
               "18-30",
@@ -151,10 +142,7 @@ class Settings extends StatelessWidget {
             child: ListTile(
               title: Text(
                 "Show me on Daytee",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18),
+                style: _textStyle,
               ),
               trailing: CupertinoSwitch(
                 value: true,
@@ -243,7 +231,7 @@ class Settings extends StatelessWidget {
     return ListTile(
       title: Text(
         text,
-        style: tileTextStyle(),
+        style: _textStyle,
       ),
       trailing: Icon(
         Icons.arrow_forward_ios,
@@ -259,10 +247,18 @@ class Settings extends StatelessWidget {
         title: Text(
           title,
           textAlign: TextAlign.center,
-          style: TextStyle(
-              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
+          style: _textStyle,
         ),
       ),
     );
+  }
+
+  TextStyle get _textStyle {
+    return const TextStyle(
+        color: const Color(0xff000000),
+        fontWeight: FontWeight.w500,
+        fontFamily: "ProximaNovaSoft",
+        fontStyle: FontStyle.normal,
+        fontSize: 18.0);
   }
 }

@@ -1,6 +1,6 @@
 import 'package:daytte/model/response_model.dart';
+import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/view/dialogs/dialogHelper.dart';
-import 'package:daytte/view/screens/interested/interested.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -12,7 +12,7 @@ class UniversityController extends GetxController {
   UniversityListModel? universityListModel;
   ResponseModel? responseModel;
   int page = 0;
-  int limit = 10;
+  int limit = 15;
 
   final storage = GetStorage();
 
@@ -34,7 +34,7 @@ class UniversityController extends GetxController {
     update();
   }
 
- Future postUniversityList(String university) async {
+  Future postUniversityList(String university) async {
     Map<String, dynamic> payload = {"name": university};
     DialogHelper.showLoading('Loading...');
     final response = await BaseClient()
@@ -44,7 +44,8 @@ class UniversityController extends GetxController {
     DialogHelper.hideLoading();
     if (response != null) {
       responseModel = ResponseModel.fromJson(response);
-       Get.to(() => InterestedScreen());
+      storage.write("page", "4");
+      Get.toNamed(AppRoutes.INTERESTED);
     }
     update();
   }

@@ -1,4 +1,7 @@
 import 'dart:async';
+import 'dart:convert';
+
+import 'package:daytte/utils/common_functions.dart';
 
 import '../base_controller/baseController.dart';
 import '../../model/user_info_model.dart';
@@ -15,7 +18,7 @@ class OtpController extends GetxController {
   Timer? _timer;
 
   TextEditingController otpInput = TextEditingController();
-  
+
   int start = 30;
   late String mobileNumber;
   UserInfoModel? userInfoModel;
@@ -44,7 +47,7 @@ class OtpController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    mobileNumber = Get.arguments;
+    mobileNumber = Get.arguments ?? "";
     startTimer();
   }
 
@@ -69,9 +72,17 @@ class OtpController extends GetxController {
 
     storage.write("token", userInfoModel?.userProperties.accessToken);
 
+    printData(className: this.runtimeType, data: response);
+
     DialogHelper.hideLoading();
     if (response != null) {
-      Get.toNamed(AppRoutes.SIGNUPVIEW);
+      if (userInfoModel != null) {
+        if (userInfoModel!.userProperties.user!.newUser!) {
+          gotoPage();
+        } else {
+          Get.toNamed(AppRoutes.HOMEVIEW);
+        }
+      }
     }
   }
 
@@ -86,8 +97,32 @@ class OtpController extends GetxController {
         .catchError(BaseController().handleError);
     print("response resend $response");
     DialogHelper.hideLoading();
-    if (response != null) {
-      Get.toNamed(AppRoutes.PASSION);
+  }
+
+  void gotoPage() {
+    final String pageNumber = storage.read('page');
+    switch (pageNumber) {
+      case '1':
+        Get.toNamed(AppRoutes.SIGNUPVIEW);
+        break;
+      case '2':
+        Get.toNamed(AppRoutes.CHOOSEGENDER);
+        break;
+      case '3':
+        Get.toNamed(AppRoutes.PASSION);
+        break;
+      case '4':
+        Get.toNamed(AppRoutes.UNIVERSITY);
+        break;
+      case '5':
+        Get.toNamed(AppRoutes.INTERESTED);
+        break;
+      case '6':
+        Get.toNamed(AppRoutes.ABOUTVIEW);
+        break;
+      case '7':
+        Get.toNamed(AppRoutes.PROFILEVIEW);
+        break;
     }
   }
 }

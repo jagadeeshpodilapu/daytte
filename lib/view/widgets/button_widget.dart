@@ -12,14 +12,20 @@ class ButtonWidget extends StatelessWidget {
       padding: EdgeInsets.only(left: 20, right: 20, top: 5),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        height: 40,
+        height: 50,
         decoration: BoxDecoration(
+          
           borderRadius: new BorderRadius.circular(20.0),
         ),
         child: ElevatedButton(
           child: Text(
             buttonTitle,
-            style: TextStyle(fontSize: 18),
+            style: const TextStyle(
+                color: const Color(0xffffffff),
+                fontWeight: FontWeight.w600,
+                fontFamily: "Avenir",
+                fontStyle: FontStyle.normal,
+                fontSize: 20.0),
           ),
           style: ElevatedButton.styleFrom(
             onPrimary: Colors.white,
@@ -27,7 +33,7 @@ class ButtonWidget extends StatelessWidget {
             shape: StadiumBorder(),
             elevation: 5,
           ),
-          onPressed:action,
+          onPressed: action,
         ),
       ),
     );

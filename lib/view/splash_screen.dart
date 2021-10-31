@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   getDeviceToken() async {
 // Get the token each time the application loads
-  /*   String? token = await FirebaseMessaging.instance.getToken();
+    /*   String? token = await FirebaseMessaging.instance.getToken();
     if (token != null) {
       print(token);
       storeage.writeIfNull("token", '$token');
@@ -31,12 +31,13 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-            height: double.infinity,
-            width: double.infinity,
-            child: Image.asset(
-              ImageConstants.splash,
-              fit: BoxFit.cover,
-            ))
+      height: double.infinity,
+      width: double.infinity,
+      child: Image.asset(
+        ImageConstants.splash,
+        fit: BoxFit.cover,
+      ),
+    )
 
         /* SafeArea(
         child: Stack(

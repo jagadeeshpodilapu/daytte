@@ -1,15 +1,16 @@
-import '../base_controller/baseController.dart';
-import '../otpController/otp_controller.dart';
-import '../../model/location_model.dart';
-import '../../routes/app_routes.dart';
-import '../../services/base_service/base_client.dart';
-import '../../view/dialogs/dialogHelper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
+
+import '../../model/location_model.dart';
+import '../../routes/app_routes.dart';
+import '../../services/base_service/base_client.dart';
+import '../../view/dialogs/dialogHelper.dart';
+import '../base_controller/baseController.dart';
+import '../otpController/otp_controller.dart';
 
 class SignupController extends GetxController {
   final List<String> gender = ["Male", "Female"];
@@ -76,6 +77,7 @@ class SignupController extends GetxController {
     print("response Otp $payload");
     DialogHelper.hideLoading();
     if (response != null) {
+      storage.write("page", "1");
       Get.toNamed(AppRoutes.CHOOSEGENDER);
     }
   }
