@@ -48,18 +48,16 @@ class EditDetails extends StatelessWidget {
                       child: DottedBorder(
                         dashPattern: [5, 6],
                         child: Container(
-                          height: 80,
-                          // width: 80,
+                          height: 95,
+                           width: 95,
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10)),
                           child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10.0),
-                                child: Image.asset('assets/icons/Photo.png',
-                                    width: 45, height: 30),
-                              ),
+                              Image.asset('assets/icons/Photo.png',
+                                  width: 45, height: 30),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text("Add Photo",
@@ -317,10 +315,10 @@ class EditDetails extends StatelessWidget {
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            Container(height: 80, width: 80, child: image),
+            Container(height: 100, width: 100, child: image),
             Positioned(
-              right: -7,
-              top: -7,
+              right: -5,
+              top: -5,
               child: InkWell(
                 onTap: () {
                   item != null ? controller.removeImage(item) : null;

@@ -115,7 +115,7 @@ class YouLikedView extends StatelessWidget {
                                           "${controller.findNearestModel?.data.users?[index].profileImg?.imgPath ?? Constants.emtptyImageUrl}",
                                           fit: BoxFit.fitWidth,
                                           width: Get.width,
-                                          height: 230,
+                                          height: 220,
                                         ),
                                       ),
                                       Padding(
@@ -131,7 +131,7 @@ class YouLikedView extends StatelessWidget {
                                                 fontSize: 14.0)),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.all(8.0),
+                                        padding: const EdgeInsets.only(bottom:4.0),
                                         child: Text("Active Now",
                                             style: const TextStyle(
                                                 color: const Color(0xff757e90),
@@ -210,7 +210,7 @@ class Liked extends StatelessWidget {
                                           "${controller.findNearestModel?.data.users?[index].profileImg?.imgPath ?? Constants.emtptyImageUrl}",
                                           fit: BoxFit.fitWidth,
                                           width: Get.width,
-                                          height: 230,
+                                          height: 220,
                                         ),
                                       ),
                                       Padding(
@@ -226,7 +226,7 @@ class Liked extends StatelessWidget {
                                                 fontSize: 14.0)),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.all(8.0),
+                                        padding: const EdgeInsets.only(bottom:4.0),
                                         child: Text("Active Now",
                                             style: const TextStyle(
                                                 color: const Color(0xff757e90),
