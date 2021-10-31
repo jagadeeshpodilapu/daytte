@@ -1,13 +1,12 @@
+import 'dart:io';
+
+import 'package:google_fonts/google_fonts.dart';
+
 import '../../../controllers/edit_details/edit_details_controller.dart';
 import '../../../routes/app_routes.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../consts/image_constants.dart';
-
-import '../../../controllers/edit_details/edit_details_controller.dart';
-import '../../../routes/app_routes.dart';
 
 enum SingingCharacter { male, female }
 
@@ -36,65 +35,32 @@ class EditDetails extends StatelessWidget {
             children: [
               Center(
                   child: Column(
-                children: [
-                  Padding(
-                      padding: EdgeInsets.only(top: 8.0),
-                      child: Text("Add Photo",
+                    children: [
+                      Padding(
+                          padding: EdgeInsets.only(top: 8.0),
+                          child: Text("Add Photo",
+                              style: GoogleFonts.sourceSerifPro(
+                                  textStyle: TextStyle(
+                                      fontWeight: FontWeight.w500, fontSize: 24)))),
+                      Padding(
+                        padding: EdgeInsets.only(top: 5, bottom: 25),
+                        child: Text(
+                          "Add at least 2 photos to continue",
                           style: GoogleFonts.sourceSerifPro(
                               textStyle: TextStyle(
-                                  fontWeight: FontWeight.w500, fontSize: 24)))),
-                  Padding(
-                    padding: EdgeInsets.only(top: 5, bottom: 25),
-                    child: Text(
-                      "Add at least 2 photos to continue",
-                      style: GoogleFonts.sourceSerifPro(
-                          textStyle: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 12,
-                              color: Colors.black26)),
-                    ),
-                  ),
-                ],
-              )),
-              // controller.imageStore == null
-              //     ?
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 12,
+                                  color: Colors.black26)),
+                        ),
+                      ),
+                    ],
+                  )),
               buildPaddingAdd(controller, context),
-              //:SizedBox(),
-              // controller.imageStore != null
-              //     ?
-              // Wrap(
-              //         children: [
-              //           buildPaddingAdd(controller, context),
-              //           for (var index=0;index< controller.pickedImages.length;index++)
-              //             Padding(
-              //                 padding: const EdgeInsets.all(8.0),
-              //                 child: Image.file(File(controller.pickedImages[index].path)))
-              //         ],
-              //       ): SizedBox(),
-
-              // children: List.generate(controller.pickedImages.length, (index) {
-              //   Asset asset = controller.pickedImages[index];
-              //   return Container(
-              //     height: 60,
-              //     width: 40,
-              //     child: AssetThumb(
-              //       asset: asset,
-              //       width: 60,
-              //       height: 60,
-              //       quality: 50,
-              //     ),
-              //   );
-              // }),
-              /*ListView.builder(
-                      itemCount: controller.pickedImages.length,
-                      itemBuilder: (context, index) => Image.asset(
-                            "${controller.pickedImages[index]}",
-                            height: 80,
-                            width: 80,
-                          ))*/
               GestureDetector(
                 onTap: () {
-                  if (controller.pickedImages.length >= 2) {}
+                  if (controller.pickedImages.length >= 2) {
+                    controller.baseConvert();
+                  }
                 },
                 child: Padding(
                   padding: EdgeInsets.all(22.0),
@@ -190,7 +156,7 @@ class EditDetails extends StatelessWidget {
                                             color: Colors.black54,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(10)),
+                                          BorderRadius.circular(10)),
                                       child: Padding(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 16.0, vertical: 6),
@@ -208,7 +174,7 @@ class EditDetails extends StatelessWidget {
                                             color: Colors.black54,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(10)),
+                                          BorderRadius.circular(10)),
                                       child: Padding(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 16.0, vertical: 6),
@@ -226,7 +192,7 @@ class EditDetails extends StatelessWidget {
                                             color: Colors.black54,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(10)),
+                                          BorderRadius.circular(10)),
                                       child: Padding(
                                         padding: EdgeInsets.symmetric(
                                             horizontal: 16.0, vertical: 6),
@@ -371,8 +337,7 @@ class EditDetails extends StatelessWidget {
     );
   }
 
-  Padding buildPaddingAdd(
-      EditDetailsController controller, BuildContext context) {
+  Padding buildPaddingAdd(EditDetailsController controller, BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: 24.0),
       child: Wrap(
@@ -410,39 +375,56 @@ class EditDetails extends StatelessWidget {
                 ),
               )),
           for (var item in controller.pickedImages)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 15.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(5.0),
-                child: Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    Container(
-                        height: 80,
-                        width: 80,
-                        child: Image.file(
-                          File(item.path),
-                          fit: BoxFit.cover,
-                        )),
-                    Positioned(
-                      right: -7,
-                      top: -7,
-                      child: InkWell(
-                        onTap: () {
-                          controller.removeImage(item);
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.white),
-                          child: Icon(Icons.clear),
-                        ),
-                      ),
-                    )
-                  ],
+            buildPaddingImage(
+                item: item,
+                controller: controller,
+                image: Image.file(
+                  File(item.path),
+                  fit: BoxFit.cover,
+                )),
+          for (var im in controller.getImages)
+            buildPaddingImage(
+                controller: controller,
+                image: Image.network(
+                  im,
+                  fit: BoxFit.cover,
+                ),
+                file: im),
+        ],
+      ),
+    );
+  }
+
+  Padding buildPaddingImage({
+    File? item,
+    required EditDetailsController controller,
+    required Widget image,
+    String? file,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 15.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(5.0),
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Container(height: 80, width: 80, child: image),
+            Positioned(
+              right: -7,
+              top: -7,
+              child: InkWell(
+                onTap: () {
+                  item != null ? controller.removeImage(item) : null;
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle, color: Colors.white),
+                  child: Icon(Icons.clear),
                 ),
               ),
-            ),
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

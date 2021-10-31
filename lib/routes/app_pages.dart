@@ -1,11 +1,13 @@
 import 'package:daytte/controllers/findnearest/find_nearest_binding.dart';
 import 'package:daytte/controllers/passion/passion_binding.dart';
+import 'package:daytte/view/screens/editdetails/edit_details.dart';
 import 'package:daytte/view/screens/interested/interested.dart';
 import 'package:daytte/view/screens/likedetails/like_details.dart';
 import 'package:daytte/view/screens/profiledetails/profile_details.dart';
 import 'package:get/get.dart';
 
 import '../controllers/aboutus_controller/about_us_binding.dart';
+import '../controllers/edit_details/edit_detail_binding.dart';
 import '../controllers/imagepickercontroller/image_picker_binding.dart';
 import '../controllers/otpController/otp_binding.dart';
 import '../controllers/signupcontroller/signup_binding.dart';
@@ -64,5 +66,9 @@ class AppPages {
         name: AppRoutes.INTERESTED,
         page: () => InterestedScreen(),
         bindings: []),
+    GetPage(
+        name: AppRoutes.EDITDETAILS,
+        page: () => EditDetails(),
+        bindings: [EditDetailsBinding()]),
   ];
 }

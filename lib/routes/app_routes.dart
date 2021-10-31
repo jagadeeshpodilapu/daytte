@@ -13,4 +13,5 @@ class AppRoutes{
   static const ABOUTVIEW = '/about';
   static const FINDNEAR = '/find';
   static const LIKESVIEW = '/likes';
+  static const EDITDETAILS = '/editDetails';
 }
