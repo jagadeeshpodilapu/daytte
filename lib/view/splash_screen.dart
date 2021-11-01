@@ -12,9 +12,13 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  
   @override
   void initState() {
-    Timer(4.seconds, () => Get.find<SplashController>().gotoPage());
+    Timer(4.seconds, () {
+      
+      Get.find<SplashController>().gotoPage();
+    });
     super.initState();
   }
 

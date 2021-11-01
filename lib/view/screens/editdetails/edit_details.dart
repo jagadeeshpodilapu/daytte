@@ -49,7 +49,7 @@ class EditDetails extends StatelessWidget {
                         dashPattern: [5, 6],
                         child: Container(
                           height: 95,
-                           width: 95,
+                          width: 95,
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10)),
@@ -94,14 +94,12 @@ class EditDetails extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            addMediaButtonWidget(),
+            addMediaButtonWidget(context),
             detailsWidget(),
             SizedBox(
               height: 10,
             ),
-            ButtonWidget(
-                buttonTitle: "Save Changes",
-                action: () => Get.offAndToNamed(AppRoutes.HOMEVIEW)),
+            ButtonWidget(buttonTitle: "Save Changes", action: () {}),
             SizedBox(
               height: 20,
             ),
@@ -289,14 +287,19 @@ class EditDetails extends StatelessWidget {
     );
   }
 
-  Padding addMediaButtonWidget() {
+  Padding addMediaButtonWidget(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ButtonWidget(
           buttonTitle: "Add Media",
-          action: () {
-            if (controller.pickedImages.length >= 2) {
-              controller.baseConvert();
+          action: () async {
+            if (controller.getImages.length > 2) {
+              await controller.baseConvert();
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text("${controller.editDetailsModel?.message}")));
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("Please Upload atleast 2 pictures")));
             }
           }),
     );

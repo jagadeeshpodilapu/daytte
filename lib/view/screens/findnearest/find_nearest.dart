@@ -76,7 +76,7 @@ class FindTheNearest extends StatelessWidget {
                                                 "${controller.findNearestModel?.data.users?[index].profileImg?.imgPath ?? Constants.emtptyImageUrl}",
                                                 fit: BoxFit.fitWidth,
                                                 width: Get.width,
-                                                height: 210,
+                                                height: 230,
                                               ),
                                             ),
                                             Padding(

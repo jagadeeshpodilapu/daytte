@@ -9,14 +9,18 @@ class SplashController extends GetxController {
   @override
   void onInit() {
     storage.writeIfNull("page", "0");
-    
-    print("storage access key ${storage.read('page')}");
+    storage.writeIfNull("isLogged", false);
 
     super.onInit();
   }
 
   void gotoPage() {
-    final String pageNumber = storage.read('page');
+    final String pageNumber;
+    if (storage.read("isLogged")) {
+      pageNumber = '8';
+    } else {
+      pageNumber = storage.read('page');
+    }
     switch (pageNumber) {
       case '0':
         Get.offAndToNamed(AppRoutes.LOGINVIEW);
@@ -41,6 +45,9 @@ class SplashController extends GetxController {
         break;
       case '7':
         Get.toNamed(AppRoutes.EDITDETAILS);
+        break;
+      case '8':
+        Get.toNamed(AppRoutes.HOMEVIEW);
         break;
     }
   }

@@ -78,11 +78,11 @@ class OtpController extends GetxController {
     DialogHelper.hideLoading();
     if (response != null) {
       if (userInfoModel != null) {
-       
-        if (userInfoModel!.userProperties.user!.newUser==false) {
-           storage.write('page', "1");
-            Get.toNamed(AppRoutes.SIGNUPVIEW);
+        if (userInfoModel!.userProperties.user!.newUser!) {
+          storage.write('page', "1");
+          Get.toNamed(AppRoutes.SIGNUPVIEW);
         } else {
+          storage.write('page', "8");
           Get.toNamed(AppRoutes.HOMEVIEW);
         }
       }
@@ -95,6 +95,7 @@ class OtpController extends GetxController {
     };
 
     DialogHelper.showLoading('Sending Otp');
+    
     final response = await BaseClient()
         .post('/auth/resendOtp', payload)
         .catchError(BaseController().handleError);
