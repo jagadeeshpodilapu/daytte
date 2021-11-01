@@ -1,5 +1,6 @@
-import 'chatlist_controller.dart';
 import 'package:get/get.dart';
+
+import 'chatlist_controller.dart';
 
 class ChatListBinding extends Bindings {
   @override

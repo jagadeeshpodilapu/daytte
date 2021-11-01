@@ -1,9 +1,10 @@
-import '../../../controllers/passion/passion_controller.dart';
-import '../../widgets/button_widget.dart';
-import '../../widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:group_button/group_button.dart';
+
+import '../../../controllers/passion/passion_controller.dart';
+import '../../widgets/button_widget.dart';
+import '../../widgets/common_widgets.dart';
 
 class PassionSCreen extends StatelessWidget {
   @override

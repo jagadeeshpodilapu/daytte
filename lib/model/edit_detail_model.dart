@@ -86,3 +86,34 @@ class Gallery {
         "imgPath": imgPath,
       };
 }
+
+DeleteGalleryModel deleteGalleryModelFromJson(String str) =>
+    DeleteGalleryModel.fromJson(json.decode(str));
+
+String deleteGalleryModelToJson(DeleteGalleryModel data) =>
+    json.encode(data.toJson());
+
+class DeleteGalleryModel {
+  DeleteGalleryModel({
+    required this.statusCode,
+    required this.message,
+    required this.error,
+  });
+
+  int statusCode;
+  String message;
+  String error;
+
+  factory DeleteGalleryModel.fromJson(Map<String, dynamic> json) =>
+      DeleteGalleryModel(
+        statusCode: json["statusCode"],
+        message: json["message"],
+        error: json["error"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "statusCode": statusCode,
+        "message": message,
+        "error": error,
+      };
+}

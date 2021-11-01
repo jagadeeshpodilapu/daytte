@@ -1,11 +1,12 @@
-import '../../../consts/image_constants.dart';
-import '../../../controllers/imagepickercontroller/select_image_controller.dart';
-import '../../../routes/app_routes.dart';
-import '../../widgets/common_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../../consts/image_constants.dart';
+import '../../../controllers/imagepickercontroller/select_image_controller.dart';
+import '../../../routes/app_routes.dart';
+import '../../widgets/common_widgets.dart';
 
 class SelectImagesSource extends StatelessWidget {
   final controller = Get.put(SelectImagesController());

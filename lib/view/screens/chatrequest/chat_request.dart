@@ -1,5 +1,6 @@
-import '../../widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
+
+import '../../widgets/common_widgets.dart';
 
 class ChatRequest extends StatelessWidget {
   @override

@@ -10,7 +10,6 @@ import '../../routes/app_routes.dart';
 import '../../services/base_service/base_client.dart';
 import '../../view/dialogs/dialogHelper.dart';
 import '../base_controller/baseController.dart';
-import '../otpController/otp_controller.dart';
 
 class SignupController extends GetxController {
   final List<String> gender = ["Male", "Female"];

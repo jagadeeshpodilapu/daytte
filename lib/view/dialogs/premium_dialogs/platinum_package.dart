@@ -1,13 +1,15 @@
-import '../../../controllers/premiumpackageController/premium_package_controller.dart';
-import '../../../utils/common_functions.dart';
-import '../../screens/matchscreen/match_screen.dart';
-import '../../widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../../controllers/premiumpackageController/premium_package_controller.dart';
+import '../../../utils/common_functions.dart';
+import '../../screens/matchscreen/match_screen.dart';
+import '../../widgets/button_widget.dart';
+
 class PremiumPackages extends StatelessWidget {
   final _controller = PremiumPackageController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +75,7 @@ class PremiumPackages extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(
                   _controller.onboardingPages.length,
-                  (index) => Obx(() {
+                      (index) => Obx(() {
                     return Container(
                       margin: const EdgeInsets.all(4),
                       width: 12,
@@ -97,8 +99,8 @@ class PremiumPackages extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(
                   3,
-                  (index) => Obx(
-                    () => GestureDetector(
+                      (index) => Obx(
+                        () => GestureDetector(
                       onTap: () {
                         _controller.selectedPremiumType.value = index;
                       },
@@ -123,12 +125,12 @@ class PremiumPackages extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
                                 height: _controller.selectedPremiumType.value ==
-                                        index
+                                    index
                                     ? 120
                                     : 105,
                                 width: Get.width * 0.228,
                                 color: _controller.selectedPremiumType.value ==
-                                        index
+                                    index
                                     ? Color(0xFFffe8ec)
                                     : Colors.white,
                                 child: Column(
@@ -151,7 +153,7 @@ class PremiumPackages extends StatelessWidget {
                                             .premiums[index].purchaseAmount,
                                         style: offerTextStyle(index, 18)
                                             .copyWith(
-                                                fontWeight: FontWeight.bold))
+                                            fontWeight: FontWeight.bold))
                                   ],
                                 ),
                               ),

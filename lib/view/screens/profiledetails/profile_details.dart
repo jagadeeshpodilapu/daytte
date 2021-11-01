@@ -1,7 +1,8 @@
-import '../../../consts/image_constants.dart';
-import '../../../themes/app_styles.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+
+import '../../../consts/image_constants.dart';
+import '../../../themes/app_styles.dart';
 
 class ProfileView extends StatelessWidget {
   @override

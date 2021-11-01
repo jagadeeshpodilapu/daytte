@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:daytte/routes/app_routes.dart';
 import 'package:get/get.dart';

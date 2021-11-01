@@ -1,10 +1,10 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/controllers/findnearest/find_nearest_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 
 import '../../widgets/common_widgets.dart';
-import 'package:flutter/material.dart';
 
 class LikesPage extends StatelessWidget {
   @override

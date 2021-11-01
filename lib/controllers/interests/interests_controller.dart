@@ -1,5 +1,4 @@
 import 'package:daytte/controllers/base_controller/baseController.dart';
-import 'package:daytte/controllers/otpController/otp_controller.dart';
 import 'package:daytte/model/response_model.dart';
 import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/services/base_service/base_client.dart';

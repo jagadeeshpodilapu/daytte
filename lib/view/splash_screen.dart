@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:daytte/controllers/splash_controller/splashController.dart';
-
-import '../consts/image_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../consts/image_constants.dart';
 
 class SplashScreen extends StatefulWidget {
   @override

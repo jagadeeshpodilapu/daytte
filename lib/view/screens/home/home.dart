@@ -1,13 +1,14 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+
 import '../../../consts/image_constants.dart';
 import '../../../controllers/home/home_controller.dart';
 import '../chatlist/chat_list.dart';
 import '../editdetails/edit_details.dart';
 import '../findnearest/find_nearest.dart';
 import '../likedetails/like_details.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -32,7 +33,7 @@ class Home extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius:
-                        BorderRadius.all(Radius.circular(34.90343995940204)),
+                    BorderRadius.all(Radius.circular(34.90343995940204)),
                     boxShadow: [
                       BoxShadow(
                           color: const Color(0x0d000000),

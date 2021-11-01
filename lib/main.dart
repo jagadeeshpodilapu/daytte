@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import 'controllers/imagepickercontroller/image_picker_binding.dart';
 import 'routes/app_pages.dart';
 import 'routes/app_routes.dart';
 
@@ -27,7 +26,7 @@ class MyApp extends StatelessWidget with WidgetsBindingObserver {
         primarySwatch: Colors.blue,
       ),
       initialBinding: SplashBinding(),
-      initialRoute: AppRoutes.SPLASHVIEW,
+      initialRoute: AppRoutes.EDITDETAILS,
       defaultTransition: Transition.rightToLeft,
       getPages: AppPages.routes,
     );

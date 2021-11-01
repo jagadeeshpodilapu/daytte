@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:daytte/routes/app_routes.dart';
-import 'package:daytte/view/screens/matchscreen/match_screen.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +48,7 @@ class EditDetails extends StatelessWidget {
                         dashPattern: [5, 6],
                         child: Container(
                           height: 95,
-                           width: 95,
+                          width: 95,
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10)),
@@ -80,14 +79,14 @@ class EditDetails extends StatelessWidget {
                           File(item.path),
                           fit: BoxFit.cover,
                         )),
-                  for (var im in controller.getImages)
+                  for (var im in controller.galleryImages)
                     buildPaddingImage(
                         controller: controller,
                         image: Image.network(
-                          im,
+                          im.imgPath,
                           fit: BoxFit.cover,
                         ),
-                        file: im),
+                        file: im.id),
                 ],
               ),
             ),
@@ -322,6 +321,7 @@ class EditDetails extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   item != null ? controller.removeImage(item) : null;
+                  file != null ? controller.deleteImageSelection(file) : null;
                 },
                 child: Container(
                   decoration: BoxDecoration(
