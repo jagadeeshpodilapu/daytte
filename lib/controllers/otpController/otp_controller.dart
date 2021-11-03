@@ -77,10 +77,10 @@ class OtpController extends GetxController {
       if (userInfoModel != null) {
         if (userInfoModel!.userProperties.user!.newUser!) {
           storage.write('page', "1");
-          Get.toNamed(AppRoutes.SIGNUPVIEW);
+          Get.offAndToNamed(AppRoutes.SIGNUPVIEW);
         } else {
           storage.write('page', "8");
-          Get.toNamed(AppRoutes.HOMEVIEW);
+          Get.offAndToNamed(AppRoutes.HOMEVIEW);
         }
       }
     }
@@ -92,7 +92,7 @@ class OtpController extends GetxController {
     };
 
     DialogHelper.showLoading('Sending Otp');
-    
+
     final response = await BaseClient()
         .post('/auth/resendOtp', payload)
         .catchError(BaseController().handleError);

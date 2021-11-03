@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:daytte/routes/app_routes.dart';
+import 'package:daytte/utils/common_functions.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
@@ -78,25 +80,31 @@ class EditDetails extends StatelessWidget {
                           File(item.path),
                           fit: BoxFit.cover,
                         )),
-                  for (var im in controller.getImages)
+                  for (var im in controller.galleryImages)
                     buildPaddingImage(
                         controller: controller,
                         image: Image.network(
-                          im,
+                          im.imgPath,
                           fit: BoxFit.fill,
-                          width: Get.width,
-                          height: Get.height,
                         ),
-                        file: im),
+                        file: im.id),
                 ],
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(
+              height: 10,
+            ),
             addMediaButtonWidget(context),
             detailsWidget(),
-            SizedBox(height: 10),
-            ButtonWidget(buttonTitle: "Save Changes", action: () {}),
-            SizedBox(height: 20),
+            SizedBox(
+              height: 10,
+            ),
+            ButtonWidget(
+                buttonTitle: "Save Changes",
+                action: () => Get.offAndToNamed(AppRoutes.HOMEVIEW)),
+            SizedBox(
+              height: 20,
+            ),
           ],
         ),
       ),
@@ -287,17 +295,16 @@ class EditDetails extends StatelessWidget {
       child: ButtonWidget(
           buttonTitle: "Add Media",
           action: () async {
-            if (controller.getImages.length < 2) {
-              if (controller.pickedImages.length < 2) {
-                await controller.baseConvert();
-              } else {
+            if (controller.pickedImages.length >= 2 ||
+                controller.galleryImages.length >= 2) {
+              await controller.baseConvert();
+              if (controller.editDetailsModel != null) {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text("Please Upload atleast 2 pictures")));
+                    content: Text("${controller.editDetailsModel?.message}")));
               }
             } else {
-              await controller.baseConvert();
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text("${controller.editDetailsModel?.message}")));
+              ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("Please selcet atleast 2 pictures")));
             }
           }),
     );
@@ -323,6 +330,7 @@ class EditDetails extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   item != null ? controller.removeImage(item) : null;
+                  file != null ? controller.deleteImageSelection(file) : null;
                 },
                 child: Container(
                   decoration: BoxDecoration(

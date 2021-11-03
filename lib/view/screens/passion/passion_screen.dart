@@ -45,14 +45,22 @@ class PassionSCreen extends StatelessWidget {
               floatingActionButton: ButtonWidget(
                 buttonTitle: "Continue",
                 action: () async {
-                  await controller.postPassition();
-                  if (controller.responseModel != null) {
+                  if (controller.selected.isNotEmpty) {
+                    await controller.postPassition();
+                    if (controller.responseModel != null) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content:
+                              Text("${controller.responseModel?.message}")));
+                    }
+                  } else {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text("${controller.responseModel?.message}")));
+                      content: Text("Please select atleast 2 passion"),
+                    ));
                   }
                 },
               ),
-              floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerFloat,
             ));
   }
 }

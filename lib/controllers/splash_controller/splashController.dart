@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:daytte/routes/app_routes.dart';
 import 'package:get/get.dart';
@@ -26,28 +25,28 @@ class SplashController extends GetxController {
         Get.offAndToNamed(AppRoutes.LOGINVIEW);
         break;
       case '1':
-        Get.toNamed(AppRoutes.SIGNUPVIEW);
+        Get.offAndToNamed(AppRoutes.SIGNUPVIEW);
         break;
       case '2':
-        Get.toNamed(AppRoutes.CHOOSEGENDER);
+        Get.offAndToNamed(AppRoutes.CHOOSEGENDER);
         break;
       case '3':
-        Get.toNamed(AppRoutes.PASSION);
+        Get.offAndToNamed(AppRoutes.PASSION);
         break;
       case '4':
-        Get.toNamed(AppRoutes.UNIVERSITY);
+        Get.offAndToNamed(AppRoutes.UNIVERSITY);
         break;
       case '5':
-        Get.toNamed(AppRoutes.INTERESTED);
+        Get.offAndToNamed(AppRoutes.INTERESTED);
         break;
       case '6':
-        Get.toNamed(AppRoutes.ABOUTVIEW);
+        Get.offAndToNamed(AppRoutes.ABOUTVIEW);
         break;
       case '7':
-        Get.toNamed(AppRoutes.EDITDETAILS);
+        Get.offAndToNamed(AppRoutes.EDITDETAILS);
         break;
       case '8':
-        Get.toNamed(AppRoutes.HOMEVIEW);
+        Get.offAndToNamed(AppRoutes.HOMEVIEW);
         break;
     }
   }

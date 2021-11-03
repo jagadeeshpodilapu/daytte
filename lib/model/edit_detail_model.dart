@@ -86,3 +86,4 @@ class Gallery {
         "imgPath": imgPath,
       };
 }
+

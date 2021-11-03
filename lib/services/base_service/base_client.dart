@@ -76,7 +76,7 @@ class BaseClient {
     }
   }
 
-  Future<dynamic> delete(String api, dynamic payloadObj, String token) async {
+  Future<dynamic> delete(String api, dynamic payloadObj) async {
     var uri = Uri.parse(baseUrl + api);
     var payload = json.encode(payloadObj);
     try {

@@ -7,7 +7,6 @@ import '../../routes/app_routes.dart';
 import '../../services/base_service/base_client.dart';
 import '../../view/dialogs/dialogHelper.dart';
 import '../base_controller/baseController.dart';
-import '../otpController/otp_controller.dart';
 
 class PassionController extends GetxController {
   final storage = GetStorage();
@@ -51,7 +50,7 @@ class PassionController extends GetxController {
     if (response != null) {
       responseModel = ResponseModel.fromJson(response);
       storage.write("page", "3");
-      Get.toNamed(AppRoutes.UNIVERSITY);
+      Get.offAndToNamed(AppRoutes.UNIVERSITY);
     }
   }
 }
