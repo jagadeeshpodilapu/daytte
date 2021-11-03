@@ -294,7 +294,8 @@ class EditDetails extends StatelessWidget {
       child: ButtonWidget(
           buttonTitle: "Add Media",
           action: () {
-            if (controller.pickedImages.length >= 2) {
+            if (controller.pickedImages.length >= 2 ||
+                controller.galleryImages.length >= 2) {
               controller.baseConvert();
             }
           }),
