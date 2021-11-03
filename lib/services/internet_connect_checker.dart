@@ -23,12 +23,15 @@ class NetworkUtils {
     return boolNetConnected;
   }
 
-  static streamSubscribeConnectivityListener() {
+  streamSubscribeConnectivityListener() {
     networkListener = (ConnectivityResult result) async {
       switch (result) {
         case ConnectivityResult.wifi:
+          isConnected();
+          break;
         case ConnectivityResult.ethernet:
         case ConnectivityResult.mobile:
+          isConnected();
           break;
         case ConnectivityResult.none:
           await Get.dialog(NoInternetWidget(), barrierDismissible: false);
@@ -42,5 +45,11 @@ class NetworkUtils {
 
   static cancelNetworkSubscription() async {
     await subscription!.cancel();
+  }
+
+  void isConnected() {
+    if (Get.isDialogOpen!) {
+      Get.back();
+    }
   }
 }

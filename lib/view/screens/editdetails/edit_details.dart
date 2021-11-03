@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'package:daytte/routes/app_routes.dart';
-import 'package:daytte/view/screens/matchscreen/match_screen.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
@@ -85,24 +83,20 @@ class EditDetails extends StatelessWidget {
                         controller: controller,
                         image: Image.network(
                           im,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.fill,
+                          width: Get.width,
+                          height: Get.height,
                         ),
                         file: im),
                 ],
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: 10),
             addMediaButtonWidget(context),
             detailsWidget(),
-            SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: 10),
             ButtonWidget(buttonTitle: "Save Changes", action: () {}),
-            SizedBox(
-              height: 20,
-            ),
+            SizedBox(height: 20),
           ],
         ),
       ),
@@ -293,13 +287,17 @@ class EditDetails extends StatelessWidget {
       child: ButtonWidget(
           buttonTitle: "Add Media",
           action: () async {
-            if (controller.getImages.length > 2) {
-              await controller.baseConvert();
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text("${controller.editDetailsModel?.message}")));
+            if (controller.getImages.length < 2) {
+              if (controller.pickedImages.length < 2) {
+                await controller.baseConvert();
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text("Please Upload atleast 2 pictures")));
+              }
             } else {
-              ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text("Please Upload atleast 2 pictures")));
+              await controller.baseConvert();
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text("${controller.editDetailsModel?.message}")));
             }
           }),
     );

@@ -27,8 +27,7 @@ class EditDetailsController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    gettingImages(
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYTdiMmYyZjE5MzNkMTE0NTMyM2E2ZSIsImlhdCI6MTYwNDgyNTg0MiwiZXhwIjoxNjA0ODI2NzQyfQ.a5x5ktqPb2NAxUc-bKMgY8660zrFB_vK-q59S0SudDg");
+    gettingImages();
     update();
   }
 
@@ -40,21 +39,18 @@ class EditDetailsController extends GetxController {
   List<File> pickedImages = [];
   File? imageStore;
   final storage = GetStorage();
+  RxString userId = ''.obs;
 
   @override
   void onInit() {
-    storage.write("page", "7");
+    userId.value = storage.read('id');
 
     super.onInit();
   }
 
 //Pick an image
   openGallery() async {
-    image = await _picker.pickImage(
-        maxHeight: 100,
-        maxWidth: 100,
-        imageQuality: 100,
-        source: ImageSource.gallery);
+    image = await _picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
       imageStore = File(image!.path);
       pickedImages.add(imageStore!);
@@ -64,11 +60,7 @@ class EditDetailsController extends GetxController {
 
   // Capture a photo
   openCamera() async {
-    image = await _picker.pickImage(
-        maxHeight: 100,
-        maxWidth: 100,
-        imageQuality: 100,
-        source: ImageSource.camera);
+    image = await _picker.pickImage(source: ImageSource.camera);
     if (image != null) {
       imageStore = File(image!.path);
       pickedImages.add(imageStore!);
@@ -82,7 +74,7 @@ class EditDetailsController extends GetxController {
     update();
   }
 
- Future<void> baseConvert() async {
+  Future<void> baseConvert() async {
     String base64EncodeImage = "";
     List<String> encodeImage = [];
     if (image != null) {
@@ -100,12 +92,13 @@ class EditDetailsController extends GetxController {
     uploadImages("userId", base64Images);
   }
 
- Future uploadImages(String userId, List base64) async {
+  Future uploadImages(String userId, List base64) async {
     Map<String, dynamic> payload = {
-      "userId": "5fb21b4cf46d5c3170285e68",
+      "userId": storage.read('id'),
       "galleries": base64Images
     };
 
+    DialogHelper.showLoading('Uploading ...');
     final response = await BaseClient()
         .post('/galleries/upload', payload)
         .catchError(BaseController().handleError);
@@ -116,20 +109,18 @@ class EditDetailsController extends GetxController {
       if (editDetailsModel != null) {
         storage.write("isLogged", true);
         editDetailsModel = EditDetailsModel.fromJson(response);
+        storage.write("page", "7");
         Get.toNamed(AppRoutes.HOMEVIEW);
       }
     }
   }
 
-  gettingImages(String token) async {
+  gettingImages() async {
     DialogHelper.showLoading('Loading...');
     final response = await BaseClient()
-        .get(
-            '/galleries?skip=0&limit=10&userId=5fb21b4cf46d5c3170285e68', token)
+        .get('/galleries?skip=0&limit=10&userId=${userId.value}',
+            storage.read('token'))
         .catchError(BaseController().handleError);
-
-    printData(className: "kljhgjkl;kjhg", data: response);
-
     DialogHelper.hideLoading();
     if (response != null) {
       getEditDetailsModel = GetEditDetailsModel.fromJson(response);
