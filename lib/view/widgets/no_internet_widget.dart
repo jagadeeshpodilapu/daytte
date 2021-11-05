@@ -32,38 +32,6 @@ class NoInternetWidget extends StatelessWidget {
                   color: Colors.grey,
                 ),
               ),
-              SizedBox(
-                height: Get.height * 0.03,
-              ),
-              TextButton(
-                child: Container(
-                  width: Get.width,
-                  alignment: Alignment.center,
-                  child: Text(
-                    'CONTINUE',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.orange),
-                ),
-                onPressed: null,
-              ),
-              SizedBox(
-                height: Get.height * 0.01,
-              ),
-              TextButton(
-                child: Container(
-                  width: Get.width,
-                  alignment: Alignment.center,
-                  child: Text(
-                    'CANCEL',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ),
-                onPressed: () => Get.back(),
-              ),
             ],
           ),
         ),

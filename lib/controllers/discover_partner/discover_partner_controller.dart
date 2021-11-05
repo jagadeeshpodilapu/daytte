@@ -1,3 +1,5 @@
+import 'package:daytte/controllers/findnearest/find_nearest_controller.dart';
+
 import '../../model/content_images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,31 +13,28 @@ class DiscoverPartnerController extends GetxController {
   StoryController controller = StoryController();
   List<SwipeItem> _swipeItems = <SwipeItem>[];
   List<StoryItem> profilePics = <StoryItem>[];
-  List<String> images = [
-    "https://wallpaper-house.com/data/out/10/wallpaper2you_426193.jpg",
-    "https://wallpaper-house.com/data/out/4/wallpaper2you_37383.jpg",
-    "https://wallpaper-house.com/data/out/10/wallpaper2you_426193.jpg",
-    "https://wallpaper-house.com/data/out/4/wallpaper2you_37383.jpg",
-    "https://wallpaper-house.com/data/out/10/wallpaper2you_426193.jpg",
-  ];
+
+  final nearestController = Get.find<FindNearestController>();
 
   @override
   void onInit() {
     super.onInit();
     controller = StoryController();
-    for (int i = 0; i < images.length; i++) {
+    for (int i = 0;
+        i < nearestController.findNearestModel!.data.users!.length;
+        i++) {
       profilePics.add(
         StoryItem.pageImage(
-          url: images[i],
+          url: nearestController
+                  .findNearestModel?.data.users?[i].profileImg?.imgPath ??
+              "",
           controller: controller,
           imageFit: BoxFit.cover,
           duration: Duration(milliseconds: 5000),
         ),
       );
       _swipeItems.add(
-        SwipeItem(
-          content: Content(text: images[i]),
-        ),
+        SwipeItem(likeAction: () {}, nopeAction: () {}, superlikeAction: () {}),
       );
     }
 

@@ -1,11 +1,18 @@
+import 'package:daytte/model/find_nearest_model.dart';
+import 'package:get/get.dart';
+
 import '../../../consts/image_constants.dart';
 import '../../../themes/app_styles.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 
 class ProfileView extends StatelessWidget {
+  final User profileDetails = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
+    print("profile detail info ${{profileDetails.firstname}}");
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -24,10 +31,11 @@ class ProfileView extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage("assets/images/girl.jpg"),
+                            image: NetworkImage(
+                                "${profileDetails.profileImg?.imgPath}"),
                             fit: BoxFit.cover),
                         borderRadius: BorderRadius.circular(0),
-                        color: Colors.orange,
+                        color: Colors.grey,
                       ),
                       height: 400,
                     ),
@@ -39,7 +47,7 @@ class ProfileView extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width / 1.2,
+                            width: MediaQuery.of(context).size.width / 1.1,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
                                 color: Colors.white,
@@ -52,7 +60,7 @@ class ProfileView extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Text(
-                                    "SEEMA KHAN",
+                                    "${profileDetails.firstname}${profileDetails.lastname}",
                                     style: AppStyles.subHeading.copyWith(
                                         fontWeight: FontWeight.w700,
                                         fontFamily: 'SFPro',
@@ -79,7 +87,7 @@ class ProfileView extends StatelessWidget {
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 4.0),
                                           child: Text(
-                                            "Seema",
+                                            "${profileDetails.firstname}",
                                             style: buildTextStyle(),
                                           ),
                                         ),
@@ -100,7 +108,7 @@ class ProfileView extends StatelessWidget {
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 4.0),
                                           child: Text(
-                                            "Khan",
+                                            "${profileDetails.lastname}",
                                             style: buildTextStyle(),
                                           ),
                                         ),
@@ -125,7 +133,7 @@ class ProfileView extends StatelessWidget {
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 4.0),
                                           child: Text(
-                                            "25 years",
+                                            "${profileDetails.age}",
                                             style: buildTextStyle(),
                                           ),
                                         ),
@@ -318,7 +326,7 @@ class ProfileView extends StatelessWidget {
                                             decoration: BoxDecoration(
                                               image: DecorationImage(
                                                   image: NetworkImage(
-                                                      "https://wallup.net/wp-content/uploads/2016/05/13/334355-people-model-fashion-forest-dress-portrait.jpg"),
+                                                      "${profileDetails.profileImg?.imgPath}"),
                                                   fit: BoxFit.cover),
                                               borderRadius:
                                                   BorderRadius.circular(10),
@@ -327,22 +335,23 @@ class ProfileView extends StatelessWidget {
                                           ),
                                         )),
                                         Expanded(
-                                            child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 4.0),
-                                          child: Container(
-                                            height: 200,
-                                            decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                  image: NetworkImage(
-                                                      "https://wallup.net/wp-content/uploads/2016/05/13/334355-people-model-fashion-forest-dress-portrait.jpg"),
-                                                  fit: BoxFit.cover),
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              color: Colors.orange,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 4.0),
+                                            child: Container(
+                                              height: 200,
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                    image: NetworkImage(
+                                                        "https://wallup.net/wp-content/uploads/2016/05/13/334355-people-model-fashion-forest-dress-portrait.jpg"),
+                                                    fit: BoxFit.cover),
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: Colors.grey,
+                                              ),
                                             ),
                                           ),
-                                        )),
+                                        ),
                                       ],
                                     )
                                   ],

@@ -145,8 +145,8 @@ class EditDetails extends StatelessWidget {
                 Padding(
                     padding: EdgeInsets.symmetric(vertical: 8.0),
                     child: headingWithTextStyle(
-                        0.2,
-                        "AddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompany",
+                        0.6,
+                        "${controller.userController.findNearestModel?.data.users?.first.shortDescription}",
                         13.5)),
               ],
             ),
@@ -164,70 +164,37 @@ class EditDetails extends StatelessWidget {
                     )
                   ],
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8.0),
-                  child: Row(
-                    children: [
-                      Wrap(
-                        spacing: 10,
-                        crossAxisAlignment: WrapCrossAlignment.start,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(
-                                  color: Colors.black54,
-                                ),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 16.0, vertical: 6),
-                              child: Text("Movies",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                      color: Colors.black26)),
-                            ),
+                Wrap(
+                  spacing: 10,
+                  crossAxisAlignment: WrapCrossAlignment.start,
+                  children: [
+                    ...List.generate(
+                        controller.userController.findNearestModel?.data.users
+                                ?.first.passion?.length ??
+                            0, (index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(
+                                color: Colors.black54,
+                              ),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 6),
+                            child: Text(
+                                "${controller.userController.findNearestModel?.data.users?.first.passion?[index].name}",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12,
+                                    color: Colors.black54)),
                           ),
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(
-                                  color: Colors.black54,
-                                ),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 16.0, vertical: 6),
-                              child: Text("Spots",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                      color: Colors.black26)),
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                border: Border.all(
-                                  color: Colors.black54,
-                                ),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 16.0, vertical: 6),
-                              child: Text("Reading",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                      color: Colors.black26)),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  // child: Text("AddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompany",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 12,color:Colors.black26 ),),
+                        ),
+                      );
+                    }),
+                  ],
                 ),
               ],
             ),
@@ -376,13 +343,16 @@ class EditDetails extends StatelessWidget {
   Widget headingWithTextStyle(double opacity, String text, double size) {
     return Opacity(
       opacity: opacity,
-      child: Text(text,
-          style: TextStyle(
-              color: const Color(0xff273d52),
-              fontWeight: FontWeight.w500,
-              fontFamily: "Avenir",
-              fontStyle: FontStyle.normal,
-              fontSize: size)),
+      child: Text(
+        text,
+        textAlign: TextAlign.start,
+        style: TextStyle(
+            color: const Color(0xff273d52),
+            fontWeight: FontWeight.w500,
+            fontFamily: "Avenir",
+            fontStyle: FontStyle.normal,
+            fontSize: size),
+      ),
     );
   }
 }

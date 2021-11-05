@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:daytte/controllers/findnearest/find_nearest_controller.dart';
 
-import 'package:daytte/controllers/base_controller/baseController.dart';
+import '../base_controller/baseController.dart';
 import 'package:daytte/model/delete_gallery.dart';
-import 'package:daytte/model/edit_detail_model.dart';
+import '../../model/edit_detail_model.dart';
 import 'package:daytte/routes/app_routes.dart';
-import 'package:daytte/services/base_service/base_client.dart';
-import 'package:daytte/utils/common_functions.dart';
-import 'package:daytte/view/dialogs/dialogHelper.dart';
+import '../../services/base_service/base_client.dart';
+import '../../view/dialogs/dialogHelper.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
@@ -26,6 +26,7 @@ class EditDetailsController extends GetxController {
   DeleteGalleryModel? deleteGalleryModel;
   GetEditDetailsModel? getEditDetailsModel;
   List<Gallery> galleryImages = [];
+  final userController = Get.find<FindNearestController>();
 
   @override
   void onReady() {
@@ -46,7 +47,7 @@ class EditDetailsController extends GetxController {
 
   @override
   void onInit() {
-    userId.value = storage.read('id');
+    userId.value = storage.read('id') ?? "";
 
     super.onInit();
   }
@@ -88,13 +89,11 @@ class EditDetailsController extends GetxController {
         base64Images.add("data:image/jpeg;base64,$base64EncodeImage");
         update();
       }
-      print("base64Images,,$base64Images");
     }
     uploadImages(base64Images);
   }
 
   Future uploadImages(List base64) async {
-    print("base64 images list $base64");
     Map<String, dynamic> payload = {
       "userId": userId.value,
       "galleries": base64
@@ -103,7 +102,6 @@ class EditDetailsController extends GetxController {
     final response = await BaseClient()
         .post('/galleries/upload', payload)
         .catchError(BaseController().handleError);
-    print('image upload response $response');
 
     DialogHelper.hideLoading();
     if (response != null) {
@@ -129,9 +127,6 @@ class EditDetailsController extends GetxController {
 
     if (response != null) {
       getEditDetailsModel = GetEditDetailsModel.fromJson(response);
-      print('getting images response $response');
-      print(
-          'getting images response ${getEditDetailsModel?.data.galleries.length}');
 
       if (getEditDetailsModel != null) {
         galleryImages = getEditDetailsModel!.data.galleries;
@@ -148,15 +143,11 @@ class EditDetailsController extends GetxController {
     Map<String, dynamic> payload = {
       "id": id,
     };
-    print('Images delete payload $payload');
 
     DialogHelper.showLoading('Deleting Image...');
     final response = await BaseClient()
         .delete('/galleries/$id', payload)
         .catchError(BaseController().handleError);
-    print('delted images response $response');
-
-    printData(className: this.runtimeType, data: response);
 
     if (response != null) {
       DialogHelper.hideLoading();

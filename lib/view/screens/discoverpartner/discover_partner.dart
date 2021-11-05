@@ -1,3 +1,4 @@
+import 'package:daytte/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:story_view/widgets/story_view.dart';
@@ -34,159 +35,163 @@ class DiscoverPartner extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment(0, 0),
-                    end: Alignment(1, 1),
-                    colors: [
-                  const Color(0xffffffff),
-                  const Color(0xffe4e6eb)
-                ])),
+              gradient: LinearGradient(
+                begin: Alignment(0, 0),
+                end: Alignment(1, 1),
+                colors: [const Color(0xffffffff), const Color(0xffe4e6eb)],
+              ),
+            ),
           ),
           Container(
             child: Container(
               height: Get.height * 0.80,
               width: Get.width,
               margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              child: GestureDetector(
-                onTap: () => Get.to(() => ProfileView()),
-                child: Stack(
-                  children: [
-                    Stack(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 8, top: 8.0, right: 8.0),
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12)),
-                            child: Center(),
-                          ),
+              child: Stack(
+                children: [
+                  Stack(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 8, top: 8.0, right: 8.0),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12)),
+                          child: Center(),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 15.0),
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12)),
-                            elevation: 4,
-                            child: SwipeCards(
-                              matchEngine: controller.matchEngine,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Container(
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 15.0),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12)),
+                          elevation: 4,
+                          child: SwipeCards(
+                            matchEngine: controller.matchEngine,
+                            itemBuilder: (BuildContext context, int index) {
+                              return GestureDetector(
+                                 onTap: () => Get.toNamed(AppRoutes.PROFILEVIEW,arguments: controller.nearestController.findNearestModel?.data.users?[index]),
+                                child: Container(
                                   color: Colors.white,
                                   child: Column(
                                     children: [
                                       Container(
                                         height: Get.height * 0.47,
-                                        child: Stack(children: [
-                                          Container(
-                                            height: Get.height * 0.45,
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            alignment: Alignment.center,
-                                            color: Colors.transparent,
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(15.0),
-                                              child: StoryView(
-                                                controller:
-                                                    controller.controller,
-                                                storyItems:
-                                                    controller.profilePics,
-                                                repeat: false,
-                                                onStoryShow: (storyItem) {
-                                                  final index = controller
-                                                      .profilePics
-                                                      .indexOf(storyItem);
-
-                                                  // if (index > 0) {
-                                                  //   setState(() {
-                                                  //     date = widget.user.stories[index].date;
-                                                  //   });
-                                                  // }
-                                                },
-                                                // StoryItem.pageImage(
-                                                //     url: "${images[index]}", controller: controller)
-
-                                                // child: Image.asset(
-                                                //   "${images[index]}",
-                                                //   fit: BoxFit.contain,
-                                                // ),
+                                        child: Stack(
+                                          children: [
+                                            Container(
+                                              height: Get.height * 0.45,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              alignment: Alignment.center,
+                                              color: Colors.transparent,
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(15.0),
+                                                child: StoryView(
+                                                  controller:
+                                                      controller.controller,
+                                                  storyItems:
+                                                      controller.profilePics,
+                                                  repeat: false,
+                                                  onStoryShow: (storyItem) {
+                                                    final index = controller
+                                                        .profilePics
+                                                        .indexOf(storyItem);
+                              
+                                                    // if (index > 0) {
+                                                    //   setState(() {
+                                                    //     date = widget.user.stories[index].date;
+                                                    //   });
+                                                    // }
+                                                  },
+                                                  // StoryItem.pageImage(
+                                                  //     url: "${images[index]}", controller: controller)
+                              
+                                                  // child: Image.asset(
+                                                  //   "${images[index]}",
+                                                  //   fit: BoxFit.contain,
+                                                  // ),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          Positioned(
-                                              top: 20,
-                                              left: 16,
-                                              child: Container(
-                                                height: 35,
-                                                padding: EdgeInsets.only(
-                                                  left: 10,
-                                                  right: 10,
-                                                ),
-                                                decoration: BoxDecoration(
+                                            Positioned(
+                                                top: 20,
+                                                left: 16,
+                                                child: Container(
+                                                  height: 35,
+                                                  padding: EdgeInsets.only(
+                                                    left: 10,
+                                                    right: 10,
+                                                  ),
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20),
+                                                      color: Colors.black),
+                                                  child: TextButton.icon(
+                                                      onPressed: () {},
+                                                      icon: Icon(
+                                                        Icons.location_on,
+                                                        size: 20,
+                                                        color: Colors.white,
+                                                      ),
+                                                      label: Text(
+                                                        "2.3Km away",
+                                                        style: const TextStyle(
+                                                            color: const Color(
+                                                                0xffffffff),
+                                                            fontWeight:
+                                                                FontWeight.w700,
+                                                            fontFamily:
+                                                                "Roboto",
+                                                            fontStyle: FontStyle
+                                                                .normal,
+                                                            fontSize: 12.0),
+                                                      )),
+                                                )),
+                                            Visibility(
+                                              visible: false,
+                                              child: Positioned(
+                                                bottom: 0,
+                                                left: Get.width * 0.25,
+                                                child: Container(
+                                                  height: 40,
+                                                  padding: EdgeInsets.only(
+                                                    left: 10,
+                                                    right: 10,
+                                                  ),
+                                                  decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             20),
-                                                    color: Colors.black),
-                                                child: TextButton.icon(
-                                                    onPressed: () {},
-                                                    icon: Icon(
-                                                      Icons.location_on,
-                                                      size: 20,
-                                                      color: Colors.white,
+                                                    gradient: LinearGradient(
+                                                      begin: Alignment.topLeft,
+                                                      end: Alignment.topRight,
+                                                      colors: [
+                                                        Color(0xFF3c0fc7),
+                                                        Color(0xFFc86dd7),
+                                                      ],
                                                     ),
-                                                    label: Text(
-                                                      "2.3Km away",
-                                                      style: const TextStyle(
-                                                          color: const Color(
-                                                              0xffffffff),
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                          fontFamily: "Roboto",
-                                                          fontStyle:
-                                                              FontStyle.normal,
-                                                          fontSize: 12.0),
-                                                    )),
-                                              )),
-                                          Visibility(
-                                            visible: false,
-                                            child: Positioned(
-                                              bottom: 0,
-                                              left: Get.width * 0.25,
-                                              child: Container(
-                                                height: 40,
-                                                padding: EdgeInsets.only(
-                                                  left: 10,
-                                                  right: 10,
-                                                ),
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                  gradient: LinearGradient(
-                                                    begin: Alignment.topLeft,
-                                                    end: Alignment.topRight,
-                                                    colors: [
-                                                      Color(0xFF3c0fc7),
-                                                      Color(0xFFc86dd7),
-                                                    ],
                                                   ),
+                                                  child: TextButton.icon(
+                                                      onPressed: () {},
+                                                      icon: Icon(
+                                                        Icons.favorite,
+                                                        color: Colors.white,
+                                                      ),
+                                                      label: Text(
+                                                        "95% Match!",
+                                                        style: TextStyle(
+                                                            color:
+                                                                Colors.white),
+                                                      )),
                                                 ),
-                                                child: TextButton.icon(
-                                                    onPressed: () {},
-                                                    icon: Icon(
-                                                      Icons.favorite,
-                                                      color: Colors.white,
-                                                    ),
-                                                    label: Text(
-                                                      "95% Match!",
-                                                      style: TextStyle(
-                                                          color: Colors.white),
-                                                    )),
                                               ),
                                             ),
-                                          ),
-                                        ]),
+                                          ],
+                                        ),
                                       ),
                                       Align(
                                         alignment: Alignment.bottomCenter,
@@ -197,7 +202,7 @@ class DiscoverPartner extends StatelessWidget {
                                               height: 15,
                                             ),
                                             Text(
-                                              "Seema Khan",
+                                              "${controller.nearestController.findNearestModel!.data.users![index].firstname.toString()}${controller.nearestController.findNearestModel!.data.users![index].lastname.toString()}",
                                               style: const TextStyle(
                                                   color:
                                                       const Color(0xff363636),
@@ -210,7 +215,7 @@ class DiscoverPartner extends StatelessWidget {
                                               height: 15,
                                             ),
                                             Text(
-                                                "Full-time Travelller. Globe Trotter.. Occasional Photographer. Part time Singer/Dancer",
+                                                "${controller.nearestController.findNearestModel!.data.users![index].shortDescription}",
                                                 maxLines: 2,
                                                 overflow: TextOverflow.ellipsis,
                                                 textAlign: TextAlign.center,
@@ -247,22 +252,22 @@ class DiscoverPartner extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                );
-                              },
-                              onStackFinished: () {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  content: Text("No More Profile Available"),
-                                  duration: Duration(milliseconds: 500),
-                                ));
-                              },
-                            ),
+                                ),
+                              );
+                            },
+                            onStackFinished: () {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: Text("No More Profile Available"),
+                                duration: Duration(milliseconds: 500),
+                              ));
+                            },
                           ),
                         ),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),
