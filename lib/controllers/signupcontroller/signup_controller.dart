@@ -58,6 +58,19 @@ class SignupController extends GetxController {
     locationModel =
         LocationModel(lang: position.longitude, lat: position.latitude);
   }
+  /* _getAddressFromLatLng() async {
+  try {
+    List<Placemark> p = await geolocator.placemarkFromCoordinates(
+        _currentPosition.latitude, _currentPosition.longitude);
+    Placemark place = p[0];
+    setState(() {
+      _currentAddress =
+      "${place.locality}, ${place.postalCode}, ${place.country}";
+    });
+  } catch (e) {
+    print(e);
+  }
+} */
 
   Future postUserInfo() async {
     Map<String, dynamic> payload = {
