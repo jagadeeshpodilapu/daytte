@@ -1,5 +1,6 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/controllers/findnearest/find_nearest_controller.dart';
+import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/view/screens/discoverpartner/discover_partner.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -46,7 +47,7 @@ class FindTheNearest extends StatelessWidget {
                                       mainAxisSpacing: 4.0),
                               itemBuilder: (BuildContext context, int index) {
                                 return GestureDetector(
-                                  onTap: () => Get.to(() => DiscoverPartner()),
+                                  onTap: () => Get.toNamed(AppRoutes.DISCOVER) ,
                                   child: Card(
                                     elevation: 4,
                                     color: Colors.white,

@@ -1,4 +1,6 @@
 import 'package:daytte/controllers/base_controller/baseController.dart';
+import 'package:daytte/model/response_model.dart';
+import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/services/base_service/base_client.dart';
 import 'package:daytte/view/dialogs/dialogHelper.dart';
 import 'package:flutter/material.dart';
@@ -10,16 +12,15 @@ class SettingsController extends GetxController {
   Rx<RangeValues> rangeValues = RangeValues(18, 30).obs;
   RxBool showme = true.obs;
   final storage = GetStorage();
+  ResponseModel? responseModel;
 
   changeMaxDistance(double distance) {
     maxDistance.value = distance;
-    updateUserPreferences();
     update();
   }
 
   updateAgeRange(RangeValues range) {
     rangeValues.value = range;
-    updateUserPreferences();
     update();
   }
 
@@ -28,21 +29,39 @@ class SettingsController extends GetxController {
     update();
   }
 
-  Future updateUserPreferences() async {
-    print("updateUserPreferences called");
-    final payload = {
-      "filterRadius": maxDistance.value.toInt(),
-      "showAgeRange": [rangeValues.value],
-      "showMe": showme.value
-    };
+  Future updateUserPreferences(int i) async {
+    Map payload = {};
+    if (i == 0) {
+      payload = {
+        "filterRadius": maxDistance.value.toInt(),
+        "showAgeRange": [
+          rangeValues.value.start.toInt(),
+          rangeValues.value.end.toInt()
+        ],
+        "showMe": showme.value
+      };
+    } else {
+      payload = {"is_deleted": true};
+    }
+
+    print("payload of settings $payload");
     DialogHelper.showLoading('Loading...');
     final response = await BaseClient()
         .patch('/users/${storage.read("id")}', payload, storage.read('token'))
         .catchError(BaseController().handleError);
 
     if (response != null) {
-      print("response settings $response");
+      responseModel = ResponseModel.fromJson(response);
+      print("payload of settings $responseModel $response");
     }
     DialogHelper.hideLoading();
+  }
+
+  void clearStorage() {
+    storage.write("id", "");
+    storage.write("token", "");
+    storage.write("page", "0");
+    storage.write("isLogged", false);
+    Get.offAllNamed(AppRoutes.LOGINVIEW);
   }
 }

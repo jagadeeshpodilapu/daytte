@@ -1,4 +1,5 @@
 import 'package:daytte/controllers/settingsController/settings_controller.dart';
+import 'package:daytte/routes/app_routes.dart';
 
 import '../../../consts/image_constants.dart';
 import 'package:daytte/utils/common_functions.dart';
@@ -13,43 +14,47 @@ import 'package:get/get.dart';
 import 'package:share/share.dart';
 
 class Settings extends StatelessWidget {
+  final controller = Get.find<SettingsController>();
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SettingsController>(
-        init: SettingsController(),
-        builder: (controller) {
-          return Scaffold(
-              backgroundColor: Color(0xFFf8f8f8),
-              appBar: AppBar(
-                title: Text(
-                  "Settings",
-                  style: TextStyle(color: Colors.black),
-                ),
-                centerTitle: true,
-                backgroundColor: Colors.white,
-                actions: [
-                  GestureDetector(
-                    onTap: () {
-                      // controller.updateUserPreferences();
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Center(
-                        child: Text(
-                          "Done",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Color(
-                                0xFFfe5068,
-                              ),
-                              fontSize: 18),
+    return Scaffold(
+        backgroundColor: Color(0xFFf8f8f8),
+        appBar: AppBar(
+          title: Text(
+            "Settings",
+            style: TextStyle(color: Colors.black),
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          actions: [
+            GestureDetector(
+              onTap: () async {
+                await controller.updateUserPreferences(0);
+                if (controller.responseModel?.message != null) {
+                  Get.back();
+                }
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                  child: Text(
+                    "Done",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Color(
+                          0xFFfe5068,
                         ),
-                      ),
-                    ),
-                  )
-                ],
+                        fontSize: 18),
+                  ),
+                ),
               ),
-              body: ListView(
+            )
+          ],
+        ),
+        body: GetBuilder<SettingsController>(
+            init: SettingsController(),
+            builder: (controller) {
+              return ListView(
                 children: [
                   SizedBox(height: 25),
                   Padding(
@@ -223,14 +228,61 @@ class Settings extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 15),
-                  _singleNameCard("Delete Account"),
+                  GestureDetector(
+                      onTap: () => showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                title: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      "Are you sure delete the Account ?",
+                                      style: _textStyle.copyWith(fontSize: 16),
+                                    ),
+                                    SizedBox(height: 5),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        TextButton(
+                                            onPressed: () {
+                                              Get.back();
+                                            },
+                                            style: TextButton.styleFrom(
+                                              backgroundColor: Colors.red,
+                                            ),
+                                            child: Text("No",
+                                                style: _textStyle.copyWith(
+                                                    color: Colors.white))),
+                                        SizedBox(width: 50),
+                                        TextButton(
+                                          style: TextButton.styleFrom(
+                                            backgroundColor: Colors.grey,
+                                          ),
+                                          onPressed: () {
+                                            controller.updateUserPreferences(1);
+                                            controller.clearStorage();
+                                          },
+                                          child: Text("Yes",
+                                              style: _textStyle.copyWith(
+                                                color: Colors.white,
+                                              )),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              )),
+                      child: _singleNameCard("Delete Account")),
                   SizedBox(
                     height: 25,
                   ),
                 ],
-              ));
-        });
+              );
+            }));
   }
+
+ 
 
   Widget _singleCardWithTrailingIcon(String text) {
     return ListTile(

@@ -24,7 +24,7 @@ class FindNearestController extends GetxController {
     if (response != null) {
       print("find nearest response $response");
       findNearestModel = FindNearestModel.fromJson(response);
-      users.value = findNearestModel!.data.users!.length;
+      users.value = findNearestModel?.data.users?.length ?? 0;
     }
     update();
   }

@@ -22,7 +22,7 @@ class DiscoverPartner extends StatelessWidget {
             Icons.settings,
             color: Colors.grey,
           ),
-          onPressed: () => Get.to(() => Settings()),
+          onPressed: () => Get.toNamed(AppRoutes.SETTINGSVIEW),
         ),
         backgroundColor: Colors.white,
         title: Text(
@@ -70,7 +70,9 @@ class DiscoverPartner extends StatelessWidget {
                             matchEngine: controller.matchEngine,
                             itemBuilder: (BuildContext context, int index) {
                               return GestureDetector(
-                                 onTap: () => Get.toNamed(AppRoutes.PROFILEVIEW,arguments: controller.nearestController.findNearestModel?.data.users?[index]),
+                                onTap: () => Get.toNamed(AppRoutes.PROFILEVIEW,
+                                    arguments: controller.nearestController
+                                        .findNearestModel?.data.users?[index]),
                                 child: Container(
                                   color: Colors.white,
                                   child: Column(
@@ -99,7 +101,7 @@ class DiscoverPartner extends StatelessWidget {
                                                     final index = controller
                                                         .profilePics
                                                         .indexOf(storyItem);
-                              
+
                                                     // if (index > 0) {
                                                     //   setState(() {
                                                     //     date = widget.user.stories[index].date;
@@ -108,7 +110,7 @@ class DiscoverPartner extends StatelessWidget {
                                                   },
                                                   // StoryItem.pageImage(
                                                   //     url: "${images[index]}", controller: controller)
-                              
+
                                                   // child: Image.asset(
                                                   //   "${images[index]}",
                                                   //   fit: BoxFit.contain,

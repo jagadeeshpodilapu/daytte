@@ -1,11 +1,15 @@
+import 'package:daytte/controllers/discover_partner/discover_partner_binding.dart';
 import 'package:daytte/controllers/edit_details/edit_detail_binding.dart';
 import 'package:daytte/controllers/findnearest/find_nearest_binding.dart';
 import 'package:daytte/controllers/loginController/login_bining.dart';
 import 'package:daytte/controllers/passion/passion_binding.dart';
+import 'package:daytte/controllers/settingsController/settins_binding.dart';
+import 'package:daytte/view/screens/discoverpartner/discover_partner.dart';
 import 'package:daytte/view/screens/editdetails/edit_details.dart';
 import 'package:daytte/view/screens/interested/interested.dart';
 import 'package:daytte/view/screens/likedetails/like_details.dart';
 import 'package:daytte/view/screens/profiledetails/profile_details.dart';
+import 'package:daytte/view/screens/settings/settings.dart';
 import 'package:get/get.dart';
 
 import '../controllers/aboutus_controller/about_us_binding.dart';
@@ -28,18 +32,22 @@ import 'app_routes.dart';
 class AppPages {
   static List<GetPage> routes = [
     GetPage(
-        name: AppRoutes.SPLASHVIEW, page: () => SplashScreen(), bindings: [SignupBinding()]),
-    GetPage(name: AppRoutes.LOGINVIEW, page: () => Login(), bindings: [LoginBinding(),OtpBinding()]),
+        name: AppRoutes.SPLASHVIEW,
+        page: () => SplashScreen(),
+        bindings: [SignupBinding()]),
+    GetPage(
+        name: AppRoutes.LOGINVIEW,
+        page: () => Login(),
+        bindings: [LoginBinding(), OtpBinding()]),
     GetPage(
         name: AppRoutes.SIGNUPVIEW,
         page: () => SignUp(),
-        bindings: [SignupBinding(),OtpBinding()]),
+        bindings: [SignupBinding(), OtpBinding()]),
     GetPage(
         name: AppRoutes.OTPVERIFICATION,
         page: () => OtpVerification(),
         bindings: [OtpBinding()]),
     GetPage(name: AppRoutes.CHOOSEGENDER, page: () => ChooseGender()),
-    GetPage(name: AppRoutes.PASSION, page: () => PassionSCreen()),
     GetPage(
         name: AppRoutes.CHOOSEIMAGE,
         page: () => SelectImagesSource(),
@@ -64,12 +72,20 @@ class AppPages {
         name: AppRoutes.PROFILEVIEW, page: () => ProfileView(), bindings: []),
     GetPage(name: AppRoutes.LIKESVIEW, page: () => LikesPage(), bindings: []),
     GetPage(
+        name: AppRoutes.DISCOVER,
+        page: () => DiscoverPartner(),
+        bindings: [DiscoverPartnerBinding()]),
+    GetPage(
         name: AppRoutes.INTERESTED,
         page: () => InterestedScreen(),
         bindings: []),
     GetPage(
+        name: AppRoutes.SETTINGSVIEW,
+        page: () => Settings(),
+        bindings: [SettingsBinding()]),
+    GetPage(
         name: AppRoutes.EDITDETAILS,
         page: () => EditDetails(),
-        bindings: [EditDetailsBinding()]),
+        bindings: [EditDetailsBinding(), FindNearestBinding()]),
   ];
 }

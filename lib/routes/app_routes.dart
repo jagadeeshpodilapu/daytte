@@ -14,4 +14,6 @@ class AppRoutes{
   static const FINDNEAR = '/find';
   static const LIKESVIEW = '/likes';
   static const EDITDETAILS = '/editDetails';
+  static const SETTINGSVIEW = '/settings';
+  static const DISCOVER = '/discover';
 }
