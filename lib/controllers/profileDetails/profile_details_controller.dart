@@ -1,0 +1,41 @@
+import 'package:daytte/controllers/base_controller/baseController.dart';
+import 'package:daytte/model/find_nearest_model.dart';
+import 'package:daytte/model/user_gallery_model.dart';
+import 'package:daytte/services/base_service/base_client.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+
+class ProfileDetailsController extends GetxController {
+  final storage = GetStorage();
+  User? user;
+  RxBool isLoading = true.obs;
+  UserGalleryModel? userGalleryModel;
+
+  Future fetchUser(String userId) async {
+    isLoading(true);
+    final response = await BaseClient()
+        .get('/users/$userId', storage.read('token'))
+        .catchError(BaseController().handleError);
+
+    if (response != null) {
+      isLoading(false);
+      user = User.fromJson(response['data']['user']);
+      print("find nearest response $response  $user");
+    }
+    update();
+  }
+
+  Future fetchUserGallery(String userId) async {
+    isLoading(true);
+    final response = await BaseClient()
+        .get('/galleries?skip=0&limit=10&userId=$userId', storage.read('token'))
+        .catchError(BaseController().handleError);
+
+    if (response != null) {
+      isLoading(false);
+      print("find nearest response $response");
+      userGalleryModel = UserGalleryModel.fromJson(response);
+    }
+    update();
+  }
+}

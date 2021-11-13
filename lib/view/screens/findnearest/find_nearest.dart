@@ -1,7 +1,6 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/controllers/findnearest/find_nearest_controller.dart';
 import 'package:daytte/routes/app_routes.dart';
-import 'package:daytte/view/screens/discoverpartner/discover_partner.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
@@ -47,7 +46,12 @@ class FindTheNearest extends StatelessWidget {
                                       mainAxisSpacing: 4.0),
                               itemBuilder: (BuildContext context, int index) {
                                 return GestureDetector(
-                                  onTap: () => Get.toNamed(AppRoutes.DISCOVER) ,
+                                  onTap: () {
+                                    var userId = controller.findNearestModel
+                                        ?.data.users?[index].id;
+                                    Get.toNamed(AppRoutes.PROFILEVIEW,
+                                        arguments: userId);
+                                  },
                                   child: Card(
                                     elevation: 4,
                                     color: Colors.white,
@@ -57,17 +61,17 @@ class FindTheNearest extends StatelessWidget {
                                               BorderRadius.circular(12)),
                                       child: Container(
                                         decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(15)),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                  color:
-                                                      const Color(0x0d000000),
-                                                  offset: Offset(0, 0),
-                                                  blurRadius: 10,
-                                                  spreadRadius: 0)
-                                            ],
-                                            color: const Color(0xffffffff)),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(15)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                                color: const Color(0x0d000000),
+                                                offset: Offset(0, 0),
+                                                blurRadius: 10,
+                                                spreadRadius: 0)
+                                          ],
+                                          color: const Color(0xffffffff),
+                                        ),
                                         child: Column(
                                           children: [
                                             ClipRRect(
