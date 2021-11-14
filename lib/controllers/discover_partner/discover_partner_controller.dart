@@ -10,29 +10,34 @@ import 'package:story_view/widgets/story_view.dart';
 import 'package:swipe_cards/swipe_cards.dart';
 
 class DiscoverPartnerController extends GetxController {
-  late MatchEngine matchEngine;
+  final userId = Get.arguments;
+  MatchEngine? matchEngine;
   StoryController storyController = StoryController();
   List<SwipeItem> _swipeItems = <SwipeItem>[];
   List<StoryItem> profilePics = <StoryItem>[];
   UserGalleryModel? userGalleryModel;
   RxInt gallery = 0.obs;
-  final nearestController = Get.find<FindNearestController>();
+  RxBool isLoading = true.obs;
+
   final storage = GetStorage();
+
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
   @override
   void onInit() {
     super.onInit();
-
-    matchEngine = MatchEngine(swipeItems: _swipeItems);
   }
 
   Future fetchUserGallery(String userId) async {
+    isLoading(true);
     final response = await BaseClient()
         .get('/galleries?skip=0&limit=10&userId=$userId', storage.read('token'))
         .catchError(BaseController().handleError);
-
+    profilePics.clear();
+    _swipeItems.clear();
     if (response != null) {
       print("find nearest response $response");
+      isLoading(false);
       userGalleryModel = UserGalleryModel.fromJson(response);
       gallery.value = userGalleryModel?.data.galleries?.length ?? 0;
       print('galleryImages and length $response $userId ${gallery.value}');
@@ -51,6 +56,8 @@ class DiscoverPartnerController extends GetxController {
                 likeAction: () {}, nopeAction: () {}, superlikeAction: () {}),
           );
         }
+
+      matchEngine = MatchEngine(swipeItems: _swipeItems);
     }
     update();
   }
