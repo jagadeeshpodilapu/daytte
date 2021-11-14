@@ -87,7 +87,11 @@ class DiscoverPartner extends StatelessWidget {
                                             itemBuilder: (BuildContext context,
                                                 int index) {
                                               return GestureDetector(
-                                                onTap: () {},
+                                                onTap: () {
+                                                  Get.toNamed(
+                                                      AppRoutes.PROFILEVIEW,
+                                                      arguments: user);
+                                                },
                                                 child: Container(
                                                   color: Colors.white,
                                                   child: Column(
@@ -127,20 +131,7 @@ class DiscoverPartner extends StatelessWidget {
                                                                         .profilePics
                                                                         .indexOf(
                                                                             storyItem);
-
-                                                                    // if (index > 0) {
-                                                                    //   setState(() {
-                                                                    //     date = widget.user.stories[index].date;
-                                                                    //   });
-                                                                    // }
                                                                   },
-                                                                  // StoryItem.pageImage(
-                                                                  //     url: "${images[index]}", controller: controller)
-
-                                                                  // child: Image.asset(
-                                                                  //   "${images[index]}",
-                                                                  //   fit: BoxFit.contain,
-                                                                  // ),
                                                                 ),
                                                               ),
                                                             ),
@@ -261,8 +252,7 @@ class DiscoverPartner extends StatelessWidget {
                                                                       25.0),
                                                             ),
                                                             SizedBox(
-                                                              height: 15,
-                                                            ),
+                                                                height: 15),
                                                             Text("${user.shortDescription}",
                                                                 maxLines: 2,
                                                                 overflow:
@@ -323,18 +313,19 @@ class DiscoverPartner extends StatelessWidget {
                                             onStackFinished: () {
                                               ScaffoldMessenger.of(context)
                                                   .showSnackBar(SnackBar(
-                                                content: Text(
-                                                    "No More Profile Available"),
-                                                duration:
-                                                    Duration(milliseconds: 500),
-                                              ));
+                                                      content: Text(
+                                                          "No More Profile Available"),
+                                                      duration: Duration(
+                                                          milliseconds: 500)));
                                             },
                                           ),
                                         ),
                                       ),
                                     ],
                                   )
-                                : Center(child: Text("No Gallery Pictures  Available"))
+                                : Center(
+                                    child:
+                                        Text("No Gallery Pictures  Available"))
                       ],
                     ),
                   ),

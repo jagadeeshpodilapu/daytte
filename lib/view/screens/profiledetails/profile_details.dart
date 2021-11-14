@@ -7,32 +7,35 @@ import '../../../consts/image_constants.dart';
 import '../../../themes/app_styles.dart';
 
 class ProfileView extends StatelessWidget {
-  final userId = Get.arguments;
+  final user = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment(0, 2),
-                  end: Alignment(1, 1),
-                  colors: [const Color(0xffffffff), const Color(0xffe4e6eb)])),
-          child: GetBuilder<ProfileDetailsController>(
-              init: ProfileDetailsController(),
-              didChangeDependencies: (state) async {
-                await state.controller?.fetchUser(userId);
-                await state.controller?.fetchUserGallery(userId);
-              },
-              builder: (controller) {
-                return Column(
-                  children: [
-                    Container(
-                      color: Colors.red,
-                      child: controller.isLoading.value
-                          ? CircularProgressIndicator()
-                          : Stack(
+      body: GetBuilder<ProfileDetailsController>(
+          init: ProfileDetailsController(),
+          didChangeDependencies: (state) async {
+            await state.controller?.fetchUser(user.id);
+            await state.controller?.fetchUserGallery(user.id);
+          },
+          builder: (controller) {
+            return controller.isLoading.value
+                ? Center(child: CircularProgressIndicator())
+                : SingleChildScrollView(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                              begin: Alignment(0, 2),
+                              end: Alignment(1, 1),
+                              colors: [
+                            const Color(0xffffffff),
+                            const Color(0xffe4e6eb)
+                          ])),
+                      child: Column(
+                        children: [
+                          Container(
+                            color: Colors.red,
+                            child: Stack(
                               clipBehavior: Clip.none,
                               children: [
                                 controller.userGalleryModel!.data.galleries!
@@ -246,100 +249,109 @@ class ProfileView extends StatelessWidget {
                                 ),
                               ],
                             ),
-                    ),
-                    SizedBox(
-                      height: 260,
-                    ),
-                    Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 15.0),
-                          child: Visibility(
-                            visible: false,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      colors: [
-                                        const Color(0xFF6d25ba),
-                                        const Color(0xffba25b8),
-                                      ],
-                                      begin: const FractionalOffset(0.0, 0.0),
-                                      end: const FractionalOffset(1.0, 0.0),
-                                      stops: [0.0, 1.0],
-                                      tileMode: TileMode.clamp),
-                                  color: Colors.green,
-                                  borderRadius: BorderRadius.circular(30)),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 24.0, vertical: 12),
-                                child: Container(
-                                    child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(right: 8.0),
-                                      child: Icon(
-                                        Icons.textsms_outlined,
-                                        color: Colors.white,
-                                        size: 24,
-                                      ),
-                                    ),
-                                    Text("Request to chat",
-                                        style: const TextStyle(
-                                            color: const Color(0xffffffff),
-                                            fontWeight: FontWeight.w400,
-                                            fontFamily: "Muli",
-                                            fontStyle: FontStyle.normal,
-                                            fontSize: 13.0)),
-                                  ],
-                                )),
-                              ),
-                            ),
                           ),
-                        ),
-                        Stack(
-                          alignment: Alignment.bottomCenter,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(0),
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.black26, blurRadius: 6)
-                                  ]),
-                              height: 280,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(bottom: 24.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
+                          SizedBox(
+                            height: 260,
+                          ),
+                          Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(vertical: 15.0),
+                                child: Visibility(
+                                  visible: false,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                            colors: [
+                                              const Color(0xFF6d25ba),
+                                              const Color(0xffba25b8),
+                                            ],
+                                            begin: const FractionalOffset(
+                                                0.0, 0.0),
+                                            end: const FractionalOffset(
+                                                1.0, 0.0),
+                                            stops: [0.0, 1.0],
+                                            tileMode: TileMode.clamp),
+                                        color: Colors.green,
+                                        borderRadius:
+                                            BorderRadius.circular(30)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 24.0, vertical: 12),
+                                      child: Container(
+                                          child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsets.only(right: 8.0),
+                                            child: Icon(
+                                              Icons.textsms_outlined,
+                                              color: Colors.white,
+                                              size: 24,
+                                            ),
+                                          ),
+                                          Text("Request to chat",
+                                              style: const TextStyle(
+                                                  color:
+                                                      const Color(0xffffffff),
+                                                  fontWeight: FontWeight.w400,
+                                                  fontFamily: "Muli",
+                                                  fontStyle: FontStyle.normal,
+                                                  fontSize: 13.0)),
+                                        ],
+                                      )),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Stack(
+                                alignment: Alignment.bottomCenter,
                                 children: [
                                   Container(
-                                    width:
-                                        MediaQuery.of(context).size.width / 1.1,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
+                                        borderRadius: BorderRadius.circular(0),
                                         color: Colors.white,
                                         boxShadow: [
                                           BoxShadow(
                                               color: Colors.black26,
                                               blurRadius: 6)
                                         ]),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(20.0),
-                                      child: Column(
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 4.0),
-                                            child: Row(
+                                    height: 280,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(bottom: 24.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              1.1,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              color: Colors.white,
+                                              boxShadow: [
+                                                BoxShadow(
+                                                    color: Colors.black26,
+                                                    blurRadius: 6)
+                                              ]),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(20.0),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 Padding(
                                                   padding: const EdgeInsets
                                                           .symmetric(
                                                       horizontal: 4.0,
-                                                      vertical: 8),
+                                                      vertical: 4),
                                                   child: Text(
                                                     "Photo",
                                                     style: const TextStyle(
@@ -353,77 +365,62 @@ class ProfileView extends StatelessWidget {
                                                         fontSize: 18.0),
                                                   ),
                                                 ),
+                                                Container(
+                                                  color: Colors.white,
+                                                  height: 265,
+                                                  child: GridView.builder(
+                                                      padding: EdgeInsets.zero,
+                                                      itemCount: controller
+                                                          .userGalleryModel
+                                                          ?.data
+                                                          .galleries
+                                                          ?.length,
+                                                      gridDelegate:
+                                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                                              crossAxisCount: 2,
+                                                              crossAxisSpacing:
+                                                                  4.0,
+                                                              childAspectRatio:
+                                                                  2.3 / 4,
+                                                              mainAxisSpacing:
+                                                                  4.0),
+                                                      itemBuilder:
+                                                          (BuildContext context,
+                                                              int index) {
+                                                        return Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10),
+                                                            child:
+                                                                Image.network(
+                                                              "${controller.userGalleryModel?.data.galleries?[index].imgPath}",
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                          ),
+                                                        );
+                                                      }),
+                                                ),
                                               ],
                                             ),
                                           ),
-                                          Row(
-                                            children: [
-                                              Expanded(
-                                                  child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 4.0),
-                                                child: controller
-                                                        .userGalleryModel!
-                                                        .data
-                                                        .galleries!
-                                                        .isNotEmpty
-                                                    ? Container(
-                                                        height: 200,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          image: DecorationImage(
-                                                              image: NetworkImage(
-                                                                  "${controller.userGalleryModel?.data.galleries?.first.imgPath}"),
-                                                              fit:
-                                                                  BoxFit.cover),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(10),
-                                                          color: Colors.orange,
-                                                        ),
-                                                      )
-                                                    : SizedBox(
-                                                        height: 200,
-                                                      ),
-                                              )),
-                                              Expanded(
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 4.0),
-                                                  child: Container(
-                                                    height: 200,
-                                                    decoration: BoxDecoration(
-                                                      image: DecorationImage(
-                                                          image: NetworkImage(
-                                                              "https://wallup.net/wp-content/uploads/2016/05/13/334355-people-model-fashion-forest-dress-portrait.jpg"),
-                                                          fit: BoxFit.cover),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      color: Colors.grey,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
+                                        )
+                                      ],
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
-                );
-              }),
-        ),
-      ),
+                  );
+          }),
     );
   }
 
