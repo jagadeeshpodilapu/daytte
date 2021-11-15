@@ -1,13 +1,15 @@
+import 'package:daytte/consts/constants.dart';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+
 import '../../../consts/image_constants.dart';
 import '../../../controllers/home/home_controller.dart';
 import '../chatlist/chat_list.dart';
 import '../editdetails/edit_details.dart';
 import '../findnearest/find_nearest.dart';
 import '../likedetails/like_details.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -32,7 +34,7 @@ class Home extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius:
-                        BorderRadius.all(Radius.circular(34.90343995940204)),
+                    BorderRadius.all(Radius.circular(34.90343995940204)),
                     boxShadow: [
                       BoxShadow(
                           color: const Color(0x0d000000),
@@ -50,10 +52,17 @@ class Home extends StatelessWidget {
                   onTap: (index) => controller.onTapped(index),
                   items: [
                     BottomNavigationBarItem(
-                        icon: Icon(Icons.home_outlined,size: 30,), label: "Home"),
+                        icon: Icon(
+                          Icons.home_outlined,
+                          size: 30,
+                        ),
+                        label: Constants.home),
                     BottomNavigationBarItem(
-                        icon: Icon(Icons.thumb_up_alt_outlined,size: 30,),
-                        label: "Likes"),
+                        icon: Icon(
+                          Icons.thumb_up_alt_outlined,
+                          size: 30,
+                        ),
+                        label: Constants.likes),
                     BottomNavigationBarItem(
                         activeIcon: SvgPicture.asset(
                           ImageConstants.ic_chat,
@@ -66,9 +75,10 @@ class Home extends StatelessWidget {
                           height: 25,
                           width: 25,
                         ),
-                        label: "Chat"),
+                        label: Constants.chat),
                     BottomNavigationBarItem(
-                        icon: Icon(EvaIcons.personOutline,size: 30,), label: "Profile"),
+                        icon: Icon(EvaIcons.personOutline, size: 30),
+                        label: Constants.profile),
                   ],
                 ),
               ),

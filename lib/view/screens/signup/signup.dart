@@ -26,15 +26,13 @@ class SignUp extends StatelessWidget {
                 Card(
                   elevation: 4,
                   child: Container(
-                    margin: EdgeInsets.symmetric(horizontal: 2, vertical: 5),
+                    margin: paddingWidget,
                     child: Container(
-                      margin: EdgeInsets.symmetric(horizontal: 6, vertical: 5),
+                      margin: paddingWidget,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(
-                            height: 10,
-                          ),
+                          SizedBox(height: 10),
                           Center(
                             child: Image.asset(
                               ImageConstants.daytte_logo,
@@ -43,7 +41,7 @@ class SignUp extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 30),
-                          textFieldName("First Name"),
+                          textFieldName(Constants.firstName),
                           TextFormField(
                             controller: controller.firstName,
                             decoration: InputDecoration(
@@ -51,7 +49,7 @@ class SignUp extends StatelessWidget {
                             validator: (value) =>
                                 validateText(value!, 'first Name'),
                           ),
-                          textFieldName("Last Name"),
+                          textFieldName(Constants.lastName),
                           TextFormField(
                             controller: controller.lastName,
                             decoration: InputDecoration(
@@ -60,7 +58,7 @@ class SignUp extends StatelessWidget {
                                 validateText(value!, 'last Name'),
                           ),
                           SizedBox(height: 5),
-                          textFieldName("Date of Birth"),
+                          textFieldName(Constants.dob),
                           GetBuilder<SignupController>(
                             builder: (controller) => TextFormField(
                               textAlignVertical: TextAlignVertical.center,
@@ -76,7 +74,7 @@ class SignUp extends StatelessWidget {
                               ),
                             ),
                           ),
-                          textFieldName("Email ID "),
+                          textFieldName(Constants.emailId),
                           TextFormField(
                             controller: controller.email,
                             decoration: InputDecoration(
@@ -95,7 +93,7 @@ class SignUp extends StatelessWidget {
                             child: Obx(
                               () => Row(
                                 children: [
-                                  Text("Share My Location"),
+                                  Text(Constants.shareLocation),
                                   Spacer(),
                                   Switch(
                                     value: controller.shareLocation.value,
@@ -130,7 +128,7 @@ class SignUp extends StatelessWidget {
                               /* Checkbox(
                                     value: check,
                                     onChanged: (value) => _handlecheckbox(value!)), */
-                              Text("I have read the Terms & Condition")
+                              Text(Constants.tcApply),
                             ],
                           ),
                         ],
@@ -146,9 +144,8 @@ class SignUp extends StatelessWidget {
                           if (controller.check.value) {
                             controller.postUserInfo();
                           } else {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                content:
-                                    Text("Accept our terms and conditions")));
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text(Constants.acceptTc)));
                           }
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -171,17 +168,25 @@ class SignUp extends StatelessWidget {
     );
   }
 
+  EdgeInsets get paddingWidget =>
+      EdgeInsets.symmetric(horizontal: 2, vertical: 5);
+
   Widget textFieldName(String name) {
     return Padding(
-        padding: const EdgeInsets.only(top: 8.0),
-        child: Text(name, style: TextStyle(color: Color(0xFF8d9aaf))));
+      padding: const EdgeInsets.only(top: 8.0),
+      child: Text(
+        name,
+        style: TextStyle(
+          color: Color(0xFF8d9aaf),
+        ),
+      ),
+    );
   }
 
   validateText(String input, String hint) {
     if (input.isEmpty) {
       return "$hint is Required";
     }
-
     return null;
   }
 }

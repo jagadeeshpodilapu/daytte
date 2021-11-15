@@ -1,7 +1,8 @@
-import '../../../controllers/choosegenderController/choose_gender_controller.dart';
-
+import 'package:daytte/consts/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../controllers/choosegenderController/choose_gender_controller.dart';
 
 class ChooseGender extends StatelessWidget {
   final controller = Get.put(ChooseGenderController());
@@ -13,15 +14,13 @@ class ChooseGender extends StatelessWidget {
         children: [
           SizedBox(height: Get.height * 0.3),
           Text(
-            "Choose your Gender",
+            Constants.chooseGender,
             style: TextStyle(
                 fontSize: 32,
                 color: Colors.blueAccent,
                 fontWeight: FontWeight.bold),
           ),
-          SizedBox(
-            height: 20,
-          ),
+          SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: List.generate(2, (index) => genderCircleAvatar(index)),
@@ -37,7 +36,7 @@ class ChooseGender extends StatelessWidget {
                 borderRadius: BorderRadius.circular(24),
               ),
               child: Center(
-                  child: Text('Continue'.toUpperCase(),
+                  child: Text(Constants.continueText.toUpperCase(),
                       style: TextStyle(color: Colors.white, fontSize: 20),
                       textAlign: TextAlign.center)),
             ),

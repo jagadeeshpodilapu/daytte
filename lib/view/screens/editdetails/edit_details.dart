@@ -1,7 +1,7 @@
 import 'dart:io';
 
+import 'package:daytte/consts/constants.dart';
 import 'package:daytte/routes/app_routes.dart';
-import 'package:daytte/utils/common_functions.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +25,7 @@ class EditDetails extends StatelessWidget {
           color: Colors.black,
         ),
         title: Text(
-          "Edit Details",
+          Constants.editDetails,
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
@@ -60,7 +60,7 @@ class EditDetails extends StatelessWidget {
                                   width: 45, height: 30),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("Add Photo",
+                                child: Text(Constants.addPhoto,
                                     style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 14,
@@ -100,7 +100,7 @@ class EditDetails extends StatelessWidget {
               height: 10,
             ),
             ButtonWidget(
-                buttonTitle: "Save Changes",
+                buttonTitle: Constants.saveChanges,
                 action: () => Get.offAndToNamed(AppRoutes.HOMEVIEW)),
             SizedBox(
               height: 20,
@@ -157,7 +157,8 @@ class EditDetails extends StatelessWidget {
                   children: [
                     Padding(
                         padding: EdgeInsets.symmetric(vertical: 8.0),
-                        child: headingWithTextStyle(0.9, "Passion", 17.5)),
+                        child:
+                            headingWithTextStyle(0.9, Constants.passion, 17.5)),
                     Image.asset(
                       "assets/icons/Edit.png",
                       color: Colors.black54,
@@ -205,7 +206,8 @@ class EditDetails extends StatelessWidget {
                   children: [
                     Padding(
                         padding: EdgeInsets.symmetric(vertical: 8.0),
-                        child: headingWithTextStyle(0.9, "Company", 17.5)),
+                        child:
+                            headingWithTextStyle(0.9, Constants.company, 17.5)),
                     Image.asset(
                       "assets/icons/Edit.png",
                       color: Colors.black54,
@@ -231,7 +233,8 @@ class EditDetails extends StatelessWidget {
                   children: [
                     Padding(
                         padding: EdgeInsets.symmetric(vertical: 8.0),
-                        child: headingWithTextStyle(0.9, "School", 17.5)),
+                        child:
+                            headingWithTextStyle(0.9, Constants.school, 17.5)),
                     Image.asset(
                       "assets/icons/Edit.png",
                       color: Colors.black54,
@@ -260,7 +263,7 @@ class EditDetails extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ButtonWidget(
-          buttonTitle: "Add Media",
+          buttonTitle: Constants.addMedia,
           action: () async {
             if (controller.pickedImages.length >= 2 ||
                 controller.galleryImages.length >= 2) {
@@ -270,8 +273,8 @@ class EditDetails extends StatelessWidget {
                     content: Text("${controller.editDetailsModel?.message}")));
               }
             } else {
-              ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text("Please selcet atleast 2 pictures")));
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text(Constants.select2Pics)));
             }
           }),
     );
@@ -317,7 +320,7 @@ class EditDetails extends StatelessWidget {
       children: [
         Padding(
             padding: EdgeInsets.only(top: 8.0),
-            child: Text("Add Photo",
+            child: Text(Constants.addPhoto,
                 style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w400,
@@ -327,7 +330,7 @@ class EditDetails extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(top: 5, bottom: 25),
           child: Text(
-            "Add at least 2 photos to continue",
+            Constants.select2Pics,
             style: const TextStyle(
                 color: const Color(0xffcacaca),
                 fontWeight: FontWeight.w400,

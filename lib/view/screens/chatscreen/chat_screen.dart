@@ -18,14 +18,11 @@ class ChatScreen extends StatelessWidget {
           icon: Icon(Icons.arrow_back_outlined, color: Colors.black),
           onPressed: () => onBackPressed(),
         ),
-        title: Text(
-          "Grace",
-          style: TextStyle(color: Colors.black),
-        ),
+        title: Text("Grace", style: TextStyle(color: Colors.black)),
         centerTitle: true,
         actions: [
           GestureDetector(
-            onTap: () => Get.to(()=>AudioVideoCall(isVideoCall: false)),
+            onTap: () => Get.to(() => AudioVideoCall(isVideoCall: false)),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: SvgPicture.asset(
@@ -494,7 +491,7 @@ class ChatScreen extends StatelessWidget {
               width: double.infinity,
               decoration: BoxDecoration(
                   border:
-                  Border(top: BorderSide(color: Colors.grey, width: 0.5)),
+                      Border(top: BorderSide(color: Colors.grey, width: 0.5)),
                   color: Colors.white),
             ),
           ),

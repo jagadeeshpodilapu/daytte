@@ -1,3 +1,4 @@
+import 'package:daytte/consts/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -56,7 +57,7 @@ class OtpVerification extends StatelessWidget {
             controller.reSendOtp("+91${controller.mobileNumber}");
           },
           child: Text(
-            "Resend OTP",
+            Constants.resendOtp,
             style: buildTextStyle(Colors.white, 18),
           ),
         )
@@ -66,7 +67,7 @@ class OtpVerification extends StatelessWidget {
 
   ButtonWidget getOtpButton(OtpController controller, BuildContext context) {
     return ButtonWidget(
-      buttonTitle: "GET OTP",
+      buttonTitle: Constants.getOtp,
       action: () async {
         await controller.verifyOtp(
             controller.otpInput.text, controller.mobileNumber);
@@ -141,7 +142,7 @@ class OtpVerification extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(18.0),
       child: Center(
-          child: Text("we have sent you an SMS with a code to the number",
+          child: Text(Constants.smsHint,
               textAlign: TextAlign.center,
               style: buildTextStyle(Colors.white, 16))),
     );
@@ -152,7 +153,7 @@ class OtpVerification extends StatelessWidget {
         top: 40,
         right: 10,
         left: 10,
-        child: appBarLinearGradient('OTP Verification Code'));
+        child: appBarLinearGradient(Constants.verifiedOtp));
   }
 
   TextStyle buildTextStyle(Color color, double fontSize) {

@@ -1,11 +1,13 @@
-import '../../../consts/image_constants.dart';
-import '../../../controllers/imagepickercontroller/select_image_controller.dart';
-import '../../../routes/app_routes.dart';
-import '../../widgets/common_widgets.dart';
+import 'package:daytte/consts/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../../consts/image_constants.dart';
+import '../../../controllers/imagepickercontroller/select_image_controller.dart';
+import '../../../routes/app_routes.dart';
+import '../../widgets/common_widgets.dart';
 
 class SelectImagesSource extends StatelessWidget {
   final controller = Get.put(SelectImagesController());
@@ -35,7 +37,7 @@ class SelectImagesSource extends StatelessWidget {
                       buildSourceWidget(ImageConstants.ic_gallery, "GALLERY")),
               ElevatedButton(
                   onPressed: () => Get.toNamed(AppRoutes.HOMEVIEW),
-                  child: Text("Next"))
+                  child: Text(Constants.next))
             ],
           ),
         ),

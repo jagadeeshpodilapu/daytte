@@ -37,7 +37,6 @@ class Login extends StatelessWidget {
                   GestureDetector(
                     onTap: () async {
                       if (_formKey.currentState!.validate()) {
-                        print("form key callled");
                         var payload = {
                           "mobile_number":
                               "+91${controller.mobileController.text}"
@@ -159,16 +158,16 @@ class Login extends StatelessWidget {
     return TextFormField(
       controller: controller.mobileController,
       validator: (input) {
-        return input!.isValidPhone ? null : "Please enter valid PhoneNumber";
+        return input!.isValidPhone ? null : Constants.validMobileWarning;
       },
       decoration: InputDecoration(
-          hintText: "Mobile Number",
+          hintText: Constants.mobileNumber,
           hintStyle: TextStyle(color: Color(0x66ffffff)),
           fillColor: Color(0xFF433088),
-          enabledBorder: oulineBorder(),
-          errorBorder: oulineBorder(),
-          focusedErrorBorder: oulineBorder(),
-          focusedBorder: oulineBorder(),
+          enabledBorder: _outlineBorder,
+          errorBorder: _outlineBorder,
+          focusedErrorBorder: _outlineBorder,
+          focusedBorder: _outlineBorder,
           filled: true,
           isDense: true,
           contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 6)),
@@ -178,7 +177,7 @@ class Login extends StatelessWidget {
     );
   }
 
-  OutlineInputBorder oulineBorder() {
+  OutlineInputBorder get _outlineBorder {
     return OutlineInputBorder(
       borderSide: BorderSide.none,
       borderRadius: BorderRadius.circular(8.0),

@@ -14,4 +14,5 @@ class ImageConstants {
   static const ic_age = 'assets/icons/age.png';
   static const ic_chat = 'assets/icons/chat.svg';
   static const splash = 'assets/images/splash.png';
+  static const girl = 'assets/images/girl.jpg';
 }

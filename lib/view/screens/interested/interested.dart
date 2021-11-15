@@ -1,17 +1,17 @@
+import 'package:daytte/consts/constants.dart';
 import 'package:daytte/view/widgets/enums.dart';
-
-import '../../../controllers/interests/interests_controller.dart';
-import '../aboutus/aboutus.dart';
-import '../../widgets/button_widget.dart';
-import '../../widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../controllers/interests/interests_controller.dart';
+import '../../widgets/button_widget.dart';
+import '../../widgets/common_widgets.dart';
 
 class InterestedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarWidget("Intrested"),
+      appBar: appBarWidget(Constants.interested),
       body: GetBuilder<InterestController>(
         init: InterestController(),
         builder: (controller) => Column(
@@ -23,8 +23,8 @@ class InterestedScreen extends StatelessWidget {
                 elevation: 4,
                 child: Column(
                   children: [
-                    ListTile(
-                      leading: buildText('Im Interested in Men'),
+                        ListTile(
+                          leading: buildText(Constants.interestedMen),
                       trailing: Radio(
                           activeColor: Color(0xFFfc5185),
                           value: Gender.Male,
@@ -32,8 +32,8 @@ class InterestedScreen extends StatelessWidget {
                           onChanged: (Gender? value) =>
                               controller.handleGenderChange(value)),
                     ),
-                    ListTile(
-                      leading: buildText('Im Interested in Women'),
+                        ListTile(
+                          leading: buildText(Constants.interestedWomen),
                       trailing: Radio(
                           activeColor: Color(0xFFfc5185),
                           value: Gender.Female,
@@ -41,8 +41,8 @@ class InterestedScreen extends StatelessWidget {
                           onChanged: (Gender? value) =>
                               controller.handleGenderChange(value)),
                     ),
-                    ListTile(
-                      leading: buildText('Im Interested in Everyone'),
+                        ListTile(
+                          leading: buildText(Constants.interestedEveryOne),
                       trailing: Radio(
                           value: Gender.Everyone,
                           activeColor: Color(0xFFfc5185),
@@ -50,24 +50,22 @@ class InterestedScreen extends StatelessWidget {
                           onChanged: (Gender? value) =>
                               controller.handleGenderChange(value)),
                     ),
-                  ],
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            ButtonWidget(
-              buttonTitle: "Next",
-              action: ()async {
+                ButtonWidget(
+              buttonTitle: Constants.next,
+              action: () async {
                 await controller.updateInterestedStatus();
-                 if (controller.responseModel != null) {
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                  content: Text(
-                                      "${controller.responseModel?.message}")));
-                            }
-                
+                if (controller.responseModel != null) {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text("${controller.responseModel?.message}")));
+                }
               },
             )
           ],
-        ),
+            ),
       ),
     );
   }

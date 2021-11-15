@@ -15,7 +15,7 @@ class ProfileDetailsController extends GetxController {
     isLoading(true);
     final response = await BaseClient()
         .get('/users/$userId', storage.read('token'))
-        .catchError(BaseController().handleError);
+        .catchError((error) => BaseController().handleError(error));
 
     if (response != null) {
       isLoading(false);
@@ -29,8 +29,7 @@ class ProfileDetailsController extends GetxController {
     isLoading(true);
     final response = await BaseClient()
         .get('/galleries?skip=0&limit=10&userId=$userId', storage.read('token'))
-        .catchError(BaseController().handleError);
-
+        .catchError((error) => BaseController().handleError(error));
     if (response != null) {
       isLoading(false);
       print("find nearest response $response");

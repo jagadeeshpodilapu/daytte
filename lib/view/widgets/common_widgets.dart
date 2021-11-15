@@ -13,6 +13,14 @@ Widget linearGradientBackground() {
   );
 }
 
+SliverGridDelegateWithFixedCrossAxisCount get sliverCountAxis {
+  return SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2,
+      crossAxisSpacing: 4.0,
+      childAspectRatio: 2.3 / 4,
+      mainAxisSpacing: 4.0);
+}
+
 Widget appBarLinearGradient(String title) {
   return Center(
     child: Row(
@@ -61,10 +69,11 @@ TextStyle tileTextStyle() {
   return TextStyle(
       color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18);
 }
-  void snackbarMessage(String message, BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(
-      "$message",
-      style: TextStyle(color: Colors.white),
-    )));
-  }
+
+void snackbarMessage(String message, BuildContext context) {
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(
+    "$message",
+    style: TextStyle(color: Colors.white),
+  )));
+}

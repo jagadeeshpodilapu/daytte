@@ -12,7 +12,7 @@ class LikesPage extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: appBarWidget("Likes Details"),
+        appBar: appBarWidget(Constants.likedDetails),
         backgroundColor: Colors.white,
 
         body: getBody(context),
@@ -42,12 +42,12 @@ class LikesPage extends StatelessWidget {
                 tabs: [
                   Tab(
                     child: Text(
-                      " 0 Likes",
+                      " 0 ${Constants.likes}",
                     ),
                   ),
                   Tab(
                     child: Text(
-                      "You Liked",
+                      Constants.youLiked,
                     ),
                   )
                 ]),
@@ -82,12 +82,7 @@ class YouLikedView extends StatelessWidget {
                         onEndOfPage: () => loadMore(),
                         child: GridView.builder(
                           itemCount: controller.users.value,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 4.0,
-                                  childAspectRatio: 2.3 / 4,
-                                  mainAxisSpacing: 4.0),
+                          gridDelegate: sliverCountAxis,
                           itemBuilder: (BuildContext context, int index) {
                             return Card(
                               elevation: 4,
@@ -133,7 +128,7 @@ class YouLikedView extends StatelessWidget {
                                       Padding(
                                         padding:
                                             const EdgeInsets.only(bottom: 4.0),
-                                        child: Text("Active Now",
+                                        child: Text(Constants.activeNow,
                                             style: const TextStyle(
                                                 color: const Color(0xff757e90),
                                                 fontWeight: FontWeight.w300,
@@ -178,12 +173,7 @@ class Liked extends StatelessWidget {
                         onEndOfPage: () => loadMore(),
                         child: GridView.builder(
                           itemCount: controller.users.value,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 4.0,
-                                  childAspectRatio: 2.3 / 4,
-                                  mainAxisSpacing: 4.0),
+                          gridDelegate: sliverCountAxis,
                           itemBuilder: (BuildContext context, int index) {
                             return Card(
                               elevation: 4,
@@ -229,7 +219,7 @@ class Liked extends StatelessWidget {
                                       Padding(
                                         padding:
                                             const EdgeInsets.only(bottom: 4.0),
-                                        child: Text("Active Now",
+                                        child: Text(Constants.activeNow,
                                             style: const TextStyle(
                                                 color: const Color(0xff757e90),
                                                 fontWeight: FontWeight.w300,

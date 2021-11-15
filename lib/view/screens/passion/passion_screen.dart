@@ -1,9 +1,11 @@
-import '../../../controllers/passion/passion_controller.dart';
-import '../../widgets/button_widget.dart';
-import '../../widgets/common_widgets.dart';
+import 'package:daytte/consts/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:group_button/group_button.dart';
+
+import '../../../controllers/passion/passion_controller.dart';
+import '../../widgets/button_widget.dart';
+import '../../widgets/common_widgets.dart';
 
 class PassionSCreen extends StatelessWidget {
   @override
@@ -11,7 +13,7 @@ class PassionSCreen extends StatelessWidget {
     return GetBuilder<PassionController>(
         init: PassionController(),
         builder: (controller) => Scaffold(
-              appBar: appBarWidget("Passion"),
+              appBar: appBarWidget(Constants.passion),
               backgroundColor: Colors.grey[200],
               body: ListView(
                 children: [
@@ -54,7 +56,7 @@ class PassionSCreen extends StatelessWidget {
                     }
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text("Please select atleast 2 passion"),
+                      content: Text(Constants.select2Pics),
                     ));
                   }
                 },

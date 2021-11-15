@@ -1,11 +1,14 @@
-import '../../widgets/common_widgets.dart';
+import 'package:daytte/consts/constants.dart';
+import 'package:daytte/consts/image_constants.dart';
 import 'package:flutter/material.dart';
+
+import '../../widgets/common_widgets.dart';
 
 class ChatRequest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarWidget("Chat Request"),
+      appBar: appBarWidget(Constants.charRequest),
       body: ListView.builder(
         itemBuilder: (context, index) => Padding(
           padding: const EdgeInsets.all(8.0),
@@ -13,7 +16,7 @@ class ChatRequest extends StatelessWidget {
             minVerticalPadding: 5,
             leading: CircleAvatar(
               radius: 30.0,
-              backgroundImage: AssetImage('assets/images/girl.jpg'),
+              backgroundImage: AssetImage(ImageConstants.girl),
               backgroundColor: Colors.transparent,
             ),
             title: Padding(

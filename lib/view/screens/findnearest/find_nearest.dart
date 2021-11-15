@@ -1,6 +1,7 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/controllers/findnearest/find_nearest_controller.dart';
 import 'package:daytte/routes/app_routes.dart';
+import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
@@ -12,20 +13,7 @@ class FindTheNearest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          elevation: 1,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_outlined),
-            onPressed: () => onBackPressed(),
-            color: Colors.black,
-          ),
-          title: Text(
-            "Find the nearest",
-            style: TextStyle(color: Colors.black),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.white,
-        ),
+        appBar: _appBar,
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8),
           child: GetBuilder<FindNearestController>(
@@ -38,17 +26,12 @@ class FindTheNearest extends StatelessWidget {
                             onEndOfPage: () => loadMore(),
                             child: GridView.builder(
                               itemCount: controller.users.value,
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 2,
-                                      crossAxisSpacing: 4.0,
-                                      childAspectRatio: 2.3 / 4,
-                                      mainAxisSpacing: 4.0),
+                              gridDelegate: sliverCountAxis,
                               itemBuilder: (BuildContext context, int index) {
                                 return GestureDetector(
                                   onTap: () {
-                                    var userId = controller.findNearestModel
-                                        ?.data.users?[index];
+                                    var userId = controller
+                                        .findNearestModel?.data.users?[index];
                                     Get.toNamed(AppRoutes.DISCOVER,
                                         arguments: userId);
                                   },
@@ -102,7 +85,7 @@ class FindTheNearest extends StatelessWidget {
                                             Padding(
                                               padding: const EdgeInsets.only(
                                                   bottom: 4.0),
-                                              child: Text("Active Now",
+                                              child: Text(Constants.activeNow,
                                                   style: const TextStyle(
                                                       color: const Color(
                                                           0xff757e90),
@@ -129,6 +112,23 @@ class FindTheNearest extends StatelessWidget {
                   ),
           ),
         ));
+  }
+
+  AppBar get _appBar {
+    return AppBar(
+      elevation: 1,
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back_outlined),
+        onPressed: () => onBackPressed(),
+        color: Colors.black,
+      ),
+      title: Text(
+        Constants.findNearest,
+        style: TextStyle(color: Colors.black),
+      ),
+      centerTitle: true,
+      backgroundColor: Colors.white,
+    );
   }
 
   Visibility expiryBanner(BuildContext context) {
@@ -166,12 +166,12 @@ class FindTheNearest extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Days Left",
+                      Text(Constants.daysLeft,
                           style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w700,
                               color: Colors.white)),
-                      Text("to expire membership",
+                      Text(Constants.expireMember,
                           style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
@@ -202,7 +202,7 @@ class FindTheNearest extends StatelessWidget {
                       padding:
                           EdgeInsets.symmetric(horizontal: 16.0, vertical: 6),
                       child: Text(
-                        "Update plan",
+                        Constants.updatePlan,
                         style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
                     ),

@@ -1,10 +1,5 @@
+import 'package:daytte/consts/constants.dart';
 import 'package:daytte/controllers/settingsController/settings_controller.dart';
-import 'package:daytte/routes/app_routes.dart';
-
-import '../../../consts/image_constants.dart';
-import 'package:daytte/utils/common_functions.dart';
-import '../aboutus/aboutus.dart';
-import '../interested/interested.dart';
 import 'package:daytte/view/screens/university/university.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,15 +8,19 @@ import 'package:flutter/painting.dart';
 import 'package:get/get.dart';
 import 'package:share/share.dart';
 
+import '../../../consts/image_constants.dart';
+import '../interested/interested.dart';
+
 class Settings extends StatelessWidget {
   final controller = Get.find<SettingsController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xFFf8f8f8),
         appBar: AppBar(
           title: Text(
-            "Settings",
+            Constants.settings,
             style: TextStyle(color: Colors.black),
           ),
           centerTitle: true,
@@ -59,7 +58,7 @@ class Settings extends StatelessWidget {
                   SizedBox(height: 25),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Discovery Settings".toUpperCase()),
+                    child: Text(Constants.discoverySettings.toUpperCase()),
                   ),
                   ListTile(
                     onTap: () => Get.to(() => UniversityView()),
@@ -83,7 +82,7 @@ class Settings extends StatelessWidget {
                   Divider(),
                   ListTile(
                     title: Text(
-                      "Maximum Distance",
+                      Constants.maximumDistance,
                       style: _textStyle,
                     ),
                     trailing: Text(
@@ -104,7 +103,7 @@ class Settings extends StatelessWidget {
                   ListTile(
                     onTap: () => Get.to(() => InterestedScreen()),
                     title: Text(
-                      "Gender",
+                      Constants.gender,
                       style: _textStyle,
                     ),
                     trailing: Row(
@@ -125,7 +124,7 @@ class Settings extends StatelessWidget {
                   Divider(),
                   ListTile(
                     title: Text(
-                      "Age Range",
+                      Constants.ageRange,
                       style: _textStyle,
                     ),
                     trailing: Text(
@@ -146,7 +145,7 @@ class Settings extends StatelessWidget {
                     color: Colors.white,
                     child: ListTile(
                       title: Text(
-                        "Show me on Daytee",
+                        Constants.showMeDaytte,
                         style: _textStyle,
                       ),
                       trailing: CupertinoSwitch(
@@ -168,17 +167,17 @@ class Settings extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(top: 15, left: 15),
                     child: Text(
-                      "CONTACT US",
+                      Constants.contactUs,
                       style: TextStyle(color: Colors.grey, fontSize: 16),
                     ),
                   ),
-                  _singleNameCard("Help & Support"),
+                  _singleNameCard(Constants.helpSupport),
                   SizedBox(
                     height: 15,
                   ),
                   GestureDetector(
                     onTap: () {},
-                    child: _singleNameCard("Rate Us"),
+                    child: _singleNameCard(Constants.rateUs),
                   ),
                   SizedBox(height: 15),
                   GestureDetector(
@@ -187,11 +186,11 @@ class Settings extends StatelessWidget {
                             "Checkout my Profile in Daytee  http://www.google.com",
                             subject: "Hey Im Using Daytee App");
                       },
-                      child: _singleNameCard("Share Daytee")),
+                      child: _singleNameCard(Constants.shareDaytte)),
                   Padding(
                     padding: EdgeInsets.only(top: 18, left: 18),
                     child: Text(
-                      "LEGAL",
+                      Constants.legal,
                       style: TextStyle(color: Colors.grey, fontSize: 16),
                     ),
                   ),
@@ -199,16 +198,14 @@ class Settings extends StatelessWidget {
                     color: Colors.white,
                     child: Column(
                       children: [
-                        _singleCardWithTrailingIcon("Privacy Policy"),
-                        _singleCardWithTrailingIcon("Terms of Service"),
-                        _singleCardWithTrailingIcon("Licenses"),
+                        _singleCardWithTrailingIcon(Constants.privacyPolicy),
+                        _singleCardWithTrailingIcon(Constants.termsOfService),
+                        _singleCardWithTrailingIcon(Constants.license),
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  _singleNameCard("Logout"),
+                  SizedBox(height: 15),
+                  _singleNameCard(Constants.logout),
                   Center(
                     child: Column(
                       children: [
@@ -221,7 +218,7 @@ class Settings extends StatelessWidget {
                           width: 100,
                         ),
                         Text(
-                          "Version 6.8.9",
+                          Constants.version,
                           style: tileTextStyle(),
                         )
                       ],
@@ -232,38 +229,38 @@ class Settings extends StatelessWidget {
                       onTap: () => showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
-                                title: Column(
-                                  mainAxisSize: MainAxisSize.min,
+                            title: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  "Are you sure delete the Account ?",
+                                  style: _textStyle.copyWith(fontSize: 16),
+                                ),
+                                SizedBox(height: 5),
+                                Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.center,
                                   children: [
-                                    Text(
-                                      "Are you sure delete the Account ?",
-                                      style: _textStyle.copyWith(fontSize: 16),
-                                    ),
-                                    SizedBox(height: 5),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        TextButton(
-                                            onPressed: () {
-                                              Get.back();
-                                            },
-                                            style: TextButton.styleFrom(
-                                              backgroundColor: Colors.red,
-                                            ),
-                                            child: Text("No",
+                                    TextButton(
+                                        onPressed: () {
+                                          Get.back();
+                                        },
+                                        style: TextButton.styleFrom(
+                                          backgroundColor: Colors.red,
+                                        ),
+                                        child: Text(Constants.no,
                                                 style: _textStyle.copyWith(
                                                     color: Colors.white))),
-                                        SizedBox(width: 50),
-                                        TextButton(
-                                          style: TextButton.styleFrom(
-                                            backgroundColor: Colors.grey,
-                                          ),
-                                          onPressed: () {
-                                            controller.updateUserPreferences(1);
-                                            controller.clearStorage();
-                                          },
-                                          child: Text("Yes",
+                                    SizedBox(width: 50),
+                                    TextButton(
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: Colors.grey,
+                                      ),
+                                      onPressed: () {
+                                        controller.updateUserPreferences(1);
+                                        controller.clearStorage();
+                                      },
+                                          child: Text(Constants.yes,
                                               style: _textStyle.copyWith(
                                                 color: Colors.white,
                                               )),
@@ -273,16 +270,12 @@ class Settings extends StatelessWidget {
                                   ],
                                 ),
                               )),
-                      child: _singleNameCard("Delete Account")),
-                  SizedBox(
-                    height: 25,
-                  ),
+                      child: _singleNameCard(Constants.deletedAccount)),
+                  SizedBox(height: 25),
                 ],
               );
             }));
   }
-
- 
 
   Widget _singleCardWithTrailingIcon(String text) {
     return ListTile(

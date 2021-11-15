@@ -1,7 +1,8 @@
-import '../../../utils/common_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
+import '../../../utils/common_functions.dart';
 
 class AudioVideoCall extends StatelessWidget {
   final bool isVideoCall;
@@ -16,7 +17,8 @@ class AudioVideoCall extends StatelessWidget {
         backgroundColor: Colors.red,
         onPressed: () {},
         child: Container(
-            child: Icon(Icons.call_end, color: Colors.white, size: 40)),
+          child: Icon(Icons.call_end, color: Colors.white, size: 40),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
@@ -92,16 +94,6 @@ class AudioVideoCall extends StatelessWidget {
               ],
             ),
           ),
-/*Positioned(
-            bottom: 10,
-            left: 0,right: 0,
-            child: Container(
-           height: 50,width: 50,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-               color: Colors.red,
-            ),
-            child: Icon(Icons.call_end, color: Colors.white, size: 40)), )*/
         ],
       ),
     );

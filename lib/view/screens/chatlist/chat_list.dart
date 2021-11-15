@@ -1,3 +1,4 @@
+import 'package:daytte/consts/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,145 +18,22 @@ class ChatList extends StatelessWidget {
             init: ChatListController(),
             builder: (controller) => Column(
               children: [
-                Row(
-                  children: [
-                    MaterialButton(
-                      child: chatHeaders("All", 18, controller.isAll),
-                      onPressed: () {
-                        controller.funcIsAll(true, false);
-                      },
-                    ),
-                    MaterialButton(
-                      //color: Colors.yellow,
-                      child:
-                          chatHeaders("Chat Request", 100, controller.isChat),
-                      //Text("Chat Request",style: TextStyle(color: Colors.black)),
-                      onPressed: () {
-                        controller.funcIsAll(false, true);
-                        Get.to(() => ChatRequest());
-                      },
-                    )
-                  ],
-                ),
-                AppBar(
-                  automaticallyImplyLeading: false,
-                  backgroundColor: Colors.transparent,
-                  elevation: 0.0,
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 12.0),
-                        child: Text("Messages",
-                            style: TextStyle(
-                                color: Color(0xff363636).withOpacity(0.7),
-                                fontWeight: FontWeight.w900,
-                                fontFamily: "Muli",
-                                fontStyle: FontStyle.normal,
-                                fontSize: 20.0)),
-                      ),
-                      Icon(
-                        Icons.more_vert,
-                        color: Colors.black,
-                      )
-                    ],
-                  ),
-                )
+                chatRequestHeaders(controller),
+                messageHeaderWithActionsWidget()
               ],
             ),
           ),
         ),
       ),
       body: Container(
-        decoration: BoxDecoration(boxShadow: [
-          BoxShadow(
-              color: const Color(0x0d000000),
-              offset: Offset(0, 0),
-              blurRadius: 10,
-              spreadRadius: 0)
-        ], color: const Color(0xffffffff)),
+        decoration: shadowBackground(),
         child: GetBuilder<ChatListController>(
           init: ChatListController(),
           builder: (controller) {
             return ListView.separated(
               itemCount: controller.profileImages.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  onTap: () => Get.to(() => ChatScreen()),
-                  title: Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 35,
-                          backgroundImage: AssetImage(
-                              controller.profileImages[index]["profileImage"]),
-                          child: Align(
-                            alignment: Alignment(1, -0.7),
-                            child: controller.profileImages[index]["isOnline"]
-                                ? CircleAvatar(
-                                    radius: 5,
-                                    backgroundColor: Colors.green,
-                                  )
-                                : SizedBox(),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              controller.profileImages[index]["profileName"],
-                              style: const TextStyle(
-                                  color: const Color(0xff363636),
-                                  fontWeight: FontWeight.w700,
-                                  fontFamily: "Muli",
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: 14.0),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              controller.profileImages[index]["profileTag"],
-                              style: const TextStyle(
-                                  color: const Color(0xff757e90),
-                                  fontWeight: FontWeight.w300,
-                                  fontFamily: "Muli",
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: 12.0),
-                            ),
-                          ],
-                        ),
-                        Spacer(),
-                        Column(
-                          children: [
-                            Text(controller.profileImages[index]["timeLeft"],
-                                style: const TextStyle(
-                                    color: const Color(0xff757e90),
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: "SFProDisplay",
-                                    fontStyle: FontStyle.normal,
-                                    fontSize: 14.0)),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            CircleAvatar(
-                              radius: 10,
-                              backgroundColor: Color(0xffff5a5a),
-                              child: Text(
-                                controller.profileImages[index]["msg"],
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                );
+                return messageCard(context, controller, index);
               },
               separatorBuilder: (context, index) {
                 return Divider();
@@ -167,11 +45,161 @@ class ChatList extends StatelessWidget {
     );
   }
 
-  Widget chatHeaders(
-    String text,
-    double width,
-    bool boolAll,
-  ) {
+  BoxDecoration shadowBackground() {
+    return BoxDecoration(
+      boxShadow: [
+        BoxShadow(
+            color: const Color(0x0d000000),
+            offset: Offset(0, 0),
+            blurRadius: 10,
+            spreadRadius: 0)
+      ],
+      color: const Color(0xffffffff),
+    );
+  }
+
+  Widget messageCard(
+      BuildContext context, ChatListController controller, int index) {
+    return ListTile(
+      onTap: () => Get.to(() => ChatScreen()),
+      title: Container(
+        width: MediaQuery.of(context).size.width,
+        child: Row(
+          children: [
+            userCircleAvatarWidget(controller, index),
+            SizedBox(width: 10),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                userNameWidget(controller, index),
+                SizedBox(height: 5),
+                userLastMessageWidget(controller, index),
+              ],
+            ),
+            Spacer(),
+            Column(
+              children: [
+                timeLeftWidget(controller, index),
+                SizedBox(height: 5),
+                messageCountWidget(controller, index)
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget messageCountWidget(ChatListController controller, int index) {
+    return CircleAvatar(
+      radius: 10,
+      backgroundColor: Color(0xffff5a5a),
+      child: Text(
+        controller.profileImages[index]["msg"],
+        style: TextStyle(color: Colors.white),
+      ),
+    );
+  }
+
+  Widget timeLeftWidget(ChatListController controller, int index) {
+    return Text(controller.profileImages[index]["timeLeft"],
+        style: const TextStyle(
+            color: const Color(0xff757e90),
+            fontWeight: FontWeight.w500,
+            fontFamily: "SFProDisplay",
+            fontStyle: FontStyle.normal,
+            fontSize: 14.0));
+  }
+
+  Text userLastMessageWidget(ChatListController controller, int index) {
+    return Text(
+      controller.profileImages[index]["profileTag"],
+      style: const TextStyle(
+          color: const Color(0xff757e90),
+          fontWeight: FontWeight.w300,
+          fontFamily: "Muli",
+          fontStyle: FontStyle.normal,
+          fontSize: 12.0),
+    );
+  }
+
+  Text userNameWidget(ChatListController controller, int index) {
+    return Text(
+      controller.profileImages[index]["profileName"],
+      style: const TextStyle(
+          color: const Color(0xff363636),
+          fontWeight: FontWeight.w700,
+          fontFamily: "Muli",
+          fontStyle: FontStyle.normal,
+          fontSize: 14.0),
+    );
+  }
+
+  CircleAvatar userCircleAvatarWidget(
+      ChatListController controller, int index) {
+    return CircleAvatar(
+      radius: 35,
+      backgroundImage:
+          AssetImage(controller.profileImages[index]["profileImage"]),
+      child: Align(
+        alignment: Alignment(1, -0.7),
+        child: controller.profileImages[index]["isOnline"]
+            ? CircleAvatar(radius: 5, backgroundColor: Colors.green)
+            : SizedBox(),
+      ),
+    );
+  }
+
+  AppBar messageHeaderWithActionsWidget() {
+    return AppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: Colors.transparent,
+      elevation: 0.0,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 12.0),
+            child: Text(Constants.message,
+                style: TextStyle(
+                    color: Color(0xff363636).withOpacity(0.7),
+                    fontWeight: FontWeight.w900,
+                    fontFamily: "Muli",
+                    fontStyle: FontStyle.normal,
+                    fontSize: 20.0)),
+          ),
+          Icon(
+            Icons.more_vert,
+            color: Colors.black,
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget chatRequestHeaders(ChatListController controller) {
+    return Row(
+      children: [
+        MaterialButton(
+          child: chatHeadersText("All", 18, controller.isAll),
+          onPressed: () {
+            controller.funcIsAll(true, false);
+          },
+        ),
+        MaterialButton(
+          //color: Colors.yellow,
+          child: chatHeadersText(Constants.charRequest, 100, controller.isChat),
+          //Text("Chat Request",style: TextStyle(color: Colors.black)),
+          onPressed: () {
+            controller.funcIsAll(false, true);
+            Get.to(() => ChatRequest());
+          },
+        )
+      ],
+    );
+  }
+
+  Widget chatHeadersText(String text, double width, bool boolAll) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -187,13 +215,13 @@ class ChatList extends StatelessWidget {
           ),
           boolAll
               ? Container(
-                  height: 3,
-                  width: width,
-                  color: Color(0xFF3c0fc7),
-                )
+            height: 3,
+            width: width,
+            color: Color(0xFF3c0fc7),
+          )
               : SizedBox(
-                  height: 5,
-                )
+            height: 5,
+          )
         ],
       ),
     );
