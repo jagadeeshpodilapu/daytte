@@ -1,5 +1,7 @@
 import 'package:daytte/controllers/base_controller/baseController.dart';
 import 'package:daytte/model/response_model.dart';
+import 'package:daytte/model/single_user_model.dart';
+import 'package:daytte/model/user_info_model.dart';
 import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/services/base_service/base_client.dart';
 import 'package:daytte/view/dialogs/dialogHelper.dart';
@@ -12,7 +14,14 @@ class SettingsController extends GetxController {
   Rx<RangeValues> rangeValues = RangeValues(18, 30).obs;
   RxBool showme = true.obs;
   final storage = GetStorage();
+  SingleUserModel? userInfoModel;
   ResponseModel? responseModel;
+
+  @override
+  void onInit() {
+    getUserSettingsPreferences();
+    super.onInit();
+  }
 
   changeMaxDistance(double distance) {
     maxDistance.value = distance;
@@ -44,7 +53,6 @@ class SettingsController extends GetxController {
       payload = {"is_deleted": true};
     }
 
-    print("payload of settings $payload");
     DialogHelper.showLoading('Loading...');
     final response = await BaseClient()
         .patch('/users/${storage.read("id")}', payload, storage.read('token'))
@@ -52,7 +60,7 @@ class SettingsController extends GetxController {
 
     if (response != null) {
       responseModel = ResponseModel.fromJson(response);
-      print("payload of settings $responseModel $response");
+      print("user response single settings $responseModel $response");
     }
     DialogHelper.hideLoading();
   }
@@ -63,5 +71,20 @@ class SettingsController extends GetxController {
     storage.write("page", "0");
     storage.write("isLogged", false);
     Get.offAllNamed(AppRoutes.LOGINVIEW);
+  }
+
+  Future getUserSettingsPreferences() async {
+    final response = await BaseClient()
+        .get('/users/${storage.read("id")}', storage.read('token'))
+        .catchError(BaseController().handleError);
+
+    if (response != null) {
+      userInfoModel = SingleUserModel.fromJson(response);
+      maxDistance.value = userInfoModel?.data.user?.filterRadius?.toDouble() ?? 0.0;
+      rangeValues.value = RangeValues(userInfoModel?.data.user?.showAgeRange?.first.toDouble()??18,
+        userInfoModel?.data.user?.showAgeRange?.last.toDouble()??30,);
+      showme.value = userInfoModel?.data.user?.showMe ?? true;
+    }
+    update(); 
   }
 }

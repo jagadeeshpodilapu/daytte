@@ -16,6 +16,7 @@ class DiscoverPartner extends StatelessWidget {
   Widget build(BuildContext context) {
     print("user id in Discover partner $user");
     return Scaffold(
+      
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(
@@ -61,123 +62,124 @@ class DiscoverPartner extends StatelessWidget {
                         controller.isLoading.value
                             ? Center(child: CircularProgressIndicator())
                             : controller.gallery.value != 0
-                            ? Stack(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 8, top: 8.0, right: 8.0),
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                    BorderRadius.circular(12)),
-                                child: Center(),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                              const EdgeInsets.only(bottom: 15.0),
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                    BorderRadius.circular(12)),
-                                elevation: 4,
-                                child: SwipeCards(
-                                  matchEngine:
-                                  controller.matchEngine ??
-                                      MatchEngine(),
-                                  itemBuilder: (BuildContext context,
-                                      int index) {
-                                    return GestureDetector(
-                                      onTap: () {
-                                        Get.toNamed(
-                                            AppRoutes.PROFILEVIEW,
-                                            arguments: user);
-                                      },
-                                      child: Container(
-                                        color: Colors.white,
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                              height:
-                                              Get.height * 0.47,
-                                              child: Stack(
-                                                children: [
-                                                  Container(
-                                                    height:
-                                                    Get.height *
-                                                        0.45,
-                                                    width: Get.width,
-                                                    alignment:
-                                                    Alignment
-                                                        .center,
-                                                    color: Colors
-                                                        .transparent,
-                                                    child: ClipRRect(
-                                                      borderRadius:
-                                                      BorderRadius
-                                                          .circular(
-                                                          15.0),
-                                                      child:
-                                                      StoryView(
-                                                        controller:
-                                                        controller
-                                                            .storyController,
-                                                        storyItems:
-                                                        controller
-                                                            .profilePics,
-                                                        repeat: false,
-                                                        onStoryShow:
-                                                            (storyItem) {
-                                                          final index = controller
-                                                              .profilePics
-                                                              .indexOf(
-                                                              storyItem);
-                                                        },
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Positioned(
-                                                      top: 20,
-                                                      left: 16,
-                                                      child:
+                                ? Stack(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 8, top: 8.0, right: 8.0),
+                                        child: Card(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(12)),
+                                          child: Center(),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 15.0),
+                                        child: Card(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(12)),
+                                          elevation: 4,
+                                          child: SwipeCards(
+                                            matchEngine:
+                                                controller.matchEngine ??
+                                                    MatchEngine(),
+                                            itemBuilder: (BuildContext context,
+                                                int index) {
+                                              return GestureDetector(
+                                                onTap: () {
+                                                  Get.toNamed(
+                                                      AppRoutes.PROFILEVIEW,
+                                                      arguments: user);
+                                                },
+                                              
+                                                child: Container(
+                                                  color: Colors.white,
+                                                  child: Column(
+                                                    children: [
                                                       Container(
-                                                        height: 35,
-                                                        padding:
-                                                        EdgeInsets
-                                                            .only(
-                                                          left: 10,
-                                                          right: 10,
-                                                        ),
-                                                        decoration: BoxDecoration(
-                                                            borderRadius:
-                                                            BorderRadius.circular(
-                                                                20),
-                                                            color: Colors
-                                                                .black),
-                                                        child: TextButton
-                                                            .icon(
-                                                            onPressed:
-                                                                () {},
-                                                            icon:
-                                                            Icon(
-                                                              Icons.location_on,
-                                                              size:
-                                                              20,
-                                                              color:
-                                                              Colors.white,
+                                                        height:
+                                                            Get.height * 0.47,
+                                                        child: Stack(
+                                                          children: [
+                                                            Container(
+                                                              height:
+                                                                  Get.height *
+                                                                      0.45,
+                                                              width: Get.width,
+                                                              alignment:
+                                                                  Alignment
+                                                                      .center,
+                                                              color: Colors
+                                                                  .transparent,
+                                                              child: ClipRRect(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            15.0),
+                                                                child:
+                                                                    StoryView(
+                                                                  controller:
+                                                                      controller
+                                                                          .storyController,
+                                                                  storyItems:
+                                                                      controller
+                                                                          .profilePics,
+                                                                  repeat: false,
+                                                                  onStoryShow:
+                                                                      (storyItem) {
+                                                                    final index = controller
+                                                                        .profilePics
+                                                                        .indexOf(
+                                                                            storyItem);
+                                                                  },
+                                                                ),
+                                                              ),
                                                             ),
-                                                            label:
-                                                            Text(
-                                                              "2.3Km away",
-                                                              style: const TextStyle(
-                                                                  color: const Color(0xffffffff),
-                                                                  fontWeight: FontWeight.w700,
-                                                                  fontFamily: "Roboto",
-                                                                  fontStyle: FontStyle.normal,
-                                                                  fontSize: 12.0),
-                                                            )),
-                                                      )),
-                                                  /*     Visibility(
+                                                            Positioned(
+                                                                top: 20,
+                                                                left: 16,
+                                                                child:
+                                                                    Container(
+                                                                  height: 35,
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .only(
+                                                                    left: 10,
+                                                                    right: 10,
+                                                                  ),
+                                                                  decoration: BoxDecoration(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              20),
+                                                                      color: Colors
+                                                                          .black),
+                                                                  child: TextButton
+                                                                      .icon(
+                                                                          onPressed:
+                                                                              () {},
+                                                                          icon:
+                                                                              Icon(
+                                                                            Icons.location_on,
+                                                                            size:
+                                                                                20,
+                                                                            color:
+                                                                                Colors.white,
+                                                                          ),
+                                                                          label:
+                                                                              Text(
+                                                                            "2.3Km away",
+                                                                            style: const TextStyle(
+                                                                                color: const Color(0xffffffff),
+                                                                                fontWeight: FontWeight.w700,
+                                                                                fontFamily: "Roboto",
+                                                                                fontStyle: FontStyle.normal,
+                                                                                fontSize: 12.0),
+                                                                          )),
+                                                                )),
+                                                            /*     Visibility(
                                                     visible: false,
                                                     child: Positioned(
                                                       bottom: 0,
@@ -223,108 +225,109 @@ class DiscoverPartner extends StatelessWidget {
                                                     ),
                                                   ),
                                                 */
-                                                ],
-                                              ),
-                                            ),
-                                            Align(
-                                              alignment: Alignment
-                                                  .bottomCenter,
-                                              child: Column(
-                                                mainAxisSize:
-                                                MainAxisSize.min,
-                                                children: [
-                                                  SizedBox(
-                                                    height: 15,
-                                                  ),
-                                                  Text(
-                                                    "${user.firstname} ${user.lastname}",
-                                                    style: const TextStyle(
-                                                        color: const Color(
-                                                            0xff363636),
-                                                        fontWeight:
-                                                        FontWeight
-                                                            .w500,
-                                                        fontFamily:
-                                                        "Roboto",
-                                                        fontStyle:
-                                                        FontStyle
-                                                            .normal,
-                                                        fontSize:
-                                                        25.0),
-                                                  ),
-                                                  SizedBox(
-                                                      height: 15),
-                                                  Text("${user.shortDescription}",
-                                                      maxLines: 2,
-                                                      overflow:
-                                                      TextOverflow
-                                                          .ellipsis,
-                                                      textAlign:
-                                                      TextAlign
-                                                          .center,
-                                                      style: const TextStyle(
-                                                          color: const Color(
-                                                              0xff757e90),
-                                                          fontWeight:
-                                                          FontWeight
-                                                              .w300,
-                                                          fontFamily:
-                                                          "Muli",
-                                                          fontStyle:
-                                                          FontStyle
-                                                              .normal,
-                                                          fontSize:
-                                                          14.0)),
-                                                  SizedBox(
-                                                    height: 15,
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                    children: [
-                                                      buildContainer(
-                                                          ImageConstants
-                                                              .ic_rewind,
-                                                          24,
-                                                          24,
-                                                          controller),
-                                                      buildContainer(
-                                                          ImageConstants
-                                                              .ic_love,
-                                                          26,
-                                                          26,
-                                                          controller),
-                                                      buildContainer(
-                                                          ImageConstants
-                                                              .ic_close,
-                                                          20,
-                                                          20,
-                                                          controller),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      Align(
+                                                        alignment: Alignment
+                                                            .bottomCenter,
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
+                                                          children: [
+                                                            SizedBox(
+                                                              height: 15,
+                                                            ),
+                                                            Text(
+                                                              "${user.firstname} ${user.lastname}",
+                                                              style: const TextStyle(
+                                                                  color: const Color(
+                                                                      0xff363636),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  fontFamily:
+                                                                      "Roboto",
+                                                                  fontStyle:
+                                                                      FontStyle
+                                                                          .normal,
+                                                                  fontSize:
+                                                                      25.0),
+                                                            ),
+                                                            SizedBox(
+                                                                height: 15),
+                                                            Text("${user.shortDescription}",
+                                                                maxLines: 2,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: const TextStyle(
+                                                                    color: const Color(
+                                                                        0xff757e90),
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w300,
+                                                                    fontFamily:
+                                                                        "Muli",
+                                                                    fontStyle:
+                                                                        FontStyle
+                                                                            .normal,
+                                                                    fontSize:
+                                                                        14.0)),
+                                                            SizedBox(
+                                                              height: 15,
+                                                            ),
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceEvenly,
+                                                              children: [
+                                                                buildContainer(
+                                                                    ImageConstants
+                                                                        .ic_rewind,
+                                                                    24,
+                                                                    24,
+                                                                    controller),
+                                                                buildContainer(
+                                                                    ImageConstants
+                                                                        .ic_love,
+                                                                    26,
+                                                                    26,
+                                                                    controller),
+                                                                buildContainer(
+                                                                    ImageConstants
+                                                                        .ic_close,
+                                                                    20,
+                                                                    20,
+                                                                    controller),
+                                                              ],
+                                                            )
+                                                          ],
+                                                        ),
+                                                      ),
                                                     ],
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          ],
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            onStackFinished: () {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(SnackBar(
+                                                      content: Text(
+                                                          "No More Profile Available"),
+                                                      duration: Duration(
+                                                          milliseconds: 500)));
+                                              Get.back();
+                                            },
+                                          ),
                                         ),
                                       ),
-                                    );
-                                  },
-                                  onStackFinished: () {
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(SnackBar(
-                                        content: Text(
-                                            "No More Profile Available"),
-                                        duration: Duration(
-                                            milliseconds: 500)));
-                                  },
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                            : Center(
+                                    ],
+                                  )
+                                : Center(
                                     child:
                                         Text("No Gallery Pictures  Available"),
                                   )

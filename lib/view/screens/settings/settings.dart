@@ -52,6 +52,7 @@ class Settings extends StatelessWidget {
         ),
         body: GetBuilder<SettingsController>(
             init: SettingsController(),
+          didChangeDependencies: (state)=>state.controller?.getUserSettingsPreferences(),
             builder: (controller) {
               return ListView(
                 children: [
@@ -61,7 +62,7 @@ class Settings extends StatelessWidget {
                     child: Text(Constants.discoverySettings.toUpperCase()),
                   ),
                   ListTile(
-                    onTap: () => Get.to(() => UniversityView()),
+                    // onTap: () => Get.to(() => UniversityView()),
                     title: Text(
                       "Location",
                       style: TextStyle(fontSize: 16, color: Colors.black),

@@ -31,7 +31,7 @@ class UserInfoModel {
 
 class UserProperties {
   UserProperties({
-     this.accessToken,
+    this.accessToken,
     this.user,
   });
 
@@ -64,6 +64,7 @@ class User {
     this.deviceToken,
     this.newUser,
     this.profileImg,
+    this.filterRadius
   });
 
   String? provider;
@@ -79,6 +80,7 @@ class User {
   String? deviceToken;
   bool? newUser;
   String? profileImg;
+  double? filterRadius;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         provider: json["provider"],
@@ -94,6 +96,7 @@ class User {
         deviceToken: json["device_token"],
         newUser: json["newUser"],
         profileImg: json["profileImg"],
+        filterRadius:json['filterRadius']
       );
 
   Map<String, dynamic> toJson() => {

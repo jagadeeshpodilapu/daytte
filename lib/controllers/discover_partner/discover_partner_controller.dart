@@ -13,7 +13,7 @@ class DiscoverPartnerController extends GetxController {
   final userId = Get.arguments;
   MatchEngine? matchEngine;
   StoryController storyController = StoryController();
-  List<SwipeItem> _swipeItems = <SwipeItem>[];
+  List<SwipeItem> swipeItems = <SwipeItem>[];
   List<StoryItem> profilePics = <StoryItem>[];
   UserGalleryModel? userGalleryModel;
   RxInt gallery = 0.obs;
@@ -34,30 +34,51 @@ class DiscoverPartnerController extends GetxController {
         .get('/galleries?skip=0&limit=10&userId=$userId', storage.read('token'))
         .catchError(BaseController().handleError);
     profilePics.clear();
-    _swipeItems.clear();
+    swipeItems.clear();
     if (response != null) {
       print("find nearest response $response");
       isLoading(false);
       userGalleryModel = UserGalleryModel.fromJson(response);
       gallery.value = userGalleryModel?.data.galleries?.length ?? 0;
       print('galleryImages and length $response $userId ${gallery.value}');
-      if (userGalleryModel!.data.galleries!.length > 0)
+      if (userGalleryModel!.data.galleries!.length > 0) {
         for (int i = 0; i < userGalleryModel!.data.galleries!.length; i++) {
           profilePics.add(
             StoryItem.pageImage(
-              url: userGalleryModel!.data.galleries?[i].imgPath ?? "",
+              url: userGalleryModel!.data.galleries?[i].imgPath ??
+                  "assets/images/placeholder.jpg",
               controller: storyController,
               imageFit: BoxFit.cover,
               duration: Duration(milliseconds: 5000),
             ),
           );
-          _swipeItems.add(
+          swipeItems.add(
+            SwipeItem(
+                likeAction: () {
+                 scaffoldKey.currentState!.showSnackBar(SnackBar(
+              content: Text("Liked ${userGalleryModel?.data.galleries?[i]}"),
+              duration: Duration(milliseconds: 500),
+            ));
+                }, nopeAction: () {}, superlikeAction: () {}),
+          );
+        }
+      } else {
+        profilePics.add(
+          StoryItem.pageImage(
+            url: "assets/images/placeholder.jpg",
+            controller: storyController,
+            imageFit: BoxFit.cover,
+            duration: Duration(milliseconds: 5000),
+          ),
+        );
+         swipeItems.add(
             SwipeItem(
                 likeAction: () {}, nopeAction: () {}, superlikeAction: () {}),
           );
-        }
+        gallery.value = 1;
+      }
 
-      matchEngine = MatchEngine(swipeItems: _swipeItems);
+      matchEngine = MatchEngine(swipeItems: swipeItems);
     }
     update();
   }
