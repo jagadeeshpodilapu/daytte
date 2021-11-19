@@ -1,7 +1,8 @@
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../consts/constants.dart';
@@ -9,7 +10,6 @@ import '../../../controllers/loginController/login_controller.dart';
 import '../../../routes/app_routes.dart';
 import '../../../themes/app_styles.dart';
 import '../../widgets/common_widgets.dart';
-import '../../widgets/extensions.dart';
 
 class Login extends StatelessWidget {
   final controller = LoginController();
@@ -20,167 +20,162 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Stack(
-        children: [
-          linearGradientBackground(),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 16),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  SizedBox(height: 45),
-                  appBarLinearGradient(Constants.create_one),
-                  SizedBox(height: 30),
-                  mobileNumberWidget(),
-                  SizedBox(height: 30),
-                  GestureDetector(
-                    onTap: () async {
-                      if (_formKey.currentState!.validate()) {
-                        var payload = {
-                          "mobile_number":
-                              "+91${controller.mobileController.text}"
-                        };
-                        controller.sendOtp(payload);
-                      }
-                    },
-                    child: requestOtpButtonWidget(),
+      body: Container(
+        margin: EdgeInsets.symmetric(horizontal: 16),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              addVerticalSpace(40),
+              _createAccountImageWidget(),
+              addVerticalSpace(30),
+              _createAccountTextWidget(),
+              addVerticalSpace(20),
+              _textfield(),
+              addVerticalSpace(20),
+              _requestOtpWidget(),
+              addVerticalSpace(20),
+              _termsAndConditionsWidget(),
+              addVerticalSpace(15),
+              _signUpMethod(),
+              addVerticalSpace(30),
+              _socialMediaText(),
+              addVerticalSpace(30),
+              _socialButtons(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Text _createAccountTextWidget() {
+    return Text(
+      "Create Account",
+      style: TextStyle(
+          fontSize: 22,
+          color: Color(0xFF363636),
+          fontFamily: 'Roboto',
+          fontWeight: FontWeight.bold),
+    );
+  }
+
+  RaisedGradientButton _requestOtpWidget() {
+    return RaisedGradientButton(
+        title: Constants.request_otp,
+        onPressed: () async {
+          if (_formKey.currentState!.validate()) {
+            var payload = {
+              "mobile_number": "+91${controller.mobileController.text}"
+            };
+            controller.sendOtp(payload);
+          }
+        });
+  }
+
+  Text _termsAndConditionsWidget() {
+    return Text(Constants.signIn_tc,
+        style: AppStyles.title2.copyWith(
+            color: Color(0xFF363636),
+            fontSize: 13,
+            fontWeight: FontWeight.w500,
+            fontFamily: 'Roboto'));
+  }
+
+  Text _socialMediaText() {
+    return Text(Constants.social_connect,
+        style: AppStyles.title.copyWith(
+            color: Color(0xFF363636),
+            fontFamily: 'Roboto',
+            fontWeight: FontWeight.w400,
+            fontSize: 18));
+  }
+
+  Container _signUpMethod() {
+    return Container(
+      padding: EdgeInsets.all(10),
+      child: Center(
+        child: RichText(
+          text: TextSpan(
+            text: Constants.already_member,
+            style: TextStyle(
+                color: Color(0xFF363636),
+                fontSize: 20,
+                fontWeight: FontWeight.w400),
+            children: <TextSpan>[
+              TextSpan(
+                  text: Constants.sign_in,
+                  style: AppStyles.subHeading.copyWith(
+                      color: Color(0xFF7004E3), fontWeight: FontWeight.bold),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => Get.toNamed(AppRoutes.SIGNUPVIEW))
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _socialButtons() {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        socialIcon('assets/icon/google.svg'),
+        addHorizontalSpace(15),
+        socialIcon('assets/icon/facebook.svg'),
+        addHorizontalSpace(15),
+        socialIcon('assets/icon/twitter.svg'),
+      ],
+    );
+  }
+
+  Widget socialIcon(String src) {
+    return SvgPicture.asset(src, width: 50, height: 50);
+  }
+
+  Widget _createAccountImageWidget() {
+    return Container(
+      width: Get.width,
+      height: Get.height * 0.3,
+      child: Image.asset("assets/icon/create_account.png"),
+    );
+  }
+
+  _textfield() => TextFormField(
+        validator: (value) {
+          if (value!.isEmpty) {
+            return 'Please enter Valid Number';
+          }
+        },
+        keyboardType: TextInputType.number,
+        decoration: InputDecoration(
+            contentPadding: const EdgeInsets.all(8.0),
+            border: const OutlineInputBorder(
+                borderSide: BorderSide(color: Color(0xFFE0E0E0), width: 0.1)),
+            fillColor: Colors.white,
+            prefix: DropdownButtonHideUnderline(
+              child: ButtonTheme(
+                child: DropdownButton(
+                  icon: Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.black,
                   ),
-                  SizedBox(height: 30),
-                  Text(Constants.signIn_tc,
-                      style: AppStyles.title2.copyWith(
-                          color: Colors.white.withOpacity(.8),
-                          fontSize: 13,
-                          fontFamily: 'SFPro',
-                          fontWeight: FontWeight.w400)),
-                  SizedBox(height: 30),
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    child: Center(
-                      child: RichText(
-                        text: TextSpan(
-                          text: Constants.already_member,
-                          style: TextStyle(
-                              color: Colors.white.withOpacity(0.4),
-                              fontSize: 20),
-                          children: <TextSpan>[
-                            TextSpan(
-                                text: Constants.sign_in,
-                                style: AppStyles.subHeading
-                                    .copyWith(color: Colors.white),
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap =
-                                      () => Get.toNamed(AppRoutes.SIGNUPVIEW))
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  Text(Constants.social_connect,
-                      style: AppStyles.title
-                          .copyWith(color: Colors.white, fontFamily: 'Roboto')),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      socialIconButton(Color(0xFF3b5998), EvaIcons.facebook,
-                          Constants.facebook),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      socialIconButton(
-                          Color(0xFFf14336), EvaIcons.google, Constants.google),
-                    ],
-                  ),
-                ],
+                  value: '+91',
+                  items: ['+91', '+23', '+1'].map((String value) {
+                    return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          style: TextStyle(fontSize: 12.0, color: Colors.black),
+                        ));
+                  }).toList(),
+                  onChanged: (value) {},
+                ),
               ),
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget socialIconButton(Color color, IconData icon, String text) {
-    return Container(
-      height: 50.0,
-      width: 160.0,
-      child: ElevatedButton(
-        onPressed: () {},
-        style: ElevatedButton.styleFrom(
-          primary: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              color: color,
-            ),
-            SizedBox(
-              width: 5.0,
-            ),
-            Text(text,
-                style: AppStyles.title.copyWith(
-                    color: color,
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w700)),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget requestOtpButtonWidget() {
-    return Container(
-      height: 50,
-      width: 400,
-      decoration: BoxDecoration(
-          color: Color(0xFFfc5185), borderRadius: BorderRadius.circular(24)),
-      child: Center(
-          child: Text(
-        'Request OTP'.toUpperCase(),
-        style: AppStyles.subHeading,
-        textAlign: TextAlign.center,
-      )),
-    );
-  }
-
-  Widget mobileNumberWidget() {
-    return TextFormField(
-      controller: controller.mobileController,
-      validator: (input) {
-        return input!.isValidPhone ? null : Constants.validMobileWarning;
-      },
-      decoration: InputDecoration(
-          hintText: Constants.mobileNumber,
-          hintStyle: TextStyle(color: Color(0x66ffffff)),
-          fillColor: Color(0xFF433088),
-          enabledBorder: _outlineBorder,
-          errorBorder: _outlineBorder,
-          focusedErrorBorder: _outlineBorder,
-          focusedBorder: _outlineBorder,
-          filled: true,
-          isDense: true,
-          contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 6)),
-      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-      keyboardType: TextInputType.number,
-      style: TextStyle(color: Colors.white),
-    );
-  }
-
-  OutlineInputBorder get _outlineBorder {
-    return OutlineInputBorder(
-      borderSide: BorderSide.none,
-      borderRadius: BorderRadius.circular(8.0),
-    );
-  }
+            hintText: 'Mobile Number',
+            hintStyle: TextStyle(color: Colors.black),
+            labelText: 'Phone Number',
+            labelStyle: TextStyle(color: Colors.black)),
+      );
 }

@@ -13,6 +13,14 @@ Widget linearGradientBackground() {
   );
 }
 
+Widget addHorizontalSpace(double width) {
+  return SizedBox(width: width);
+}
+
+Widget addVerticalSpace(double height) {
+  return SizedBox(height: height);
+}
+
 SliverGridDelegateWithFixedCrossAxisCount get sliverCountAxis {
   return SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,
@@ -42,26 +50,22 @@ Widget appBarLinearGradient(String title) {
   );
 }
 
-AppBar appBarWidget(String title) {
+AppBar appBarWidget(String title, {Color? color}) {
   return AppBar(
+    backgroundColor: color ?? Colors.white,
+    elevation: 0.0,
     leading: IconButton(
         onPressed: () => onBackPressed(),
         icon: Icon(
-          Icons.arrow_back,
-          color: Colors.black,
-          size: 30,
+          Icons.arrow_back_ios,
+          color: Color(0xff363636),
+          size: 25,
         )),
     title: Text(
       title,
-      style: const TextStyle(
-          color: const Color(0xff000000),
-          fontWeight: FontWeight.w600,
-          fontFamily: "SFProText",
-          fontStyle: FontStyle.normal,
-          fontSize: 17.0),
+      style: Theme.of(Get.context!).textTheme.headline6,
     ),
     centerTitle: true,
-    backgroundColor: Colors.white,
   );
 }
 

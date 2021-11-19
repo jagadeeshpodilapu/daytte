@@ -16,7 +16,7 @@ class PassionController extends GetxController {
   List<String> listName = [];
   List<String> listId = [];
   List<String> selected = [];
-  
+
   @override
   void onInit() {
     fetchPassion();
@@ -42,8 +42,7 @@ class PassionController extends GetxController {
     Map<String, dynamic> payload = {"passion": listId};
     DialogHelper.showLoading('Loading...');
     final response = await BaseClient()
-        .patch('/users/${storage.read("id")}',
-            payload, storage.read('token'))
+        .patch('/users/${storage.read("id")}', payload, storage.read('token'))
         .catchError(BaseController().handleError);
 
     DialogHelper.hideLoading();

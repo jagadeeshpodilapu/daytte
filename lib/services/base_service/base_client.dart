@@ -97,9 +97,6 @@ class BaseClient {
     }
   }
 
-  //DELETE
-  //OTHER
-
   dynamic _processResponse(response) {
     switch (response.statusCode) {
       case 200:

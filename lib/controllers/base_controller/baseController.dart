@@ -3,6 +3,7 @@ import '../../view/dialogs/dialogHelper.dart';
 
 class BaseController {
   void handleError(error) {
+    print("service handle error $error");
     hideLoading();
     if (error is BadRequestException) {
       var message = error.message;

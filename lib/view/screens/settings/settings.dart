@@ -1,6 +1,5 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/controllers/settingsController/settings_controller.dart';
-import 'package:daytte/view/screens/university/university.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

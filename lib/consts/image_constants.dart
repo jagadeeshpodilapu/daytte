@@ -1,7 +1,7 @@
 class ImageConstants {
-  static const daytte_logo = 'assets/images/daytte.png';
-  static const ic_female = 'assets/icons/ic_female_white.png';
-  static const ic_male = 'assets/icons/ic_male.png';
+  static const daytte_logo = 'assets/icon/wooly_app_icon.svg';
+  static const ic_female = 'assets/icon/girl_grey.svg';
+  static const ic_male = 'assets/icon/boy_white.svg';
   static const ic_camera = 'assets/icons/ic_camera.png';
   static const ic_gallery = 'assets/icons/ic_gallery.png';
   static const ic_rewind = 'assets/icons/ic_rewind.png';

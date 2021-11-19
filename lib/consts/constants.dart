@@ -2,7 +2,7 @@ class Constants {
   Constants._();
 
   static const String create_one = 'Create New Account';
-  static const String request_otp = 'REQUEST OTP';
+  static const String request_otp = 'Request OTP';
   static const String signIn_tc =
       'By signing up you agree to our terms and conditions';
   static const String already_member = 'Already a member?';
@@ -14,7 +14,7 @@ class Constants {
       'we have sent you an SMS with a code to the number';
   static const String verifiedOtp = 'OTP Verification Code';
 
-  static const String social_connect = 'Or connect with social';
+  static const String social_connect = 'Or create account using social media';
   static const String facebook = 'Facebook';
   static const String google = 'Google';
   static const String emtptyImageUrl =
@@ -28,7 +28,7 @@ class Constants {
   static const String aboutWarning = 'Please tell about YourSelf';
   static const String charRequest = 'Chat Request';
   static const String message = 'Messages';
-  static const String chooseGender = 'Choose your Gender';
+  static const String chooseGender = 'Select your Gender';
   static const String continueText = 'Continue';
   static const String discoverPartner = 'Discover Partner';
   static const String editDetails = 'Edit Details';

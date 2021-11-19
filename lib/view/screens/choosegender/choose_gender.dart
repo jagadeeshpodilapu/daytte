@@ -1,5 +1,7 @@
 import 'package:daytte/consts/constants.dart';
+import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../controllers/choosegenderController/choose_gender_controller.dart';
@@ -12,33 +14,29 @@ class ChooseGender extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          SizedBox(height: Get.height * 0.3),
-          Text(
-            Constants.chooseGender,
-            style: TextStyle(
-                fontSize: 32,
-                color: Colors.blueAccent,
-                fontWeight: FontWeight.bold),
+          SizedBox(height: Get.height * 0.1),
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              Constants.chooseGender,
+              textAlign: TextAlign.center,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline5
+                  ?.copyWith(fontWeight: FontWeight.bold),
+            ),
           ),
           SizedBox(height: 20),
-          Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: List.generate(2, (index) => genderCircleAvatar(index)),
           ),
           Spacer(),
-          GestureDetector(
-            onTap: () => controller.updateGenderStatus(),
-            child: Container(
-              height: 45,
-              width: Get.width * 0.85,
-              decoration: BoxDecoration(
-                color: Color(0xFFfc5185),
-                borderRadius: BorderRadius.circular(24),
-              ),
-              child: Center(
-                  child: Text(Constants.continueText.toUpperCase(),
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                      textAlign: TextAlign.center)),
+          SizedBox(
+            width: Get.width * 0.9,
+            child: RaisedGradientButton(
+              title: Constants.continueText,
+              onPressed: () => controller.updateGenderStatus(),
             ),
           ),
           SizedBox(height: 30),
@@ -53,44 +51,52 @@ class ChooseGender extends StatelessWidget {
         onTap: () {
           controller.selectedIndex.value = index;
         },
-        child: Column(
-          children: [
-            Container(
-              decoration: controller.selectedIndex.value == index
-                  ? BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.topRight,
-                        colors: [
-                          Color(0xFF3c0fc7),
-                          Color(0xFFc86dd7),
-                        ],
-                      ),
-                    )
-                  : BoxDecoration(
-                      color: Color(0xFFc86dd7).withOpacity(0.4),
-                      shape: BoxShape.circle,
-                    ),
-              child: CircleAvatar(
-                radius: 50,
-                backgroundColor: Colors.transparent,
-                child: Image.asset(
-                  controller.genderData[index]['icon'],
-                  width: 60,
-                  height: 60,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Container(
+                decoration: controller.selectedIndex.value == index
+                    ? BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: LinearGradient(
+                          colors: [
+                            Color(0xFF7004E3),
+                            Color(0xFF8511E6),
+                            Color(0xFF9222EC)
+                          ],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          stops: [0, 0.2, 0.5],
+                        ),
+                      )
+                    : BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Color(0xff9a9a9a), width: 2)),
+                child: CircleAvatar(
+                  radius: 70,
+                  backgroundColor: Colors.transparent,
+                  child: SvgPicture.asset(
+                    controller.genderData[index]['icon'],
+                    color: controller.selectedIndex.value == index
+                        ? Colors.white
+                        : Colors.grey,
+                    width: 80,
+                    height: 80,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              controller.genderData[index]['gender'],
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: Colors.blue),
-            )
-          ],
+              SizedBox(height: 10),
+              Text(
+                controller.genderData[index]['gender'],
+                style: Theme.of(Get.context!)
+                    .textTheme
+                    .headline6
+                    ?.copyWith(fontWeight: FontWeight.bold),
+              )
+            ],
+          ),
         ),
       ),
     );

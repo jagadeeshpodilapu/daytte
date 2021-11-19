@@ -11,7 +11,7 @@ class ChooseGenderController extends GetxController {
   final storage = GetStorage();
   List<Map<String, dynamic>> genderData = [
     {'gender': 'Male', 'icon': ImageConstants.ic_male},
-    {'gender': 'Feale', 'icon': ImageConstants.ic_female},
+    {'gender': 'Female', 'icon': ImageConstants.ic_female},
   ];
 
   RxInt selectedIndex = 0.obs;

@@ -1,4 +1,3 @@
-import 'package:daytte/consts/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,7 +5,6 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../../consts/image_constants.dart';
 import '../../../controllers/imagepickercontroller/select_image_controller.dart';
-import '../../../routes/app_routes.dart';
 import '../../widgets/common_widgets.dart';
 
 class SelectImagesSource extends StatelessWidget {
@@ -24,20 +22,10 @@ class SelectImagesSource extends StatelessWidget {
               InkWell(
                   onTap: () => controller.pickImage(ImageSource.camera),
                   child: buildSourceWidget(ImageConstants.ic_camera, "CAMERA")),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Divider(
-                  height: 2,
-                  color: Colors.grey,
-                ),
-              ),
               InkWell(
                   onTap: () => controller.pickImage(ImageSource.gallery),
                   child:
                       buildSourceWidget(ImageConstants.ic_gallery, "GALLERY")),
-              ElevatedButton(
-                  onPressed: () => Get.toNamed(AppRoutes.HOMEVIEW),
-                  child: Text(Constants.next))
             ],
           ),
         ),
@@ -47,6 +35,9 @@ class SelectImagesSource extends StatelessWidget {
 
   Widget buildSourceWidget(String icon, String sourceText) {
     return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      decoration:
+          BoxDecoration(border: Border.all(color: Colors.grey, width: 2)),
       child: Padding(
         padding: const EdgeInsets.all(18.0),
         child: Row(
@@ -60,7 +51,10 @@ class SelectImagesSource extends StatelessWidget {
             SizedBox(width: 50),
             Text(
               sourceText,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 18,
+                  color: Color(0xff9A9A9A),
+                  fontWeight: FontWeight.bold),
             ),
           ],
         ),

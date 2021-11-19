@@ -1,9 +1,8 @@
 import 'dart:async';
 
 import 'package:daytte/controllers/splash_controller/splashController.dart';
-
-import '../consts/image_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -25,13 +24,23 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-      height: double.infinity,
-      width: double.infinity,
-      child: Image.asset(
-        ImageConstants.splash,
-        fit: BoxFit.cover,
-      ),
+        body: Stack(
+      children: [
+        SvgPicture.asset(
+          'assets/icon/splash_background.svg',
+          fit: BoxFit.cover,
+        ),
+        SvgPicture.asset(
+          'assets/icon/heart.svg',
+          fit: BoxFit.cover,
+        ),
+        Center(
+          child: SvgPicture.asset(
+            'assets/icon/wooly.svg',
+            fit: BoxFit.cover,
+          ),
+        ),
+      ],
     )
 
         /* SafeArea(

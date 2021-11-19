@@ -46,18 +46,19 @@ class UniversityView extends StatelessWidget {
                               if (controller.responseModel != null) {
                                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                     content: Text(
-                                              "${controller.responseModel?.message}")));
-                                }
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 16.0, vertical: 8),
-                                child: Text(
-                                  "${controller.universityListModel!.universityList.passion[index].name}",
-                                  style: TextStyle(fontSize: 20),
-                                ),
+                                        "${controller.responseModel?.message}")));
+                              }
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Color(0xff9a9a9a))),
+                              child: Text(
+                                "${controller.universityListModel!.universityList.passion[index].name}",
+                                style: Theme.of(context).textTheme.headline6,
                               ),
                             ),
+                          ),
                       ),
                     )
                     : Center(child: CircularProgressIndicator.adaptive())

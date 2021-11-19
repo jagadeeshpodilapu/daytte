@@ -23,38 +23,56 @@ class InterestedScreen extends StatelessWidget {
                 elevation: 4,
                 child: Column(
                   children: [
-                        ListTile(
-                          leading: buildText(Constants.interestedMen),
-                      trailing: Radio(
-                          activeColor: Color(0xFFfc5185),
-                          value: Gender.Male,
-                          groupValue: controller.selctedGender,
-                          onChanged: (Gender? value) =>
-                              controller.handleGenderChange(value)),
+                    Container(
+                      child: ListTile(
+                        leading: buildText(Constants.interestedMen),
+                        trailing: Radio(
+                            activeColor: Color(0xFF7004E3),
+                            value: Gender.Male,
+                            groupValue: controller.selctedGender,
+                            onChanged: (Gender? value) =>
+                                controller.handleGenderChange(value)),
+                      ),
+                      decoration: BoxDecoration(
+                          border:
+                              Border.all(color: Color(0xff9a9a9a), width: 2)),
+                      margin: EdgeInsets.all(8),
                     ),
-                        ListTile(
-                          leading: buildText(Constants.interestedWomen),
-                      trailing: Radio(
-                          activeColor: Color(0xFFfc5185),
-                          value: Gender.Female,
-                          groupValue: controller.selctedGender,
-                          onChanged: (Gender? value) =>
-                              controller.handleGenderChange(value)),
+                    Container(
+                      decoration: BoxDecoration(
+                          border:
+                              Border.all(color: Color(0xff9a9a9a), width: 2)),
+                      margin: EdgeInsets.all(8),
+                      child: ListTile(
+                        leading: buildText(Constants.interestedWomen),
+                        trailing: Radio(
+                            activeColor: Color(0xFF7004E3),
+                            value: Gender.Female,
+                            groupValue: controller.selctedGender,
+                            onChanged: (Gender? value) =>
+                                controller.handleGenderChange(value)),
+                      ),
                     ),
-                        ListTile(
-                          leading: buildText(Constants.interestedEveryOne),
-                      trailing: Radio(
-                          value: Gender.Everyone,
-                          activeColor: Color(0xFFfc5185),
-                          groupValue: controller.selctedGender,
-                          onChanged: (Gender? value) =>
-                              controller.handleGenderChange(value)),
+                    Container(
+                      decoration: BoxDecoration(
+                          border:
+                              Border.all(color: Color(0xff9a9a9a), width: 2)),
+                      margin: EdgeInsets.all(8),
+                      child: ListTile(
+                        leading: buildText(Constants.interestedEveryOne),
+                        trailing: Radio(
+                            value: Gender.Everyone,
+                            activeColor: Color(0xFF7004E3),
+                            groupValue: controller.selctedGender,
+                            onChanged: (Gender? value) =>
+                                controller.handleGenderChange(value)),
+                      ),
                     ),
-                      ],
-                    ),
-                  ),
+                  ],
                 ),
-                ButtonWidget(
+              ),
+            ),
+            ButtonWidget(
               buttonTitle: Constants.next,
               action: () async {
                 await controller.updateInterestedStatus();
@@ -65,7 +83,7 @@ class InterestedScreen extends StatelessWidget {
               },
             )
           ],
-            ),
+        ),
       ),
     );
   }
