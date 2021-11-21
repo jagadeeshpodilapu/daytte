@@ -1,10 +1,14 @@
 import 'package:daytte/services/internet_connect_checker.dart';
+import 'package:daytte/view/screens/aboutus/about_me_edit.dart';
+import 'package:daytte/view/screens/chatrequest/chat_request.dart';
 import 'package:daytte/view/screens/interested/interested.dart';
+import 'package:daytte/view/screens/signup/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'routes/app_pages.dart';
+import 'view/screens/matchscreen/match_screen.dart';
 
 void main() async {
   await GetStorage.init();
@@ -38,7 +42,7 @@ class MyApp extends StatelessWidget with WidgetsBindingObserver {
           bodyText2: TextStyle(color: Color(0xff363636)),
         ),
       ),
-      home: InterestedScreen(),
+      home: MatchScreen(),
       // initialBinding: SplashBinding(),
       // initialRoute: AppRoutes.SPLASHVIEW,
       // defaultTransition: Transition.rightToLeft,

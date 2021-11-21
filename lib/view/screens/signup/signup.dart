@@ -49,7 +49,7 @@ class SignUp extends StatelessWidget {
                           _email(controller),
                           addVerticalSpace(10),
                           _shareLocation(controller),
-                          addVerticalSpace(10),
+                          //  addVerticalSpace(10),
                           checkBoxWidget(controller),
                           addVerticalSpace(15),
                         ],
@@ -59,6 +59,7 @@ class SignUp extends StatelessWidget {
                 ),
                 addVerticalSpace(15),
                 _signupButton(controller, context),
+                 addVerticalSpace(15),
               ],
             ),
           ),
@@ -72,24 +73,29 @@ class SignUp extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         addHorizontalSpace(8),
+
         Obx(
-          () => GFCheckbox(
-            size: 20,
+          () =>  GFCheckbox(
+            size: 23,
             type: GFCheckboxType.custom,
             value: controller.check.value,
             onChanged: (value) => controller.handlecheckbox(value),
-            customBgColor: GFColors.INFO,
+            customBgColor: Color(0xff7004E3),
+            activeBorderColor: Color(0xff7004E3),
             activeIcon: Icon(
               Icons.crop_square,
-              size: 20,
+              size: 24,
             ),
           ),
+            // controller.check.value ?SvgPicture.asset('assets/icon/check_box.svg',width: 24,height: 24,)  :Checkbox(
+            //       value: controller.check.value,
+            //       onChanged: (value) => controller.handlecheckbox(value!)),
         ),
-        SizedBox(width: 10),
-        /* Checkbox(
-                                    value: check,
-                                    onChanged: (value) => _handlecheckbox(value!)), */
-        Text(Constants.tcApply),
+        addHorizontalSpace(10),
+        Text(
+          Constants.tcApply,
+          style: TextStyle(color: Color(0xff9A9A9A)),
+        ),
       ],
     );
   }
@@ -100,7 +106,7 @@ class SignUp extends StatelessWidget {
       child: Obx(
         () => Row(
           children: [
-            addHorizontalSpace(5),
+            addHorizontalSpace(8),
             Text(Constants.shareLocation),
             Spacer(),
             Switch(
