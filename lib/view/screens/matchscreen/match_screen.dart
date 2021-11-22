@@ -1,4 +1,5 @@
 import 'package:daytte/consts/constants.dart';
+import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,7 @@ class MatchScreen extends StatelessWidget {
         children: [
           SvgPicture.asset("assets/icon/match_bg.svg", fit: BoxFit.cover),
           Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
               Stack(
@@ -25,111 +27,107 @@ class MatchScreen extends StatelessWidget {
                   ), */
                   Column(
                     children: [
-                      SizedBox(
-                        height: 10,
-                      ),
-                      SafeArea(
-                          child: Text(Constants.itsMatch,
-                              style: TextStyle(
-                                  fontSize: 32,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.white))),
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 20.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          // overflow: Overflow.visible,
-                          children: [
-                            Column(
-                              children: [
-                                Stack(
-                                  clipBehavior: Clip.none,
-                                  //overflow: Overflow.visible,
-                                  children: [
-                                    Container(
-                                      height: 110,
-                                    ),
-                                    Positioned(
-                                      right: -10,
-                                      child: CircleAvatar(
-                                        radius: 54,
-                                        backgroundColor: Colors.white,
-                                        child: CircleAvatar(
-                                          radius: 50,
-                                          backgroundColor: Colors.grey,
-                                          backgroundImage: NetworkImage(
-                                              "https://wallup.net/wp-content/uploads/2016/05/13/334355-people-model-fashion-forest-dress-portrait.jpg"),
-                                        ),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      left: -20,
-                                      child: CircleAvatar(
-                                        radius: 54,
-                                        backgroundColor: Colors.white,
-                                        child: CircleAvatar(
-                                          radius: 50,
-                                          backgroundColor: Colors.grey,
-                                          backgroundImage: NetworkImage(
-                                              "https://wallup.net/wp-content/uploads/2016/05/13/334355-people-model-fashion-forest-dress-portrait.jpg"),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Text(
-                        "Your and Kate like each other",
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white),
-                      ),
+                      addVerticalSpace(Get.height * 0.15),
+                      _matchTextHeader(),
+                      _matchedWidget(),
+                      addVerticalSpace(60),
+                      _matchedUsersNames(),
                     ],
                   ),
                 ],
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 40),
-                child: Container(
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          colors: [
-                            const Color(0xfffd267d),
-                            const Color(0xFFff7456),
-                          ],
-                          begin: const FractionalOffset(0.0, 0.0),
-                          end: const FractionalOffset(1.0, 0.0),
-                          stops: [0.0, 1.0],
-                          tileMode: TileMode.clamp),
-                      color: Colors.green,
-                      borderRadius: BorderRadius.circular(30)),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 24.0, vertical: 12),
-                    child: Container(
-                        child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(Constants.chatNow,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 24,
-                                color: Colors.white)),
-                      ],
-                    )),
-                  ),
-                ),
-              ),
+              addVerticalSpace(50),
+              _buttonWidget(context, Constants.chatNow),
+              addVerticalSpace(20),
+              _buttonWidget(context, "Continue Swiping", color: Colors.black),
             ],
           ),
         ],
       ),
+    );
+  }
+
+  ElevatedButton _buttonWidget(BuildContext context, String title,
+      {Color? color}) {
+    return ElevatedButton(
+        onPressed: () {},
+        style: ElevatedButton.styleFrom(
+            primary: Colors.white, fixedSize: Size(Get.width * 0.7, 45)),
+        child: Text(title,
+            style: Theme.of(context)
+                .textTheme
+                .headline6
+                ?.copyWith(color: color ?? Color(0xff7004E3))));
+  }
+
+  SafeArea _matchTextHeader() {
+    return SafeArea(
+      child: Text(
+        Constants.itsMatch,
+        style: Theme.of(Get.context!)
+            .textTheme
+            .headline4
+            ?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+
+  Text _matchedUsersNames() {
+    return Text(
+      "You and John like each other",
+      style: TextStyle(
+          fontSize: 18, fontWeight: FontWeight.w500, color: Colors.white),
+    );
+  }
+
+  Padding _matchedWidget() {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 20.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        // overflow: Overflow.visible,
+        children: [
+          Column(
+            children: [
+              _matchedProfiles(),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Stack _matchedProfiles() {
+    return Stack(
+      clipBehavior: Clip.none,
+      //overflow: Overflow.visible,
+      children: [
+        addVerticalSpace(100),
+        Positioned(
+          right: -10,
+          child: CircleAvatar(
+            radius: 78,
+            backgroundColor: Colors.white,
+            child: CircleAvatar(
+              radius: 74,
+              backgroundColor: Colors.grey,
+              backgroundImage: NetworkImage(
+                  "https://wallup.net/wp-content/uploads/2016/05/13/334355-people-model-fashion-forest-dress-portrait.jpg"),
+            ),
+          ),
+        ),
+        Positioned(
+          left: -20,
+          child: CircleAvatar(
+            radius: 80,
+            backgroundColor: Colors.white,
+            child: CircleAvatar(
+                radius: 80,
+                backgroundColor: Colors.grey,
+                backgroundImage: AssetImage('assets/icon/boy.png')),
+          ),
+        ),
+      ],
     );
   }
 }

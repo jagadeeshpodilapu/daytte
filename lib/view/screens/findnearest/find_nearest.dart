@@ -6,29 +6,32 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 
-import '../../../utils/common_functions.dart';
 import '../../dialogs/premium_dialogs/platinum_package.dart';
 
 class FindTheNearest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).textTheme;
     return Scaffold(
-        appBar: _appBar,
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8),
-          child: GetBuilder<FindNearestController>(
-            init: FindNearestController(),
-            builder: (controller) => controller.users.value != 0
-                ? Column(
-                    children: [
-                      Expanded(
-                        child: LazyLoadScrollView(
-                            onEndOfPage: () => loadMore(),
-                            child: GridView.builder(
-                              itemCount: controller.users.value,
-                              gridDelegate: sliverCountAxis,
-                              itemBuilder: (BuildContext context, int index) {
-                                return GestureDetector(
+        appBar: appBarWidget(Constants.findNearest, color: Color(0xffF7F8FA)),
+        backgroundColor: Color(0xffF7F8FA),
+        body: GetBuilder<FindNearestController>(
+          init: FindNearestController(),
+          builder: (controller) => controller.users.value != 0
+              ? Column(
+                  children: [
+                    Expanded(
+                      child: LazyLoadScrollView(
+                          onEndOfPage: () => loadMore(),
+                          child: GridView.builder(
+                            itemCount: controller.users.value,
+                            gridDelegate: sliverCountAxis,
+                            itemBuilder: (BuildContext context, int index) {
+                              var age = controller
+                                  .findNearestModel?.data.users?[index].age.toString()
+                                  .split(" ");
+                              print("Age $age");
+                              return GestureDetector(
                                   onTap: () {
                                     var userId = controller
                                         .findNearestModel?.data.users?[index];
@@ -36,98 +39,168 @@ class FindTheNearest extends StatelessWidget {
                                         arguments: userId);
                                   },
                                   child: Card(
+                                    margin: EdgeInsets.symmetric(
+                                        horizontal: 6, vertical: 6),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(16.0),
+                                    ),
                                     elevation: 4,
                                     color: Colors.white,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(12)),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(15)),
-                                          boxShadow: [
-                                            BoxShadow(
-                                                color: const Color(0x0d000000),
-                                                offset: Offset(0, 0),
-                                                blurRadius: 10,
-                                                spreadRadius: 0)
-                                          ],
-                                          color: const Color(0xffffffff),
-                                        ),
-                                        child: Column(
-                                          children: [
-                                            ClipRRect(
+                                    child: ClipRRect(
+                                      borderRadius:
+                                          BorderRadius.circular(15.0),
+                                      child: Stack(
+                                        fit: StackFit.expand,
+                                        children: [
+                                          FractionallySizedBox(
+                                            alignment: Alignment.topCenter,
+                                            child: Image.network(
+                                              "${controller.findNearestModel?.data.users?[index].profileImg?.imgPath ?? Constants.emtptyImageUrl}",
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                          Positioned(
+                                            bottom: 0,
+                                            left: 0,
+                                            right: 0,
+                                            child: ClipRRect(
                                               borderRadius:
-                                                  BorderRadius.circular(15),
-                                              child: Image.network(
-                                                "${controller.findNearestModel?.data.users?[index].profileImg?.imgPath ?? Constants.emtptyImageUrl}",
-                                                fit: BoxFit.fitWidth,
+                                                  new BorderRadius.only(
+                                                topLeft:
+                                                    const Radius.circular(
+                                                        15.0),
+                                                topRight:
+                                                    const Radius.circular(
+                                                        15.0),
+                                              ),
+                                              child: Container(
                                                 width: Get.width,
-                                                height: 220,
+                                                height: 80,
+                                                color: Colors.white,
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(
+                                                          8.0),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left:
+                                                                        8.0),
+                                                            child: Text(
+                                                                "${controller.findNearestModel?.data.users?[index].firstname}, ${age?.first}",
+                                                                maxLines: 1,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                                style: theme
+                                                                    .headline6
+                                                                    ?.copyWith(
+                                                                        fontSize:
+                                                                            16)),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    right:
+                                                                        8.0),
+                                                            child: CircleAvatar(
+                                                                radius: 5,
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .green),
+                                                          )
+                                                        ],
+                                                      ),
+                                                      addVerticalSpace(5),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                left: 8.0),
+                                                        child: Text(
+                                                            "NewYork,USA",
+                                                            style: theme
+                                                                .bodyText2
+                                                                ?.copyWith(
+                                                                    fontSize:
+                                                                        12,
+                                                                    color: Color(
+                                                                        0xff9a9a9a))),
+                                                      ),
+                                                      addVerticalSpace(5),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                left: 8.0),
+                                                        child: Text(
+                                                            "Active now",
+                                                            style: theme
+                                                                .bodyText2
+                                                                ?.copyWith(
+                                                                    fontSize:
+                                                                        12,
+                                                                    color: Color(
+                                                                        0xff9a9a9a))),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
                                               ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  bottom: 4.0, top: 6),
-                                              child: Text(
-                                                  "${controller.findNearestModel?.data.users?[index].firstname} ${controller.findNearestModel?.data.users?[index].lastname}",
-                                                  style: const TextStyle(
-                                                      color: const Color(
-                                                          0xff363636),
-                                                      fontWeight:
-                                                          FontWeight.w800,
-                                                      fontFamily: "Muli",
-                                                      fontStyle:
-                                                          FontStyle.normal,
-                                                      fontSize: 14.0)),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 4.0),
-                                              child: Text(Constants.activeNow,
-                                                  style: const TextStyle(
-                                                      color: const Color(
-                                                          0xff757e90),
-                                                      fontWeight:
-                                                          FontWeight.w300,
-                                                      fontFamily: "Muli",
-                                                      fontStyle:
-                                                          FontStyle.normal,
-                                                      fontSize: 10.0)),
-                                            ),
-                                          ],
-                                        ),
+                                          ),
+                                          Positioned(
+                                              bottom: 82,
+                                              right: 8,
+                                              child: _distanceWidget())
+                                        ],
                                       ),
                                     ),
-                                  ),
-                                );
-                              },
-                            )),
-                      ),
-                    ],
-                  )
-                : Center(
-                    child: CircularProgressIndicator.adaptive(),
-                  ),
-          ),
+                                  ));
+                            },
+                          )),
+                    ),
+                  ],
+                )
+              : Center(
+                  child: CircularProgressIndicator.adaptive(),
+                ),
         ));
   }
 
-  AppBar get _appBar {
-    return AppBar(
-      elevation: 1,
-      leading: IconButton(
-        icon: Icon(Icons.arrow_back_outlined),
-        onPressed: () => onBackPressed(),
-        color: Colors.black,
-      ),
-      title: Text(
-        Constants.findNearest,
-        style: TextStyle(color: Colors.black),
-      ),
-      centerTitle: true,
-      backgroundColor: Colors.white,
+  Widget _distanceWidget() {
+    return Container(
+      height: 30,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20), color: Color(0xff363636)),
+      child: TextButton.icon(
+          onPressed: () {},
+          icon: SizedBox(),
+          label: Text(
+            "2.3Km",
+            style: const TextStyle(
+                color: const Color(0xffffffff),
+                fontWeight: FontWeight.w700,
+                fontFamily: "Roboto",
+                fontStyle: FontStyle.normal,
+                fontSize: 12.0),
+          )),
     );
   }
 

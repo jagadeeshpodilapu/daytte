@@ -24,25 +24,27 @@ class Login extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 16),
         child: Form(
           key: _formKey,
-          child: Column(
-            children: [
-              addVerticalSpace(40),
-              _createAccountImageWidget(),
-              addVerticalSpace(30),
-              _createAccountTextWidget(),
-              addVerticalSpace(20),
-              _textfield(),
-              addVerticalSpace(20),
-              _requestOtpWidget(),
-              addVerticalSpace(20),
-              _termsAndConditionsWidget(),
-              addVerticalSpace(15),
-              _signUpMethod(),
-              addVerticalSpace(30),
-              _socialMediaText(),
-              addVerticalSpace(30),
-              _socialButtons(),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                addVerticalSpace(40),
+                _createAccountImageWidget(),
+                addVerticalSpace(30),
+                _createAccountTextWidget(),
+                addVerticalSpace(20),
+                _textfield(),
+                addVerticalSpace(20),
+                _requestOtpWidget(),
+                addVerticalSpace(20),
+                _termsAndConditionsWidget(),
+                addVerticalSpace(15),
+                _signUpMethod(),
+                addVerticalSpace(30),
+                _socialMediaText(),
+                addVerticalSpace(30),
+                _socialButtons(),
+              ],
+            ),
           ),
         ),
       ),
@@ -148,6 +150,7 @@ class Login extends StatelessWidget {
           }
         },
         keyboardType: TextInputType.number,
+        controller: controller.mobileController,
         decoration: InputDecoration(
             contentPadding: const EdgeInsets.all(8.0),
             border: const OutlineInputBorder(
@@ -166,7 +169,7 @@ class Login extends StatelessWidget {
                         value: value,
                         child: Text(
                           value,
-                          style: TextStyle(fontSize: 12.0, color: Colors.black),
+                          style: TextStyle(fontSize: 16.0, color: Colors.black),
                         ));
                   }).toList(),
                   onChanged: (value) {},
@@ -175,7 +178,7 @@ class Login extends StatelessWidget {
             ),
             hintText: 'Mobile Number',
             hintStyle: TextStyle(color: Colors.black),
-            labelText: 'Phone Number',
+            labelText: 'Mobile Number',
             labelStyle: TextStyle(color: Colors.black)),
       );
 }

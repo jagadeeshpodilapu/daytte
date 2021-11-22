@@ -7,7 +7,8 @@ class ImageConstants {
   static const ic_rewind = 'assets/icons/ic_rewind.png';
   static const ic_love = 'assets/icons/ic_llike.png';
   static const ic_close = 'assets/icons/ic_close.png';
-  static const ic_call = 'assets/icons/call.svg';
+  static const ic_call = 'assets/icon/audio_call.svg';
+  static const ic_video = 'assets/icon/video_call.svg';
   static const ic_video_call = 'assets/images/video_call.svg';
   static const ic_chat_add = 'assets/icons/chat_add_icon.png';
   static const ic_send = 'assets/icons/ChatArrow.png';

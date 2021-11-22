@@ -1,12 +1,13 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/controllers/settingsController/settings_controller.dart';
+import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:share/share.dart';
-
 import '../../../consts/image_constants.dart';
 import '../interested/interested.dart';
 
@@ -15,266 +16,359 @@ class Settings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).textTheme;
     return Scaffold(
-        backgroundColor: Color(0xFFf8f8f8),
-        appBar: AppBar(
-          title: Text(
-            Constants.settings,
-            style: TextStyle(color: Colors.black),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.white,
-          actions: [
-            GestureDetector(
-              onTap: () async {
-                await controller.updateUserPreferences(0);
-                if (controller.responseModel?.message != null) {
-                  Get.back();
-                }
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Center(
-                  child: Text(
-                    "Done",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Color(
-                          0xFFfe5068,
-                        ),
-                        fontSize: 18),
-                  ),
-                ),
-              ),
-            )
-          ],
-        ),
+        backgroundColor: Color(0xFFF7F8FA),
+        appBar: _appBarWidget(),
         body: GetBuilder<SettingsController>(
             init: SettingsController(),
-          didChangeDependencies: (state)=>state.controller?.getUserSettingsPreferences(),
+            // didChangeDependencies: (state)=>state.controller?.getUserSettingsPreferences(),
             builder: (controller) {
               return ListView(
                 children: [
-                  SizedBox(height: 25),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(Constants.discoverySettings.toUpperCase()),
-                  ),
-                  ListTile(
-                    // onTap: () => Get.to(() => UniversityView()),
-                    title: Text(
-                      "Location",
-                      style: TextStyle(fontSize: 16, color: Colors.black),
-                    ),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text("Banglore \n      India",
-                            style: TextStyle(fontSize: 16)),
-                        SizedBox(width: 8),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 16,
-                        )
-                      ],
-                    ),
-                  ),
-                  Divider(),
-                  ListTile(
-                    title: Text(
-                      Constants.maximumDistance,
-                      style: _textStyle,
-                    ),
-                    trailing: Text(
-                      "${controller.maxDistance.value.toInt()} Km",
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    subtitle: Slider(
-                      value: controller.maxDistance.value,
-                      onChanged: (value) => controller.changeMaxDistance(value),
-                      min: 0.0,
-                      max: 100,
-                      thumbColor: Colors.white,
-                      inactiveColor: Colors.grey[400],
-                      activeColor: Color(0xFFfd5068),
-                    ),
-                  ),
-                  Divider(),
-                  ListTile(
-                    onTap: () => Get.to(() => InterestedScreen()),
-                    title: Text(
-                      Constants.gender,
-                      style: _textStyle,
-                    ),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          "Women",
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        SizedBox(width: 8),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 16,
-                        )
-                      ],
-                    ),
-                  ),
-                  Divider(),
-                  ListTile(
-                    title: Text(
-                      Constants.ageRange,
-                      style: _textStyle,
-                    ),
-                    trailing: Text(
-                      "${controller.rangeValues.value.start.toInt()}-${controller.rangeValues.value.end.toInt()}",
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    subtitle: RangeSlider(
-                      values: controller.rangeValues.value,
-                      min: 18.0,
-                      max: 50.0,
-                      onChanged: (values) => controller.updateAgeRange(values),
-                      inactiveColor: Colors.grey[400],
-                      activeColor: Color(0xFFfd5068),
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Card(
-                    color: Colors.white,
-                    child: ListTile(
-                      title: Text(
-                        Constants.showMeDaytte,
-                        style: _textStyle,
-                      ),
-                      trailing: CupertinoSwitch(
-                        value: controller.showme.value,
-                        activeColor: Color(0xFFfc4f67),
-                        onChanged: (value) => controller.showMeOnDaytee(),
-                        thumbColor: Colors.white,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15.0, vertical: 8),
-                    child: Text(
-                      "Turning this on will show your profile to single users near you.",
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 15, left: 15),
-                    child: Text(
-                      Constants.contactUs,
-                      style: TextStyle(color: Colors.grey, fontSize: 16),
-                    ),
-                  ),
+                  addVerticalSpace(25),
+                  _titleBoldText(
+                      theme, Constants.discoverySettings.toUpperCase()),
+                  _locationWidget(theme),
+                  _maxmimumDistanceWidget(controller),
+                  _genderSelectWidget(theme),
+                  _ageRangeWidget(controller, theme),
+                  _showMeOnWooly(controller, theme),
+                  _showWoolySubtitle(theme),
+                  _contactUsTextWidget(theme),
                   _singleNameCard(Constants.helpSupport),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: _singleNameCard(Constants.rateUs),
-                  ),
-                  SizedBox(height: 15),
-                  GestureDetector(
-                      onTap: () {
-                        Share.share(
-                            "Checkout my Profile in Daytee  http://www.google.com",
-                            subject: "Hey Im Using Daytee App");
-                      },
-                      child: _singleNameCard(Constants.shareDaytte)),
+                  _rateUsWidget(),
+                  _shareWoolyAppWidget(),
                   Padding(
-                    padding: EdgeInsets.only(top: 18, left: 18),
-                    child: Text(
-                      Constants.legal,
-                      style: TextStyle(color: Colors.grey, fontSize: 16),
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: _titleBoldText(theme, Constants.legal),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Card(
+                      color: Colors.white,
+                      child: Column(
+                        children: [
+                          _singleCardWithTrailingIcon(Constants.privacyPolicy),
+                          _singleCardWithTrailingIcon(Constants.termsOfService),
+                          _singleCardWithTrailingIcon(Constants.license),
+                        ],
+                      ),
                     ),
                   ),
-                  Card(
-                    color: Colors.white,
-                    child: Column(
-                      children: [
-                        _singleCardWithTrailingIcon(Constants.privacyPolicy),
-                        _singleCardWithTrailingIcon(Constants.termsOfService),
-                        _singleCardWithTrailingIcon(Constants.license),
-                      ],
-                    ),
-                  ),
+                  addVerticalSpace(8),
+                  _logoutWidget(),
+                  // _singleNameCard(Constants.logout, align: TextAlign.center),
+                  _logoWidget(),
                   SizedBox(height: 15),
-                  _singleNameCard(Constants.logout),
-                  Center(
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Image.asset(
-                          ImageConstants.daytte_logo,
-                          height: 100,
-                          width: 100,
-                        ),
-                        Text(
-                          Constants.version,
-                          style: tileTextStyle(),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 15),
-                  GestureDetector(
-                      onTap: () => showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            title: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  "Are you sure delete the Account ?",
-                                  style: _textStyle.copyWith(fontSize: 16),
-                                ),
-                                SizedBox(height: 5),
-                                Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.center,
-                                  children: [
-                                    TextButton(
-                                        onPressed: () {
-                                          Get.back();
-                                        },
-                                        style: TextButton.styleFrom(
-                                          backgroundColor: Colors.red,
-                                        ),
-                                        child: Text(Constants.no,
-                                                style: _textStyle.copyWith(
-                                                    color: Colors.white))),
-                                    SizedBox(width: 50),
-                                    TextButton(
-                                      style: TextButton.styleFrom(
-                                        backgroundColor: Colors.grey,
-                                      ),
-                                      onPressed: () {
-                                        controller.updateUserPreferences(1);
-                                        controller.clearStorage();
-                                      },
-                                          child: Text(Constants.yes,
-                                              style: _textStyle.copyWith(
-                                                color: Colors.white,
-                                              )),
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              )),
-                      child: _singleNameCard(Constants.deletedAccount)),
+                  _deletedAccount(context, controller),
                   SizedBox(height: 25),
                 ],
               );
             }));
+  }
+
+  Padding _logoutWidget() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: RaisedGradientButton(
+          title: Constants.logout,
+          onPressed: () {},
+          borderRadius: 10,
+          width: Get.width * 0.7),
+    );
+  }
+
+  GestureDetector _shareWoolyAppWidget() {
+    return GestureDetector(
+      onTap: () {
+        Share.share("Checkout my Profile in Daytee  http://www.google.com",
+            subject: "Hey Im Using Daytee App");
+      },
+      child: _singleNameCard(Constants.shareDaytte),
+    );
+  }
+
+  Center _logoWidget() {
+    return Center(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 10,
+          ),
+          SvgPicture.asset(
+            ImageConstants.daytte_logo,
+            height: 100,
+            width: 100,
+          ),
+          Text(
+            Constants.version,
+            style: tileTextStyle(),
+          )
+        ],
+      ),
+    );
+  }
+
+  GestureDetector _deletedAccount(
+      BuildContext context, SettingsController controller) {
+    return GestureDetector(
+      onTap: () => _deleteAccountAlert(context, controller),
+      child: _singleNameCard(Constants.deletedAccount, align: TextAlign.center),
+    );
+  }
+
+  Future<dynamic> _deleteAccountAlert(
+      BuildContext context, SettingsController controller) {
+    return showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "Are you sure delete the Account ?",
+                    style: _textStyle.copyWith(fontSize: 16),
+                  ),
+                  SizedBox(height: 5),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                          onPressed: () {
+                            Get.back();
+                          },
+                          style: TextButton.styleFrom(
+                            backgroundColor: Colors.red,
+                          ),
+                          child: Text(Constants.no,
+                              style: _textStyle.copyWith(color: Colors.white))),
+                      SizedBox(width: 50),
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.grey,
+                        ),
+                        onPressed: () {
+                          controller.updateUserPreferences(1);
+                          controller.clearStorage();
+                        },
+                        child: Text(Constants.yes,
+                            style: _textStyle.copyWith(
+                              color: Colors.white,
+                            )),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ));
+  }
+
+  GestureDetector _rateUsWidget() {
+    return GestureDetector(
+      onTap: () {},
+      child: _singleNameCard(Constants.rateUs),
+    );
+  }
+
+  Padding _contactUsTextWidget(TextTheme theme) {
+    return Padding(
+      padding: EdgeInsets.all(8),
+      child: _titleBoldText(theme, Constants.contactUs),
+    );
+  }
+
+  Padding _showWoolySubtitle(TextTheme theme) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 2),
+      child: _subHeadGreyText(
+          "Turning this on will show your profile to single users near you.",
+          theme,
+          size: 12),
+    );
+  }
+
+  Widget _showMeOnWooly(SettingsController controller, TextTheme theme) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+      child: Card(
+        color: Colors.white,
+        elevation: 4.0,
+        child: ListTile(
+          title: _subHeadGreyText(Constants.showMeDaytte, theme),
+          trailing: Switch(
+            value: controller.showme.value,
+            activeColor: Color(0xFF7004E3),
+            activeTrackColor: Color(0xFF7004E3),
+            onChanged: (value) => controller.showMeOnDaytee(),
+            thumbColor: MaterialStateProperty.all(Colors.white),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _ageRangeWidget(SettingsController controller, TextTheme theme) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        elevation: 4.0,
+        child: ListTile(
+          title: Text(
+            Constants.ageRange,
+            style: _textStyle,
+          ),
+          trailing: Text(
+            "${controller.rangeValues.value.start.toInt()}-${controller.rangeValues.value.end.toInt()}",
+            style: _textStyle,
+          ),
+          subtitle: RangeSlider(
+            values: controller.rangeValues.value,
+            min: 18.0,
+            max: 50.0,
+            onChanged: (values) => controller.updateAgeRange(values),
+            inactiveColor: Colors.grey[400],
+            activeColor: Color(0xFF7004E3),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _genderSelectWidget(TextTheme theme) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        elevation: 4.0,
+        child: ListTile(
+          onTap: () => Get.to(() => InterestedScreen()),
+          title: _subHeadGreyText(Constants.gender, theme),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _titleBoldText(theme, "Woman"),
+              addHorizontalSpace(8),
+              _backArrow()
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _maxmimumDistanceWidget(SettingsController controller) {
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Card(
+        elevation: 4.0,
+        child: ListTile(
+          title: Text(
+            Constants.maximumDistance,
+            style: _textStyle,
+          ),
+          trailing: Text(
+            "${controller.maxDistance.value.toInt()} Km",
+            style: TextStyle(fontSize: 16),
+          ),
+          subtitle: Slider(
+            value: controller.maxDistance.value,
+            onChanged: (value) => controller.changeMaxDistance(value),
+            min: 0.0,
+            max: 100,
+            thumbColor: Color(0xFF7004E3),
+            inactiveColor: Colors.grey[400],
+            activeColor: Color(0xFF7004E3),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _locationWidget(TextTheme theme) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Card(
+        elevation: 2.0,
+        child: ListTile(
+          title: _subHeadGreyText("Location", theme),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _titleBoldText(theme, "Bangalore, INDIA"),
+              addHorizontalSpace(8),
+              _backArrow()
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _backArrow() {
+    return Icon(
+      Icons.arrow_forward_ios,
+      size: 18,
+      color: Color(0xff363636),
+    );
+  }
+
+  Text _subHeadGreyText(String title, TextTheme theme, {double? size}) {
+    return Text(
+      title,
+      style: theme.subtitle1
+          ?.copyWith(fontSize: size ?? 16, color: Color(0xff9A9A9A)),
+    );
+  }
+
+  Widget _titleBoldText(TextTheme theme, String header) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(header, style: theme.headline6?.copyWith(fontSize: 18)),
+    );
+  }
+
+  AppBar _appBarWidget() {
+    return AppBar(
+      leading: IconButton(
+          onPressed: () => Get.back(),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+            size: 22,
+          )),
+      automaticallyImplyLeading: true,
+      title: Text(
+        Constants.settings,
+        style: TextStyle(color: Colors.black),
+      ),
+      elevation: 2.0,
+      centerTitle: true,
+      backgroundColor: Colors.white,
+      actions: [
+        GestureDetector(
+          onTap: () async {
+            await controller.updateUserPreferences(0);
+            if (controller.responseModel?.message != null) {
+              Get.back();
+            }
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Text(
+                "Done",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Color(
+                      0xFFfe5068,
+                    ),
+                    fontSize: 18),
+              ),
+            ),
+          ),
+        )
+      ],
+    );
   }
 
   Widget _singleCardWithTrailingIcon(String text) {
@@ -283,21 +377,21 @@ class Settings extends StatelessWidget {
         text,
         style: _textStyle,
       ),
-      trailing: Icon(
-        Icons.arrow_forward_ios,
-        size: 16,
-      ),
+      trailing: _backArrow(),
     );
   }
 
-  Widget _singleNameCard(String title) {
-    return Card(
-      color: Colors.white,
-      child: ListTile(
-        title: Text(
-          title,
-          textAlign: TextAlign.center,
-          style: _textStyle,
+  Widget _singleNameCard(String title, {TextAlign? align}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Card(
+        color: Colors.white,
+        child: ListTile(
+          title: Text(
+            title,
+            textAlign: align ?? TextAlign.start,
+            style: _textStyle,
+          ),
         ),
       ),
     );

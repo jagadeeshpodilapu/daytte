@@ -1,18 +1,18 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:daytte/controllers/findnearest/find_nearest_controller.dart';
 
-import '../base_controller/baseController.dart';
+import 'package:daytte/controllers/findnearest/find_nearest_controller.dart';
 import 'package:daytte/model/delete_gallery.dart';
-import '../../model/edit_detail_model.dart';
 import 'package:daytte/routes/app_routes.dart';
-import '../../services/base_service/base_client.dart';
-import '../../view/dialogs/dialogHelper.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../model/edit_detail_model.dart';
+import '../../services/base_service/base_client.dart';
+import '../../view/dialogs/dialogHelper.dart';
 import '../../view/screens/editdetails/edit_details.dart';
+import '../base_controller/baseController.dart';
 
 class EditDetailsController extends GetxController {
   SingingCharacter? character = SingingCharacter.male;
@@ -26,7 +26,7 @@ class EditDetailsController extends GetxController {
   DeleteGalleryModel? deleteGalleryModel;
   GetEditDetailsModel? getEditDetailsModel;
   List<Gallery> galleryImages = [];
-  final userController = Get.find<FindNearestController>();
+  final userController = Get.put(FindNearestController());
 
   @override
   void onReady() {

@@ -96,8 +96,7 @@ class User {
         deviceToken: json["device_token"],
         newUser: json["newUser"],
         profileImg: json["profileImg"],
-        filterRadius:json['filterRadius']
-      );
+        filterRadius: json['filterRadius'].toDouble());
 
   Map<String, dynamic> toJson() => {
         "provider": provider,

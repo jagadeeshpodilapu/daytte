@@ -2,8 +2,10 @@ import 'dart:io';
 
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/controllers/aboutus_controller/about_us_controller.dart';
+import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
+import 'package:daytte/view/widgets/textfield_widget.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,32 +23,42 @@ class AboutMeEdit extends StatelessWidget {
       body: GetBuilder<AboutUsController>(
         init: AboutUsController(),
         builder: (controller) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                  child: Text(Constants.addPhoto,
-                      textAlign: TextAlign.center,
-                      style: theme.headline6?.copyWith(fontSize: 22))),
-              addVerticalSpace(4),
-              Center(
-                child: Text(
-                  Constants.select2Pics,
-                  style: theme.bodyText2?.copyWith(color: Color(0xff9A9A9A)),
-                ),
-              ),
-              _addGalleryWidget(controller),
-              addVerticalSpace(10),
-              Center(
-                child: SizedBox(
-                  width: Get.width * 0.8,
-                  child: RaisedGradientButton(
-                    onPressed: () {},
-                    title: "Add Media",
+          return SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                    child: Text(Constants.addPhoto,
+                        textAlign: TextAlign.center,
+                        style: theme.headline6?.copyWith(fontSize: 22))),
+                addVerticalSpace(4),
+                Center(
+                  child: Text(
+                    Constants.select2Pics,
+                    style: theme.bodyText2?.copyWith(color: Color(0xff9A9A9A)),
                   ),
                 ),
-              )
-            ],
+                _addGalleryWidget(controller),
+                addVerticalSpace(10),
+                Center(child: addMediaButtonWidget(context)),
+                detailsWidget(),
+                SizedBox(
+                  height: 10,
+                ),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(14.0),
+                    child: RaisedGradientButton(
+                        width: Get.width * 0.8,
+                        title: Constants.saveChanges,
+                        onPressed: () => Get.offAndToNamed(AppRoutes.HOMEVIEW)),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+              ],
+            ),
           );
         },
       ),
@@ -136,5 +148,137 @@ class AboutMeEdit extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget addMediaButtonWidget(BuildContext context) {
+    return SizedBox(
+      width: Get.width * 0.8,
+      child: RaisedGradientButton(
+          title: Constants.addMedia,
+          onPressed: () async {
+            /*  if (controller.pickedImages.length >= 2 ||
+                controller.galleryImages.length >= 2) {
+              await controller.baseConvert();
+              if (controller.editDetailsModel != null) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text("${controller.editDetailsModel?.message}")));
+              }
+            } else {
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text(Constants.select2Pics)));
+            } */
+          }),
+    );
+  }
+
+  Container detailsWidget() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 12.0),
+      decoration: BoxDecoration(
+          border: Border.all(color: Colors.white, width: 0.7),
+          boxShadow: [
+            BoxShadow(
+                color: const Color(0xffd4dcdd),
+                offset: Offset(3, 9),
+                blurRadius: 4,
+                spreadRadius: -9)
+          ],
+          color: const Color(0xffffffff)),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 10),
+        child: Column(
+          children: [
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: headingWithTextStyle(0.9, "About Me", 17.5),
+                    ),
+                    Text("Edit")
+                  ],
+                ),
+                TextFormField(
+                  style: TextStyle(color: Colors.black),
+                  maxLines: 3,
+                  decoration: InputDecoration(
+                    enabledBorder: _outlineBorder(Color(0xFF9A9A9A)),
+                    focusedBorder: _outlineBorder(Color(0xFf7834F4)),
+                    errorBorder: _outlineBorder(Colors.red),
+                    focusedErrorBorder: _outlineBorder(Colors.red),
+                  ),
+                ),
+              ],
+            ),
+            Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: headingWithTextStyle(0.9, Constants.passion, 17.5),
+                )),
+            Wrap(
+              spacing: 6,
+              runSpacing: 6,
+              crossAxisAlignment: WrapCrossAlignment.start,
+              children: List.generate(
+                  4,
+                  (index) => Container(
+                        padding: EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Movies"),
+                        ),
+                      )),
+            ),
+            Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: headingWithTextStyle(0.9, Constants.company, 17.5),
+                )),
+            TextFieldWidget(
+                label: '', hint: '', controller: TextEditingController()),
+            Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: headingWithTextStyle(0.9, Constants.school, 17.5),
+                )),
+            TextFieldWidget(
+              label: '',
+              hint: '',
+              controller: TextEditingController(),
+            ),
+            addVerticalSpace(10)
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget headingWithTextStyle(double opacity, String text, double size) {
+    return Opacity(
+      opacity: opacity,
+      child: Text(
+        text,
+        textAlign: TextAlign.start,
+        style: TextStyle(
+            color: const Color(0xff273d52),
+            fontWeight: FontWeight.w500,
+            fontFamily: "Avenir",
+            fontStyle: FontStyle.normal,
+            fontSize: size),
+      ),
+    );
+  }
+
+  OutlineInputBorder _outlineBorder(Color color) {
+    return OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: BorderSide(color: color, width: 1.5));
   }
 }

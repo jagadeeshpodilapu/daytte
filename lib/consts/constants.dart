@@ -24,7 +24,7 @@ class Constants {
   static const String tellAbout = 'Google';
   static const String searchUniversity = 'Search University';
   static const String aboutYou = 'About You';
-  static const String next = 'About You';
+  static const String next = 'Next';
   static const String aboutWarning = 'Please tell about YourSelf';
   static const String charRequest = 'Chat Request';
   static const String message = 'Messages';
@@ -54,12 +54,12 @@ class Constants {
   static const String interestedEveryOne = "I'm Interested in Everyone";
   static const String likedDetails = "Likes Details";
   static const String youLiked = "You Liked";
-  static const String itsMatch = "It's Match!";
+  static const String itsMatch = "     WOW!\n It’s a Match";
   static const String chatNow = "Chat Now";
   static const String validMobileWarning = "Please enter valid PhoneNumber";
   static const String settings = "Settings";
   static const String discoverySettings = "Discovery Settings";
-  static const String maximumDistance = "Discovery Settings";
+  static const String maximumDistance = "Maximum distance";
   static const String gender = "Gender";
   static const String ageRange = "Age Range";
   static const String showMeDaytte = "Show me on Daytee";

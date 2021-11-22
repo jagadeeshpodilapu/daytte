@@ -1,4 +1,5 @@
 import 'package:daytte/consts/constants.dart';
+import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,8 +10,9 @@ import '../chatscreen/chat_screen.dart';
 class ChatList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).textTheme;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xffF7F8FA),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(120.0),
         child: SafeArea(
@@ -18,8 +20,11 @@ class ChatList extends StatelessWidget {
             init: ChatListController(),
             builder: (controller) => Column(
               children: [
-                chatRequestHeaders(controller),
-                messageHeaderWithActionsWidget()
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: chatRequestHeaders(controller,theme),
+                ),
+                messageHeaderWithActionsWidget(theme)
               ],
             ),
           ),
@@ -33,10 +38,10 @@ class ChatList extends StatelessWidget {
             return ListView.separated(
               itemCount: controller.profileImages.length,
               itemBuilder: (context, index) {
-                return messageCard(context, controller, index);
+                return messageCard(context, controller, index,theme);
               },
               separatorBuilder: (context, index) {
-                return Divider();
+                return Container(height: 2,color: Colors.grey[300],margin: EdgeInsets.symmetric(horizontal: 16),);
               },
             );
           },
@@ -59,7 +64,7 @@ class ChatList extends StatelessWidget {
   }
 
   Widget messageCard(
-      BuildContext context, ChatListController controller, int index) {
+      BuildContext context, ChatListController controller, int index, TextTheme theme) {
     return ListTile(
       onTap: () => Get.to(() => ChatScreen()),
       title: Container(
@@ -67,13 +72,13 @@ class ChatList extends StatelessWidget {
         child: Row(
           children: [
             userCircleAvatarWidget(controller, index),
-            SizedBox(width: 10),
+            addHorizontalSpace(10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                userNameWidget(controller, index),
-                SizedBox(height: 5),
-                userLastMessageWidget(controller, index),
+                userNameWidget(controller, index,theme),
+               addVerticalSpace(5),
+                userLastMessageWidget(controller, index,theme),
               ],
             ),
             Spacer(),
@@ -93,7 +98,7 @@ class ChatList extends StatelessWidget {
   Widget messageCountWidget(ChatListController controller, int index) {
     return CircleAvatar(
       radius: 10,
-      backgroundColor: Color(0xffff5a5a),
+      backgroundColor: Color(0xff7004E3),
       child: Text(
         controller.profileImages[index]["msg"],
         style: TextStyle(color: Colors.white),
@@ -104,34 +109,24 @@ class ChatList extends StatelessWidget {
   Widget timeLeftWidget(ChatListController controller, int index) {
     return Text(controller.profileImages[index]["timeLeft"],
         style: const TextStyle(
-            color: const Color(0xff757e90),
+            color: const Color(0xff9A9A9A),
             fontWeight: FontWeight.w500,
             fontFamily: "SFProDisplay",
             fontStyle: FontStyle.normal,
             fontSize: 14.0));
   }
 
-  Text userLastMessageWidget(ChatListController controller, int index) {
+  Text userLastMessageWidget(ChatListController controller, int index, TextTheme theme) {
     return Text(
       controller.profileImages[index]["profileTag"],
-      style: const TextStyle(
-          color: const Color(0xff757e90),
-          fontWeight: FontWeight.w300,
-          fontFamily: "Muli",
-          fontStyle: FontStyle.normal,
-          fontSize: 12.0),
+      style:theme.headline6?.copyWith(color:  Color(0xff9A9A9A),fontSize: 14) ,
     );
   }
 
-  Text userNameWidget(ChatListController controller, int index) {
+  Text userNameWidget(ChatListController controller, int index,TextTheme theme) {
     return Text(
       controller.profileImages[index]["profileName"],
-      style: const TextStyle(
-          color: const Color(0xff363636),
-          fontWeight: FontWeight.w700,
-          fontFamily: "Muli",
-          fontStyle: FontStyle.normal,
-          fontSize: 14.0),
+      style: theme.headline6?.copyWith(fontSize: 18),
     );
   }
 
@@ -144,13 +139,13 @@ class ChatList extends StatelessWidget {
       child: Align(
         alignment: Alignment(1, -0.7),
         child: controller.profileImages[index]["isOnline"]
-            ? CircleAvatar(radius: 5, backgroundColor: Colors.green)
+            ? CircleAvatar(radius: 5, backgroundColor: Color(0xff08E300))
             : SizedBox(),
       ),
     );
   }
 
-  AppBar messageHeaderWithActionsWidget() {
+  AppBar messageHeaderWithActionsWidget(TextTheme theme) {
     return AppBar(
       automaticallyImplyLeading: false,
       backgroundColor: Colors.transparent,
@@ -161,34 +156,30 @@ class ChatList extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 12.0),
             child: Text(Constants.message,
-                style: TextStyle(
-                    color: Color(0xff363636).withOpacity(0.7),
-                    fontWeight: FontWeight.w900,
-                    fontFamily: "Muli",
-                    fontStyle: FontStyle.normal,
-                    fontSize: 20.0)),
+                style: theme.headline6?.copyWith(fontSize: 22)),
           ),
           Icon(
             Icons.more_vert,
             color: Colors.black,
+            size: 28,
           )
         ],
       ),
     );
   }
 
-  Widget chatRequestHeaders(ChatListController controller) {
+  Widget chatRequestHeaders(ChatListController controller, TextTheme theme) {
     return Row(
       children: [
         MaterialButton(
-          child: chatHeadersText("All", 18, controller.isAll),
+          child: chatHeadersText("All", 18, controller.isAll,theme),
           onPressed: () {
             controller.funcIsAll(true, false);
           },
         ),
         MaterialButton(
           //color: Colors.yellow,
-          child: chatHeadersText(Constants.charRequest, 100, controller.isChat),
+          child: chatHeadersText(Constants.charRequest, 100, controller.isChat,theme),
           //Text("Chat Request",style: TextStyle(color: Colors.black)),
           onPressed: () {
             controller.funcIsAll(false, true);
@@ -199,29 +190,25 @@ class ChatList extends StatelessWidget {
     );
   }
 
-  Widget chatHeadersText(String text, double width, bool boolAll) {
+  Widget chatHeadersText(String text, double width, bool boolAll, TextTheme theme) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
           Text(text,
-              style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontFamily: "Avenir",
-                  fontStyle: FontStyle.normal,
-                  fontSize: 14.0)),
+              style:theme.headline6?.copyWith(fontSize: 16)),
           SizedBox(
             height: 5,
           ),
           boolAll
               ? Container(
-            height: 3,
-            width: width,
-            color: Color(0xFF3c0fc7),
-          )
+                  height: 4,
+                  width: width,
+                  color: Color(0xFF3c0fc7),
+                )
               : SizedBox(
-            height: 5,
-          )
+                  height: 5,
+                )
         ],
       ),
     );

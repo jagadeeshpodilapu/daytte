@@ -44,16 +44,22 @@ class ButtonWidget extends StatelessWidget {
 class RaisedGradientButton extends StatelessWidget {
   final String title;
   final Function() onPressed;
+  final double? borderRadius;
+  final double? width;
 
-  const RaisedGradientButton({required this.title, required this.onPressed});
+  const RaisedGradientButton(
+      {required this.title,
+      required this.onPressed,
+      this.borderRadius,
+      this.width});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      width: width ?? double.infinity,
       height: 50.0,
       decoration: BoxDecoration(
-          borderRadius: new BorderRadius.circular(20.0),
+          borderRadius: BorderRadius.circular(borderRadius ?? 20.0),
           gradient: LinearGradient(
             colors: <Color>[
               Color(0xFF7004E3),

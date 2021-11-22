@@ -8,6 +8,7 @@ class SplashController extends GetxController {
   void onInit() {
     storage.writeIfNull("page", "0");
     storage.writeIfNull("isLogged", false);
+    storage.writeIfNull("page", 0);
 
     super.onInit();
   }
@@ -46,6 +47,9 @@ class SplashController extends GetxController {
         break;
       case '8':
         Get.offAndToNamed(AppRoutes.HOMEVIEW);
+        break;
+      default:
+        Get.offAndToNamed(AppRoutes.LOGINVIEW);
         break;
     }
   }

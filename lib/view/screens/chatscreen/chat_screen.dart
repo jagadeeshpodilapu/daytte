@@ -1,3 +1,4 @@
+import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -15,7 +16,7 @@ class ChatScreen extends StatelessWidget {
         elevation: 1,
         automaticallyImplyLeading: false,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_outlined, color: Colors.black),
+          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
           onPressed: () => onBackPressed(),
         ),
         title: Text("Grace", style: TextStyle(color: Colors.black)),
@@ -27,8 +28,8 @@ class ChatScreen extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: SvgPicture.asset(
                 ImageConstants.ic_call,
-                height: 20,
-                width: 20,
+                height: 36,
+                width: 36,
               ),
             ),
           ),
@@ -39,10 +40,11 @@ class ChatScreen extends StatelessWidget {
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SvgPicture.asset(ImageConstants.ic_video_call),
-            ),
+                padding: const EdgeInsets.all(8.0),
+                child: SvgPicture.asset(ImageConstants.ic_video,
+                    width: 37, height: 37)),
           ),
+          addHorizontalSpace(10)
         ],
       ),
       body: Stack(
@@ -53,20 +55,20 @@ class ChatScreen extends StatelessWidget {
               children: [
                 Center(
                     child: Text(
-                  "Today at 12:13 AM",
-                  style: TextStyle(color: Colors.black26),
-                )),
+                      "Today at 12:13 AM",
+                      style: TextStyle(color: Colors.black26),
+                    )),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CircleAvatar(
+                      /* CircleAvatar(
                         radius: 16,
                         child: Text("AH",
                             style: TextStyle(
                                 fontWeight: FontWeight.w400, fontSize: 12)),
-                      ),
+                      ), */
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: Container(
@@ -102,24 +104,7 @@ class ChatScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: Container(
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  colors: [
-                                    const Color(0xFF6d25ba),
-                                    const Color(0xffba25b8),
-                                  ],
-                                  begin: const FractionalOffset(0.0, 0.0),
-                                  end: const FractionalOffset(1.0, 0.0),
-                                  stops: [0.0, 1.0],
-                                  tileMode: TileMode.clamp),
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                  bottomRight: Radius.circular(10),
-                                  bottomLeft: Radius.circular(10),
-                                  topLeft: Radius.circular(10)),
-                              boxShadow: [
-                                BoxShadow(color: Colors.black26, blurRadius: 2)
-                              ]),
+                          decoration: _boxDecoration(),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 14.0, horizontal: 12),
@@ -133,12 +118,12 @@ class ChatScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      CircleAvatar(
+                      /*  CircleAvatar(
                         radius: 16,
                         child: Text("AH",
                             style: TextStyle(
                                 fontWeight: FontWeight.w400, fontSize: 12)),
-                      ),
+                      ), */
                     ],
                   ),
                 ),
@@ -147,12 +132,12 @@ class ChatScreen extends StatelessWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CircleAvatar(
+                      /*  CircleAvatar(
                         radius: 16,
                         child: Text("AH",
                             style: TextStyle(
                                 fontWeight: FontWeight.w400, fontSize: 12)),
-                      ),
+                      ), */
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: Container(
@@ -188,24 +173,7 @@ class ChatScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: Container(
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  colors: [
-                                    const Color(0xFF6d25ba),
-                                    const Color(0xffba25b8),
-                                  ],
-                                  begin: const FractionalOffset(0.0, 0.0),
-                                  end: const FractionalOffset(1.0, 0.0),
-                                  stops: [0.0, 1.0],
-                                  tileMode: TileMode.clamp),
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                  bottomRight: Radius.circular(10),
-                                  bottomLeft: Radius.circular(10),
-                                  topLeft: Radius.circular(10)),
-                              boxShadow: [
-                                BoxShadow(color: Colors.black26, blurRadius: 2)
-                              ]),
+                          decoration: _boxDecoration(),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 14.0, horizontal: 12),
@@ -219,12 +187,12 @@ class ChatScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      CircleAvatar(
+                      /*  CircleAvatar(
                         radius: 16,
                         child: Text("AH",
                             style: TextStyle(
                                 fontWeight: FontWeight.w400, fontSize: 12)),
-                      ),
+                      ), */
                     ],
                   ),
                 ),
@@ -233,12 +201,12 @@ class ChatScreen extends StatelessWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CircleAvatar(
+                      /* CircleAvatar(
                         radius: 16,
                         child: Text("AH",
                             style: TextStyle(
                                 fontWeight: FontWeight.w400, fontSize: 12)),
-                      ),
+                      ), */
                       Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: Container(
@@ -274,24 +242,7 @@ class ChatScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: Container(
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  colors: [
-                                    const Color(0xFF6d25ba),
-                                    const Color(0xffba25b8),
-                                  ],
-                                  begin: const FractionalOffset(0.0, 0.0),
-                                  end: const FractionalOffset(1.0, 0.0),
-                                  stops: [0.0, 1.0],
-                                  tileMode: TileMode.clamp),
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                  bottomRight: Radius.circular(10),
-                                  bottomLeft: Radius.circular(10),
-                                  topLeft: Radius.circular(10)),
-                              boxShadow: [
-                                BoxShadow(color: Colors.black26, blurRadius: 2)
-                              ]),
+                          decoration: _boxDecoration(),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 14.0, horizontal: 12),
@@ -305,12 +256,12 @@ class ChatScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      CircleAvatar(
+                      /*  CircleAvatar(
                         radius: 16,
                         child: Text("AH",
                             style: TextStyle(
                                 fontWeight: FontWeight.w400, fontSize: 12)),
-                      ),
+                      ), */
                     ],
                   ),
                 ),
@@ -372,8 +323,8 @@ class ChatScreen extends StatelessWidget {
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsets.all(
-                                                            4.0),
+                                                    const EdgeInsets.all(
+                                                        4.0),
                                                     child: Icon(
                                                       Icons.image,
                                                       size: 40,
@@ -401,8 +352,8 @@ class ChatScreen extends StatelessWidget {
                                                   ),
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsets.all(
-                                                            4.0),
+                                                    const EdgeInsets.all(
+                                                        4.0),
                                                     child: Icon(
                                                       Icons.insert_drive_file,
                                                       size: 40,
@@ -450,7 +401,7 @@ class ChatScreen extends StatelessWidget {
                                   constraints: BoxConstraints(
                                     maxHeight: 90,
                                     maxWidth:
-                                        MediaQuery.of(context).size.width / 2,
+                                    MediaQuery.of(context).size.width / 2,
                                   ),
                                   child: TextField(
                                     // controller: textEditingController,
@@ -498,5 +449,15 @@ class ChatScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  BoxDecoration _boxDecoration() {
+    return BoxDecoration(
+        color: Color(0xff7004E3),
+        borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(10),
+            bottomLeft: Radius.circular(10),
+            topLeft: Radius.circular(10)),
+        boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 2)]);
   }
 }

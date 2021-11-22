@@ -1,10 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+
 import '../../../controllers/premiumpackageController/premium_package_controller.dart';
 import '../../../utils/common_functions.dart';
 import '../../screens/matchscreen/match_screen.dart';
 import '../../widgets/button_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 
 class PremiumPackages extends StatelessWidget {
   final _controller = PremiumPackageController();
@@ -105,7 +106,7 @@ class PremiumPackages extends StatelessWidget {
                       child: Card(
                         elevation: 0.0,
                         color: _controller.selectedPremiumType.value == index
-                            ? Color(0xFFfe4b6b)
+                            ? Color(0xF7004E3b)
                             : Colors.white,
                         child: Column(
                           children: [
@@ -168,10 +169,10 @@ class PremiumPackages extends StatelessWidget {
               alignment: Alignment(0, 0.67).add(Alignment.center),
               child: Container(
                 height: 50,
-                child: ButtonWidget(
-                  action: () => showDialog(
+                child: RaisedGradientButton(
+                  onPressed: () => showDialog(
                       context: context, builder: (context) => MatchScreen()),
-                  buttonTitle: "Continue",
+                  title: "Continue",
                 ),
               ),
             ),
@@ -193,8 +194,8 @@ class PremiumPackages extends StatelessWidget {
   TextStyle offerTextStyle(int index, double fontSize) {
     return TextStyle(
         color: _controller.selectedPremiumType.value == index
-            ? Color(0xFFfe4b6b)
-            : Colors.black,
+            ? Color(0xFF7004E3)
+            : Color(0xff9a9a9a),
         fontSize: fontSize);
   }
 }

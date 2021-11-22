@@ -1,7 +1,6 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/consts/image_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../widgets/common_widgets.dart';
 
@@ -55,9 +54,9 @@ class ChatRequest extends StatelessWidget {
           ),
           itemCount: totalCount,
           separatorBuilder: (BuildContext context, int index) {
-            if (index == totalCount - 1)
-              Divider(color: Colors.black, height: 3);
-            return Divider();
+           
+             
+            return Container(color: Colors.grey[300], height: 2,margin: EdgeInsets.symmetric(horizontal: 16),);;
           },
         ),
       ),

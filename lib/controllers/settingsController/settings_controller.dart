@@ -1,7 +1,6 @@
 import 'package:daytte/controllers/base_controller/baseController.dart';
 import 'package:daytte/model/response_model.dart';
 import 'package:daytte/model/single_user_model.dart';
-import 'package:daytte/model/user_info_model.dart';
 import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/services/base_service/base_client.dart';
 import 'package:daytte/view/dialogs/dialogHelper.dart';
@@ -80,11 +79,14 @@ class SettingsController extends GetxController {
 
     if (response != null) {
       userInfoModel = SingleUserModel.fromJson(response);
-      maxDistance.value = userInfoModel?.data.user?.filterRadius?.toDouble() ?? 0.0;
-      rangeValues.value = RangeValues(userInfoModel?.data.user?.showAgeRange?.first.toDouble()??18,
-        userInfoModel?.data.user?.showAgeRange?.last.toDouble()??30,);
+      maxDistance.value =
+          userInfoModel?.data.user?.filterRadius?.toDouble() ?? 0.0;
+      rangeValues.value = RangeValues(
+        userInfoModel?.data.user?.showAgeRange?.first.toDouble() ?? 18,
+        userInfoModel?.data.user?.showAgeRange?.last.toDouble() ?? 30,
+      );
       showme.value = userInfoModel?.data.user?.showMe ?? true;
     }
-    update(); 
+    update();
   }
 }

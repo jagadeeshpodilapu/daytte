@@ -25,7 +25,7 @@ SliverGridDelegateWithFixedCrossAxisCount get sliverCountAxis {
   return SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,
       crossAxisSpacing: 4.0,
-      childAspectRatio: 2.3 / 4,
+      childAspectRatio: 2.3 / 3,
       mainAxisSpacing: 4.0);
 }
 

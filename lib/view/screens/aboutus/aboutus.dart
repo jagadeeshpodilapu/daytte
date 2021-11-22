@@ -14,7 +14,8 @@ class AboutUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: appBarWidget(Constants.aboutYou),
+      backgroundColor: Color(0xffF7F8FA),
+      appBar: appBarWidget(Constants.aboutYou, color: Color(0xffF7F8FA)),
       body: Form(
         key: _key,
         child: Column(
@@ -49,16 +50,19 @@ class AboutUs extends StatelessWidget {
     );
   }
 
-  ButtonWidget nextButtonWidget(BuildContext context) {
-    return ButtonWidget(
-        buttonTitle: Constants.next,
-        action: () {
-          if (controller.shortDisc.text.isNotEmpty) {
-            controller.updateShortDescription();
-          } else {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text(Constants.aboutWarning)));
-          }
-        });
+  Widget nextButtonWidget(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: RaisedGradientButton(
+          title: Constants.next,
+          onPressed: () {
+            if (controller.shortDisc.text.isNotEmpty) {
+              controller.updateShortDescription();
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(Constants.aboutWarning)));
+            }
+          }),
+    );
   }
 }

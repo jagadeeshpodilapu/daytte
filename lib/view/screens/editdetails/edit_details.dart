@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
+import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,19 +19,7 @@ class EditDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xfff7f8fa),
-      appBar: AppBar(
-        elevation: 1,
-        leading: Icon(
-          Icons.arrow_back_outlined,
-          color: Colors.black,
-        ),
-        title: Text(
-          Constants.editDetails,
-          style: TextStyle(color: Colors.black),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-      ),
+      appBar: appBarWidget(Constants.editDetails, color: Color(0xffF7F8FA)),
       body: GetBuilder<EditDetailsController>(
         init: EditDetailsController(),
         builder: (controller) => ListView(
@@ -91,17 +80,18 @@ class EditDetails extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
+            addVerticalSpace(10),
             addMediaButtonWidget(context),
             detailsWidget(),
             SizedBox(
               height: 10,
             ),
-            ButtonWidget(
-                buttonTitle: Constants.saveChanges,
-                action: () => Get.offAndToNamed(AppRoutes.HOMEVIEW)),
+            Padding(
+              padding: const EdgeInsets.all(14.0),
+              child: RaisedGradientButton(
+                  title: Constants.saveChanges,
+                  onPressed: () => Get.offAndToNamed(AppRoutes.HOMEVIEW)),
+            ),
             SizedBox(
               height: 20,
             ),
@@ -113,6 +103,7 @@ class EditDetails extends StatelessWidget {
 
   Container detailsWidget() {
     return Container(
+      margin: EdgeInsets.symmetric(horizontal: 12.0),
       decoration: BoxDecoration(
           border: Border.all(color: const Color(0xffe5eced), width: 0.7),
           boxShadow: [
@@ -158,7 +149,7 @@ class EditDetails extends StatelessWidget {
                     Padding(
                         padding: EdgeInsets.symmetric(vertical: 8.0),
                         child:
-                            headingWithTextStyle(0.9, Constants.passion, 17.5)),
+                        headingWithTextStyle(0.9, Constants.passion, 17.5)),
                     Image.asset(
                       "assets/icons/Edit.png",
                       color: Colors.black54,
@@ -171,7 +162,7 @@ class EditDetails extends StatelessWidget {
                   children: [
                     ...List.generate(
                         controller.userController.findNearestModel?.data.users
-                                ?.first.passion?.length ??
+                            ?.first.passion?.length ??
                             0, (index) {
                       return Padding(
                         padding: const EdgeInsets.all(4.0),
@@ -207,7 +198,7 @@ class EditDetails extends StatelessWidget {
                     Padding(
                         padding: EdgeInsets.symmetric(vertical: 8.0),
                         child:
-                            headingWithTextStyle(0.9, Constants.company, 17.5)),
+                        headingWithTextStyle(0.9, Constants.company, 17.5)),
                     Image.asset(
                       "assets/icons/Edit.png",
                       color: Colors.black54,
@@ -234,7 +225,7 @@ class EditDetails extends StatelessWidget {
                     Padding(
                         padding: EdgeInsets.symmetric(vertical: 8.0),
                         child:
-                            headingWithTextStyle(0.9, Constants.school, 17.5)),
+                        headingWithTextStyle(0.9, Constants.school, 17.5)),
                     Image.asset(
                       "assets/icons/Edit.png",
                       color: Colors.black54,
@@ -261,10 +252,10 @@ class EditDetails extends StatelessWidget {
 
   Padding addMediaButtonWidget(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ButtonWidget(
-          buttonTitle: Constants.addMedia,
-          action: () async {
+      padding: const EdgeInsets.all(14.0),
+      child: RaisedGradientButton(
+          title: Constants.addMedia,
+          onPressed: () async {
             if (controller.pickedImages.length >= 2 ||
                 controller.galleryImages.length >= 2) {
               await controller.baseConvert();
