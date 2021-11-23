@@ -59,31 +59,22 @@ class RaisedGradientButton extends StatelessWidget {
       width: width ?? double.infinity,
       height: 50.0,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(borderRadius ?? 20.0),
-          gradient: LinearGradient(
-            colors: <Color>[
-              Color(0xFF7004E3),
-              Color(0xFF8511E6),
-            ],
-            transform: GradientRotation(math.pi / 2),
-          )),
-      /* LinearGradient(
-            colors: [
-              Color(0xFF7004E3),
-              Color(0xFF8511E6),
-              Color(0xFF9222EC)
-            ],
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-            stops: [0, 0.2, 0.5],
-          )*/
-      /* boxShadow: [
+          borderRadius: BorderRadius.circular(borderRadius ?? 14.0),
+          boxShadow: [
             BoxShadow(
               color: Color(0xFF9222EC),
               offset: Offset(0.0, 3),
               blurRadius: 4,
             ),
-          ]),*/
+          ],
+          gradient: LinearGradient(
+            colors: <Color>[
+              Color(0xFF7004E3),
+              Color(0xFF8511E6),
+              Color(0xFF9A1EE9),
+            ],
+            transform: GradientRotation(math.pi / 4),
+          )),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
