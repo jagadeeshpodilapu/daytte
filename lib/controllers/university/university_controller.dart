@@ -8,7 +8,7 @@ import '../../model/university_model.dart';
 import '../../services/base_service/base_client.dart';
 import '../base_controller/baseController.dart';
 
-class UniversityController extends GetxController {
+class UniversityController extends BaseController {
   UniversityListModel? universityListModel;
   ResponseModel? responseModel;
   int page = 0;
@@ -27,7 +27,7 @@ class UniversityController extends GetxController {
     final response = await BaseClient()
         .get('/institution?skip=$page&limit=$limit', storage.read('token'))
         .catchError(BaseController().handleError);
-
+    if (response == null) return;
     if (response != null) {
       universityListModel = UniversityListModel.fromJson(response);
     }
@@ -40,7 +40,7 @@ class UniversityController extends GetxController {
     final response = await BaseClient()
         .post('/institution', payload)
         .catchError(BaseController().handleError);
-    print("university payload $response");
+    if (response == null) return;
     DialogHelper.hideLoading();
     if (response != null) {
       responseModel = ResponseModel.fromJson(response);

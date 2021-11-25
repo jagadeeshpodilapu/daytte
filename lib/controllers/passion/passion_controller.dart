@@ -8,7 +8,7 @@ import '../../services/base_service/base_client.dart';
 import '../../view/dialogs/dialogHelper.dart';
 import '../base_controller/baseController.dart';
 
-class PassionController extends GetxController {
+class PassionController extends BaseController {
   final storage = GetStorage();
   int page = 0, limit = 20;
   PassionModel? passionModel;

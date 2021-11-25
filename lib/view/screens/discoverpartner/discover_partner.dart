@@ -1,6 +1,7 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/model/find_nearest_model.dart';
 import 'package:daytte/routes/app_routes.dart';
+import 'package:daytte/view/screens/discoverpartner/expand_discover_partner.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,18 +27,6 @@ class DiscoverPartner extends StatelessWidget {
           builder: (controller) {
             return Stack(
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment(0, 0),
-                      end: Alignment(1, 1),
-                      colors: [
-                        const Color(0xffffffff),
-                        const Color(0xffe4e6eb)
-                      ],
-                    ),
-                  ),
-                ),
                 Container(
                   child: Container(
                     height: Get.height * 0.80,
@@ -137,10 +126,12 @@ class DiscoverPartner extends StatelessWidget {
                                                           children: [
                                                             addVerticalSpace(
                                                                 15),
-                                                            _userNamesWidget(theme),
+                                                            _userNamesWidget(
+                                                                theme),
                                                             addVerticalSpace(
                                                                 15),
-                                                            _usersShortDescriptionWidget(theme),
+                                                            _usersShortDescriptionWidget(
+                                                                theme),
                                                             SizedBox(
                                                               height: 15,
                                                             ),
@@ -194,7 +185,16 @@ class DiscoverPartner extends StatelessWidget {
                                 : Center(
                                     child:
                                         Text("No Gallery Pictures  Available"),
-                                  )
+                                  ),
+                        Positioned(
+                            top: Get.height * 0.45,
+                            right: 30,
+                            child: GestureDetector(
+                                onTap: () => Get.to(
+                                    () => ExpandPartnerDetails(),
+                                    arguments: user),
+                                child:
+                                    Hero(tag: 'img', child: _downArrowWidget))),
                       ],
                     ),
                   ),
@@ -210,13 +210,15 @@ class DiscoverPartner extends StatelessWidget {
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
         textAlign: TextAlign.center,
-        style: theme.subtitle2?.copyWith(fontSize: 18,fontWeight: FontWeight.normal));
+        style: theme.subtitle2
+            ?.copyWith(fontSize: 18, fontWeight: FontWeight.normal));
   }
 
   Text _userNamesWidget(TextTheme theme) {
     return Text(
       "${user.firstname} ${user.lastname}",
-      style: theme.headline5?.copyWith(fontSize: 22,fontWeight: FontWeight.w700),
+      style:
+          theme.headline5?.copyWith(fontSize: 22, fontWeight: FontWeight.w700),
     );
   }
 
@@ -269,7 +271,8 @@ class DiscoverPartner extends StatelessWidget {
           right: 10,
         ),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20), color: Color(0xff363636).withOpacity(0.3)),
+            borderRadius: BorderRadius.circular(20),
+            color: Color(0xff363636).withOpacity(0.3)),
         child: TextButton.icon(
             onPressed: () {},
             icon: Icon(
@@ -341,6 +344,23 @@ class DiscoverPartner extends StatelessWidget {
     return TextStyle(
       fontSize: fontSize,
       color: color,
+    );
+  }
+
+  Widget get _downArrowWidget {
+    return Align(
+      alignment: Alignment.centerRight,
+      child: Container(
+        height: 40,
+        width: 40,
+        margin: EdgeInsets.symmetric(horizontal: 20),
+        decoration: BoxDecoration(
+          color: Colors.red,
+          shape: BoxShape.circle,
+          gradient: gradientColors,
+        ),
+        child: Icon(Icons.arrow_downward, color: Colors.white, size: 30),
+      ),
     );
   }
 

@@ -14,7 +14,7 @@ import '../../view/dialogs/dialogHelper.dart';
 import '../../view/screens/editdetails/edit_details.dart';
 import '../base_controller/baseController.dart';
 
-class EditDetailsController extends GetxController {
+class EditDetailsController extends BaseController {
   SingingCharacter? character = SingingCharacter.male;
   List<String> base64Images = [];
   final ImagePicker _picker = ImagePicker();
@@ -101,7 +101,9 @@ class EditDetailsController extends GetxController {
 
     final response = await BaseClient()
         .post('/galleries/upload', payload)
-        .catchError(BaseController().handleError);
+        .catchError(handleError);
+
+   
 
     DialogHelper.hideLoading();
     if (response != null) {

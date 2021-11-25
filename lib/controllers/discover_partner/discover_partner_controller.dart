@@ -9,7 +9,7 @@ import 'package:story_view/story_view.dart';
 import 'package:story_view/widgets/story_view.dart';
 import 'package:swipe_cards/swipe_cards.dart';
 
-class DiscoverPartnerController extends GetxController {
+class DiscoverPartnerController extends BaseController {
   final userId = Get.arguments;
   MatchEngine? matchEngine;
   StoryController storyController = StoryController();
@@ -32,7 +32,8 @@ class DiscoverPartnerController extends GetxController {
     isLoading(true);
     final response = await BaseClient()
         .get('/galleries?skip=0&limit=10&userId=$userId', storage.read('token'))
-        .catchError(BaseController().handleError);
+        .catchError(handleError);
+    if (response == null) return;
     profilePics.clear();
     swipeItems.clear();
     if (response != null) {
@@ -55,11 +56,14 @@ class DiscoverPartnerController extends GetxController {
           swipeItems.add(
             SwipeItem(
                 likeAction: () {
-                 scaffoldKey.currentState!.showSnackBar(SnackBar(
-              content: Text("Liked ${userGalleryModel?.data.galleries?[i]}"),
-              duration: Duration(milliseconds: 500),
-            ));
-                }, nopeAction: () {}, superlikeAction: () {}),
+                  scaffoldKey.currentState!.showSnackBar(SnackBar(
+                    content:
+                        Text("Liked ${userGalleryModel?.data.galleries?[i]}"),
+                    duration: Duration(milliseconds: 500),
+                  ));
+                },
+                nopeAction: () {},
+                superlikeAction: () {}),
           );
         }
       } else {
@@ -71,10 +75,10 @@ class DiscoverPartnerController extends GetxController {
             duration: Duration(milliseconds: 5000),
           ),
         );
-         swipeItems.add(
-            SwipeItem(
-                likeAction: () {}, nopeAction: () {}, superlikeAction: () {}),
-          );
+        swipeItems.add(
+          SwipeItem(
+              likeAction: () {}, nopeAction: () {}, superlikeAction: () {}),
+        );
         gallery.value = 1;
       }
 

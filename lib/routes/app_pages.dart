@@ -1,17 +1,17 @@
-import 'package:daytte/controllers/discover_partner/discover_partner_binding.dart';
-import 'package:daytte/controllers/edit_details/edit_detail_binding.dart';
-import 'package:daytte/controllers/findnearest/find_nearest_binding.dart';
-import 'package:daytte/controllers/loginController/login_bining.dart';
-import 'package:daytte/controllers/passion/passion_binding.dart';
-import 'package:daytte/controllers/settingsController/settins_binding.dart';
-import 'package:daytte/view/screens/discoverpartner/discover_partner.dart';
-import 'package:daytte/view/screens/editdetails/edit_details.dart';
-import 'package:daytte/view/screens/interested/interested.dart';
-import 'package:daytte/view/screens/likedetails/like_details.dart';
-import 'package:daytte/view/screens/profiledetails/profile_details.dart';
-import 'package:daytte/view/screens/settings/settings.dart';
+import '../controllers/discover_partner/discover_partner_binding.dart';
+import '../controllers/edit_details/edit_detail_binding.dart';
+import '../controllers/findnearest/find_nearest_binding.dart';
+import '../controllers/loginController/login_bining.dart';
+import '../controllers/passion/passion_binding.dart';
+import '../controllers/settingsController/settins_binding.dart';
+import '../view/screens/aboutus/about_me_edit.dart';
+import '../view/screens/discoverpartner/discover_partner.dart';
+import '../view/screens/editdetails/edit_details.dart';
+import '../view/screens/interested/interested.dart';
+import '../view/screens/likedetails/like_details.dart';
+import '../view/screens/profiledetails/profile_details.dart';
+import '../view/screens/settings/settings.dart';
 import 'package:get/get.dart';
-
 import '../controllers/aboutus_controller/about_us_binding.dart';
 import '../controllers/imagepickercontroller/image_picker_binding.dart';
 import '../controllers/otpController/otp_binding.dart';
@@ -58,7 +58,7 @@ class AppPages {
         bindings: [UniversityBinding()]),
     GetPage(
         name: AppRoutes.ABOUTVIEW,
-        page: () => AboutUs(),
+        page: () => AboutMeEdit(),
         bindings: [AboutUsBinding()]),
     GetPage(
         name: AppRoutes.PASSION,

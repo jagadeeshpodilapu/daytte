@@ -1,23 +1,30 @@
 import 'dart:ui';
 
 import 'package:daytte/consts/image_constants.dart';
+import 'package:daytte/model/find_nearest_model.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 class ExpandPartnerDetails extends StatelessWidget {
+  final User user = Get.arguments;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
-    return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
-        clipBehavior: Clip.none,
-        children: [
-          _userProfilePicWidget(),
-          _downArrowWidget(),
-          _userBioDetailsWidget(theme),
-        ],
+    return Hero(
+      tag: "img",
+      child: Scaffold(
+        body: Container(
+          child: Stack(
+            fit: StackFit.expand,
+            clipBehavior: Clip.none,
+            children: [
+              _userProfilePicWidget(),
+              _downArrowWidget(),
+              _userBioDetailsWidget(theme),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -26,57 +33,67 @@ class ExpandPartnerDetails extends StatelessWidget {
     return FractionallySizedBox(
       heightFactor: 0.5,
       alignment: Alignment.bottomCenter,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            addVerticalSpace(20),
-            _userNameWidget(theme),
-            addVerticalSpace(10),
-            _infoWidget(Icons.business_center, "Wildlife Photographer", theme),
-            addVerticalSpace(5),
-            _infoWidget(
-                Icons.location_city_rounded, "Lives in New York", theme),
-            addVerticalSpace(5),
-            _infoWidget(Icons.person, "Wildlife Photographer", theme),
-            addVerticalSpace(5),
-            _infoWidget(Icons.location_on, "Wildlife Photographer", theme),
-            _aboutmeText(theme, "About Me"),
-            _aboutmeInfoWidget(theme),
-            addVerticalSpace(20),
-            _divider,
-            addVerticalSpace(20),
-            _aboutmeText(theme, "Passion"),
-            _passionListWidget(theme),
-            addVerticalSpace(20),
-            _divider,
-            addVerticalSpace(20),
-            Center(
-                child: Text(
-              "Share Denise Burton Profile",
-              style: theme.headline6?.copyWith(color: Color(0xff7004E3)),
-            )),
-            Center(
-                child: Text(
-              "See what a friend thinks",
-              style: theme.subtitle1
-                  ?.copyWith(color: Color(0xff7004E3), fontSize: 18),
-            )),
-            addVerticalSpace(20),
-            _divider,
-            addVerticalSpace(20),
-            Text(
-              "REPORT DENISE BURTON",
-              style: theme.headline6?.copyWith(color: Color(0xff9a9a9a)),
-            ),
-            addVerticalSpace(20),
-            _divider,
-            addVerticalSpace(40),
-            _setIconsWidget(),
-            addVerticalSpace(30),
-          ],
-        ),
+      child: ListView(
+        children: [
+          addVerticalSpace(10),
+          _userNameWidget(theme),
+          addVerticalSpace(10),
+          _infoWidget(Icons.business_center,
+              "${user.institute ?? "Wildlife Photographer"}", theme),
+          addVerticalSpace(5),
+          _infoWidget(Icons.location_city_rounded, "Lives in New York", theme),
+          addVerticalSpace(5),
+          _infoWidget(Icons.person, "${user.gender}", theme),
+          addVerticalSpace(5),
+          _infoWidget(Icons.location_on, "2Km away", theme),
+          _aboutmeText(theme, "About Me"),
+          _aboutmeInfoWidget(theme),
+          addVerticalSpace(20),
+          _divider,
+          addVerticalSpace(20),
+          _aboutmeText(theme, "Passion"),
+          _passionListWidget(theme),
+          addVerticalSpace(20),
+          _divider,
+          addVerticalSpace(20),
+          _shareProfileWidget(theme),
+          _shareWidgetSub(theme),
+          addVerticalSpace(20),
+          _divider,
+          addVerticalSpace(20),
+          _reportProfileWidget(theme),
+          addVerticalSpace(20),
+          _divider,
+          addVerticalSpace(40),
+          _setIconsWidget(),
+          addVerticalSpace(30),
+        ],
       ),
     );
+  }
+
+  Widget _reportProfileWidget(TextTheme theme) {
+    return Text(
+      "REPORT  ${user.firstname} ${user.lastname}",
+      textAlign: TextAlign.center,
+      style: theme.headline6?.copyWith(color: Color(0xff9a9a9a)),
+    );
+  }
+
+  Widget _shareWidgetSub(TextTheme theme) {
+    return Center(
+        child: Text(
+      "See what a friend thinks",
+      style: theme.subtitle1?.copyWith(color: Color(0xff7004E3), fontSize: 18),
+    ));
+  }
+
+  Widget _shareProfileWidget(TextTheme theme) {
+    return Center(
+        child: Text(
+      "Share  ${user.firstname} ${user.lastname}",
+      style: theme.headline6?.copyWith(color: Color(0xff7004E3),fontSize: 22),
+    ));
   }
 
   Widget _setIconsWidget() {
@@ -114,8 +131,8 @@ class ExpandPartnerDetails extends StatelessWidget {
         },
         child: Image.asset(
           icon,
-          height: 30,
-          width: 30,
+          height: icon == ImageConstants.ic_close ? 24 : 30,
+          width: icon == ImageConstants.ic_close ? 24 : 30,
         ),
       ),
     );
@@ -127,15 +144,15 @@ class ExpandPartnerDetails extends StatelessWidget {
       child: Wrap(
         runSpacing: 5,
         children: List.generate(
-            4,
+            user.passion!.length,
             (index) => Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    padding: const EdgeInsets.all(12.0),
+                    padding: const EdgeInsets.all(10.0),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(color: Color(0xff7004E3), width: 2)),
-                    child: Text("index $index dskfnjksdlf",
+                    child: Text("${user.passion?[index].name}",
                         style: theme.subtitle1
                             ?.copyWith(color: Color(0xff7004E3))),
                   ),
@@ -147,8 +164,7 @@ class ExpandPartnerDetails extends StatelessWidget {
   Padding _aboutmeInfoWidget(TextTheme theme) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 3),
-      child: Text(
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever",
+      child: Text("${user.shortDescription}",
           style: theme.subtitle1?.copyWith(
               fontWeight: FontWeight.w400,
               fontSize: 18,
@@ -174,9 +190,12 @@ class ExpandPartnerDetails extends StatelessWidget {
 
   Widget _infoWidget(IconData src, String text, TextTheme theme) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        addHorizontalSpace(10),
-        Icon(src, color: Colors.grey),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Icon(src, color: Colors.grey),
+        ),
         addHorizontalSpace(10),
         Text(text,
             style: theme.headline6
@@ -186,10 +205,11 @@ class ExpandPartnerDetails extends StatelessWidget {
   }
 
   Widget _userNameWidget(TextTheme theme) {
+    var age = user.age.toString().split(" ");
     return Align(
         alignment: Alignment.topCenter,
         child: Text(
-          "Denise Burton 26",
+          "${user.firstname} ${user.lastname} ${age.first}",
           style: theme.headline6,
         ));
   }
@@ -199,33 +219,28 @@ class ExpandPartnerDetails extends StatelessWidget {
       heightFactor: 0.5,
       alignment: Alignment.topCenter,
       child: Container(
-        child: Image.asset('assets/icon/video_girl.png', fit: BoxFit.cover),
+        child: Image.network('${user.profileImg?.imgPath}', fit: BoxFit.cover),
       ),
     );
   }
 
-  Align _downArrowWidget() {
-    return Align(
-      alignment: Alignment.centerRight,
-      child: Container(
-        height: 40,
-        width: 40,
-        margin: EdgeInsets.symmetric(horizontal: 20),
-        decoration: BoxDecoration(
-          color: Colors.red,
-          shape: BoxShape.circle,
-          gradient: gradientColors,
+  Widget _downArrowWidget() {
+    return GestureDetector(
+      onTap: () => Get.back(),
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: Container(
+          height: 40,
+          width: 40,
+          margin: EdgeInsets.symmetric(horizontal: 20),
+          decoration: BoxDecoration(
+            color: Colors.red,
+            shape: BoxShape.circle,
+            gradient: gradientColors,
+          ),
+          child: Icon(Icons.arrow_upward, color: Colors.white, size: 30),
         ),
-        child: Icon(Icons.arrow_downward, color: Colors.white, size: 30),
       ),
     );
   }
-
-  LinearGradient get gradientColors => LinearGradient(
-        colors: <Color>[
-          Color(0xFF7004E3),
-          Color(0xFF8511E6),
-          Color(0xFF9A1EE9),
-        ],
-      );
 }

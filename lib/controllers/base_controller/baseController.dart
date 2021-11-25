@@ -1,9 +1,26 @@
+import 'package:get/get.dart';
+
 import '../../services/base_service/app_exceptions.dart';
 import '../../view/dialogs/dialogHelper.dart';
 
-class BaseController {
+class BaseController extends GetxController {
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+  }
+
   void handleError(error) {
-    print("service handle error $error");
+    print("service handle error $error  ${error.message}");
     hideLoading();
     if (error is BadRequestException) {
       var message = error.message;

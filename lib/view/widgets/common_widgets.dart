@@ -3,7 +3,15 @@ import 'package:get/get.dart';
 
 import '../../utils/common_functions.dart';
 
-Widget linearGradientBackground() {
+LinearGradient get gradientColors => LinearGradient(
+        colors: <Color>[
+          Color(0xFF7004E3),
+          Color(0xFF8511E6),
+          Color(0xFF9A1EE9),
+        ],
+      );
+
+/* Widget linearGradientBackground() {
   return Container(
     decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -11,7 +19,7 @@ Widget linearGradientBackground() {
             end: Alignment(1.3039388020833333, -0.19459635416666668),
             colors: [const Color(0xff3c0fc7), const Color(0xffc86dd7)])),
   );
-}
+} */
 
 Widget addHorizontalSpace(double width) {
   return SizedBox(width: width);

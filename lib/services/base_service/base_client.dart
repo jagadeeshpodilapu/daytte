@@ -39,10 +39,11 @@ class BaseClient {
     var payload = json.encode(payloadObj);
     try {
       var response = await Dio()
-          .post(
-            baseUrl + api,
-            data: payload,
-          )
+          .post(baseUrl + api,
+              data: payload,
+              options: Options(headers: {
+                'Content-Type': 'application/json',
+              }))
           .timeout(Duration(seconds: TIME_OUT_DURATION));
       return _processResponse(response);
     } on SocketException {
@@ -94,7 +95,7 @@ class BaseClient {
     } on TimeoutException {
       throw ApiNotRespondingException(
           'API not responded in time', uri.toString());
-    }
+    } 
   }
 
   dynamic _processResponse(response) {

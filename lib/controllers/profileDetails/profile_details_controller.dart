@@ -5,7 +5,7 @@ import 'package:daytte/services/base_service/base_client.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class ProfileDetailsController extends GetxController {
+class ProfileDetailsController extends BaseController {
   final storage = GetStorage();
   User? user;
   RxBool isLoading = true.obs;

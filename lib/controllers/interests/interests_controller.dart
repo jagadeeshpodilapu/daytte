@@ -8,9 +8,9 @@ import 'package:daytte/view/widgets/enums.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class InterestController extends GetxController {
+class InterestController extends BaseController {
   Gender selctedGender = Gender.Male;
- 
+
   final storage = GetStorage();
   ResponseModel? responseModel;
   handleGenderChange(Gender? value) {
@@ -18,14 +18,13 @@ class InterestController extends GetxController {
     update();
   }
 
- Future updateInterestedStatus() async {
+  Future updateInterestedStatus() async {
     Map<String, dynamic> payload = {
       "interestedIn": selctedGender.toString().split('.').last
     };
     DialogHelper.showLoading('Loading...');
     final response = await BaseClient()
-        .patch('/users/${storage.read("id")}',
-            payload, storage.read('token'))
+        .patch('/users/${storage.read("id")}', payload, storage.read('token'))
         .catchError(BaseController().handleError);
     print("response Gender $response");
     DialogHelper.hideLoading();

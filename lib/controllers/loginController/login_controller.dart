@@ -6,7 +6,7 @@ import '../../services/base_service/base_client.dart';
 import '../../view/dialogs/dialogHelper.dart';
 import '../base_controller/baseController.dart';
 
-class LoginController extends GetxController {
+class LoginController extends BaseController {
   TextEditingController mobileController = TextEditingController();
 
   void sendOtp(payload) async {

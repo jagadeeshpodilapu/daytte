@@ -64,7 +64,7 @@ class User {
     this.deviceToken,
     this.newUser,
     this.profileImg,
-    this.filterRadius
+   // this.filterRadius,
   });
 
   String? provider;
@@ -80,7 +80,7 @@ class User {
   String? deviceToken;
   bool? newUser;
   String? profileImg;
-  double? filterRadius;
+  // double? filterRadius;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         provider: json["provider"],
@@ -96,7 +96,8 @@ class User {
         deviceToken: json["device_token"],
         newUser: json["newUser"],
         profileImg: json["profileImg"],
-        filterRadius: json['filterRadius'].toDouble());
+        // filterRadius: json['filterRadius'] ?? 0.0,
+      );
 
   Map<String, dynamic> toJson() => {
         "provider": provider,

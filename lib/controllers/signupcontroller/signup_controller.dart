@@ -12,7 +12,7 @@ import '../../view/dialogs/dialogHelper.dart';
 import '../base_controller/baseController.dart';
 import '../otpController/otp_controller.dart';
 
-class SignupController extends GetxController {
+class SignupController extends BaseController {
   final List<String> gender = ["Male", "Female"];
   LocationModel? locationModel;
   Position? currentPostion;
@@ -21,8 +21,6 @@ class SignupController extends GetxController {
   TextEditingController lastName = TextEditingController();
   TextEditingController dob = TextEditingController();
   TextEditingController email = TextEditingController();
-
-  
 
   String dateformate = '';
   DateTime selectedDate = DateTime.now();
@@ -84,8 +82,7 @@ class SignupController extends GetxController {
 
     DialogHelper.showLoading('Loading...');
     final response = await BaseClient()
-        .patch('/users/${storage.read('id')}',
-            payload, storage.read('token'))
+        .patch('/users/${storage.read('id')}', payload, storage.read('token'))
         .catchError(BaseController().handleError);
     print("response Otp $payload");
     DialogHelper.hideLoading();

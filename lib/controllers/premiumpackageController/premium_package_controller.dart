@@ -1,10 +1,12 @@
+import 'package:daytte/controllers/base_controller/baseController.dart';
+
 import '../../model/premium_offer_model.dart';
 import '../../model/premium_package_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 import 'package:get/utils.dart';
 
-class PremiumPackageController extends GetxController {
+class PremiumPackageController extends BaseController {
   var selectedPageIndex = 0.obs;
   var selectedPremiumType = 1.obs;
 

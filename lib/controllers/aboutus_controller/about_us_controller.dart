@@ -11,7 +11,7 @@ import '../../view/dialogs/dialogHelper.dart';
 import '../base_controller/baseController.dart';
 import '../otpController/otp_controller.dart';
 
-class AboutUsController extends GetxController {
+class AboutUsController extends BaseController {
   TextEditingController shortDisc = TextEditingController();
 
   final storage = GetStorage();
@@ -27,7 +27,8 @@ class AboutUsController extends GetxController {
     DialogHelper.showLoading('Loading...');
     final response = await BaseClient()
         .patch('/users/${storage.read("id")}', payload, storage.read('token'))
-        .catchError(BaseController().handleError);
+        .catchError(handleError);
+    if (response == null) return;
     print("response Gender $response");
     DialogHelper.hideLoading();
     if (response != null) {
@@ -57,7 +58,8 @@ class AboutUsController extends GetxController {
 
     update();
   }
-   removeImage(File item) {
+
+  removeImage(File item) {
     pickedImages.remove(item);
     update();
   }

@@ -1,7 +1,6 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../controllers/university/university_controller.dart';
 import '../../widgets/common_widgets.dart';
 
@@ -13,7 +12,6 @@ class UniversityView extends StatelessWidget {
       body: GetBuilder<UniversityController>(
         init: UniversityController(),
         builder: (controller) => Container(
-          // margin: EdgeInsets.all(10),
           padding: EdgeInsets.all(8),
           height: Get.height * 0.9,
           child: Card(
@@ -21,20 +19,20 @@ class UniversityView extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          hintText: Constants.searchUniversity,
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: Constants.searchUniversity,
                       prefixIcon: Icon(Icons.search),
                     ),
-                        textAlignVertical: TextAlignVertical.center,
-                      ),
-                    ),
-                    controller.universityListModel?.universityList.passion.length !=
+                    textAlignVertical: TextAlignVertical.center,
+                  ),
+                ),
+                controller.universityListModel?.universityList.passion.length !=
                         0
-                        ? Expanded(
-                      child: ListView.builder(
+                    ? Expanded(
+                        child: ListView.builder(
                           itemCount: controller.universityListModel
                                   ?.universityList.passion.length ??
                               0,
@@ -49,23 +47,34 @@ class UniversityView extends StatelessWidget {
                                         "${controller.responseModel?.message}")));
                               }
                             },
-                            child: Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Color(0xff9a9a9a))),
-                              child: Text(
-                                "${controller.universityListModel!.universityList.passion[index].name}",
-                                style: Theme.of(context).textTheme.headline6,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                padding: EdgeInsets.all(8),
+                                margin: EdgeInsets.symmetric(horizontal: 4),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(6),
+                                  border: Border.all(
+                                    color: Color(0xff9a9a9a),
+                                  ),
+                                ),
+                                child: Text(
+                                  "${controller.universityListModel?.universityList.passion[index].name}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline6
+                                      ?.copyWith(fontWeight: FontWeight.w400),
+                                ),
                               ),
                             ),
                           ),
-                      ),
-                    )
+                        ),
+                      )
                     : Center(child: CircularProgressIndicator.adaptive())
-                  ],
-                ),
-              ),
+              ],
             ),
+          ),
+        ),
       ),
     );
   }

@@ -7,7 +7,7 @@ import '../../services/base_service/base_client.dart';
 import '../../view/dialogs/dialogHelper.dart';
 import '../base_controller/baseController.dart';
 
-class ChooseGenderController extends GetxController {
+class ChooseGenderController extends BaseController {
   final storage = GetStorage();
   List<Map<String, dynamic>> genderData = [
     {'gender': 'Male', 'icon': ImageConstants.ic_male},
@@ -24,7 +24,8 @@ class ChooseGenderController extends GetxController {
     DialogHelper.showLoading('Loading...');
     final response = await BaseClient()
         .patch('/users/${storage.read('id')}', payload, storage.read('token'))
-        .catchError(BaseController().handleError);
+        .catchError(handleError);
+    if (response == null) return;
     print("response Otp $response");
     DialogHelper.hideLoading();
     if (response != null) {

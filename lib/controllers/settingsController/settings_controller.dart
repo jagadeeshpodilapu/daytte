@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class SettingsController extends GetxController {
+class SettingsController extends BaseController {
   RxDouble maxDistance = 20.0.obs;
   Rx<RangeValues> rangeValues = RangeValues(18, 30).obs;
   RxBool showme = true.obs;
