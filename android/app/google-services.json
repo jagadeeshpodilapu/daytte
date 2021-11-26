@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "503343013262",
+    "project_id": "wooly-619e2",
+    "storage_bucket": "wooly-619e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:503343013262:android:3126f97e751d60986658df",
+        "android_client_info": {
+          "package_name": "com.hastter.daytte"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "503343013262-82jhhnnmgsapomvj33ulei2njngvl6lg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKmNc0N1gkeXnHYXOUs9NGEjyZSLRDal0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "503343013262-82jhhnnmgsapomvj33ulei2njngvl6lg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

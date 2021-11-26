@@ -1,5 +1,6 @@
 import 'package:daytte/controllers/base_controller/baseController.dart';
 import 'package:daytte/routes/app_routes.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -10,8 +11,13 @@ class SplashController extends BaseController {
     storage.writeIfNull("page", "0");
     storage.writeIfNull("isLogged", false);
     storage.writeIfNull("page", 0);
-
+    getDeviceToken();
     super.onInit();
+  }
+
+  getDeviceToken() async {
+    var device_token =await FirebaseMessaging.instance.getToken();
+    print("device token  $device_token");
   }
 
   void gotoPage() {

@@ -41,6 +41,7 @@ class AboutMeEdit extends StatelessWidget {
                 _addGalleryWidget(controller),
                 addVerticalSpace(10),
                 Center(child: addMediaButtonWidget(context)),
+                addVerticalSpace(30),
                 detailsWidget(),
                 SizedBox(
                   height: 10,
@@ -173,7 +174,7 @@ class AboutMeEdit extends StatelessWidget {
 
   Container detailsWidget() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 12.0),
+      margin: EdgeInsets.symmetric(horizontal: 2.0),
       decoration: BoxDecoration(
           border: Border.all(color: Colors.white, width: 0.7),
           boxShadow: [
