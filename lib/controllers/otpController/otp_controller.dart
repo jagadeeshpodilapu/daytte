@@ -2,11 +2,13 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:daytte/utils/common_functions.dart';
+import 'package:daytte/view/screens/permissions/permissions.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:location/location.dart';
 
 import '../../model/user_info_model.dart';
 import '../../routes/app_routes.dart';
@@ -50,12 +52,14 @@ class OtpController extends BaseController {
   void onInit() {
     super.onInit();
     mobileNumber = Get.arguments ?? "";
-    //  getDeviceToken();
+    getDeviceToken();
     startTimer();
   }
 
   getDeviceToken() async {
     deviceToken.value = (await FirebaseMessaging.instance.getToken())!;
+    storage.write("device_token", deviceToken.value);
+    print("device token $deviceToken.value");
   }
 
   @override
@@ -67,7 +71,7 @@ class OtpController extends BaseController {
     Map<String, dynamic> payload = {
       "mobile_number": "+91$mobile",
       "otp": otp,
-      "device_token": "random strings"
+      "device_token": deviceToken.value
     };
 
     print("payload otp $payload");
@@ -75,7 +79,6 @@ class OtpController extends BaseController {
     final response = await BaseClient()
         .post('/auth/verifyOtp', payload)
         .catchError(handleError);
-
     if (response == null) return;
 
     userInfoModel = UserInfoModel.fromJson(response);
@@ -86,7 +89,12 @@ class OtpController extends BaseController {
     if (userInfoModel != null) {
       if (userInfoModel!.userProperties.user!.newUser!) {
         storage.write('page', "1");
-        Get.offAndToNamed(AppRoutes.SIGNUPVIEW);
+        var location = await Location().hasPermission();
+        if (location != PermissionStatus.granted) {
+          Get.to(() => EnablePermsions());
+        } else {
+          Get.offAndToNamed(AppRoutes.SIGNUPVIEW);
+        }
       } else {
         storage.write('page', "8");
         Get.offAndToNamed(AppRoutes.HOMEVIEW);
@@ -102,11 +110,9 @@ class OtpController extends BaseController {
 
     DialogHelper.showLoading('Sending Otp');
 
-    final response =
-        await BaseClient().post('/auth/resendOtp', payload).catchError((error) {
-      print("resend resposnse error $error");
-      BaseController().handleError(error);
-    });
+    final response = await BaseClient()
+        .post('/auth/resendOtp', payload)
+        .catchError(handleError);
     print("response resend $response");
     DialogHelper.hideLoading();
   }

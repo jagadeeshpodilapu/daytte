@@ -1,4 +1,6 @@
 import 'package:daytte/controllers/base_controller/baseController.dart';
+import 'package:daytte/routes/app_routes.dart';
+import 'package:get/get.dart';
 import 'package:location/location.dart';
 
 class PermissionController extends BaseController {
@@ -6,7 +8,7 @@ class PermissionController extends BaseController {
 
   // late bool _serviceEnabled;
   PermissionStatus? permissionGranted;
-  late LocationData locationData;
+   LocationData? locationData;
 
   ///Create async methods for checking permission is granted or not
   Future<void> checkPermissions() async {
@@ -15,13 +17,12 @@ class PermissionController extends BaseController {
 
     permissionGranted = permissionGrantedResult;
 
-    
-     if (permissionGranted == PermissionStatus.granted) {
-        locationData = await location.getLocation();
-      }
-    if (permissionGranted == PermissionStatus.denied) requestPermission();
-    print("permission status $permissionGranted  $locationData");
-     update();
+    if (permissionGranted == PermissionStatus.granted) {
+      locationData = await location.getLocation();
+      Get.offAndToNamed(AppRoutes.SIGNUPVIEW);
+    }
+
+    update();
   }
 
   /// Create async method for requesting the permission
@@ -32,8 +33,12 @@ class PermissionController extends BaseController {
 
       permissionGranted = permissionRequestedResult;
 
+      if (permissionGranted == PermissionStatus.granted) {
+        locationData = await location.getLocation();
+        Get.offAndToNamed(AppRoutes.SIGNUPVIEW);
+      }
+
       update();
-    } 
-    
+    }
   }
 }

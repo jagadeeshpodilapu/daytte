@@ -4,12 +4,12 @@ import 'package:get/get.dart';
 import '../../utils/common_functions.dart';
 
 LinearGradient get gradientColors => LinearGradient(
-        colors: <Color>[
-          Color(0xFF7004E3),
-          Color(0xFF8511E6),
-          Color(0xFF9A1EE9),
-        ],
-      );
+      colors: <Color>[
+        Color(0xFF7004E3),
+        Color(0xFF8511E6),
+        Color(0xFF9A1EE9),
+      ],
+    );
 
 /* Widget linearGradientBackground() {
   return Container(
@@ -35,27 +35,6 @@ SliverGridDelegateWithFixedCrossAxisCount get sliverCountAxis {
       crossAxisSpacing: 4.0,
       childAspectRatio: 2.3 / 3,
       mainAxisSpacing: 4.0);
-}
-
-Widget appBarLinearGradient(String title) {
-  return Center(
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        IconButton(
-          icon: Icon(Icons.arrow_back),
-          color: Colors.white,
-          iconSize: 26,
-          onPressed: () => Get.back(),
-        ),
-        Text(
-          title,
-          style: TextStyle(color: Colors.white, fontSize: 18),
-        ),
-        SizedBox(),
-      ],
-    ),
-  );
 }
 
 AppBar appBarWidget(String title, {Color? color}) {

@@ -3,6 +3,7 @@ import 'package:daytte/controllers/findnearest/find_nearest_controller.dart';
 import 'package:daytte/model/user_gallery_model.dart';
 import 'package:daytte/services/base_service/base_client.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/diagnostics.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:story_view/story_view.dart';
@@ -86,4 +87,6 @@ class DiscoverPartnerController extends BaseController {
     }
     update();
   }
+
+ 
 }

@@ -1,3 +1,4 @@
+import 'package:daytte/controllers/permissionController/permission_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -15,21 +16,17 @@ import '../otpController/otp_controller.dart';
 class SignupController extends BaseController {
   final List<String> gender = ["Male", "Female"];
   LocationModel? locationModel;
-  Position? currentPostion;
+
   final GlobalKey<FormState> key = GlobalKey<FormState>();
   TextEditingController firstName = TextEditingController();
   TextEditingController lastName = TextEditingController();
   TextEditingController dob = TextEditingController();
   TextEditingController email = TextEditingController();
+  final location = Get.find<PermissionController>();
 
   String dateformate = '';
   DateTime selectedDate = DateTime.now();
   final storage = GetStorage();
-
-  /*  void onClickRadioButton(value) {
-    select = value;
-    update();
-  } */
 
   @override
   void onInit() {
@@ -51,24 +48,10 @@ class SignupController extends BaseController {
   }
 
   void _getUserLocation() async {
-    var position = await GeolocatorPlatform.instance
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    locationModel =
-        LocationModel(lang: position.longitude, lat: position.latitude);
+    locationModel = LocationModel(
+        lang: location.locationData?.longitude ?? 0.0,
+        lat: location.locationData?.latitude ?? 0.0);
   }
-  /* _getAddressFromLatLng() async {
-  try {
-    List<Placemark> p = await geolocator.placemarkFromCoordinates(
-        _currentPosition.latitude, _currentPosition.longitude);
-    Placemark place = p[0];
-    setState(() {
-      _currentAddress =
-      "${place.locality}, ${place.postalCode}, ${place.country}";
-    });
-  } catch (e) {
-    print(e);
-  }
-} */
 
   Future postUserInfo() async {
     Map<String, dynamic> payload = {

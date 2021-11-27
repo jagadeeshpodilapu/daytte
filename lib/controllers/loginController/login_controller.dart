@@ -11,11 +11,9 @@ class LoginController extends BaseController {
 
   void sendOtp(payload) async {
     DialogHelper.showLoading('Sending Otp');
-    final response =
-        await BaseClient().post('/auth/sendOtp', payload).catchError((error) {
-      print("send resposnse error $error");
-      BaseController().handleError(error);
-    });
+    final response = await BaseClient()
+        .post('/auth/sendOtp', payload)
+        .catchError(handleError);
 
     DialogHelper.hideLoading();
     if (response != null) {

@@ -2,206 +2,242 @@ import 'package:daytte/consts/constants.dart';
 import 'package:daytte/model/find_nearest_model.dart';
 import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/view/screens/discoverpartner/expand_discover_partner.dart';
+import 'package:daytte/view/screens/findnearest/expire_banner.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:showcaseview/showcaseview.dart';
 import 'package:story_view/widgets/story_view.dart';
 import 'package:swipe_cards/swipe_cards.dart';
 
 import '../../../consts/image_constants.dart';
 import '../../../controllers/discover_partner/discover_partner_controller.dart';
 
-class DiscoverPartner extends StatelessWidget {
+class DiscoverPartner extends StatefulWidget {
+  @override
+  State<DiscoverPartner> createState() => _DiscoverPartnerState();
+}
+
+class _DiscoverPartnerState extends State<DiscoverPartner>
+    with AutomaticKeepAliveClientMixin {
   final User user = Get.arguments;
+  final keyOne = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    final controller = Get.find<DiscoverPartnerController>();
+
+    controller.fetchUserGallery(user.id.toString());
+    WidgetsBinding.instance?.addPostFrameCallback(
+      (_) => ShowCaseWidget.of(context)?.startShowCase([
+        keyOne,
+      ]),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
-    return Scaffold(
-      appBar: _appBarWidget(theme),
-      backgroundColor: Color(0xffF7F8FA),
-      body: GetBuilder<DiscoverPartnerController>(
-          init: DiscoverPartnerController(),
-          didChangeDependencies: (state) {
-            state.controller?.fetchUserGallery(user.id.toString());
-          },
-          builder: (controller) {
-            return Stack(
-              children: [
-                Container(
-                  child: Container(
-                    height: Get.height * 0.80,
-                    width: Get.width,
-                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    child: Stack(
-                      children: [
-                        controller.isLoading.value
-                            ? Center(child: CircularProgressIndicator())
-                            : controller.gallery.value != 0
-                                ? Stack(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 8, top: 8.0, right: 8.0),
-                                        child: Card(
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(12)),
-                                          child: Center(),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 15.0),
-                                        child: Card(
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(12)),
-                                          elevation: 4,
-                                          child: SwipeCards(
-                                            matchEngine:
-                                                controller.matchEngine ??
-                                                    MatchEngine(),
-                                            itemBuilder: (BuildContext context,
-                                                int index) {
-                                              return GestureDetector(
-                                                onTap: () {
-                                                  Get.toNamed(
-                                                      AppRoutes.PROFILEVIEW,
-                                                      arguments: user);
-                                                },
-                                                child: Container(
-                                                  color: Colors.white,
-                                                  child: Column(
-                                                    children: [
-                                                      Container(
-                                                        height:
-                                                            Get.height * 0.47,
-                                                        child: Stack(
+
+    return Hero(
+      tag: 'img',
+      child: Scaffold(
+        appBar: _appBarWidget(theme),
+        backgroundColor: Color(0xffF7F8FA),
+        body: GetBuilder<DiscoverPartnerController>(
+            init: DiscoverPartnerController(),
+            builder: (controller) {
+              return Column(
+                children: [
+                  ExpireBannerWidget(),
+                  Stack(
+                    children: [
+                      Container(
+                        child: Container(
+                          height: Get.height * 0.75,
+                          width: Get.width,
+                          margin:
+                              EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          child: Stack(
+                            children: [
+                              controller.isLoading.value
+                                  ? Center(child: CircularProgressIndicator())
+                                  : controller.gallery.value != 0
+                                      ? Stack(
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 8, top: 8, right: 8.0),
+                                              child: Card(
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            12)),
+                                                child: Center(),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 15.0),
+                                              child: Card(
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            12)),
+                                                elevation: 4,
+                                                child: SwipeCards(
+                                                  matchEngine:
+                                                      controller.matchEngine ??
+                                                          MatchEngine(),
+                                                  itemBuilder:
+                                                      (BuildContext context,
+                                                          int index) {
+                                                    return GestureDetector(
+                                                      onTap: () {
+                                                        Get.toNamed(
+                                                            AppRoutes
+                                                                .PROFILEVIEW,
+                                                            arguments: user);
+                                                      },
+                                                      child: Container(
+                                                        color: Colors.white,
+                                                        child: Column(
                                                           children: [
                                                             Container(
                                                               height:
                                                                   Get.height *
-                                                                      0.45,
-                                                              width: Get.width,
-                                                              alignment:
-                                                                  Alignment
-                                                                      .center,
-                                                              color: Colors
-                                                                  .transparent,
-                                                              child: ClipRRect(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            15.0),
-                                                                child:
-                                                                    StoryView(
-                                                                  controller:
-                                                                      controller
-                                                                          .storyController,
-                                                                  storyItems:
-                                                                      controller
-                                                                          .profilePics,
-                                                                  repeat: false,
-                                                                  onStoryShow:
-                                                                      (storyItem) {
-                                                                    final index = controller
-                                                                        .profilePics
-                                                                        .indexOf(
-                                                                            storyItem);
-                                                                  },
-                                                                ),
+                                                                      0.47,
+                                                              child: Stack(
+                                                                children: [
+                                                                  Container(
+                                                                    height:
+                                                                        Get.height *
+                                                                            0.45,
+                                                                    width: Get
+                                                                        .width,
+                                                                    alignment:
+                                                                        Alignment
+                                                                            .center,
+                                                                    color: Colors
+                                                                        .transparent,
+                                                                    child:
+                                                                        ClipRRect(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              15.0),
+                                                                      child:
+                                                                          StoryView(
+                                                                        controller:
+                                                                            controller.storyController,
+                                                                        storyItems:
+                                                                            controller.profilePics,
+                                                                        repeat:
+                                                                            false,
+                                                                        onStoryShow:
+                                                                            (storyItem) {
+                                                                          final index = controller
+                                                                              .profilePics
+                                                                              .indexOf(storyItem);
+                                                                        },
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  _distanceWidget(),
+                                                                  _personsMatchingPercentage(),
+                                                                ],
                                                               ),
                                                             ),
-                                                            _distanceWidget(),
-                                                            _personsMatchingPercentage(),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      Align(
-                                                        alignment: Alignment
-                                                            .bottomCenter,
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          children: [
-                                                            addVerticalSpace(
-                                                                15),
-                                                            _userNamesWidget(
-                                                                theme),
-                                                            addVerticalSpace(
-                                                                15),
-                                                            _usersShortDescriptionWidget(
-                                                                theme),
-                                                            SizedBox(
-                                                              height: 15,
+                                                            Align(
+                                                              alignment: Alignment
+                                                                  .bottomCenter,
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .min,
+                                                                children: [
+                                                                  addVerticalSpace(
+                                                                      8),
+                                                                  _userNamesWidget(
+                                                                      theme),
+                                                                  addVerticalSpace(
+                                                                      8),
+                                                                  _usersShortDescriptionWidget(
+                                                                      theme),
+                                                                  addVerticalSpace(
+                                                                      15),
+                                                                  Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceEvenly,
+                                                                    children: [
+                                                                      buildContainer(
+                                                                          ImageConstants
+                                                                              .ic_rewind,
+                                                                          24,
+                                                                          24,
+                                                                          controller),
+                                                                      buildContainer(
+                                                                          ImageConstants
+                                                                              .ic_love,
+                                                                          26,
+                                                                          26,
+                                                                          controller),
+                                                                      buildContainer(
+                                                                          ImageConstants
+                                                                              .ic_close,
+                                                                          20,
+                                                                          20,
+                                                                          controller),
+                                                                    ],
+                                                                  )
+                                                                ],
+                                                              ),
                                                             ),
-                                                            Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceEvenly,
-                                                              children: [
-                                                                buildContainer(
-                                                                    ImageConstants
-                                                                        .ic_rewind,
-                                                                    24,
-                                                                    24,
-                                                                    controller),
-                                                                buildContainer(
-                                                                    ImageConstants
-                                                                        .ic_love,
-                                                                    26,
-                                                                    26,
-                                                                    controller),
-                                                                buildContainer(
-                                                                    ImageConstants
-                                                                        .ic_close,
-                                                                    20,
-                                                                    20,
-                                                                    controller),
-                                                              ],
-                                                            )
                                                           ],
                                                         ),
                                                       ),
-                                                    ],
-                                                  ),
+                                                    );
+                                                  },
+                                                  onStackFinished: () {
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(SnackBar(
+                                                            content: Text(
+                                                                "No More Profile Available"),
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    500)));
+                                                    Get.back();
+                                                  },
                                                 ),
-                                              );
-                                            },
-                                            onStackFinished: () {
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(SnackBar(
-                                                      content: Text(
-                                                          "No More Profile Available"),
-                                                      duration: Duration(
-                                                          milliseconds: 500)));
-                                              Get.back();
-                                            },
-                                          ),
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      : Center(
+                                        
+                                          child: Text(
+                                              "No Gallery Pictures  Available"),
                                         ),
-                                      ),
-                                    ],
-                                  )
-                                : Center(
-                                    child:
-                                        Text("No Gallery Pictures  Available"),
-                                  ),
-                        Positioned(
-                            top: Get.height * 0.45,
-                            right: 30,
-                            child: GestureDetector(
-                                onTap: () => Get.to(
-                                    () => ExpandPartnerDetails(),
-                                    arguments: user),
-                                child:
-                                    Hero(tag: 'img', child: _downArrowWidget))),
-                      ],
-                    ),
+                              Positioned(
+                                  top: Get.height * 0.45,
+                                  right: 30,
+                                  child: GestureDetector(
+                                      onTap: () => Get.to(
+                                          () => ExpandPartnerDetails(),
+                                          arguments: user),
+                                      child: _downArrowWidget)),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            );
-          }),
+                ],
+              );
+            }),
+      ),
     );
   }
 
@@ -222,7 +258,7 @@ class DiscoverPartner extends StatelessWidget {
     );
   }
 
-  Visibility _personsMatchingPercentage() {
+  Widget _personsMatchingPercentage() {
     return Visibility(
       visible: false,
       child: Positioned(
@@ -370,4 +406,39 @@ class DiscoverPartner extends StatelessWidget {
       side: BorderSide(color: Colors.white),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
+}
+
+class CustomShowcaseWidget extends StatelessWidget {
+  final Widget child;
+  final String? description;
+  final GlobalKey globalKey;
+
+  const CustomShowcaseWidget({
+    @required this.description,
+    required this.child,
+    required this.globalKey,
+  });
+
+  @override
+  Widget build(BuildContext context) => Showcase(
+        key: globalKey,
+        showcaseBackgroundColor: Colors.pink.shade400,
+        contentPadding: EdgeInsets.all(12),
+        showArrow: false,
+        disableAnimation: true,
+        // title: 'Hello',
+        // titleTextStyle: TextStyle(color: Colors.white, fontSize: 32),
+        description: description,
+        descTextStyle: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          fontSize: 16,
+        ),
+        // overlayColor: Colors.white,
+        // overlayOpacity: 0.7,
+        child: child,
+      );
 }

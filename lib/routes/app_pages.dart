@@ -1,3 +1,5 @@
+import 'package:daytte/controllers/permissionController/permission_binding.dart';
+
 import '../controllers/discover_partner/discover_partner_binding.dart';
 import '../controllers/edit_details/edit_detail_binding.dart';
 import '../controllers/findnearest/find_nearest_binding.dart';
@@ -46,7 +48,7 @@ class AppPages {
     GetPage(
         name: AppRoutes.OTPVERIFICATION,
         page: () => OtpVerification(),
-        bindings: [OtpBinding()]),
+        bindings: [OtpBinding(), PermissionBinding()]),
     GetPage(name: AppRoutes.CHOOSEGENDER, page: () => ChooseGender()),
     GetPage(
         name: AppRoutes.CHOOSEIMAGE,
@@ -58,7 +60,7 @@ class AppPages {
         bindings: [UniversityBinding()]),
     GetPage(
         name: AppRoutes.ABOUTVIEW,
-        page: () => AboutMeEdit(),
+        page: () => AboutUs(),
         bindings: [AboutUsBinding()]),
     GetPage(
         name: AppRoutes.PASSION,

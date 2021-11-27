@@ -11,13 +11,8 @@ class SplashController extends BaseController {
     storage.writeIfNull("page", "0");
     storage.writeIfNull("isLogged", false);
     storage.writeIfNull("page", 0);
-    getDeviceToken();
-    super.onInit();
-  }
 
-  getDeviceToken() async {
-    var device_token =await FirebaseMessaging.instance.getToken();
-    print("device token  $device_token");
+    super.onInit();
   }
 
   void gotoPage() {

@@ -116,12 +116,11 @@ class AboutMeEdit extends StatelessWidget {
     );
   }
 
-  Padding buildPaddingImage({
-    File? item,
-    required AboutUsController controller,
-    required Widget image,
-    String? file,
-  }) {
+  Widget buildPaddingImage(
+      {File? item,
+      required AboutUsController controller,
+      required Widget image,
+      String? file}) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15.0),
       child: ClipRRect(
@@ -136,6 +135,7 @@ class AboutMeEdit extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   item != null ? controller.removeImage(item) : null;
+                  
                   // file != null ? controller.deleteImageSelection(file) : null;
                 },
                 child: Container(
