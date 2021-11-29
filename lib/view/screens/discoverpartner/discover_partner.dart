@@ -1,9 +1,9 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/model/find_nearest_model.dart';
 import 'package:daytte/routes/app_routes.dart';
-import 'package:daytte/view/screens/discoverpartner/expand_discover_partner.dart';
-import 'package:daytte/view/screens/findnearest/expire_banner.dart';
-import 'package:daytte/view/widgets/common_widgets.dart';
+import 'expand_discover_partner.dart';
+import '../findnearest/expire_banner.dart';
+import '../../widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:showcaseview/showcaseview.dart';
@@ -29,8 +29,9 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
     final controller = Get.find<DiscoverPartnerController>();
 
     controller.fetchUserGallery(user.id.toString());
+    
     WidgetsBinding.instance?.addPostFrameCallback(
-      (_) => ShowCaseWidget.of(context)?.startShowCase([
+      (_) => ShowCaseWidget.of(Get.context!)?.startShowCase([
         keyOne,
       ]),
     );

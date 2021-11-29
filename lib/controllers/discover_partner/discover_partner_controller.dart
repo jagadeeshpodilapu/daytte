@@ -51,7 +51,8 @@ class DiscoverPartnerController extends BaseController {
                   "assets/images/placeholder.jpg",
               controller: storyController,
               imageFit: BoxFit.cover,
-              duration: Duration(milliseconds: 5000),
+              duration: Duration(seconds: 10),
+              shown: true,
             ),
           );
           swipeItems.add(
