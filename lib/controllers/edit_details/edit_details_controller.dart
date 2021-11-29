@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:daytte/controllers/findnearest/find_nearest_controller.dart';
 import 'package:daytte/model/delete_gallery.dart';
 import 'package:daytte/routes/app_routes.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
@@ -27,6 +28,10 @@ class EditDetailsController extends BaseController {
   GetEditDetailsModel? getEditDetailsModel;
   List<Gallery> galleryImages = [];
   final userController = Get.put(FindNearestController());
+
+  TextEditingController aboutMeController = TextEditingController();
+  TextEditingController schoolController = TextEditingController();
+  TextEditingController companyController = TextEditingController();
 
   @override
   void onReady() {
@@ -102,8 +107,6 @@ class EditDetailsController extends BaseController {
     final response = await BaseClient()
         .post('/galleries/upload', payload)
         .catchError(handleError);
-
-   
 
     DialogHelper.hideLoading();
     if (response != null) {

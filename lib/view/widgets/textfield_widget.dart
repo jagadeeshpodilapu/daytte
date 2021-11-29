@@ -21,11 +21,13 @@ class TextFieldWidget extends StatelessWidget {
     return TextFormField(
         style: TextStyle(color: Colors.black),
         onChanged: (value) => onChange,
-        validator: (v)=>validator!(v!),
+        validator: (v) => validator!(v!),
         controller: controller,
         decoration: InputDecoration(
           label: Text(label),
           labelStyle: TextStyle(),
+          fillColor: Color(0xffE1E1E1).withOpacity(0.2),
+          filled: true,
           hintText: hint,
           enabledBorder: _outlineBorder(Color(0xFF9A9A9A)),
           focusedBorder: _outlineBorder(Color(0xFf7834F4)),

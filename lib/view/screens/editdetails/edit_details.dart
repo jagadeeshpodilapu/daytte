@@ -2,8 +2,10 @@ import 'dart:io';
 
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/routes/app_routes.dart';
+import 'package:daytte/view/screens/profiledetails/profile_details_edit.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
+import 'package:daytte/view/widgets/textfield_widget.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -82,10 +84,8 @@ class EditDetails extends StatelessWidget {
             ),
             addVerticalSpace(10),
             addMediaButtonWidget(context),
-            detailsWidget(),
-            SizedBox(
-              height: 10,
-            ),
+            detailsWidget(controller),
+            addVerticalSpace(10),
             Padding(
               padding: const EdgeInsets.all(14.0),
               child: RaisedGradientButton(
@@ -101,7 +101,121 @@ class EditDetails extends StatelessWidget {
     );
   }
 
-  Container detailsWidget() {
+  Container detailsWidget(EditDetailsController controller) {
+    controller.aboutMeController.text = controller.userController
+        .findNearestModel?.data.users?.first.shortDescription ??
+        "";
+
+    controller.schoolController.text = controller.userController
+        .findNearestModel?.data.users?.first.institute?.name ??
+        "";
+    controller.companyController.text = controller.userController
+        .findNearestModel?.data.users?.first.institute?.name ??
+        "";
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 2.0),
+      decoration: BoxDecoration(
+          border: Border.all(color: Colors.white, width: 0.7),
+          boxShadow: [
+            BoxShadow(
+                color: const Color(0xffd4dcdd),
+                offset: Offset(3, 9),
+                blurRadius: 4,
+                spreadRadius: -9)
+          ],
+          color: const Color(0xffffffff)),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 10),
+        child: Column(
+          children: [
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: headingWithTextStyle(0.9, "About Me", 17.5),
+                    ),
+                    Text("Edit")
+                  ],
+                ),
+                TextFormField(
+                  style: TextStyle(color: Colors.black),
+                  maxLines: 2,
+                  controller: controller.aboutMeController,
+                  decoration: _inputDecoration(),
+                ),
+              ],
+            ),
+            Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: headingWithTextStyle(0.9, Constants.passion, 17.5),
+                )),
+            Wrap(
+              spacing: 6,
+              runSpacing: 6,
+              crossAxisAlignment: WrapCrossAlignment.start,
+              children: List.generate(
+                  controller.userController.findNearestModel?.data.users?.first
+                      .passion?.length ??
+                      0,
+                      (index) =>
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 6),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.grey)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "${controller.userController.findNearestModel?.data
+                                .users?.first.passion?[index].name}",
+                          ),
+                        ),
+                      )),
+            ),
+            Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: headingWithTextStyle(0.9, Constants.company, 17.5),
+                )),
+            TextFieldWidget(
+                label: '', hint: '', controller: controller.companyController),
+            Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: headingWithTextStyle(0.9, Constants.school, 17.5),
+                )),
+            TextFieldWidget(
+              label: '',
+              hint: '',
+              controller: controller.schoolController,
+            ),
+            addVerticalSpace(10)
+          ],
+        ),
+      ),
+    );
+  }
+
+  InputDecoration _inputDecoration() {
+    return InputDecoration(
+      enabledBorder: _outlineBorder(Color(0xFF9A9A9A)),
+      fillColor: Color(0xffE1E1E1).withOpacity(0.2),
+      filled: true,
+      focusedBorder: _outlineBorder(Color(0xFf7834F4)),
+      errorBorder: _outlineBorder(Colors.red),
+      focusedErrorBorder: _outlineBorder(Colors.red),
+    );
+  }
+
+/*   Container detailsWidget() {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 12.0),
       decoration: BoxDecoration(
@@ -127,10 +241,7 @@ class EditDetails extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: 8.0),
                       child: headingWithTextStyle(0.9, "About Me", 17.5),
                     ),
-                    Image.asset(
-                      "assets/icons/Edit.png",
-                      color: Colors.black54,
-                    )
+                    editIconWidget(),
                   ],
                 ),
                 Padding(
@@ -149,11 +260,8 @@ class EditDetails extends StatelessWidget {
                     Padding(
                         padding: EdgeInsets.symmetric(vertical: 8.0),
                         child:
-                        headingWithTextStyle(0.9, Constants.passion, 17.5)),
-                    Image.asset(
-                      "assets/icons/Edit.png",
-                      color: Colors.black54,
-                    )
+                            headingWithTextStyle(0.9, Constants.passion, 17.5)),
+                    editIconWidget(),
                   ],
                 ),
                 Wrap(
@@ -162,7 +270,7 @@ class EditDetails extends StatelessWidget {
                   children: [
                     ...List.generate(
                         controller.userController.findNearestModel?.data.users
-                            ?.first.passion?.length ??
+                                ?.first.passion?.length ??
                             0, (index) {
                       return Padding(
                         padding: const EdgeInsets.all(4.0),
@@ -198,11 +306,8 @@ class EditDetails extends StatelessWidget {
                     Padding(
                         padding: EdgeInsets.symmetric(vertical: 8.0),
                         child:
-                        headingWithTextStyle(0.9, Constants.company, 17.5)),
-                    Image.asset(
-                      "assets/icons/Edit.png",
-                      color: Colors.black54,
-                    )
+                            headingWithTextStyle(0.9, Constants.company, 17.5)),
+                    editIconWidget()
                   ],
                 ),
                 Padding(
@@ -225,7 +330,7 @@ class EditDetails extends StatelessWidget {
                     Padding(
                         padding: EdgeInsets.symmetric(vertical: 8.0),
                         child:
-                        headingWithTextStyle(0.9, Constants.school, 17.5)),
+                            headingWithTextStyle(0.9, Constants.school, 17.5)),
                     Image.asset(
                       "assets/icons/Edit.png",
                       color: Colors.black54,
@@ -246,6 +351,16 @@ class EditDetails extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+ */
+  Widget editIconWidget() {
+    return GestureDetector(
+      onTap: () => Get.to(() => ProfileViewEdit()),
+      child: Image.asset(
+        "assets/icons/Edit.png",
+        color: Colors.black54,
       ),
     );
   }
@@ -348,5 +463,11 @@ class EditDetails extends StatelessWidget {
             fontSize: size),
       ),
     );
+  }
+
+  OutlineInputBorder _outlineBorder(Color color) {
+    return OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: BorderSide(color: color, width: 1.5));
   }
 }

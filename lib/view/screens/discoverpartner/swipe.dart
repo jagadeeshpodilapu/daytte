@@ -78,7 +78,6 @@ class _MyStoryViewScreenState extends State<MyStoryViewScreen> {
       key: _scaffoldKey,
       appBar: AppBar(),
       body: Container(
-
         child: Column(
           children: [
             Container(
@@ -112,30 +111,36 @@ class _MyStoryViewScreenState extends State<MyStoryViewScreen> {
                     onPressed: () {
                       _matchEngine?.currentItem?.nope();
                     },
-                      style: ElevatedButton.styleFrom( shape: CircleBorder(),),
+                    style: ElevatedButton.styleFrom(
+                      shape: CircleBorder(),
+                    ),
                     child: Padding(
-                     padding: const EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.all(20.0),
                       child: Icon(Icons.fast_rewind),
                     )),
                 ElevatedButton(
                     onPressed: () {
                       _matchEngine?.currentItem?.superLike();
                     },
-                       style: ElevatedButton.styleFrom( shape: CircleBorder(),),
+                    style: ElevatedButton.styleFrom(
+                      shape: CircleBorder(),
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Icon(Icons.link_outlined),
                     )),
                 ElevatedButton(
-                    onPressed: () {
-                      _matchEngine!.currentItem?.like();
-                    },
-                    style: ElevatedButton.styleFrom( shape: CircleBorder(),),
-                     
-                    child: Padding(
+                  onPressed: () {
+                    _matchEngine!.currentItem?.like();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: CircleBorder(),
+                  ),
+                  child: Padding(
                     padding: const EdgeInsets.all(20.0),
-                      child: Icon(Icons.close),
-                    ))
+                    child: Icon(Icons.close),
+                  ),
+                )
               ],
             )
           ],
