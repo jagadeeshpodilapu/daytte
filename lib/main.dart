@@ -3,7 +3,6 @@ import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/services/internet_connect_checker.dart';
 import 'package:daytte/view/screens/discoverpartner/swipe.dart';
 import 'package:daytte/view/screens/permissions/permissions.dart';
-import 'package:daytte/view/screens/profiledetails/profile_details_edit.dart';
 import 'package:daytte/view/screens/university/university.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';

@@ -62,9 +62,13 @@ TextStyle tileTextStyle() {
 }
 
 void snackbarMessage(String message, BuildContext context) {
-  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
       content: Text(
-    "$message",
-    style: TextStyle(color: Colors.white),
-  )));
+        "$message",
+        style: TextStyle(color: Colors.white),
+      ),
+      behavior: SnackBarBehavior.floating,
+    ),
+  );
 }

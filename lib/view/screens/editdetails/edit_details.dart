@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/routes/app_routes.dart';
-import 'package:daytte/view/screens/profiledetails/profile_details_edit.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:daytte/view/widgets/textfield_widget.dart';
@@ -15,7 +14,7 @@ import '../../../controllers/edit_details/edit_details_controller.dart';
 enum SingingCharacter { male, female }
 
 class EditDetails extends StatelessWidget {
-  final controller = Get.put(EditDetailsController());
+  //final controller = Get.put(EditDetailsController());
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +23,7 @@ class EditDetails extends StatelessWidget {
       appBar: appBarWidget(Constants.editDetails, color: Color(0xffF7F8FA)),
       body: GetBuilder<EditDetailsController>(
         init: EditDetailsController(),
+        
         builder: (controller) => ListView(
           children: [
             addPhotoHeadingWidget,
@@ -83,14 +83,19 @@ class EditDetails extends StatelessWidget {
               ),
             ),
             addVerticalSpace(10),
-            addMediaButtonWidget(context),
+            addMediaButtonWidget(context, controller),
             detailsWidget(controller),
             addVerticalSpace(10),
             Padding(
               padding: const EdgeInsets.all(14.0),
               child: RaisedGradientButton(
                   title: Constants.saveChanges,
-                  onPressed: () => Get.offAndToNamed(AppRoutes.HOMEVIEW)),
+                  onPressed: () async {
+                    await controller.saveUserDetails();
+                    if (controller.responseModel != null)
+                      snackbarMessage(
+                          controller.responseModel?.message ?? "", context);
+                  }),
             ),
             SizedBox(
               height: 20,
@@ -102,16 +107,14 @@ class EditDetails extends StatelessWidget {
   }
 
   Container detailsWidget(EditDetailsController controller) {
-    controller.aboutMeController.text = controller.userController
-        .findNearestModel?.data.users?.first.shortDescription ??
-        "";
+    controller.aboutMeController.text =
+        controller.userModel?.data.user?.shortDescription ?? "";
 
-    controller.schoolController.text = controller.userController
-        .findNearestModel?.data.users?.first.institute?.name ??
-        "";
-    controller.companyController.text = controller.userController
-        .findNearestModel?.data.users?.first.institute?.name ??
-        "";
+    controller.schoolController.text =
+        controller.userModel?.data.user?.interestedIn ?? "";
+    "";
+    controller.companyController.text =
+        controller.userModel?.data.user?.interestedIn ?? "";
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 2.0),
       decoration: BoxDecoration(
@@ -137,14 +140,20 @@ class EditDetails extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: 8.0),
                       child: headingWithTextStyle(0.9, "About Me", 17.5),
                     ),
-                    Text("Edit")
+                    GestureDetector(
+                        onTap: () => controller.editToggle(),
+                        child: Text("Edit"))
                   ],
                 ),
-                TextFormField(
-                  style: TextStyle(color: Colors.black),
-                  maxLines: 2,
-                  controller: controller.aboutMeController,
-                  decoration: _inputDecoration(),
+                Obx(
+                  () => TextFormField(
+                    style: TextStyle(color: Colors.black),
+                    maxLines: 2,
+                    controller: controller.aboutMeController,
+                    autofocus: controller.isEdit.value,
+                    readOnly: !controller.isEdit.value,
+                    decoration: _inputDecoration(),
+                  ),
                 ),
               ],
             ),
@@ -159,21 +168,17 @@ class EditDetails extends StatelessWidget {
               runSpacing: 6,
               crossAxisAlignment: WrapCrossAlignment.start,
               children: List.generate(
-                  controller.userController.findNearestModel?.data.users?.first
-                      .passion?.length ??
-                      0,
-                      (index) =>
-                      Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 6),
+                  controller.userModel?.data.user?.passion?.length ?? 0,
+                  (index) => Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 8, vertical: 6),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(color: Colors.grey)),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            "${controller.userController.findNearestModel?.data
-                                .users?.first.passion?[index].name}",
+                            "${controller.userModel?.data.user?.passion?[index].name}",
                           ),
                         ),
                       )),
@@ -184,18 +189,26 @@ class EditDetails extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: headingWithTextStyle(0.9, Constants.company, 17.5),
                 )),
-            TextFieldWidget(
-                label: '', hint: '', controller: controller.companyController),
+            Obx(
+              () => TextFieldWidget(
+                  label: '',
+                  hint: '',
+                  readOnly: controller.isEdit.value,
+                  controller: controller.companyController),
+            ),
             Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: headingWithTextStyle(0.9, Constants.school, 17.5),
                 )),
-            TextFieldWidget(
-              label: '',
-              hint: '',
-              controller: controller.schoolController,
+            Obx(
+              () => TextFieldWidget(
+                label: '',
+                hint: '',
+                readOnly: controller.isEdit.value,
+                controller: controller.schoolController,
+              ),
             ),
             addVerticalSpace(10)
           ],
@@ -355,17 +368,11 @@ class EditDetails extends StatelessWidget {
     );
   }
  */
-  Widget editIconWidget() {
-    return GestureDetector(
-      onTap: () => Get.to(() => ProfileViewEdit()),
-      child: Image.asset(
-        "assets/icons/Edit.png",
-        color: Colors.black54,
-      ),
-    );
-  }
 
-  Padding addMediaButtonWidget(BuildContext context) {
+  Padding addMediaButtonWidget(
+    BuildContext context,
+    EditDetailsController controller,
+  ) {
     return Padding(
       padding: const EdgeInsets.all(14.0),
       child: RaisedGradientButton(

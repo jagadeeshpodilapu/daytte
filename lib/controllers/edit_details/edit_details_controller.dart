@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:daytte/controllers/findnearest/find_nearest_controller.dart';
 import 'package:daytte/model/delete_gallery.dart';
+import 'package:daytte/model/response_model.dart';
+import 'package:daytte/model/single_user_model.dart';
 import 'package:daytte/routes/app_routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -27,17 +29,19 @@ class EditDetailsController extends BaseController {
   DeleteGalleryModel? deleteGalleryModel;
   GetEditDetailsModel? getEditDetailsModel;
   List<Gallery> galleryImages = [];
-  final userController = Get.put(FindNearestController());
+  SingleUserModel? userModel;
 
   TextEditingController aboutMeController = TextEditingController();
   TextEditingController schoolController = TextEditingController();
   TextEditingController companyController = TextEditingController();
 
+  RxBool isEdit = false.obs;
+  ResponseModel? responseModel;
+
   @override
   void onReady() {
     super.onReady();
     gettingImages();
-    update();
   }
 
   void handleGenderChange(String? value) {
@@ -55,6 +59,11 @@ class EditDetailsController extends BaseController {
     userId.value = storage.read('id') ?? "";
 
     super.onInit();
+  }
+
+  editToggle() {
+    isEdit.toggle();
+    update();
   }
 
 //Pick an image
@@ -92,7 +101,7 @@ class EditDetailsController extends BaseController {
         List<int> imageBytes = i.readAsBytesSync();
         base64EncodeImage = base64Encode(imageBytes);
         base64Images.add("data:image/jpeg;base64,$base64EncodeImage");
-        update();
+        //  update();
       }
     }
     uploadImages(base64Images);
@@ -162,5 +171,41 @@ class EditDetailsController extends BaseController {
         gettingImages();
       }
     }
+  }
+
+  Future getUserUpdateData() async {
+    print("method called");
+    DialogHelper.showLoading('Loading...');
+    final response = await BaseClient()
+        .get('/users/${storage.read("id")}', storage.read('token'))
+        .catchError(handleError);
+    if (response == null) return;
+
+    DialogHelper.hideLoading();
+    if (response != null) {
+      print("save user Data $response");
+      userModel = SingleUserModel.fromJson(response);
+    }
+    update();
+  }
+
+  Future saveUserDetails() async {
+    final payload = {
+      "shortDescription": aboutMeController.text,
+    };
+    print("payload object is $payload ${storage.read("id")}");
+    DialogHelper.showLoading('Loading...');
+    final response = await BaseClient()
+        .patch('/users/${storage.read("id")}', payload, storage.read('token'))
+        .catchError(handleError);
+    if (response == null) return;
+
+    DialogHelper.hideLoading();
+    if (response != null) {
+      print("save user Data $response");
+      responseModel = ResponseModel.fromJson(response);
+      editToggle();
+    }
+    update();
   }
 }

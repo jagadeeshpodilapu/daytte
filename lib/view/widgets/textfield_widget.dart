@@ -6,6 +6,7 @@ class TextFieldWidget extends StatelessWidget {
   final TextEditingController controller;
   final Function(String)? onChange;
   final Function(String)? validator;
+  final bool? readOnly;
 
   const TextFieldWidget(
       {Key? key,
@@ -13,7 +14,7 @@ class TextFieldWidget extends StatelessWidget {
       required this.hint,
       required this.controller,
       this.onChange,
-      this.validator})
+      this.validator, this.readOnly=false})
       : super(key: key);
 
   @override
@@ -21,6 +22,7 @@ class TextFieldWidget extends StatelessWidget {
     return TextFormField(
         style: TextStyle(color: Colors.black),
         onChanged: (value) => onChange,
+        readOnly: readOnly??false,
         validator: (v) => validator!(v!),
         controller: controller,
         decoration: InputDecoration(

@@ -6,7 +6,6 @@ import '../controllers/findnearest/find_nearest_binding.dart';
 import '../controllers/loginController/login_bining.dart';
 import '../controllers/passion/passion_binding.dart';
 import '../controllers/settingsController/settins_binding.dart';
-import '../view/screens/aboutus/about_me_edit.dart';
 import '../view/screens/discoverpartner/discover_partner.dart';
 import '../view/screens/editdetails/edit_details.dart';
 import '../view/screens/interested/interested.dart';
