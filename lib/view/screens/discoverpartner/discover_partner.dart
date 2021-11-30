@@ -30,11 +30,11 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
 
     controller.fetchUserGallery(user.id.toString());
     
-    WidgetsBinding.instance?.addPostFrameCallback(
+    /* WidgetsBinding.instance?.addPostFrameCallback(
       (_) => ShowCaseWidget.of(Get.context!)?.startShowCase([
         keyOne,
       ]),
-    );
+    ); */
   }
 
   @override
@@ -227,7 +227,7 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
                                   child: GestureDetector(
                                       onTap: () => Get.to(
                                           () => ExpandPartnerDetails(),
-                                          arguments: user),
+                                         arguments: user),
                                       child: _downArrowWidget)),
                             ],
                           ),

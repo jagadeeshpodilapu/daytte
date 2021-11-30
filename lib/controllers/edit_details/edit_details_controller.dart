@@ -57,7 +57,7 @@ class EditDetailsController extends BaseController {
   @override
   void onInit() {
     userId.value = storage.read('id') ?? "";
-
+    // getUserUpdateData();
     super.onInit();
   }
 
@@ -144,6 +144,7 @@ class EditDetailsController extends BaseController {
 
       if (getEditDetailsModel != null) {
         galleryImages = getEditDetailsModel!.data.galleries;
+        getUserUpdateData();
         update();
       }
     }
@@ -192,6 +193,7 @@ class EditDetailsController extends BaseController {
   Future saveUserDetails() async {
     final payload = {
       "shortDescription": aboutMeController.text,
+      "passion": userModel?.data.user?.passion
     };
     print("payload object is $payload ${storage.read("id")}");
     DialogHelper.showLoading('Loading...');
@@ -202,9 +204,9 @@ class EditDetailsController extends BaseController {
 
     DialogHelper.hideLoading();
     if (response != null) {
-      print("save user Data $response");
       responseModel = ResponseModel.fromJson(response);
       editToggle();
+      getUserUpdateData();
     }
     update();
   }

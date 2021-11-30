@@ -8,8 +8,10 @@ import 'package:get/get.dart';
 
 class ExpandPartnerDetails extends StatelessWidget {
   final User user = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
+      print("user info $user");
     final theme = Theme.of(context).textTheme;
     return Hero(
       tag: "img",
@@ -144,7 +146,7 @@ class ExpandPartnerDetails extends StatelessWidget {
       child: Wrap(
         runSpacing: 5,
         children: List.generate(
-            user.passion!.length,
+            user.passion?.length??0,
             (index) => Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(

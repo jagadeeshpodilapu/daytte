@@ -23,7 +23,7 @@ class EditDetails extends StatelessWidget {
       appBar: appBarWidget(Constants.editDetails, color: Color(0xffF7F8FA)),
       body: GetBuilder<EditDetailsController>(
         init: EditDetailsController(),
-        
+       // didChangeDependencies: (state)=>state.controller?.getUserUpdateData(),
         builder: (controller) => ListView(
           children: [
             addPhotoHeadingWidget,

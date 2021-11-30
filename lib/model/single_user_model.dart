@@ -86,7 +86,7 @@ class User {
   factory User.fromJson(Map<String, dynamic> json) => User(
         provider: json["provider"],
         passion:
-            List<Passion>.from(json["passion"].map((x) => Passion.fromJson(x))),
+           json["passion"]!=null? List<Passion>.from(json["passion"].map((x) => Passion.fromJson(x))):[],
         showAgeRange: List<int>.from(json["showAgeRange"].map((x) => x)),
         showMe: json["showMe"],
         isSuperAdmin: json["is_super_admin"],

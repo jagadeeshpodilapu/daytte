@@ -112,8 +112,8 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         provider: json["provider"],
-        passion: List<Institute>.from(
-            json["passion"].map((x) => Institute.fromJson(x))),
+        // passion: List<Institute>.from(
+        //     json["passion"].map((x) => Institute.fromJson(x))),
         showAgeRange: List<int>.from(json["showAgeRange"].map((x) => x)),
         showMe: json["showMe"],
         isSuperAdmin: json["is_super_admin"],
