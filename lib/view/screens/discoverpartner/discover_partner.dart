@@ -27,9 +27,8 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
   void initState() {
     super.initState();
     final controller = Get.find<DiscoverPartnerController>();
-
     controller.fetchUserGallery(user.id.toString());
-    
+
     /* WidgetsBinding.instance?.addPostFrameCallback(
       (_) => ShowCaseWidget.of(Get.context!)?.startShowCase([
         keyOne,
@@ -41,204 +40,199 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
 
-    return Hero(
-      tag: 'img',
-      child: Scaffold(
-        appBar: _appBarWidget(theme),
-        backgroundColor: Color(0xffF7F8FA),
-        body: GetBuilder<DiscoverPartnerController>(
-            init: DiscoverPartnerController(),
-            builder: (controller) {
-              return Column(
-                children: [
-                  ExpireBannerWidget(),
-                  Stack(
-                    children: [
-                      Container(
-                        child: Container(
-                          height: Get.height * 0.75,
-                          width: Get.width,
-                          margin:
-                              EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                          child: Stack(
-                            children: [
-                              controller.isLoading.value
-                                  ? Center(child: CircularProgressIndicator())
-                                  : controller.gallery.value != 0
-                                      ? Stack(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 8, top: 8, right: 8.0),
-                                              child: Card(
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12)),
-                                                child: Center(),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 15.0),
-                                              child: Card(
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12)),
-                                                elevation: 4,
-                                                child: SwipeCards(
-                                                  matchEngine:
-                                                      controller.matchEngine ??
-                                                          MatchEngine(),
-                                                  itemBuilder:
-                                                      (BuildContext context,
-                                                          int index) {
-                                                    return GestureDetector(
-                                                      onTap: () {
-                                                        Get.toNamed(
-                                                            AppRoutes
-                                                                .PROFILEVIEW,
-                                                            arguments: user);
-                                                      },
-                                                      child: Container(
-                                                        color: Colors.white,
-                                                        child: Column(
-                                                          children: [
-                                                            Container(
-                                                              height:
-                                                                  Get.height *
-                                                                      0.47,
-                                                              child: Stack(
-                                                                children: [
-                                                                  Container(
-                                                                    height:
-                                                                        Get.height *
-                                                                            0.45,
-                                                                    width: Get
-                                                                        .width,
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .center,
-                                                                    color: Colors
-                                                                        .transparent,
-                                                                    child:
-                                                                        ClipRRect(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              15.0),
-                                                                      child:
-                                                                          StoryView(
-                                                                        controller:
-                                                                            controller.storyController,
-                                                                        storyItems:
-                                                                            controller.profilePics,
-                                                                        repeat:
-                                                                            false,
-                                                                        onStoryShow:
-                                                                            (storyItem) {
-                                                                          final index = controller
-                                                                              .profilePics
-                                                                              .indexOf(storyItem);
-                                                                        },
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  _distanceWidget(),
-                                                                  _personsMatchingPercentage(),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                            Align(
-                                                              alignment: Alignment
-                                                                  .bottomCenter,
-                                                              child: Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .min,
-                                                                children: [
-                                                                  addVerticalSpace(
-                                                                      8),
-                                                                  _userNamesWidget(
-                                                                      theme),
-                                                                  addVerticalSpace(
-                                                                      8),
-                                                                  _usersShortDescriptionWidget(
-                                                                      theme),
-                                                                  addVerticalSpace(
-                                                                      15),
-                                                                  Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceEvenly,
-                                                                    children: [
-                                                                      buildContainer(
-                                                                          ImageConstants
-                                                                              .ic_rewind,
-                                                                          24,
-                                                                          24,
-                                                                          controller),
-                                                                      buildContainer(
-                                                                          ImageConstants
-                                                                              .ic_love,
-                                                                          26,
-                                                                          26,
-                                                                          controller),
-                                                                      buildContainer(
-                                                                          ImageConstants
-                                                                              .ic_close,
-                                                                          20,
-                                                                          20,
-                                                                          controller),
-                                                                    ],
-                                                                  )
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    );
-                                                  },
-                                                  onStackFinished: () {
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .showSnackBar(SnackBar(
-                                                            content: Text(
-                                                                "No More Profile Available"),
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    500)));
-                                                    Get.back();
-                                                  },
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        )
-                                      : Center(
-                                        
-                                          child: Text(
-                                              "No Gallery Pictures  Available"),
+    return Scaffold(
+      appBar: _appBarWidget(theme),
+      backgroundColor: Color(0xffF7F8FA),
+      body: GetBuilder<DiscoverPartnerController>(
+          init: DiscoverPartnerController(),
+          builder: (controller) {
+            return Column(
+              children: [
+                ExpireBannerWidget(),
+                Stack(
+                  children: [
+                    Container(
+                      height: Get.height * 0.75,
+                      width: Get.width,
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      child: Stack(
+                        children: [
+                          controller.isLoading.value
+                              ? Center(child: CircularProgressIndicator())
+                              : controller.gallery.value != 0
+                                  ? Stack(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8, top: 8, right: 8.0),
+                                          child: Card(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        12)),
+                                            child: Center(),
+                                          ),
                                         ),
-                              Positioned(
-                                  top: Get.height * 0.45,
-                                  right: 30,
-                                  child: GestureDetector(
-                                      onTap: () => Get.to(
-                                          () => ExpandPartnerDetails(),
-                                         arguments: user),
-                                      child: _downArrowWidget)),
-                            ],
-                          ),
-                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 15.0),
+                                          child: Card(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        12)),
+                                            elevation: 4,
+                                            child: SwipeCards(
+                                              matchEngine:
+                                                  controller.matchEngine ??
+                                                      MatchEngine(),
+                                              itemBuilder:
+                                                  (BuildContext context,
+                                                      int index) {
+                                                return GestureDetector(
+                                                  onTap: () {
+                                                    Get.toNamed(
+                                                        AppRoutes
+                                                            .PROFILEVIEW,
+                                                        arguments: user);
+                                                  },
+                                                  child: Container(
+                                                    color: Colors.white,
+                                                    child: Column(
+                                                      children: [
+                                                        Container(
+                                                          height:
+                                                              Get.height *
+                                                                  0.47,
+                                                          child: Stack(
+                                                            children: [
+                                                              Container(
+                                                                height:
+                                                                    Get.height *
+                                                                        0.45,
+                                                                width: Get
+                                                                    .width,
+                                                                alignment:
+                                                                    Alignment
+                                                                        .center,
+                                                                color: Colors
+                                                                    .transparent,
+                                                                child:
+                                                                    ClipRRect(
+                                                                  borderRadius:
+                                                                      BorderRadius.circular(
+                                                                          15.0),
+                                                                  child:
+                                                                      StoryView(
+                                                                    controller:
+                                                                        controller.storyController,
+                                                                    storyItems:
+                                                                        controller.profilePics,
+                                                                    repeat:
+                                                                        false,
+                                                                    onStoryShow:
+                                                                        (storyItem) {
+                                                                      final index = controller
+                                                                          .profilePics
+                                                                          .indexOf(storyItem);
+                                                                    },
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              _distanceWidget(),
+                                                              _personsMatchingPercentage(),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        Align(
+                                                          alignment: Alignment
+                                                              .bottomCenter,
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            children: [
+                                                              addVerticalSpace(
+                                                                  8),
+                                                              _userNamesWidget(
+                                                                  theme),
+                                                              addVerticalSpace(
+                                                                  8),
+                                                              _usersShortDescriptionWidget(
+                                                                  theme),
+                                                              addVerticalSpace(
+                                                                  15),
+                                                              Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceEvenly,
+                                                                children: [
+                                                                  buildContainer(
+                                                                      ImageConstants
+                                                                          .ic_rewind,
+                                                                      24,
+                                                                      24,
+                                                                      controller),
+                                                                  buildContainer(
+                                                                      ImageConstants
+                                                                          .ic_love,
+                                                                      26,
+                                                                      26,
+                                                                      controller),
+                                                                  buildContainer(
+                                                                      ImageConstants
+                                                                          .ic_close,
+                                                                      20,
+                                                                      20,
+                                                                      controller),
+                                                                ],
+                                                              )
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                              onStackFinished: () {
+                                                ScaffoldMessenger.of(
+                                                        context)
+                                                    .showSnackBar(SnackBar(
+                                                        content: Text(
+                                                            "No More Profile Available"),
+                                                        duration: Duration(
+                                                            milliseconds:
+                                                                500)));
+                                                Get.back();
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  : Center(
+
+                                      child: Text(
+                                          "No Gallery Pictures  Available"),
+                                    ),
+                          Positioned(
+                              top: Get.height * 0.45,
+                              right: 30,
+                              child: GestureDetector(
+                                  onTap: () => Get.to(
+                                      () => ExpandPartnerDetails(),
+                                     arguments: user),
+                                  child: _downArrowWidget)),
+                        ],
                       ),
-                    ],
-                  ),
-                ],
-              );
-            }),
-      ),
+                    ),
+                  ],
+                ),
+              ],
+            );
+          }),
     );
   }
 
@@ -351,29 +345,43 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
 
   Widget buildContainer(String icon, double height, double width,
       DiscoverPartnerController controller) {
-    return Container(
-      color: Colors.white,
-      height: 50,
-      width: 50,
-      child: MaterialButton(
+    return  Container(
         color: Colors.white,
-        shape: buildRoundedRectangleBorder(),
-        padding: EdgeInsets.all(8),
-        onPressed: () {
-          if (icon == ImageConstants.ic_rewind) {
-            controller.matchEngine?.currentItem?.nope();
-          } else if (icon == ImageConstants.ic_love) {
-            controller.matchEngine?.currentItem?.like();
-          } else if (icon == ImageConstants.ic_close) {
-            controller.matchEngine?.currentItem?.superLike();
-          }
-        },
-        child: Image.asset(
-          icon,
-          height: height,
-          width: width,
+        height: 50,
+        width: 50,
+        child: MaterialButton(
+          color: Colors.white,
+          shape: buildRoundedRectangleBorder(),
+          padding: EdgeInsets.all(8),
+          onPressed: () {
+
+            if(user.id != controller.dataIds[controller.index].id && controller.dataIds.length > controller.index){
+              controller.fetchUserGallery(controller.dataIds[controller.index].id.toString());
+              print("sgetting id .${user.id}.==.${controller.dataIds[controller.index].id.toString()}");
+              print("sgetting id ...${controller.dataIds[controller.index].id.toString()}");
+              controller.getIndex();
+            }
+            //  if(user.id == controller.dataIds[controller.index].id){
+            //   controller.getIndex();
+            //   controller.fetchUserGallery(controller.dataIds[controller.index].id.toString());
+            //   print("else if condition getting id .${user.id}.==.${controller.dataIds[controller.index].id.toString()}");
+            // }
+
+            if (icon == ImageConstants.ic_rewind) {
+              controller.matchEngine?.currentItem?.nope();
+            } else if (icon == ImageConstants.ic_love) {
+              controller.matchEngine?.currentItem?.like();
+            } else if (icon == ImageConstants.ic_close) {
+              controller.matchEngine?.currentItem?.superLike();
+            }
+          },
+          child: Image.asset(
+            icon,
+            height: height,
+            width: width,
+          ),
+
         ),
-      ),
     );
   }
 

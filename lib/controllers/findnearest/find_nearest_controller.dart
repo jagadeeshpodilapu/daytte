@@ -5,10 +5,12 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class FindNearestController extends BaseController {
+
   int page = 0, limit = 10;
   final storage = GetStorage();
   RxInt users = 0.obs;
   FindNearestModel? findNearestModel;
+  List<User> userIds=[];
 
   @override
   void onInit() {
@@ -25,6 +27,7 @@ class FindNearestController extends BaseController {
       print("find nearest response $response");
       findNearestModel = FindNearestModel.fromJson(response);
       users.value = findNearestModel?.data.users?.length ?? 0;
+      userIds= findNearestModel?.data.users??[];
     }
     update();
   }

@@ -4,6 +4,6 @@ import 'package:get/get.dart';
 class FindNearestBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => FindNearestController(), fenix: true);
+    Get.put(() => FindNearestController(),);
   }
 }
