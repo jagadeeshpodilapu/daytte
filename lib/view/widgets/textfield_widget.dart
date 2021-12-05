@@ -7,6 +7,9 @@ class TextFieldWidget extends StatelessWidget {
   final Function(String)? onChange;
   final Function(String)? validator;
   final bool? readOnly;
+  final Function()? onTap;
+  final bool? enable;
+
 
   const TextFieldWidget(
       {Key? key,
@@ -14,7 +17,7 @@ class TextFieldWidget extends StatelessWidget {
       required this.hint,
       required this.controller,
       this.onChange,
-      this.validator, this.readOnly=false})
+      this.validator, this.readOnly=false,this.onTap,this.enable})
       : super(key: key);
 
   @override
@@ -25,6 +28,8 @@ class TextFieldWidget extends StatelessWidget {
         readOnly: readOnly??false,
         validator: (v) => validator!(v!),
         controller: controller,
+        onTap: onTap,
+        enabled: enable,
         decoration: InputDecoration(
           label: Text(label),
           labelStyle: TextStyle(),

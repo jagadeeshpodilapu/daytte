@@ -8,6 +8,7 @@ import 'package:daytte/view/widgets/textfield_widget.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../../controllers/edit_details/edit_details_controller.dart';
 
@@ -113,8 +114,8 @@ class EditDetails extends StatelessWidget {
     controller.schoolController.text =
         controller.userModel?.data.user?.interestedIn ?? "";
     "";
-    controller.companyController.text =
-        controller.userModel?.data.user?.interestedIn ?? "";
+    // controller.companyController.text =
+    //     controller.userModel?.data.user?.interestedIn ?? "";
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 2.0),
       decoration: BoxDecoration(
@@ -157,19 +158,27 @@ class EditDetails extends StatelessWidget {
                 ),
               ],
             ),
-            Align(
-                alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: headingWithTextStyle(0.9, Constants.passion, 17.5),
-                )),
+            GestureDetector(
+              onTap: (){
+                GetStorage().write("passion", "EditProfilePassion");
+                Get.toNamed(AppRoutes.PASSION);
+              },
+              child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: headingWithTextStyle(0.9, Constants.passion, 17.5),
+                  )),
+            ),
             Wrap(
               spacing: 6,
               runSpacing: 6,
               crossAxisAlignment: WrapCrossAlignment.start,
               children: List.generate(
                   controller.userModel?.data.user?.passion?.length ?? 0,
-                  (index) => Container(
+                  (index) {
+                    print("userDetails ${controller.userModel?.data.user?.passion?.first.name}");
+                    return Container(
                         padding:
                             EdgeInsets.symmetric(horizontal: 8, vertical: 6),
                         decoration: BoxDecoration(
@@ -181,20 +190,8 @@ class EditDetails extends StatelessWidget {
                             "${controller.userModel?.data.user?.passion?[index].name}",
                           ),
                         ),
-                      )),
-            ),
-            Align(
-                alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: headingWithTextStyle(0.9, Constants.company, 17.5),
-                )),
-            Obx(
-              () => TextFieldWidget(
-                  label: '',
-                  hint: '',
-                  readOnly: controller.isEdit.value,
-                  controller: controller.companyController),
+                      );
+                  }),
             ),
             Align(
                 alignment: Alignment.topLeft,
@@ -202,13 +199,15 @@ class EditDetails extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: headingWithTextStyle(0.9, Constants.school, 17.5),
                 )),
-            Obx(
-              () => TextFieldWidget(
+             TextFieldWidget(
                 label: '',
                 hint: '',
-                readOnly: controller.isEdit.value,
+                onTap: (){
+                  GetStorage().write("university", "EditProfileUniversity");
+                  Get.toNamed(AppRoutes.UNIVERSITY);
+                },
+                readOnly: true,
                 controller: controller.schoolController,
-              ),
             ),
             addVerticalSpace(10)
           ],

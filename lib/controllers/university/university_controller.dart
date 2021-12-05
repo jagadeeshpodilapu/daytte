@@ -1,3 +1,4 @@
+import 'package:daytte/controllers/edit_details/edit_details_controller.dart';
 import 'package:daytte/model/response_model.dart';
 import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/view/dialogs/dialogHelper.dart';
@@ -13,8 +14,8 @@ class UniversityController extends BaseController {
   ResponseModel? responseModel;
   int page = 0;
   int limit = 15;
-
   final storage = GetStorage();
+  final editProfileController = Get.find<EditDetailsController>();
 
   @override
   void onInit() {
@@ -43,9 +44,16 @@ class UniversityController extends BaseController {
     if (response == null) return;
     DialogHelper.hideLoading();
     if (response != null) {
-      responseModel = ResponseModel.fromJson(response);
-      storage.write("page", "4");
-      Get.offAndToNamed(AppRoutes.INTERESTED);
+      String universityScreen = storage.read("university");
+      if(universityScreen == "EditProfileUniversity"){
+        responseModel = ResponseModel.fromJson(response);
+        Get.toNamed(AppRoutes.EDITDETAILS);
+        editProfileController.getUserUpdateData();
+      }else {
+        responseModel = ResponseModel.fromJson(response);
+        storage.write("page", "4");
+        Get.offAndToNamed(AppRoutes.INTERESTED);
+      }
     }
     update();
   }
