@@ -1,4 +1,5 @@
 import 'package:daytte/controllers/base_controller/baseController.dart';
+import 'package:daytte/controllers/permissionController/permission_controller.dart';
 import 'package:daytte/model/response_model.dart';
 import 'package:daytte/model/single_user_model.dart';
 import 'package:daytte/routes/app_routes.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+
 class SettingsController extends BaseController {
   RxDouble maxDistance = 20.0.obs;
   Rx<RangeValues> rangeValues = RangeValues(18, 30).obs;
@@ -15,6 +17,8 @@ class SettingsController extends BaseController {
   final storage = GetStorage();
   SingleUserModel? userInfoModel;
   ResponseModel? responseModel;
+
+  final PermissionController location=Get.find<PermissionController>();
 
   @override
   void onInit() {
@@ -36,6 +40,13 @@ class SettingsController extends BaseController {
     showme.toggle();
     update();
   }
+
+/*   getUserAddressName()async {
+    final coordinates = new Coordinates(1.10, 45.50);
+ final addresses = await Geocoder.local.findAddressesFromCoordinates(coordinates);
+first = addresses.first;
+print("${first.featureName} : ${first.addressLine}");
+  } */
 
   Future updateUserPreferences(int i) async {
     Map payload = {};

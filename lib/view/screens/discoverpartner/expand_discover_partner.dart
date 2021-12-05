@@ -1,8 +1,8 @@
 import 'dart:ui';
 
-import 'package:daytte/consts/image_constants.dart';
-import 'package:daytte/model/find_nearest_model.dart';
-import 'package:daytte/view/widgets/common_widgets.dart';
+import '../../../consts/image_constants.dart';
+import '../../../model/find_nearest_model.dart';
+import '../../widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +11,7 @@ class ExpandPartnerDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      print("user info $user");
+    print("user info $user");
     final theme = Theme.of(context).textTheme;
     return Hero(
       tag: "img",
@@ -94,7 +94,7 @@ class ExpandPartnerDetails extends StatelessWidget {
     return Center(
         child: Text(
       "Share  ${user.firstname} ${user.lastname}",
-      style: theme.headline6?.copyWith(color: Color(0xff7004E3),fontSize: 22),
+      style: theme.headline6?.copyWith(color: Color(0xff7004E3), fontSize: 22),
     ));
   }
 
@@ -146,7 +146,7 @@ class ExpandPartnerDetails extends StatelessWidget {
       child: Wrap(
         runSpacing: 5,
         children: List.generate(
-            user.passion?.length??0,
+            user.passion?.length ?? 0,
             (index) => Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
@@ -166,11 +166,14 @@ class ExpandPartnerDetails extends StatelessWidget {
   Padding _aboutmeInfoWidget(TextTheme theme) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 3),
-      child: Text("${user.shortDescription}",
-          style: theme.subtitle1?.copyWith(
-              fontWeight: FontWeight.w400,
-              fontSize: 18,
-              color: Color(0xff9a9a9a))),
+      child: Text(
+        "${user.shortDescription}",
+        style: theme.subtitle1?.copyWith(
+          fontWeight: FontWeight.w400,
+          fontSize: 18,
+          color: Color(0xff9a9a9a),
+        ),
+      ),
     );
   }
 

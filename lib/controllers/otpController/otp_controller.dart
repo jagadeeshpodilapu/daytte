@@ -79,15 +79,16 @@ class OtpController extends BaseController {
     final response = await BaseClient()
         .post('/auth/verifyOtp', payload)
         .catchError(handleError);
+        
     if (response == null) return;
-    print("new user ${response}");
 
     userInfoModel = UserInfoModel.fromJson(response);
 
     storage.write("token", userInfoModel?.userProperties.accessToken);
     storage.write("id", userInfoModel?.userProperties.user?.id);
+    print("user response is $response");
+
     if (userInfoModel != null) {
-      print("new user ${userInfoModel!.userProperties.user!.newUser!}");
       if (userInfoModel!.userProperties.user!.newUser!) {
         storage.write('page', "1");
         var location = await Location().hasPermission();

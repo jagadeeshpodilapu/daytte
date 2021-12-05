@@ -1,6 +1,6 @@
 import 'package:daytte/consts/constants.dart';
-import 'package:daytte/model/find_nearest_model.dart';
-import 'package:daytte/routes/app_routes.dart';
+import '../../../model/find_nearest_model.dart';
+import '../../../routes/app_routes.dart';
 import 'expand_discover_partner.dart';
 import '../findnearest/expire_banner.dart';
 import '../../widgets/common_widgets.dart';
