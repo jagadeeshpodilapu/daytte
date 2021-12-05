@@ -35,7 +35,7 @@ class AppPages {
     GetPage(
         name: AppRoutes.SPLASHVIEW,
         page: () => SplashScreen(),
-        bindings: [SignupBinding()]),
+        bindings: [SignupBinding(), PermissionBinding()]),
     GetPage(
         name: AppRoutes.LOGINVIEW,
         page: () => Login(),
@@ -47,7 +47,7 @@ class AppPages {
     GetPage(
         name: AppRoutes.OTPVERIFICATION,
         page: () => OtpVerification(),
-        bindings: [OtpBinding(), PermissionBinding()]),
+        bindings: [OtpBinding()]),
     GetPage(name: AppRoutes.CHOOSEGENDER, page: () => ChooseGender()),
     GetPage(
         name: AppRoutes.CHOOSEIMAGE,

@@ -35,7 +35,6 @@ class LikesPage extends StatelessWidget {
               labelColor: Colors.black,
               indicatorSize: TabBarIndicatorSize.label,
               tabs: [
-                
                 Tab(
                   child: Container(
                     clipBehavior: Clip.antiAlias,
@@ -47,8 +46,7 @@ class LikesPage extends StatelessWidget {
                             color: Colors.grey,
                             blurRadius: 1.0,
                             spreadRadius: 0.0,
-                            offset: Offset(
-                                1.0, 1.0), // shadow direction: bottom right
+                            offset: Offset(1.0, 1.0),
                           )
                         ],
                         border: Border.all(color: Colors.white, width: 1)),

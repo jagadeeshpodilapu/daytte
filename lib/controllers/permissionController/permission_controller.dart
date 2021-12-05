@@ -8,18 +8,17 @@ class PermissionController extends BaseController {
 
   // late bool _serviceEnabled;
   PermissionStatus? permissionGranted;
-   LocationData? locationData;
+  LocationData? locationData;
 
   ///Create async methods for checking permission is granted or not
   Future<void> checkPermissions() async {
-    final PermissionStatus permissionGrantedResult =
-        await location.hasPermission();
-
-    permissionGranted = permissionGrantedResult;
-
+    final PermissionStatus permissionGranted = await location.hasPermission();
+    print("permission of location $permissionGranted");
     if (permissionGranted == PermissionStatus.granted) {
       locationData = await location.getLocation();
       Get.offAndToNamed(AppRoutes.SIGNUPVIEW);
+    } else {
+    await  requestPermission();
     }
 
     update();
@@ -28,14 +27,14 @@ class PermissionController extends BaseController {
   /// Create async method for requesting the permission
   Future<void> requestPermission() async {
     if (permissionGranted != PermissionStatus.granted) {
-      final PermissionStatus permissionRequestedResult =
+      final PermissionStatus permissionGranted =
           await location.requestPermission();
-
-      permissionGranted = permissionRequestedResult;
 
       if (permissionGranted == PermissionStatus.granted) {
         locationData = await location.getLocation();
         Get.offAndToNamed(AppRoutes.SIGNUPVIEW);
+      } else {
+        await location.requestPermission();
       }
 
       update();
