@@ -21,6 +21,8 @@ class FindNearestController extends BaseController {
         .get('/users?skip=$page&limit=$limit', storage.read('token'))
         .catchError(BaseController().handleError);
 
+    print("storage value ${storage.read("id")} ${storage.read("token")}");
+
     if (response != null) {
       print("find nearest response $response");
       findNearestModel = FindNearestModel.fromJson(response);
