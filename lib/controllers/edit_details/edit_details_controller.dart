@@ -144,7 +144,7 @@ class EditDetailsController extends BaseController {
 
       if (getEditDetailsModel != null) {
         galleryImages = getEditDetailsModel!.data.galleries;
-        getUserUpdateData();
+       await getUserUpdateData();
         update();
       }
     }
@@ -175,7 +175,7 @@ class EditDetailsController extends BaseController {
   }
 
   Future getUserUpdateData() async {
-    print("method called");
+    
     DialogHelper.showLoading('Loading...');
     final response = await BaseClient()
         .get('/users/${storage.read("id")}', storage.read('token'))

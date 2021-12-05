@@ -79,7 +79,7 @@ class OtpController extends BaseController {
     final response = await BaseClient()
         .post('/auth/verifyOtp', payload)
         .catchError(handleError);
-        
+
     if (response == null) return;
 
     userInfoModel = UserInfoModel.fromJson(response);
@@ -87,6 +87,7 @@ class OtpController extends BaseController {
     storage.write("token", userInfoModel?.userProperties.accessToken);
     storage.write("id", userInfoModel?.userProperties.user?.id);
     print("user response is $response");
+    
 
     if (userInfoModel != null) {
       if (userInfoModel!.userProperties.user!.newUser!) {
