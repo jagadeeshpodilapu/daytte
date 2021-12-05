@@ -63,6 +63,8 @@ class DiscoverPartnerController extends BaseController {
       print('galleryImages and length $response $userId ${gallery.value}');
     }
     update();
+
+
     listUserGalleryCalling();
   }
 
