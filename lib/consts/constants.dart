@@ -36,7 +36,7 @@ class Constants {
   static const String saveChanges = 'Save Changes';
   static const String passion = 'Passion';
   static const String company = 'Company';
-  static const String school = 'School';
+  static const String school = 'University';
   static const String addMedia = 'Add Media';
   static const String select2Pics = 'Please select atleast 2 pictures';
   static const String findNearest = 'Find the nearest';
