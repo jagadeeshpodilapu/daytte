@@ -15,7 +15,6 @@ class UniversityController extends BaseController {
   int page = 0;
   int limit = 15;
   final storage = GetStorage();
-  final editProfileController = Get.find<EditDetailsController>();
 
   @override
   void onInit() {
@@ -44,11 +43,10 @@ class UniversityController extends BaseController {
     if (response == null) return;
     DialogHelper.hideLoading();
     if (response != null) {
-      String universityScreen = storage.read("university");
+      String universityScreen = storage.read("university")??"";
       if(universityScreen == "EditProfileUniversity"){
         responseModel = ResponseModel.fromJson(response);
         Get.toNamed(AppRoutes.EDITDETAILS);
-        editProfileController.getUserUpdateData();
       }else {
         responseModel = ResponseModel.fromJson(response);
         storage.write("page", "4");

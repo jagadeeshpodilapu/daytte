@@ -4,8 +4,6 @@
 
 import 'dart:convert';
 
-
-
 class SingleUserModel {
   SingleUserModel({
     required this.message,
@@ -37,7 +35,7 @@ class Data {
 class User {
   User({
     this.provider,
-    this.passion,
+    // this.passion,
     this.showAgeRange,
     this.showMe,
     this.isSuperAdmin,
@@ -61,7 +59,7 @@ class User {
   });
 
   String? provider;
-  List<Passion>? passion;
+  // List<Passion>? passion;
   List<int>? showAgeRange;
   bool? showMe;
   bool? isSuperAdmin;
@@ -85,8 +83,8 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         provider: json["provider"],
-        passion:
-           json["passion"]!=null? List<Passion>.from(json["passion"].map((x) => Passion.fromJson(x))):[],
+        // passion:
+        //    json["passion"]!=null? List<Passion>.from(json["passion"].map((x) => Passion.fromJson(x))):[],
         showAgeRange: List<int>.from(json["showAgeRange"].map((x) => x)),
         showMe: json["showMe"],
         isSuperAdmin: json["is_super_admin"],
@@ -111,7 +109,7 @@ class User {
 
   Map<String, dynamic> toJson() => {
         "provider": provider,
-        "passion": List<dynamic>.from(passion!.map((x) => x.toJson())),
+        // "passion": List<dynamic>.from(passion!.map((x) => x.toJson())),
         "showAgeRange": List<dynamic>.from(showAgeRange!.map((x) => x)),
         "showMe": showMe,
         "is_super_admin": isSuperAdmin,

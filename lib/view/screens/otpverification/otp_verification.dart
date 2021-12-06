@@ -13,6 +13,7 @@ class OtpVerification extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: GetBuilder<OtpController>(
         init: OtpController(),
         builder: (controller) => Column(

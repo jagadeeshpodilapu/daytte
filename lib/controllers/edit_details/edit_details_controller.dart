@@ -184,8 +184,10 @@ class EditDetailsController extends BaseController {
 
     DialogHelper.hideLoading();
     if (response != null) {
-      print("save user Data $response");
+      print("save user Data ${jsonEncode(response)}");
       userModel = SingleUserModel.fromJson(response);
+      print("user model in controller....> ${userModel}");
+
     }
     update();
   }
@@ -193,7 +195,7 @@ class EditDetailsController extends BaseController {
   Future saveUserDetails() async {
     final payload = {
       "shortDescription": aboutMeController.text,
-      "passion": userModel?.data.user?.passion
+      // "passion": userModel?.data.user?.passion
     };
     print("payload object is $payload ${storage.read("id")}");
     DialogHelper.showLoading('Loading...');

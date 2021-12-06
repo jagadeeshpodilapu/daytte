@@ -17,7 +17,6 @@ class PassionController extends BaseController {
   List<String> listName = [];
   List<String> listId = [];
   List<String> selected = [];
-  final editProfileController = Get.find<EditDetailsController>();
   @override
   void onInit() {
     fetchPassion();
@@ -48,11 +47,10 @@ class PassionController extends BaseController {
 
     DialogHelper.hideLoading();
     if (response != null) {
-      String passionScreen = storage.read("passion");
+      String passionScreen = storage.read("passion")??"";
       if (passionScreen == "EditProfilePassion") {
         responseModel = ResponseModel.fromJson(response);
         Get.toNamed(AppRoutes.EDITDETAILS);
-        editProfileController.getUserUpdateData();
       } else {
         responseModel = ResponseModel.fromJson(response);
         storage.write("page", "3");

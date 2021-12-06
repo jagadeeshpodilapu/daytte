@@ -24,7 +24,7 @@ class EditDetails extends StatelessWidget {
       appBar: appBarWidget(Constants.editDetails, color: Color(0xffF7F8FA)),
       body: GetBuilder<EditDetailsController>(
         init: EditDetailsController(),
-       // didChangeDependencies: (state)=>state.controller?.getUserUpdateData(),
+       didChangeDependencies: (state)=>state.controller?.getUserUpdateData(),
         builder: (controller) => ListView(
           children: [
             addPhotoHeadingWidget,
@@ -114,6 +114,7 @@ class EditDetails extends StatelessWidget {
     controller.schoolController.text =
         controller.userModel?.data.user?.interestedIn ?? "";
     "";
+    // print('userData passion ${controller.userModel?.data.user}');
     // controller.companyController.text =
     //     controller.userModel?.data.user?.interestedIn ?? "";
     return Container(
@@ -170,14 +171,15 @@ class EditDetails extends StatelessWidget {
                     child: headingWithTextStyle(0.9, Constants.passion, 17.5),
                   )),
             ),
-            Wrap(
+           /* Wrap(
               spacing: 6,
               runSpacing: 6,
               crossAxisAlignment: WrapCrossAlignment.start,
               children: List.generate(
                   controller.userModel?.data.user?.passion?.length ?? 0,
                   (index) {
-                    print("userDetails ${controller.userModel?.data.user?.passion?.first.name}");
+                    // print("userDetails0 ${controller.userModel?.data.user?.passion}");
+                    // print("userDetails1 ${controller.userModel?.data.user?.passion?.first.name}");
                     return Container(
                         padding:
                             EdgeInsets.symmetric(horizontal: 8, vertical: 6),
@@ -192,7 +194,7 @@ class EditDetails extends StatelessWidget {
                         ),
                       );
                   }),
-            ),
+            ),*/
             Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
