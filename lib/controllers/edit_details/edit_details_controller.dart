@@ -144,7 +144,7 @@ class EditDetailsController extends BaseController {
 
       if (getEditDetailsModel != null) {
         galleryImages = getEditDetailsModel!.data.galleries;
-       await getUserUpdateData();
+        getUserUpdateData();
         update();
       }
     }
@@ -193,7 +193,7 @@ class EditDetailsController extends BaseController {
   Future saveUserDetails() async {
     final payload = {
       "shortDescription": aboutMeController.text,
-      "passion": userModel?.data.user?.passion
+      // "passion": userModel?.data.user?.passion
     };
     print("payload object is $payload ${storage.read("id")}");
     DialogHelper.showLoading('Loading...');
