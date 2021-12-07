@@ -2,6 +2,8 @@ import 'package:daytte/controllers/base_controller/baseController.dart';
 import 'package:daytte/controllers/findnearest/find_nearest_controller.dart';
 import 'package:daytte/model/user_gallery_model.dart';
 import 'package:daytte/services/base_service/base_client.dart';
+import 'package:daytte/services/likes_service.dart';
+import 'package:daytte/view/dialogs/dialogHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/diagnostics.dart';
 import 'package:get/get.dart';
@@ -11,7 +13,6 @@ import 'package:story_view/widgets/story_view.dart';
 import 'package:swipe_cards/swipe_cards.dart';
 
 class DiscoverPartnerController extends BaseController {
-  final userId = Get.arguments;
   MatchEngine? matchEngine;
   StoryController storyController = StoryController();
   List<SwipeItem> swipeItems = <SwipeItem>[];
@@ -55,18 +56,6 @@ class DiscoverPartnerController extends BaseController {
               shown: true,
             ),
           );
-          swipeItems.add(
-            SwipeItem(
-                likeAction: () {
-                  scaffoldKey.currentState!.showSnackBar(SnackBar(
-                    content:
-                        Text("Liked ${userGalleryModel?.data.galleries?[i]}"),
-                    duration: Duration(milliseconds: 500),
-                  ));
-                },
-                nopeAction: () {},
-                superlikeAction: () {}),
-          );
         }
       } else {
         profilePics.add(
@@ -83,11 +72,24 @@ class DiscoverPartnerController extends BaseController {
         );
         gallery.value = 1;
       }
-
-      matchEngine = MatchEngine(swipeItems: swipeItems);
     }
     update();
   }
 
- 
+  Future postLikesData(String likedTo,bool isLiked) async {
+    Map<String, dynamic> payload = {
+      "likedBy": storage.read('id'),
+      "likedTo": likedTo,
+      "likeType": "normal",
+      "isLiked": isLiked
+    };
+
+    final response =
+        await LikesService().postLikes(payload, storage.read('token'));
+    if (response == null) return;
+
+    if (response != null) {
+      print("response  $response");
+    }
+  }
 }

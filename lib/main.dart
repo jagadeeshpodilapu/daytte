@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget with WidgetsBindingObserver {
           bodyText2: TextStyle(color: Color(0xff363636)),
         ),
       ),
-    //   home: EnablePermsions(),
+     // home: MyStoryViewScreen(),
       initialBinding: SplashBinding(),
       initialRoute: AppRoutes.SPLASHVIEW,
       defaultTransition: Transition.rightToLeft,

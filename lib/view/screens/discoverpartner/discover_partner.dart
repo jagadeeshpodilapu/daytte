@@ -1,4 +1,5 @@
 import 'package:daytte/consts/constants.dart';
+import 'package:story_view/controller/story_controller.dart';
 import '../../../model/find_nearest_model.dart';
 import '../../../routes/app_routes.dart';
 import 'expand_discover_partner.dart';
@@ -20,21 +21,58 @@ class DiscoverPartner extends StatefulWidget {
 
 class _DiscoverPartnerState extends State<DiscoverPartner>
     with AutomaticKeepAliveClientMixin {
-  final User user = Get.arguments;
+  final data = Get.arguments;
+  late List<User> userList;
+  late int selectedUser;
   final keyOne = GlobalKey();
+  final controller = Get.find<DiscoverPartnerController>();
+  final storyController = StoryController();
+  List<SwipeItem>? _swipeItems = <SwipeItem>[];
+  MatchEngine _matchEngine = MatchEngine();
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+  int? swipeItemIndex;
 
   @override
   void initState() {
     super.initState();
-    final controller = Get.find<DiscoverPartnerController>();
 
-    controller.fetchUserGallery(user.id.toString());
-    
-    /* WidgetsBinding.instance?.addPostFrameCallback(
-      (_) => ShowCaseWidget.of(Get.context!)?.startShowCase([
-        keyOne,
-      ]),
-    ); */
+    userList = data['usersList'];
+    selectedUser = data['selecteduser'];
+    getUserGallery(userIndex: selectedUser);
+
+    for (int i = 0; i < userList.length; i++) {
+      //  userList.removeWhere((element) => element == userList[selectedUser]);
+      swipeItemIndex = i == selectedUser || i == 0 ? selectedUser : i;
+
+      _swipeItems?.add(
+        SwipeItem(
+            content: userList[i],
+            likeAction: () {
+              controller.postLikesData(userList[i].id.toString(), true);
+
+              
+              _matchEngine.currentItem?.like();
+              getUserGallery(userIndex: i + 1);
+            },
+            nopeAction: () {
+              controller.postLikesData(userList[i].id.toString(), false);
+ _matchEngine.currentItem?.nope();
+              getUserGallery(userIndex: i + 1);
+             
+            },
+            superlikeAction: () {
+               _matchEngine.currentItem?.superLike();
+              getUserGallery(userIndex: i + 1);
+            }),
+      );
+
+      _matchEngine = MatchEngine(swipeItems: _swipeItems);
+      //controller.fetchUserGallery();
+    }
+  }
+
+  getUserGallery({required int userIndex}) {
+    controller.fetchUserGallery(userList[userIndex].id.toString());
   }
 
   @override
@@ -88,127 +126,46 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
                                                             12)),
                                                 elevation: 4,
                                                 child: SwipeCards(
-                                                  matchEngine:
-                                                      controller.matchEngine ??
-                                                          MatchEngine(),
+                                                  matchEngine: _matchEngine,
                                                   itemBuilder:
                                                       (BuildContext context,
                                                           int index) {
-                                                    return GestureDetector(
-                                                      onTap: () {
-                                                        Get.toNamed(
-                                                            AppRoutes
-                                                                .PROFILEVIEW,
-                                                            arguments: user);
-                                                      },
-                                                      child: Container(
-                                                        color: Colors.white,
-                                                        child: Column(
-                                                          children: [
-                                                            Container(
-                                                              height:
-                                                                  Get.height *
-                                                                      0.47,
-                                                              child: Stack(
-                                                                children: [
-                                                                  Container(
-                                                                    height:
-                                                                        Get.height *
-                                                                            0.45,
-                                                                    width: Get
-                                                                        .width,
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .center,
-                                                                    color: Colors
-                                                                        .transparent,
-                                                                    child:
-                                                                        ClipRRect(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              15.0),
-                                                                      child:
-                                                                          StoryView(
-                                                                        controller:
-                                                                            controller.storyController,
-                                                                        storyItems:
-                                                                            controller.profilePics,
-                                                                        repeat:
-                                                                            false,
-                                                                        onStoryShow:
-                                                                            (storyItem) {
-                                                                          final index = controller
-                                                                              .profilePics
-                                                                              .indexOf(storyItem);
-                                                                        },
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  _distanceWidget(),
-                                                                  _personsMatchingPercentage(),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                            Align(
-                                                              alignment: Alignment
-                                                                  .bottomCenter,
-                                                              child: Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .min,
-                                                                children: [
-                                                                  addVerticalSpace(
-                                                                      8),
-                                                                  _userNamesWidget(
-                                                                      theme),
-                                                                  addVerticalSpace(
-                                                                      8),
-                                                                  _usersShortDescriptionWidget(
-                                                                      theme),
-                                                                  addVerticalSpace(
-                                                                      15),
-                                                                  Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceEvenly,
-                                                                    children: [
-                                                                      buildContainer(
-                                                                          ImageConstants
-                                                                              .ic_rewind,
-                                                                          24,
-                                                                          24,
-                                                                          controller),
-                                                                      buildContainer(
-                                                                          ImageConstants
-                                                                              .ic_love,
-                                                                          26,
-                                                                          26,
-                                                                          controller),
-                                                                      buildContainer(
-                                                                          ImageConstants
-                                                                              .ic_close,
-                                                                          20,
-                                                                          20,
-                                                                          controller),
-                                                                    ],
-                                                                  )
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    );
+                                                    if (index == 0) {
+                                                      return GestureDetector(
+                                                        onTap: () {
+                                                          Get.toNamed(
+                                                              AppRoutes
+                                                                  .PROFILEVIEW,
+                                                              arguments: userList[
+                                                                  selectedUser]);
+                                                        },
+                                                        child: userCard(
+                                                            controller,
+                                                            theme,
+                                                            selectedUser),
+                                                      );
+                                                    } else if (index > 0) {
+                                                      return GestureDetector(
+                                                        onTap: () {
+                                                          Get.toNamed(
+                                                              AppRoutes
+                                                                  .PROFILEVIEW,
+                                                              arguments:
+                                                                  userList[
+                                                                      index]);
+                                                        },
+                                                        child: userCard(
+                                                            controller,
+                                                            theme,
+                                                            index),
+                                                      );
+                                                    } else {
+                                                      return Container(
+                                                        color: Colors.red,
+                                                      );
+                                                    }
                                                   },
                                                   onStackFinished: () {
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .showSnackBar(SnackBar(
-                                                            content: Text(
-                                                                "No More Profile Available"),
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    500)));
                                                     Get.back();
                                                   },
                                                 ),
@@ -217,18 +174,9 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
                                           ],
                                         )
                                       : Center(
-                                        
                                           child: Text(
                                               "No Gallery Pictures  Available"),
                                         ),
-                              Positioned(
-                                  top: Get.height * 0.45,
-                                  right: 30,
-                                  child: GestureDetector(
-                                      onTap: () => Get.to(
-                                          () => ExpandPartnerDetails(),
-                                         arguments: user),
-                                      child: _downArrowWidget)),
                             ],
                           ),
                         ),
@@ -242,8 +190,80 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
     );
   }
 
-  Text _usersShortDescriptionWidget(TextTheme theme) {
-    return Text("${user.shortDescription}",
+  Widget userCard(
+      DiscoverPartnerController controller, TextTheme theme, int index) {
+    return Stack(
+      children: [
+        Container(
+          color: Colors.white,
+          child: Column(
+            children: [
+              Container(
+                height: Get.height * 0.47,
+                child: Stack(
+                  children: [
+                    Container(
+                      height: Get.height * 0.45,
+                      width: Get.width,
+                      alignment: Alignment.center,
+                      color: Colors.transparent,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15.0),
+                        child: StoryView(
+                          controller: storyController,
+                          storyItems: controller.profilePics,
+                          repeat: false,
+                          inline: false,
+                        ),
+                      ),
+                    ),
+                    _distanceWidget(),
+                    _personsMatchingPercentage(),
+                  ],
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    addVerticalSpace(8),
+                    _userNamesWidget(theme, index),
+                    addVerticalSpace(8),
+                    _usersShortDescriptionWidget(theme, index),
+                    addVerticalSpace(5),
+                    Text("user Index $index"),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        buildContainer(
+                            ImageConstants.ic_rewind, 24, 24, controller),
+                        buildContainer(
+                            ImageConstants.ic_love, 26, 26, controller),
+                        buildContainer(
+                            ImageConstants.ic_close, 20, 20, controller),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        Positioned(
+          top: Get.height * 0.42,
+          right: 10,
+          child: GestureDetector(
+              onTap: () => Get.to(() => ExpandPartnerDetails(),
+                  arguments: userList[index]),
+              child: _downArrowWidget),
+        ),
+      ],
+    );
+  }
+
+  Text _usersShortDescriptionWidget(TextTheme theme, int index) {
+    return Text("${userList[index].shortDescription}",
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
         textAlign: TextAlign.center,
@@ -251,9 +271,9 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
             ?.copyWith(fontSize: 18, fontWeight: FontWeight.normal));
   }
 
-  Text _userNamesWidget(TextTheme theme) {
+  Text _userNamesWidget(TextTheme theme, int index) {
     return Text(
-      "${user.firstname} ${user.lastname}",
+      "${userList[index].firstname} ${userList[index].lastname}",
       style:
           theme.headline5?.copyWith(fontSize: 22, fontWeight: FontWeight.w700),
     );

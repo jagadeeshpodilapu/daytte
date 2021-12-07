@@ -34,10 +34,12 @@ class FindTheNearest extends StatelessWidget {
                               print("Age $age");
                               return GestureDetector(
                                   onTap: () {
-                                    var userId = controller
-                                        .findNearestModel?.data.users?[index];
-                                    Get.toNamed(AppRoutes.DISCOVER,
-                                        arguments: userId);
+                                    final users =
+                                        controller.findNearestModel?.data.users;
+                                    Get.toNamed(AppRoutes.DISCOVER, arguments: {
+                                      "usersList": users,
+                                      "selecteduser": index
+                                    });
                                   },
                                   child: Card(
                                     margin: EdgeInsets.symmetric(

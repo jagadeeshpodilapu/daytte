@@ -94,7 +94,7 @@ class OtpController extends BaseController {
         storage.write('page', "1");
         var location = await Location().hasPermission();
         if (location != PermissionStatus.granted) {
-          Get.to(() => EnablePermsions());
+          Get.off(() => EnablePermsions());
         } else {
           Get.offAndToNamed(AppRoutes.SIGNUPVIEW);
         }

@@ -20,7 +20,7 @@ class _MyStoryViewScreenState extends State<MyStoryViewScreen> {
   List<SwipeItem>? _swipeItems = <SwipeItem>[];
   MatchEngine? _matchEngine = MatchEngine();
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
-  List<String> _names = ["Red", "Blue", "Green", "Yellow", "Orange"];
+  //List<String> _names = ["Red", "Blue", "Green", "Yellow", "Orange"];
   List<Color> _colors = [
     Colors.red,
     Colors.blue,
@@ -31,24 +31,24 @@ class _MyStoryViewScreenState extends State<MyStoryViewScreen> {
 
   @override
   void initState() {
-    for (int i = 0; i < _names.length; i++) {
+    for (int i = 0; i < _colors.length; i++) {
       _swipeItems?.add(SwipeItem(
-          content: Content(text: _names[i], color: _colors[i]),
+          content: Content( color: _colors[i]),
           likeAction: () {
             _scaffoldKey.currentState?.showSnackBar(SnackBar(
-              content: Text("Liked ${_names[i]}"),
+              content: Text("Liked ${_colors[i]}"),
               duration: Duration(milliseconds: 500),
             ));
           },
           nopeAction: () {
             _scaffoldKey.currentState?.showSnackBar(SnackBar(
-              content: Text("Nope ${_names[i]}"),
+              content: Text("Nope ${_colors[i]}"),
               duration: Duration(milliseconds: 500),
             ));
           },
           superlikeAction: () {
             _scaffoldKey.currentState?.showSnackBar(SnackBar(
-              content: Text("Superliked ${_names[i]}"),
+              content: Text("Superliked ${_colors[i]}"),
               duration: Duration(milliseconds: 500),
             ));
           }));

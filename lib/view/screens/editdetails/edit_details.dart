@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:daytte/consts/constants.dart';
-import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:daytte/view/widgets/textfield_widget.dart';
@@ -14,8 +13,6 @@ import '../../../controllers/edit_details/edit_details_controller.dart';
 enum SingingCharacter { male, female }
 
 class EditDetails extends StatelessWidget {
-  //final controller = Get.put(EditDetailsController());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +20,7 @@ class EditDetails extends StatelessWidget {
       appBar: appBarWidget(Constants.editDetails, color: Color(0xffF7F8FA)),
       body: GetBuilder<EditDetailsController>(
         init: EditDetailsController(),
-       // didChangeDependencies: (state)=>state.controller?.getUserUpdateData(),
+        // didChangeDependencies: (state)=>state.controller?.getUserUpdateData(),
         builder: (controller) => ListView(
           children: [
             addPhotoHeadingWidget,
@@ -112,7 +109,6 @@ class EditDetails extends StatelessWidget {
 
     controller.schoolController.text =
         controller.userModel?.data.user?.interestedIn ?? "";
-    "";
     controller.companyController.text =
         controller.userModel?.data.user?.interestedIn ?? "";
     return Container(
