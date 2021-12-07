@@ -1,17 +1,14 @@
 import 'package:daytte/controllers/permissionController/permission_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
-
 import '../../model/location_model.dart';
 import '../../routes/app_routes.dart';
 import '../../services/base_service/base_client.dart';
 import '../../view/dialogs/dialogHelper.dart';
 import '../base_controller/baseController.dart';
-import '../otpController/otp_controller.dart';
 
 class SignupController extends BaseController {
   final List<String> gender = ["Male", "Female"];

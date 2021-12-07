@@ -28,7 +28,7 @@ class Constants {
   static const String aboutWarning = 'Please tell about YourSelf';
   static const String charRequest = 'Chat Request';
   static const String message = 'Messages';
-  static const String chooseGender = 'Select your Gender';
+  static const String chooseGender = 'Select your gender';
   static const String continueText = 'Continue';
   static const String discoverPartner = 'Discover Partner';
   static const String editDetails = 'Edit Details';

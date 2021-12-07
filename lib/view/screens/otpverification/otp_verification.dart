@@ -13,6 +13,7 @@ class OtpVerification extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       body: GetBuilder<OtpController>(
         init: OtpController(),
@@ -52,12 +53,15 @@ class OtpVerification extends StatelessWidget {
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0.0,
-      leading: Icon(
-        Icons.arrow_back_ios,
-        color: Color(0xff363636),
+      leading: GestureDetector(
+        onTap: ()=>Get.back(),
+        child: Icon(
+          Icons.arrow_back_ios,
+          color: Color(0xff363636),
+        ),
       ),
       title: Text(
-        "OTP Verification",
+        "OTP Verification Code",
         style: Theme.of(context).textTheme.headline6,
       ),
       centerTitle: true,
@@ -82,7 +86,7 @@ class OtpVerification extends StatelessWidget {
                     .headline6!
                     .copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
             TextSpan(
-                text: '+91${controller.mobileNumber}',
+                text: '+91 ${controller.mobileNumber}',
                 style: Theme.of(Get.context!)
                     .textTheme
                     .headline6!
@@ -156,7 +160,7 @@ class OtpVerification extends StatelessWidget {
                         color: Color(0xFF7004E3), fontWeight: FontWeight.bold),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () =>
-                          controller.reSendOtp('+91${controller.mobileNumber}'))
+                          controller.reSendOtp('+91 ${controller.mobileNumber}'))
               ],
             ),
           ),
