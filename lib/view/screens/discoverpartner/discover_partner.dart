@@ -1,4 +1,5 @@
 import 'package:daytte/consts/constants.dart';
+import 'package:flutter_svg/svg.dart';
 import '../../../model/find_nearest_model.dart';
 import '../../../routes/app_routes.dart';
 import 'expand_discover_partner.dart';
@@ -9,7 +10,6 @@ import 'package:get/get.dart';
 import 'package:showcaseview/showcaseview.dart';
 import 'package:story_view/widgets/story_view.dart';
 import 'package:swipe_cards/swipe_cards.dart';
-
 import '../../../consts/image_constants.dart';
 import '../../../controllers/discover_partner/discover_partner_controller.dart';
 
@@ -23,13 +23,14 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
   final User user = Get.arguments;
   final keyOne = GlobalKey();
 
+
   @override
   void initState() {
     super.initState();
     final controller = Get.find<DiscoverPartnerController>();
 
     controller.fetchUserGallery(user.id.toString());
-    
+
     /* WidgetsBinding.instance?.addPostFrameCallback(
       (_) => ShowCaseWidget.of(Get.context!)?.startShowCase([
         keyOne,
@@ -40,7 +41,6 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
-
     return Hero(
       tag: 'img',
       child: Scaffold(
@@ -144,6 +144,24 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
                                                                       ),
                                                                     ),
                                                                   ),
+                                                                  Visibility(
+                                                                    visible: controller.transparentBackground.value ? false :true ,
+                                                                    child: Positioned.fill(child: Container(
+                                                                      color: Color(0xFF363636),
+                                                                      child: GestureDetector(
+                                                                        onTap: (){
+                                                                          controller.setColor();
+                                                                        },
+                                                                          child: Column(
+                                                                            mainAxisAlignment: MainAxisAlignment.center,
+                                                                            children: [
+                                                                              SvgPicture.asset("assets/icon/swipe_view_more.svg",height: 70,width: 70,),
+                                                                              SizedBox(height: 5,),
+                                                                              Text("Swipe to view more",style: TextStyle(color: Colors.white),)
+                                                                            ],
+                                                                          )),
+                                                                    )),
+                                                                  ),
                                                                   _distanceWidget(),
                                                                   _personsMatchingPercentage(),
                                                                 ],
@@ -217,7 +235,6 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
                                           ],
                                         )
                                       : Center(
-                                        
                                           child: Text(
                                               "No Gallery Pictures  Available"),
                                         ),
@@ -227,7 +244,7 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
                                   child: GestureDetector(
                                       onTap: () => Get.to(
                                           () => ExpandPartnerDetails(),
-                                         arguments: user),
+                                          arguments: user),
                                       child: _downArrowWidget)),
                             ],
                           ),

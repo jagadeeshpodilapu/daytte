@@ -27,6 +27,8 @@ class DiscoverPartnerController extends BaseController {
   List<UserGalleryModel> listUserGalleryModel = [];
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   final controller = Get.find<FindNearestController>();
+  RxBool transparentBackground = false.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -41,6 +43,11 @@ class DiscoverPartnerController extends BaseController {
 
   Future getStorage() async {
     dataIds = controller.userIds;
+  }
+
+  setColor() {
+    transparentBackground.value = true;
+    update();
   }
 
   Future fetchUserGallery(String userId) async {
@@ -63,7 +70,6 @@ class DiscoverPartnerController extends BaseController {
       print('galleryImages and length $response $userId ${gallery.value}');
     }
     update();
-
 
     listUserGalleryCalling();
   }
