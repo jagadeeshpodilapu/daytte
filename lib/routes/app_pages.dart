@@ -1,4 +1,5 @@
 import 'package:daytte/controllers/permissionController/permission_binding.dart';
+import 'package:daytte/view/screens/matchscreen/match_screen.dart';
 
 import '../controllers/discover_partner/discover_partner_binding.dart';
 import '../controllers/edit_details/edit_detail_binding.dart';
@@ -80,6 +81,7 @@ class AppPages {
         name: AppRoutes.INTERESTED,
         page: () => InterestedScreen(),
         bindings: []),
+    GetPage(name: AppRoutes.MATCHED, page: () => MatchScreen(), bindings: []),
     GetPage(
         name: AppRoutes.SETTINGSVIEW,
         page: () => Settings(),

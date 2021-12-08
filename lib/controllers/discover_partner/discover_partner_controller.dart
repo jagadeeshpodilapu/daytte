@@ -1,6 +1,7 @@
 import 'package:daytte/controllers/base_controller/baseController.dart';
 import 'package:daytte/controllers/findnearest/find_nearest_controller.dart';
 import 'package:daytte/model/user_gallery_model.dart';
+import 'package:daytte/model/user_liked_model.dart';
 import 'package:daytte/services/base_service/base_client.dart';
 import 'package:daytte/services/likes_service.dart';
 import 'package:daytte/view/dialogs/dialogHelper.dart';
@@ -22,6 +23,7 @@ class DiscoverPartnerController extends BaseController {
   RxBool isLoading = true.obs;
 
   final storage = GetStorage();
+  UserLikedModel? userLikedModel;
 
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
@@ -76,7 +78,8 @@ class DiscoverPartnerController extends BaseController {
     update();
   }
 
-  Future postLikesData(String likedTo,bool isLiked) async {
+  Future postLikesData(String likedTo, bool isLiked) async {
+    print("this post like method called");
     Map<String, dynamic> payload = {
       "likedBy": storage.read('id'),
       "likedTo": likedTo,
@@ -89,7 +92,8 @@ class DiscoverPartnerController extends BaseController {
     if (response == null) return;
 
     if (response != null) {
-      print("response  $response");
+      userLikedModel = UserLikedModel.fromJson(response);
     }
+    update();
   }
 }

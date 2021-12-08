@@ -33,7 +33,7 @@ class _MyStoryViewScreenState extends State<MyStoryViewScreen> {
   void initState() {
     for (int i = 0; i < _colors.length; i++) {
       _swipeItems?.add(SwipeItem(
-          content: Content( color: _colors[i]),
+          content: Content(color: _colors[i]),
           likeAction: () {
             _scaffoldKey.currentState?.showSnackBar(SnackBar(
               content: Text("Liked ${_colors[i]}"),
@@ -108,16 +108,17 @@ class _MyStoryViewScreenState extends State<MyStoryViewScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                    onPressed: () {
-                      _matchEngine?.currentItem?.nope();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: CircleBorder(),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Icon(Icons.fast_rewind),
-                    )),
+                  onPressed: () {
+                    _matchEngine?.currentItem?.nope();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: CircleBorder(),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Icon(Icons.fast_rewind),
+                  ),
+                ),
                 ElevatedButton(
                     onPressed: () {
                       _matchEngine?.currentItem?.superLike();
@@ -149,4 +150,3 @@ class _MyStoryViewScreenState extends State<MyStoryViewScreen> {
     );
   }
 }
-

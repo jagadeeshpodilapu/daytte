@@ -29,7 +29,7 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
   final storyController = StoryController();
   List<SwipeItem>? _swipeItems = <SwipeItem>[];
   MatchEngine _matchEngine = MatchEngine();
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+ 
   int? swipeItemIndex;
 
   @override
@@ -47,21 +47,26 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
       _swipeItems?.add(
         SwipeItem(
             content: userList[i],
-            likeAction: () {
-              controller.postLikesData(userList[i].id.toString(), true);
+            likeAction: () async {
+              await controller.postLikesData(userList[i].id.toString(), true);
+              if (controller.userLikedModel?.data != null) {
+                bool matched =
+                    controller.userLikedModel?.data.isMatched ?? false;
 
-              
+                matched ? Get.toNamed(AppRoutes.MATCHED) : null;
+              }
+
               _matchEngine.currentItem?.like();
+              await getUserGallery(userIndex: i + 1);
+            },
+            nopeAction: () async {
+              await controller.postLikesData(userList[i].id.toString(), false);
+              _matchEngine.currentItem?.nope();
               getUserGallery(userIndex: i + 1);
             },
-            nopeAction: () {
-              controller.postLikesData(userList[i].id.toString(), false);
- _matchEngine.currentItem?.nope();
-              getUserGallery(userIndex: i + 1);
-             
-            },
-            superlikeAction: () {
-               _matchEngine.currentItem?.superLike();
+            superlikeAction: () async {
+              await controller.postLikesData(userList[i].id.toString(), true);
+              _matchEngine.currentItem?.like();
               getUserGallery(userIndex: i + 1);
             }),
       );
@@ -73,6 +78,13 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
 
   getUserGallery({required int userIndex}) {
     controller.fetchUserGallery(userList[userIndex].id.toString());
+  }
+
+  @override
+  void dispose() {
+    storyController.dispose();
+    _matchEngine.dispose();
+    super.dispose();
   }
 
   @override
@@ -231,8 +243,7 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
                     _userNamesWidget(theme, index),
                     addVerticalSpace(8),
                     _usersShortDescriptionWidget(theme, index),
-                    addVerticalSpace(5),
-                    Text("user Index $index"),
+                    addVerticalSpace(10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -381,11 +392,11 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
         padding: EdgeInsets.all(8),
         onPressed: () {
           if (icon == ImageConstants.ic_rewind) {
-            controller.matchEngine?.currentItem?.nope();
+            //  _matchEngine.currentItem?.nope();
           } else if (icon == ImageConstants.ic_love) {
-            controller.matchEngine?.currentItem?.like();
+            _matchEngine.currentItem?.like();
           } else if (icon == ImageConstants.ic_close) {
-            controller.matchEngine?.currentItem?.superLike();
+            _matchEngine.currentItem?.nope();
           }
         },
         child: Image.asset(
