@@ -109,62 +109,66 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
                                                               height:
                                                                   Get.height *
                                                                       0.47,
-                                                              child: Stack(
-                                                                children: [
-                                                                  Container(
-                                                                    height:
-                                                                        Get.height *
-                                                                            0.45,
-                                                                    width: Get
-                                                                        .width,
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .center,
-                                                                    color: Colors
-                                                                        .transparent,
-                                                                    child:
-                                                                        ClipRRect(
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              15.0),
+                                                              child: GestureDetector(
+                                                                onTap: (){
+                                                                  controller.backgroundColor();
+                                                                },
+                                                                child: Stack(
+                                                                  children: [
+                                                                    Container(
+                                                                      height:
+                                                                          Get.height *
+                                                                              0.45,
+                                                                      width: Get
+                                                                          .width,
+                                                                      alignment:
+                                                                          Alignment
+                                                                              .center,
+                                                                      color: Colors
+                                                                          .transparent,
                                                                       child:
-                                                                          StoryView(
-                                                                        controller:
-                                                                            controller.storyController,
-                                                                        storyItems:
-                                                                            controller.profilePics,
-                                                                        repeat:
-                                                                            false,
-                                                                        onStoryShow:
-                                                                            (storyItem) {
-                                                                          final index = controller
-                                                                              .profilePics
-                                                                              .indexOf(storyItem);
-                                                                        },
+                                                                          ClipRRect(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(
+                                                                                15.0),
+                                                                        child:
+                                                                            StoryView(
+                                                                          controller:
+                                                                              controller.storyController,
+                                                                          storyItems:
+                                                                              controller.profilePics,
+                                                                          repeat:
+                                                                              false,
+                                                                          onStoryShow:
+                                                                              (storyItem) {
+                                                                            final index = controller
+                                                                                .profilePics
+                                                                                .indexOf(storyItem);
+                                                                          },
+                                                                        ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                  Visibility(
-                                                                    visible: controller.transparentBackground.value ? false :true ,
-                                                                    child: Positioned.fill(child: Container(
-                                                                      color: Color(0xFF363636),
-                                                                      child: GestureDetector(
-                                                                        onTap: (){
-                                                                          controller.setColor();
-                                                                        },
-                                                                          child: Column(
-                                                                            mainAxisAlignment: MainAxisAlignment.center,
-                                                                            children: [
-                                                                              SvgPicture.asset("assets/icon/swipe_view_more.svg",height: 70,width: 70,),
-                                                                              SizedBox(height: 5,),
-                                                                              Text("Swipe to view more",style: TextStyle(color: Colors.white),)
-                                                                            ],
-                                                                          )),
-                                                                    )),
-                                                                  ),
-                                                                  _distanceWidget(),
-                                                                  _personsMatchingPercentage(),
-                                                                ],
+                                                                    Visibility(
+                                                                      visible:  controller.colorChange.value,
+                                                                      child: Positioned.fill(bottom:15,child: Container(
+                                                                        // color: Color(0xFF363636).withOpacity(0.8),
+                                                                        decoration: BoxDecoration(
+                                                                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                                                                            color:Color(0xFF363636).withOpacity(0.8)),
+                                                                        child: Column(
+                                                                          mainAxisAlignment: MainAxisAlignment.center,
+                                                                          children: [
+                                                                            SvgPicture.asset("assets/icon/swipe_view_more.svg",height: 70,width: 70,),
+                                                                            SizedBox(height: 5,),
+                                                                            Text("Swipe to view more",style: TextStyle(color: Colors.white),)
+                                                                          ],
+                                                                        ),
+                                                                      )),
+                                                                    ),
+                                                                    _distanceWidget(),
+                                                                    _personsMatchingPercentage(),
+                                                                  ],
+                                                                ),
                                                               ),
                                                             ),
                                                             Align(
