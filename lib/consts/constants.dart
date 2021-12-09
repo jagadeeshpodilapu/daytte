@@ -84,4 +84,8 @@ class Constants {
   static const String tcApply = "I have read the Terms & Condition";
   static const String acceptTc = "Accept our terms and conditions";
   static const String university = "University";
+  static const String male = "Male";
+  static const String female = "Female";
+
+
 }

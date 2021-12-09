@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:daytte/consts/constants.dart';
+import 'package:daytte/consts/image_constants.dart';
 import 'package:daytte/controllers/aboutus_controller/about_us_controller.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,7 @@ class AboutUs extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image.asset('assets/icons/Photo.png',
+                              Image.asset(ImageConstants.ic_photo,
                                   width: 45, height: 30),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),

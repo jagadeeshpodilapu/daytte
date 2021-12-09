@@ -1,3 +1,4 @@
+import 'package:daytte/consts/image_constants.dart';
 import 'package:daytte/controllers/base_controller/baseController.dart';
 import 'package:daytte/controllers/findnearest/find_nearest_controller.dart';
 import 'package:daytte/model/content_images.dart';
@@ -5,7 +6,6 @@ import 'package:daytte/model/find_nearest_model.dart';
 import 'package:daytte/model/user_gallery_model.dart';
 import 'package:daytte/services/base_service/base_client.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/diagnostics.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:story_view/story_view.dart';
@@ -62,7 +62,6 @@ class DiscoverPartnerController extends BaseController {
     profilePics.clear();
     swipeItems.clear();
     if (response != null) {
-      print("find nearest response $response");
       isLoading(false);
       userGalleryModel = UserGalleryModel.fromJson(response);
       gallery.value = userGalleryModel?.data.galleries?.length ?? 0;
@@ -82,7 +81,7 @@ class DiscoverPartnerController extends BaseController {
         profilePics.add(
           StoryItem.pageImage(
             url: userGalleryModel!.data.galleries?[i].imgPath ??
-                "assets/images/placeholder.jpg",
+                ImageConstants.placeHolder,
             controller: storyController,
             imageFit: BoxFit.cover,
             duration: Duration(seconds: 10),
@@ -108,7 +107,7 @@ class DiscoverPartnerController extends BaseController {
     } else {
       profilePics.add(
         StoryItem.pageImage(
-          url: "assets/images/placeholder.jpg",
+          url: ImageConstants.placeHolder,
           controller: storyController,
           imageFit: BoxFit.cover,
           duration: Duration(milliseconds: 5000),

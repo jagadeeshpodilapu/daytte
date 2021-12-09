@@ -1,3 +1,4 @@
+import 'package:daytte/consts/constants.dart';
 import 'package:daytte/controllers/permissionController/permission_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ import '../../view/dialogs/dialogHelper.dart';
 import '../base_controller/baseController.dart';
 
 class SignupController extends BaseController {
-  final List<String> gender = ["Male", "Female"];
+  final List<String> gender = [Constants.male, Constants.female];
   LocationModel? locationModel;
 
   final GlobalKey<FormState> key = GlobalKey<FormState>();

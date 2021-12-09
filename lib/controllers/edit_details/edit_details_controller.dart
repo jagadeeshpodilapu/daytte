@@ -66,7 +66,6 @@ class EditDetailsController extends BaseController {
       "shortDescription": aboutMeController.text,
       // "passion": userModel?.data.user?.passion
     };
-    print("payload object is $payload ${storage.read("id")}");
     DialogHelper.showLoading('Loading...');
     final response = await BaseClient()
         .patch('/users/${storage.read("id")}', payload, storage.read('token'))

@@ -22,11 +22,7 @@ class FindNearestController extends BaseController {
     final response = await BaseClient()
         .get('/users?skip=$page&limit=$limit', storage.read('token'))
         .catchError(BaseController().handleError);
-
-    print("storage value ${storage.read("id")} ${storage.read("token")}");
-
     if (response != null) {
-      print("find nearest response $response");
       findNearestModel = FindNearestModel.fromJson(response);
       users.value = findNearestModel?.data.users?.length ?? 0;
       userIds= findNearestModel?.data.users??[];
