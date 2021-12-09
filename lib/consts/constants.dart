@@ -86,4 +86,6 @@ class Constants {
   static const String university = "University";
   static const String male = "Male";
   static const String female = "Female";
+  static const String createAccount = "Create Account";
+  static const String validateValidNumber = 'Please enter Valid Number';
 }

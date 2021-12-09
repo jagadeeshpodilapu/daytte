@@ -18,6 +18,11 @@ class ImageConstants {
   static const girl = 'assets/images/girl.jpg';
   static const placeHolder = 'assets/images/placeholder.jpg';
   static const ic_photo = 'assets/icons/Photo.png';
+  static const create_account = "assets/icon/create_account.png";
+
 
 //Svg icons only
+  static const ic_google = 'assets/icon/google.svg';
+  static const ic_facebook = 'assets/icon/facebook.svg';
+  static const ic_twitter = 'assets/icon/twitter.svg';
 }
