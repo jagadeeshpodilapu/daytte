@@ -1,18 +1,19 @@
 import 'package:daytte/consts/constants.dart';
-import 'package:story_view/controller/story_controller.dart';
-import '../../../model/find_nearest_model.dart';
-import '../../../routes/app_routes.dart';
-import 'expand_discover_partner.dart';
-import '../findnearest/expire_banner.dart';
-import '../../widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:showcaseview/showcaseview.dart';
+import 'package:story_view/controller/story_controller.dart';
 import 'package:story_view/widgets/story_view.dart';
 import 'package:swipe_cards/swipe_cards.dart';
 
 import '../../../consts/image_constants.dart';
 import '../../../controllers/discover_partner/discover_partner_controller.dart';
+import '../../../model/find_nearest_model.dart';
+import '../../../routes/app_routes.dart';
+import '../../widgets/common_widgets.dart';
+import '../findnearest/expire_banner.dart';
+import 'expand_discover_partner.dart';
 
 class DiscoverPartner extends StatefulWidget {
   @override
@@ -29,7 +30,7 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
   final storyController = StoryController();
   List<SwipeItem>? _swipeItems = <SwipeItem>[];
   MatchEngine _matchEngine = MatchEngine();
- 
+
   int? swipeItemIndex;
 
   @override
@@ -228,6 +229,35 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
                           inline: false,
                         ),
                       ),
+                    ),
+                    Visibility(
+                      visible: true,
+                      child: Positioned.fill(
+                          bottom: 15,
+                          child: Container(
+                            // color: Color(0xFF363636).withOpacity(0.8),
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15)),
+                                color: Color(0xFF363636).withOpacity(0.8)),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                  "assets/icon/swipe_view_more.svg",
+                                  height: 70,
+                                  width: 70,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  "Swipe to view more",
+                                  style: TextStyle(color: Colors.white),
+                                )
+                              ],
+                            ),
+                          )),
                     ),
                     _distanceWidget(),
                     _personsMatchingPercentage(),

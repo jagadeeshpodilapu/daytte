@@ -152,7 +152,7 @@ class OtpVerification extends StatelessWidget {
               children: <TextSpan>[
                 TextSpan(
                     text: 'Resend',
-                    style: AppStyles.subHeading.copyWith(
+                    style: AppStyles.title.copyWith(
                         color: Color(0xFF7004E3), fontWeight: FontWeight.bold),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () =>

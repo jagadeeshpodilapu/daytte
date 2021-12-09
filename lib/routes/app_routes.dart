@@ -16,5 +16,6 @@ class AppRoutes{
   static const EDITDETAILS = '/editDetails';
   static const SETTINGSVIEW = '/settings';
   static const DISCOVER = '/discover';
+  static const PERMISSION = '/permission';
   static const MATCHED = '/matched';
 }

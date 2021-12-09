@@ -107,7 +107,7 @@ class Login extends StatelessWidget {
             children: <TextSpan>[
               TextSpan(
                   text: Constants.sign_in,
-                  style: AppStyles.subHeading.copyWith(
+                  style: AppStyles.title.copyWith(
                       color: Color(0xFF7004E3), fontWeight: FontWeight.bold),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () => Get.toNamed(AppRoutes.SIGNUPVIEW))

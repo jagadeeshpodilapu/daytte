@@ -1,5 +1,6 @@
 import 'package:daytte/controllers/permissionController/permission_binding.dart';
 import 'package:daytte/view/screens/matchscreen/match_screen.dart';
+import 'package:daytte/view/screens/permissions/permissions.dart';
 
 import '../controllers/discover_partner/discover_partner_binding.dart';
 import '../controllers/edit_details/edit_detail_binding.dart';
@@ -38,17 +39,21 @@ class AppPages {
         page: () => SplashScreen(),
         bindings: [SignupBinding(), PermissionBinding()]),
     GetPage(
+        name: AppRoutes.PERMISSION,
+        page: () => EnablePermsions(),
+        bindings: [PermissionBinding()]),
+    GetPage(
         name: AppRoutes.LOGINVIEW,
         page: () => Login(),
         bindings: [LoginBinding(), OtpBinding()]),
     GetPage(
         name: AppRoutes.SIGNUPVIEW,
         page: () => SignUp(),
-        bindings: [SignupBinding(), OtpBinding()]),
+        bindings: [SignupBinding(), OtpBinding(), PermissionBinding()]),
     GetPage(
         name: AppRoutes.OTPVERIFICATION,
         page: () => OtpVerification(),
-        bindings: [OtpBinding()]),
+        bindings: [OtpBinding(), PermissionBinding()]),
     GetPage(name: AppRoutes.CHOOSEGENDER, page: () => ChooseGender()),
     GetPage(
         name: AppRoutes.CHOOSEIMAGE,
