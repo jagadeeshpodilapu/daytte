@@ -31,4 +31,9 @@ class ImageConstants {
   static const splash_background = 'assets/icon/splash_background.svg';
   static const hearth_background = 'assets/icon/heart.svg';
   static const wooly_background = 'assets/icon/wooly.svg';
+  static const person = "assets/icon/person.svg";
+  static const age = 'assets/icon/age.svg';
+  static const hobbies = 'assets/icon/hobbies.svg';
+  static const relaxiation = 'assets/icon/relaxation.svg';
+  static const study = 'assets/icon/study.svg';
 }

@@ -1,3 +1,5 @@
+import 'package:daytte/consts/constants.dart';
+import 'package:daytte/consts/image_constants.dart';
 import 'package:daytte/controllers/profileDetails/profile_details_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,8 +12,6 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).textTheme;
-
     return Scaffold(
       backgroundColor: Color(0xffF7F8FA),
       body: GetBuilder<ProfileDetailsController>(
@@ -81,17 +81,18 @@ class ProfileView extends StatelessWidget {
                                             children: [
                                               Text(
                                                   "${controller.user?.firstname}${controller.user?.lastname}",
-                                                  style: theme.headline6
-                                                      ?.copyWith(fontSize: 22)),
+                                                  style: AppStyles.heading4.copyWith(fontWeight: FontWeight.w500)),
                                               SizedBox(
                                                 height: 8,
                                               ),
                                               Text(
-                                                "Bangalore - INDIA",
-                                                style: theme.bodyText1
-                                                    ?.copyWith(
+                                                Constants.location,
+                                                style: AppStyles.title2.copyWith(fontWeight: FontWeight.w400,
                                                         color:
                                                             Color(0xff9A9A9A)),
+                                              ),
+                                              SizedBox(
+                                                height: 8,
                                               ),
                                               Padding(
                                                 padding: EdgeInsets.symmetric(
@@ -102,8 +103,7 @@ class ProfileView extends StatelessWidget {
                                                       padding: const EdgeInsets
                                                               .symmetric(
                                                           horizontal: 8.0),
-                                                      child: _icons(
-                                                          "assets/icon/person.svg"),
+                                                      child: _icons(ImageConstants.person),
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
@@ -111,9 +111,7 @@ class ProfileView extends StatelessWidget {
                                                           horizontal: 4.0),
                                                       child: Text(
                                                         "${controller.user?.firstname} ${controller.user?.lastname}",
-                                                        style: theme.subtitle1
-                                                            ?.copyWith(
-                                                                fontSize: 18),
+                                                        style: AppStyles.title.copyWith(fontWeight: FontWeight.w400),
                                                       ),
                                                     ),
                                                   ],
@@ -129,7 +127,7 @@ class ProfileView extends StatelessWidget {
                                                               .symmetric(
                                                           horizontal: 8.0),
                                                       child: _icons(
-                                                          'assets/icon/age.svg'),
+                                                          ImageConstants.age),
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
@@ -137,9 +135,7 @@ class ProfileView extends StatelessWidget {
                                                           horizontal: 4.0),
                                                       child: Text(
                                                         "${controller.user?.age ?? 21} years",
-                                                        style: theme.subtitle1
-                                                            ?.copyWith(
-                                                                fontSize: 18),
+                                                        style: AppStyles.title.copyWith(fontWeight: FontWeight.w400),
                                                       ),
                                                     ),
                                                   ],
@@ -155,17 +151,15 @@ class ProfileView extends StatelessWidget {
                                                               .symmetric(
                                                           horizontal: 8.0),
                                                       child: _icons(
-                                                          'assets/icon/hobbies.svg'),
+                                                          ImageConstants.hobbies),
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
                                                               .symmetric(
                                                           horizontal: 4.0),
                                                       child: Text(
-                                                        "Cafe , Movies",
-                                                        style: theme.subtitle1
-                                                            ?.copyWith(
-                                                                fontSize: 18),
+                                                        Constants.cafe_movies,
+                                                        style: AppStyles.title.copyWith(fontWeight: FontWeight.w400),
                                                       ),
                                                     ),
                                                   ],
@@ -181,17 +175,15 @@ class ProfileView extends StatelessWidget {
                                                               .symmetric(
                                                           horizontal: 8.0),
                                                       child: _icons(
-                                                          'assets/icon/relaxation.svg'),
+                                                          ImageConstants.relaxiation),
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
                                                               .symmetric(
                                                           horizontal: 4.0),
                                                       child: Text(
-                                                        "Singing, Dancing",
-                                                        style: theme.subtitle1
-                                                            ?.copyWith(
-                                                                fontSize: 18),
+                                                        Constants.singing_dancing,
+                                                        style: AppStyles.title.copyWith(fontWeight: FontWeight.w400),
                                                       ),
                                                     ),
                                                   ],
@@ -207,17 +199,15 @@ class ProfileView extends StatelessWidget {
                                                               .symmetric(
                                                           horizontal: 8.0),
                                                       child: _icons(
-                                                          'assets/icon/study.svg'),
+                                                          ImageConstants.study),
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsets
                                                               .symmetric(
                                                           horizontal: 4.0),
                                                       child: Text(
-                                                        "Bangalore university",
-                                                        style: theme.subtitle1
-                                                            ?.copyWith(
-                                                                fontSize: 18),
+                                                        Constants.bangaloreU,
+                                                        style: AppStyles.title.copyWith(fontWeight: FontWeight.w400),
                                                       ),
                                                     ),
                                                   ],
@@ -235,11 +225,11 @@ class ProfileView extends StatelessWidget {
                             ),
                           ),
                           SizedBox(
-                            height: 260,
+                            height: Get.height *0.35,
                           ),
                           Column(
                             children: [
-                              Padding(
+                              /*Padding(
                                 padding: EdgeInsets.symmetric(vertical: 15.0),
                                 child: Visibility(
                                   visible: false,
@@ -288,11 +278,11 @@ class ProfileView extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                              ),
+                              ),*/
                               Stack(
                                 alignment: Alignment.bottomCenter,
                                 children: [
-                                  Container(
+                                  /*Container(
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(0),
                                         color: Colors.white,
@@ -302,7 +292,7 @@ class ProfileView extends StatelessWidget {
                                               blurRadius: 6)
                                         ]),
                                     height: 280,
-                                  ),
+                                  ),*/
                                   Padding(
                                     padding: EdgeInsets.only(bottom: 24.0),
                                     child: Column(
@@ -341,8 +331,8 @@ class ProfileView extends StatelessWidget {
                                                         const EdgeInsets.all(
                                                             8.0),
                                                     child: Text(
-                                                      "Photo",
-                                                      style: theme.subtitle1,
+                                                      Constants.photo,
+                                                      style: AppStyles.title.copyWith(fontWeight: FontWeight.w400),
                                                     ),
                                                   ),
                                                 ),
@@ -360,7 +350,7 @@ class ProfileView extends StatelessWidget {
                                                           crossAxisCount: 2,
                                                           crossAxisSpacing: 4.0,
                                                           childAspectRatio:
-                                                              3 / 4,
+                                                              1,
                                                           mainAxisSpacing: 4.0),
                                                       itemBuilder:
                                                           (BuildContext context,

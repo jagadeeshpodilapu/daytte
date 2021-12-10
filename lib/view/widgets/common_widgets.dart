@@ -10,6 +10,9 @@ LinearGradient get gradientColors => LinearGradient(
         Color(0xFF8511E6),
         Color(0xFF9A1EE9),
       ],
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      stops: [0.5, 0.8, 1],
     );
 
 /* Widget linearGradientBackground() {

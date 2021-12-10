@@ -92,4 +92,10 @@ class Constants {
   static const String enterOtpSentToMobile = 'Enter the OTP sent to  ';
   static const String dontReceiveOtp = "Didn’t receive code? ";
   static const String reSend = 'Resend';
+  static const String location = "Bangalore - INDIA";
+  static const String cafe_movies = "Cafe , Movies";
+  static const String singing_dancing = "Singing, Dancing";
+  static const String bangaloreU = "Bangalore university";
+  static const String photo = "Photo";
+  static const String friendThinks = "See what a friend thinks";
 }
