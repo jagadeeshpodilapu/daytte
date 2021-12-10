@@ -1,3 +1,4 @@
+import 'package:daytte/themes/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -50,7 +51,8 @@ AppBar appBarWidget(String title, {Color? color}) {
         )),
     title: Text(
       title,
-      style: Theme.of(Get.context!).textTheme.headline6,
+      style:
+          AppStyles.title.copyWith(fontWeight: FontWeight.w400, fontSize: 18),
     ),
     centerTitle: true,
   );

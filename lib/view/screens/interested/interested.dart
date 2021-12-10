@@ -1,4 +1,5 @@
 import 'package:daytte/consts/constants.dart';
+import 'package:daytte/themes/app_styles.dart';
 import 'package:daytte/view/widgets/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -115,14 +116,8 @@ class InterestedScreen extends StatelessWidget {
   }
 
   Text buildText(String text) => Text(text,
-      style: Theme.of(Get.context!)
-          .textTheme
-          .subtitle1
-          ?.copyWith(color: Color(0xff9a9a9a), fontSize: 18));
+      style: AppStyles.title.copyWith(fontSize: 18,fontWeight: FontWeight.w400,color: Color(0xff9a9a9a)));
 
   buildTextBold(String text) => Text(text,
-      style: Theme.of(Get.context!)
-          .textTheme
-          .subtitle1
-          ?.copyWith(color: Color(0xff363636), fontSize: 18));
+      style: AppStyles.title.copyWith(fontSize: 18,fontWeight: FontWeight.w400));
 }

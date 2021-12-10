@@ -25,4 +25,10 @@ class ImageConstants {
   static const ic_google = 'assets/icon/google.svg';
   static const ic_facebook = 'assets/icon/facebook.svg';
   static const ic_twitter = 'assets/icon/twitter.svg';
+  static const verity_otp = "assets/icon/verify_otp.svg";
+  static const blue_background = 'assets/icon/blue_background.svg';
+  static const grey_background = 'assets/icon/grey_background.svg';
+  static const splash_background = 'assets/icon/splash_background.svg';
+  static const hearth_background = 'assets/icon/heart.svg';
+  static const wooly_background = 'assets/icon/wooly.svg';
 }

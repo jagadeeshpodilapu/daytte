@@ -1,4 +1,5 @@
 import 'package:daytte/consts/constants.dart';
+import 'package:daytte/themes/app_styles.dart';
 import 'package:daytte/utils/common_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -46,8 +47,9 @@ class PassionSCreen extends StatelessWidget {
                         unselectedShadow: const [],
                         selectedBorderColor: Color(0xff7004E3),
                         unselectedBorderColor: Color(0xffE1E1E1),
-                        unselectedTextStyle:
-                            const TextStyle(color: Colors.grey),
+                        unselectedTextStyle: AppStyles.title2.copyWith(
+                            color: Color(0xFF9A9A9A),
+                            fontWeight: FontWeight.w400),
                         borderRadius: BorderRadius.circular(30),
                         onSelected: (index, isSelected) =>
                             controller.selected.add(controller.listId[index]),
@@ -97,7 +99,8 @@ class PassionSCreen extends StatelessWidget {
           )),
       title: Text(
         Constants.passion,
-        style: Theme.of(Get.context!).textTheme.headline6,
+        style: AppStyles.heading4
+            .copyWith(fontWeight: FontWeight.w400, fontSize: 18),
       ),
       centerTitle: true,
     );

@@ -88,4 +88,8 @@ class Constants {
   static const String female = "Female";
   static const String createAccount = "Create Account";
   static const String validateValidNumber = 'Please enter Valid Number';
+  static const String otpVerification = "OTP Verification";
+  static const String enterOtpSentToMobile = 'Enter the OTP sent to  ';
+  static const String dontReceiveOtp = "Didn’t receive code? ";
+  static const String reSend = 'Resend';
 }

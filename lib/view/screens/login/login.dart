@@ -144,14 +144,13 @@ class Login extends StatelessWidget {
         keyboardType: TextInputType.number,
         controller: controller.mobileController,
         decoration: InputDecoration(
-            // contentPadding: const EdgeInsets.all(8.0),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(width: 1, color: Color(0xFF7834F4)),
             ),
             border: const OutlineInputBorder(
                 borderSide: BorderSide(color: textColor, width: 1)),
             isCollapsed: true,
-            fillColor: Colors.white,
+            fillColor: whiteColor,
             contentPadding: new EdgeInsets.fromLTRB(2, 2, 2, 2),
             prefix: DropdownButtonHideUnderline(
               child: ButtonTheme(
