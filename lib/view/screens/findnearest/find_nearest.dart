@@ -1,6 +1,7 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/controllers/findnearest/find_nearest_controller.dart';
 import 'package:daytte/routes/app_routes.dart';
+import 'package:daytte/themes/app_styles.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +12,6 @@ import '../../dialogs/premium_dialogs/platinum_package.dart';
 class FindTheNearest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).textTheme;
     return Scaffold(
         appBar: appBarWidget(Constants.findNearest, color: Color(0xffF7F8FA)),
         backgroundColor: Color(0xffF7F8FA),
@@ -104,11 +104,11 @@ class FindTheNearest extends StatelessWidget {
                                                                 overflow:
                                                                     TextOverflow
                                                                         .ellipsis,
-                                                                style: theme
-                                                                    .headline6
-                                                                    ?.copyWith(
-                                                                        fontSize:
-                                                                            16)),
+                                                                style: AppStyles
+                                                                    .title2
+                                                                    .copyWith(
+                                                                        fontWeight:
+                                                                            FontWeight.w500)),
                                                           ),
                                                           Padding(
                                                             padding:
@@ -131,11 +131,12 @@ class FindTheNearest extends StatelessWidget {
                                                                 left: 8.0),
                                                         child: Text(
                                                             "NewYork,USA",
-                                                            style: theme
-                                                                .bodyText2
-                                                                ?.copyWith(
-                                                                    fontSize:
-                                                                        12,
+                                                            style: AppStyles
+                                                                .title3
+                                                                .copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
                                                                     color: Color(
                                                                         0xff9a9a9a))),
                                                       ),
@@ -145,13 +146,13 @@ class FindTheNearest extends StatelessWidget {
                                                             const EdgeInsets
                                                                     .only(
                                                                 left: 8.0),
-                                                        child: Text(
-                                                            "Active now",
-                                                            style: theme
-                                                                .bodyText2
-                                                                ?.copyWith(
-                                                                    fontSize:
-                                                                        12,
+                                                        child: Text("Active now",
+                                                            style: AppStyles
+                                                                .title3
+                                                                .copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400,
                                                                     color: Color(
                                                                         0xff9a9a9a))),
                                                       ),

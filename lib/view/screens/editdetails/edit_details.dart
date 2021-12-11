@@ -4,11 +4,13 @@ import 'package:daytte/consts/constants.dart';
 import 'package:daytte/consts/image_constants.dart';
 import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/themes/app_styles.dart';
+import 'package:daytte/view/screens/interested/interested.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:daytte/view/widgets/textfield_widget.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -53,10 +55,7 @@ class EditDetails extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(Constants.addPhoto,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 14,
-                                        color: Colors.black54)),
+                                    style: AppStyles.title2.copyWith(fontWeight: FontWeight.w400,color: Color(0xFF9A9A9A))),
                               ),
                             ],
                           ),
@@ -144,12 +143,12 @@ class EditDetails extends StatelessWidget {
                     ),
                     GestureDetector(
                         onTap: () => controller.editToggle(),
-                        child: Text("Edit"))
+                        child: Text("Edit",style: AppStyles.title3.copyWith(color: Color(0xFF9A9A9A),fontWeight: FontWeight.w400),))
                   ],
                 ),
                 Obx(
                   () => TextFormField(
-                    style: TextStyle(color: Colors.black),
+                    style: AppStyles.title3.copyWith(fontWeight: FontWeight.w400),
                     maxLines: 2,
                     controller: controller.aboutMeController,
                     autofocus: controller.isEdit.value,
@@ -173,7 +172,7 @@ class EditDetails extends StatelessWidget {
                       GetStorage().write("passion", "EditProfilePassion");
                       Get.toNamed(AppRoutes.PASSION);
                     },
-                    child: Text("Edit")),
+                    child: Text("Edit",style: AppStyles.title3.copyWith(color: Color(0xFF9A9A9A),fontWeight: FontWeight.w400))),
               ],
             ),
             /* Wrap(
@@ -214,7 +213,7 @@ class EditDetails extends StatelessWidget {
                       GetStorage().write("university", "EditProfileUniversity");
                       Get.toNamed(AppRoutes.UNIVERSITY);
                     },
-                    child: Text("Edit")),
+                    child: Text("Edit",style: AppStyles.title3.copyWith(color: Color(0xFF9A9A9A),fontWeight: FontWeight.w400))),
               ],
             ),
             TextFieldWidget(
@@ -223,7 +222,11 @@ class EditDetails extends StatelessWidget {
               readOnly: true,
               controller: controller.schoolController,
             ),
-            addVerticalSpace(10)
+            addVerticalSpace(15),
+            _genderSelectWidget(),
+
+
+
           ],
         ),
       ),
@@ -238,6 +241,46 @@ class EditDetails extends StatelessWidget {
       focusedBorder: _outlineBorder(Color(0xFf7834F4)),
       errorBorder: _outlineBorder(Colors.red),
       focusedErrorBorder: _outlineBorder(Colors.red),
+    );
+  }
+
+  Widget _genderSelectWidget() {
+    return Card(
+      elevation: 4.0,
+      child: ListTile(
+        onTap: () => Get.to(() => InterestedScreen()),
+        title: _subHeadGreyText(Constants.gender),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _titleBoldText("Woman"),
+            addHorizontalSpace(8),
+            _backArrow()
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _backArrow() {
+    return Icon(
+      Icons.arrow_forward_ios,
+      size: 18,
+      color: Color(0xff363636),
+    );
+  }
+
+  Text _subHeadGreyText(String title, {double? size}) {
+    return Text(
+      title,
+      style: AppStyles.title.copyWith(fontSize: size ?? 16, color: Color(0xff9A9A9A)),
+    );
+  }
+
+  Widget _titleBoldText( String header) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(header, style:AppStyles.title.copyWith(fontSize: 18,fontWeight: FontWeight.w400)),
     );
   }
 
@@ -382,7 +425,7 @@ class EditDetails extends StatelessWidget {
   }
  */
 
-  Padding addMediaButtonWidget(
+  Widget addMediaButtonWidget(
     BuildContext context,
     EditDetailsController controller,
   ) {

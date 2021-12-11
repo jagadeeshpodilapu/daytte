@@ -1,5 +1,7 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/consts/image_constants.dart';
+import 'package:daytte/themes/app_styles.dart';
+import 'package:daytte/utils/common_functions.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/common_widgets.dart';
@@ -8,9 +10,8 @@ class ChatRequest extends StatelessWidget {
   int totalCount = 10;
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).textTheme;
     return Scaffold(
-      appBar: appBarWidget(Constants.charRequest, color: Color(0xffF7F8FA)),
+      appBar: _appBarWidget(Constants.charRequest, color: Color(0xffF7F8FA)),
       backgroundColor: Color(0xffF7F8FA),
       body: Card(
         child: ListView.separated(
@@ -27,7 +28,7 @@ class ChatRequest extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 15.0),
                 child: Text(
                   "Seema khan",
-                  style: theme.subtitle1
+                  style: AppStyles.title2.copyWith(fontWeight: FontWeight.w400)
               )),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -60,6 +61,37 @@ class ChatRequest extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+
+  AppBar _appBarWidget(String title, {Color? color}) {
+    return AppBar(
+      backgroundColor: color ?? Colors.white,
+      elevation: 0.0,
+      leading: IconButton(
+          onPressed: () => onBackPressed(),
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Color(0xff363636),
+            size: 25,
+          )),
+
+      title: Text(
+        title,
+        style:
+        AppStyles.title.copyWith(fontWeight: FontWeight.w400, fontSize: 18),
+      ),
+      centerTitle: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(
+              Icons.more_vert,
+              color: Colors.black,
+              size: 28,
+            ),
+          )
+        ]
     );
   }
 }

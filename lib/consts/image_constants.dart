@@ -38,4 +38,5 @@ class ImageConstants {
   static const study = 'assets/icon/study.svg';
   static const match_bg = "assets/icon/match_bg.svg";
   static const expire_banner_bg ="assets/icon/expire_banner_rename.svg";
+  static const add_media ="assets/icon/add_media.svg";
 }
