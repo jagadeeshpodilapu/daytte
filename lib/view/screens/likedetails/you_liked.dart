@@ -1,5 +1,6 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/controllers/like/like_details_controller.dart';
+import 'package:daytte/themes/app_styles.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,7 +9,6 @@ import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 class YouLikedView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).textTheme;
     return GetBuilder<YouLikedController>(
       init: YouLikedController(),
       builder: (controller) => controller.users.value != 0
@@ -90,11 +90,12 @@ class YouLikedView extends StatelessWidget {
                                                               overflow:
                                                                   TextOverflow
                                                                       .ellipsis,
-                                                              style: theme
-                                                                  .headline6
-                                                                  ?.copyWith(
-                                                                      fontSize:
-                                                                          16)),
+                                                              style: AppStyles
+                                                                  .title2
+                                                                  .copyWith(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500)),
                                                         ),
                                                         Padding(
                                                           padding:
@@ -115,9 +116,12 @@ class YouLikedView extends StatelessWidget {
                                                               left: 8.0),
                                                       child: Text(
                                                           "${controller.likedDetailsModel?.data.likes?[index].likedTo?.location ?? ""}",
-                                                          style: theme.bodyText2
-                                                              ?.copyWith(
-                                                                  fontSize: 12,
+                                                          style: AppStyles
+                                                              .title3
+                                                              .copyWith(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400,
                                                                   color: Color(
                                                                       0xff9a9a9a))),
                                                     ),
@@ -127,9 +131,12 @@ class YouLikedView extends StatelessWidget {
                                                           const EdgeInsets.only(
                                                               left: 8.0),
                                                       child: Text("Active now",
-                                                          style: theme.bodyText2
-                                                              ?.copyWith(
-                                                                  fontSize: 12,
+                                                          style: AppStyles
+                                                              .title3
+                                                              .copyWith(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400,
                                                                   color: Color(
                                                                       0xff9a9a9a))),
                                                     ),

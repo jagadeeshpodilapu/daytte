@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:daytte/consts/constants.dart';
+import 'package:daytte/consts/image_constants.dart';
 import 'package:daytte/routes/app_routes.dart';
+import 'package:daytte/themes/app_styles.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:daytte/view/widgets/textfield_widget.dart';
@@ -22,7 +24,7 @@ class EditDetails extends StatelessWidget {
       appBar: appBarWidget(Constants.editDetails, color: Color(0xffF7F8FA)),
       body: GetBuilder<EditDetailsController>(
         init: EditDetailsController(),
-       didChangeDependencies: (state)=>state.controller?.getUserUpdateData(),
+        didChangeDependencies: (state) => state.controller?.getUserUpdateData(),
         builder: (controller) => ListView(
           children: [
             addPhotoHeadingWidget,
@@ -46,7 +48,7 @@ class EditDetails extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image.asset('assets/icons/Photo.png',
+                              Image.asset(ImageConstants.ic_photo,
                                   width: 45, height: 30),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -157,19 +159,24 @@ class EditDetails extends StatelessWidget {
                 ),
               ],
             ),
-            GestureDetector(
-              onTap: (){
-                GetStorage().write("passion", "EditProfilePassion");
-                Get.toNamed(AppRoutes.PASSION);
-              },
-              child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: headingWithTextStyle(0.9, Constants.passion, 17.5),
-                  )),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: headingWithTextStyle(0.9, Constants.passion, 17.5),
+                    )),
+                GestureDetector(
+                    onTap: () {
+                      GetStorage().write("passion", "EditProfilePassion");
+                      Get.toNamed(AppRoutes.PASSION);
+                    },
+                    child: Text("Edit")),
+              ],
             ),
-           /* Wrap(
+            /* Wrap(
               spacing: 6,
               runSpacing: 6,
               crossAxisAlignment: WrapCrossAlignment.start,
@@ -193,21 +200,28 @@ class EditDetails extends StatelessWidget {
                       );
                   }),
             ),*/
-            Align(
-                alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: headingWithTextStyle(0.9, Constants.school, 17.5),
-                )),
-             TextFieldWidget(
-                label: '',
-                hint: '',
-                onTap: (){
-                  GetStorage().write("university", "EditProfileUniversity");
-                  Get.toNamed(AppRoutes.UNIVERSITY);
-                },
-                readOnly: true,
-                controller: controller.schoolController,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: headingWithTextStyle(0.9, Constants.school, 17.5),
+                    )),
+                GestureDetector(
+                    onTap: () {
+                      GetStorage().write("university", "EditProfileUniversity");
+                      Get.toNamed(AppRoutes.UNIVERSITY);
+                    },
+                    child: Text("Edit")),
+              ],
+            ),
+            TextFieldWidget(
+              label: '',
+              hint: '',
+              readOnly: true,
+              controller: controller.schoolController,
             ),
             addVerticalSpace(10)
           ],
@@ -433,23 +447,14 @@ class EditDetails extends StatelessWidget {
         Padding(
             padding: EdgeInsets.only(top: 8.0),
             child: Text(Constants.addPhoto,
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: "SFPro",
-                    fontStyle: FontStyle.normal,
-                    fontSize: 22.0))),
+                style: AppStyles.heading3.copyWith(
+                  fontWeight: FontWeight.w500,
+                ))),
         Padding(
           padding: EdgeInsets.only(top: 5, bottom: 25),
-          child: Text(
-            Constants.select2Pics,
-            style: const TextStyle(
-                color: const Color(0xffcacaca),
-                fontWeight: FontWeight.w400,
-                fontFamily: "SFProDisplay",
-                fontStyle: FontStyle.normal,
-                fontSize: 14.0),
-          ),
+          child: Text(Constants.select2Pics,
+              style: AppStyles.title3.copyWith(
+                  fontWeight: FontWeight.w400, color: Color(0xFF9A9A9A))),
         ),
       ],
     );
@@ -461,12 +466,12 @@ class EditDetails extends StatelessWidget {
       child: Text(
         text,
         textAlign: TextAlign.start,
-        style: TextStyle(
+        style: AppStyles.title.copyWith(fontWeight: FontWeight.w400)/*TextStyle(
             color: const Color(0xff273d52),
             fontWeight: FontWeight.w500,
             fontFamily: "Avenir",
             fontStyle: FontStyle.normal,
-            fontSize: size),
+            fontSize: size)*/,
       ),
     );
   }

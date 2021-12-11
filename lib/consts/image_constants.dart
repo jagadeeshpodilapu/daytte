@@ -36,4 +36,6 @@ class ImageConstants {
   static const hobbies = 'assets/icon/hobbies.svg';
   static const relaxiation = 'assets/icon/relaxation.svg';
   static const study = 'assets/icon/study.svg';
+  static const match_bg = "assets/icon/match_bg.svg";
+  static const expire_banner_bg ="assets/icon/expire_banner_rename.svg";
 }
