@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:daytte/consts/image_constants.dart';
 import 'package:daytte/controllers/splash_controller/splashController.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -28,16 +29,16 @@ class _SplashScreenState extends State<SplashScreen> {
           fit: StackFit.expand,
       children: [
         SvgPicture.asset(
-          'assets/icon/splash_background.svg',
+          ImageConstants.splash_background,
           fit: BoxFit.cover,
         ),
         SvgPicture.asset(
-          'assets/icon/heart.svg',
+          ImageConstants.hearth_background,
           fit: BoxFit.cover,
         ),
         Center(
           child: SvgPicture.asset(
-            'assets/icon/wooly.svg',
+            ImageConstants.wooly_background,
             fit: BoxFit.cover,
           ),
         ),

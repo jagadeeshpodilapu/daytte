@@ -1,18 +1,19 @@
 import 'dart:ui';
 
+import 'package:daytte/consts/constants.dart';
+import 'package:daytte/themes/app_styles.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import '../../../consts/image_constants.dart';
 import '../../../model/find_nearest_model.dart';
 import '../../widgets/common_widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ExpandPartnerDetails extends StatelessWidget {
   final User user = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
-    print("user info $user");
-    final theme = Theme.of(context).textTheme;
     return Hero(
       tag: "img",
       child: Scaffold(
@@ -23,7 +24,7 @@ class ExpandPartnerDetails extends StatelessWidget {
             children: [
               _userProfilePicWidget(),
               _downArrowWidget(),
-              _userBioDetailsWidget(theme),
+              _userBioDetailsWidget(),
             ],
           ),
         ),
@@ -31,39 +32,39 @@ class ExpandPartnerDetails extends StatelessWidget {
     );
   }
 
-  Widget _userBioDetailsWidget(TextTheme theme) {
+  Widget _userBioDetailsWidget() {
     return FractionallySizedBox(
       heightFactor: 0.5,
       alignment: Alignment.bottomCenter,
       child: ListView(
         children: [
           addVerticalSpace(10),
-          _userNameWidget(theme),
+          _userNameWidget(),
           addVerticalSpace(10),
           _infoWidget(Icons.business_center,
-              "${user.institute ?? "Wildlife Photographer"}", theme),
+              "${user.institute ?? "Wildlife Photographer"}"),
           addVerticalSpace(5),
-          _infoWidget(Icons.location_city_rounded, "Lives in New York", theme),
+          _infoWidget(Icons.location_city_rounded, "Lives in New York"),
           addVerticalSpace(5),
-          _infoWidget(Icons.person, "${user.gender}", theme),
+          _infoWidget(Icons.person, "${user.gender}"),
           addVerticalSpace(5),
-          _infoWidget(Icons.location_on, "2Km away", theme),
-          _aboutmeText(theme, "About Me"),
-          _aboutmeInfoWidget(theme),
+          _infoWidget(Icons.location_on, "2Km away"),
+          _aboutmeText("About Me"),
+          _aboutmeInfoWidget(),
           addVerticalSpace(20),
           _divider,
           addVerticalSpace(20),
-          _aboutmeText(theme, "Passion"),
-          _passionListWidget(theme),
+          _aboutmeText("Passions"),
+          _passionListWidget(),
           addVerticalSpace(20),
           _divider,
           addVerticalSpace(20),
-          _shareProfileWidget(theme),
-          _shareWidgetSub(theme),
+          _shareProfileWidget(),
+          _shareWidgetSub(),
           addVerticalSpace(20),
           _divider,
           addVerticalSpace(20),
-          _reportProfileWidget(theme),
+          _reportProfileWidget(),
           addVerticalSpace(20),
           _divider,
           addVerticalSpace(40),
@@ -74,27 +75,30 @@ class ExpandPartnerDetails extends StatelessWidget {
     );
   }
 
-  Widget _reportProfileWidget(TextTheme theme) {
+  Widget _reportProfileWidget() {
     return Text(
       "REPORT  ${user.firstname} ${user.lastname}",
       textAlign: TextAlign.center,
-      style: theme.headline6?.copyWith(color: Color(0xff9a9a9a)),
+      style: AppStyles.title
+          .copyWith(color: Color(0xff9a9a9a), fontWeight: FontWeight.w400),
     );
   }
 
-  Widget _shareWidgetSub(TextTheme theme) {
+  Widget _shareWidgetSub() {
     return Center(
         child: Text(
-      "See what a friend thinks",
-      style: theme.subtitle1?.copyWith(color: Color(0xff7004E3), fontSize: 18),
+      Constants.friendThinks,
+      style: AppStyles.title
+          .copyWith(color: Color(0xff7004E3), fontWeight: FontWeight.w400),
     ));
   }
 
-  Widget _shareProfileWidget(TextTheme theme) {
+  Widget _shareProfileWidget() {
     return Center(
         child: Text(
       "Share  ${user.firstname} ${user.lastname}",
-      style: theme.headline6?.copyWith(color: Color(0xff7004E3), fontSize: 22),
+      style: AppStyles.heading3
+          .copyWith(color: Color(0xff7004E3), fontWeight: FontWeight.w500),
     ));
   }
 
@@ -140,7 +144,7 @@ class ExpandPartnerDetails extends StatelessWidget {
     );
   }
 
-  Widget _passionListWidget(TextTheme theme) {
+  Widget _passionListWidget() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Wrap(
@@ -155,22 +159,22 @@ class ExpandPartnerDetails extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(color: Color(0xff7004E3), width: 2)),
                     child: Text("${user.passion?[index].name}",
-                        style: theme.subtitle1
-                            ?.copyWith(color: Color(0xff7004E3))),
+                        style: AppStyles.title2.copyWith(
+                            color: Color(0xff7004E3),
+                            fontWeight: FontWeight.w400)),
                   ),
                 )),
       ),
     );
   }
 
-  Padding _aboutmeInfoWidget(TextTheme theme) {
+  Padding _aboutmeInfoWidget() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 3),
       child: Text(
         "${user.shortDescription}",
-        style: theme.subtitle1?.copyWith(
+        style: AppStyles.title.copyWith(
           fontWeight: FontWeight.w400,
-          fontSize: 18,
           color: Color(0xff9a9a9a),
         ),
       ),
@@ -183,17 +187,17 @@ class ExpandPartnerDetails extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 24),
       );
 
-  Align _aboutmeText(TextTheme theme, String text) {
+  Align _aboutmeText(String text) {
     return Align(
         alignment: Alignment.topLeft,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 10),
           child: Text(text,
-              style: theme.headline5?.copyWith(fontWeight: FontWeight.w500)),
+              style: AppStyles.heading3.copyWith(fontWeight: FontWeight.w500)),
         ));
   }
 
-  Widget _infoWidget(IconData src, String text, TextTheme theme) {
+  Widget _infoWidget(IconData src, String text) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -202,20 +206,23 @@ class ExpandPartnerDetails extends StatelessWidget {
           child: Icon(src, color: Colors.grey),
         ),
         addHorizontalSpace(10),
-        Text(text,
-            style: theme.headline6
-                ?.copyWith(fontSize: 18, color: Color(0xff9a9a9a)))
+        Text(
+          text,
+          style: AppStyles.title
+              .copyWith(color: Color(0xFF9A9A9A), fontWeight: FontWeight.w400),
+        )
       ],
     );
   }
 
-  Widget _userNameWidget(TextTheme theme) {
+  Widget _userNameWidget() {
     var age = user.age.toString().split(" ");
     return Align(
         alignment: Alignment.topCenter,
         child: Text(
           "${user.firstname} ${user.lastname} ${age.first}",
-          style: theme.headline6,
+          style: AppStyles.title
+              .copyWith(color: Color(0xFF9A9A9A), fontWeight: FontWeight.w400),
         ));
   }
 
@@ -243,7 +250,7 @@ class ExpandPartnerDetails extends StatelessWidget {
             shape: BoxShape.circle,
             gradient: gradientColors,
           ),
-          child: Icon(Icons.arrow_upward, color: Colors.white, size: 30),
+          child: Icon(Icons.arrow_downward, color: Colors.white, size: 30),
         ),
       ),
     );

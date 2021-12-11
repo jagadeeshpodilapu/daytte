@@ -1,7 +1,6 @@
 import 'package:daytte/themes/app_styles.dart';
 import 'package:daytte/themes/color_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../utils/common_functions.dart';
 
@@ -11,6 +10,9 @@ LinearGradient get gradientColors => LinearGradient(
         Color(0xFF8511E6),
         Color(0xFF9A1EE9),
       ],
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      stops: [0.5, 0.8, 1],
     );
 
 /* Widget linearGradientBackground() {
@@ -52,7 +54,8 @@ AppBar appBarWidget(String title, {Color? color}) {
         )),
     title: Text(
       title,
-      style: AppStyles.heading5,
+      style:
+          AppStyles.title.copyWith(fontWeight: FontWeight.w400, fontSize: 18),
     ),
     centerTitle: true,
   );

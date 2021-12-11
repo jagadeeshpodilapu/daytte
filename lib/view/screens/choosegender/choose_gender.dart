@@ -1,4 +1,7 @@
 import 'package:daytte/consts/constants.dart';
+import 'package:daytte/consts/image_constants.dart';
+import 'package:daytte/themes/app_styles.dart';
+import 'package:daytte/themes/color_styles.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -20,10 +23,7 @@ class ChooseGender extends StatelessWidget {
             child: Text(
               Constants.chooseGender,
               textAlign: TextAlign.center,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline5
-                  ?.copyWith(fontWeight: FontWeight.bold),
+              style: AppStyles.heading3.copyWith(fontWeight: FontWeight.w500),
             ),
           ),
           SizedBox(height: 20),
@@ -55,45 +55,43 @@ class ChooseGender extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              Container(
-                decoration: controller.selectedIndex.value == index
-                    ? BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: LinearGradient(
-                          colors: [
-                            Color(0xFF7004E3),
-                            Color(0xFF8511E6),
-                            Color(0xFF9222EC)
-                          ],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          stops: [0, 0.2, 0.5],
+              Stack(
+                children: [
+                  controller.selectedIndex.value == index
+                      ? SvgPicture.asset(
+                          ImageConstants.blue_background,
+                          fit: BoxFit.cover,
+                        )
+                      : SvgPicture.asset(
+                          ImageConstants.grey_background,
+                          fit: BoxFit.cover,
                         ),
-                      )
-                    : BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Color(0xff9a9a9a), width: 2)),
-                child: CircleAvatar(
-                  radius: 70,
-                  backgroundColor: Colors.transparent,
-                  child: SvgPicture.asset(
-                    controller.genderData[index]['icon'],
-                    color: controller.selectedIndex.value == index
-                        ? Colors.white
-                        : Colors.grey,
-                    width: 80,
-                    height: 80,
+                  CircleAvatar(
+                    radius: 70,
+                    backgroundColor: Colors.transparent,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: SvgPicture.asset(
+                        controller.genderData[index]['icon'],
+                        color: controller.selectedIndex.value == index
+                            ? whiteColor
+                            : greyColor,
+                        width: 80,
+                        height: 80,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
               SizedBox(height: 10),
               Text(
                 controller.genderData[index]['gender'],
-                style: Theme.of(Get.context!)
-                    .textTheme
-                    .headline6
-                    ?.copyWith(fontWeight: FontWeight.bold),
+                style: AppStyles.heading4.copyWith(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    color: controller.selectedIndex.value == index
+                        ? textColor
+                        : greyColor),
               )
             ],
           ),

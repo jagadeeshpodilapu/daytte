@@ -1,3 +1,5 @@
+import 'package:daytte/consts/image_constants.dart';
+import 'package:daytte/themes/color_styles.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -53,12 +55,8 @@ class Login extends StatelessWidget {
 
   Text _createAccountTextWidget() {
     return Text(
-      "Create Account",
-      style: TextStyle(
-          fontSize: 22,
-          color: Color(0xFF363636),
-          fontFamily: 'Roboto',
-          fontWeight: FontWeight.bold),
+      Constants.createAccount,
+      style: AppStyles.heading3.copyWith(fontWeight: FontWeight.w500),
     );
   }
 
@@ -77,20 +75,14 @@ class Login extends StatelessWidget {
 
   Text _termsAndConditionsWidget() {
     return Text(Constants.signIn_tc,
-        style: AppStyles.title2.copyWith(
-            color: Color(0xFF363636),
-            fontSize: 13,
-            fontWeight: FontWeight.w500,
-            fontFamily: 'Roboto'));
+        style: AppStyles.title3.copyWith(fontWeight: FontWeight.w400));
   }
 
   Text _socialMediaText() {
     return Text(Constants.social_connect,
         style: AppStyles.title.copyWith(
-            color: Color(0xFF363636),
-            fontFamily: 'Roboto',
-            fontWeight: FontWeight.w400,
-            fontSize: 18));
+          fontWeight: FontWeight.w400,
+        ));
   }
 
   Container _signUpMethod() {
@@ -100,15 +92,12 @@ class Login extends StatelessWidget {
         child: RichText(
           text: TextSpan(
             text: Constants.already_member,
-            style: TextStyle(
-                color: Color(0xFF363636),
-                fontSize: 20,
-                fontWeight: FontWeight.w400),
+            style: AppStyles.title.copyWith(fontWeight: FontWeight.w400),
             children: <TextSpan>[
               TextSpan(
                   text: Constants.sign_in,
                   style: AppStyles.title.copyWith(
-                      color: Color(0xFF7004E3), fontWeight: FontWeight.bold),
+                      color: primaryColor, fontWeight: FontWeight.w500),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () => Get.toNamed(AppRoutes.SIGNUPVIEW))
             ],
@@ -122,11 +111,11 @@ class Login extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        socialIcon('assets/icon/google.svg'),
+        socialIcon(ImageConstants.ic_google),
         addHorizontalSpace(15),
-        socialIcon('assets/icon/facebook.svg'),
+        socialIcon(ImageConstants.ic_facebook),
         addHorizontalSpace(15),
-        socialIcon('assets/icon/twitter.svg'),
+        socialIcon(ImageConstants.ic_twitter),
       ],
     );
   }
@@ -139,37 +128,44 @@ class Login extends StatelessWidget {
     return Container(
       width: Get.width,
       height: Get.height * 0.3,
-      child: Image.asset("assets/icon/create_account.png"),
+      child: Image.asset(ImageConstants.create_account),
     );
   }
 
   _textfield() => TextFormField(
-        validator: (value) {
+    validator: (value) {
           if (value!.isEmpty) {
-            return 'Please enter Valid Number';
+            return Constants.validateValidNumber;
           }
         },
+        style: AppStyles.title.copyWith(
+          fontWeight: FontWeight.w400,
+        ),
         keyboardType: TextInputType.number,
         controller: controller.mobileController,
         decoration: InputDecoration(
-            contentPadding: const EdgeInsets.all(8.0),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(width: 1, color: Color(0xFF7834F4)),
+            ),
             border: const OutlineInputBorder(
-                borderSide: BorderSide(color: Color(0xFFE0E0E0), width: 0.1)),
-            fillColor: Colors.white,
+                borderSide: BorderSide(color: textColor, width: 1)),
+            isCollapsed: true,
+            fillColor: whiteColor,
+            contentPadding: new EdgeInsets.fromLTRB(2, 2, 2, 2),
             prefix: DropdownButtonHideUnderline(
               child: ButtonTheme(
                 child: DropdownButton(
                   icon: Icon(
                     Icons.arrow_drop_down,
-                    color: Colors.black,
+                    color: textColor,
                   ),
-                  value: '+91',
-                  items: ['+91', '+23', '+1'].map((String value) {
+                  value: '  +91',
+                  items: ['  +91', '+23', '+1'].map((String value) {
                     return DropdownMenuItem<String>(
                         value: value,
                         child: Text(
                           value,
-                          style: TextStyle(fontSize: 16.0, color: Colors.black),
+                          style: AppStyles.title.copyWith(color: textColor),
                         ));
                   }).toList(),
                   onChanged: (value) {},
@@ -177,8 +173,8 @@ class Login extends StatelessWidget {
               ),
             ),
             hintText: 'Mobile Number',
-            hintStyle: TextStyle(color: Colors.black),
+            hintStyle: TextStyle(color: textColor),
             labelText: 'Mobile Number',
-            labelStyle: TextStyle(color: Colors.black)),
+            labelStyle: TextStyle(color: Color(0xff9A9A9A))),
       );
 }

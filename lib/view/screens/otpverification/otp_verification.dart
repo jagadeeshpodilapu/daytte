@@ -1,5 +1,8 @@
+import 'package:daytte/consts/constants.dart';
+import 'package:daytte/consts/image_constants.dart';
 import 'package:daytte/controllers/otpController/otp_controller.dart';
 import 'package:daytte/themes/app_styles.dart';
+import 'package:daytte/themes/color_styles.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/gestures.dart';
@@ -13,6 +16,7 @@ class OtpVerification extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: whiteColor,
       resizeToAvoidBottomInset: false,
       body: GetBuilder<OtpController>(
         init: OtpController(),
@@ -24,15 +28,14 @@ class OtpVerification extends StatelessWidget {
             _otpTextFieldsWidget(context, controller),
             _reSendOtpWidget(controller),
             addVerticalSpace(30),
-            _verifyOtpButtonWidget(controller, context),
-          ],
-        ),
+                _verifyOtpButtonWidget(controller, context),
+              ],
+            ),
       ),
     );
   }
 
-  Widget _verifyOtpButtonWidget(
-      OtpController controller, BuildContext context) {
+  Widget _verifyOtpButtonWidget(OtpController controller, BuildContext context) {
     return SizedBox(
       width: Get.width * 0.9,
       child: RaisedGradientButton(
@@ -54,11 +57,12 @@ class OtpVerification extends StatelessWidget {
       elevation: 0.0,
       leading: Icon(
         Icons.arrow_back_ios,
-        color: Color(0xff363636),
+        color: textColor,
       ),
       title: Text(
-        "OTP Verification",
-        style: Theme.of(context).textTheme.headline6,
+        Constants.otpVerification,
+        style: AppStyles.heading4
+            .copyWith(fontSize: 18, fontWeight: FontWeight.w400),
       ),
       centerTitle: true,
     );
@@ -68,28 +72,22 @@ class OtpVerification extends StatelessWidget {
     return Container(
       width: Get.width,
       height: Get.height * 0.3,
-      child: SvgPicture.asset("assets/icon/verify_otp.svg"),
+      child: SvgPicture.asset(ImageConstants.verity_otp),
     );
   }
 
   Widget _sentOtpMobileNumberWidget(OtpController controller) => Text.rich(
-        TextSpan(
-          children: [
+    TextSpan(
+      children: [
             TextSpan(
-                text: 'Enter the OTP sent to  ',
-                style: Theme.of(Get.context!)
-                    .textTheme
-                    .headline6!
-                    .copyWith(fontSize: 16, fontWeight: FontWeight.w400)),
+                text: Constants.enterOtpSentToMobile,
+                style: AppStyles.title.copyWith(fontWeight: FontWeight.w400)),
             TextSpan(
-                text: '+91${controller.mobileNumber}',
-                style: Theme.of(Get.context!)
-                    .textTheme
-                    .headline6!
-                    .copyWith(fontWeight: FontWeight.bold, fontSize: 16)),
+                text: '+91 ${controller.mobileNumber}',
+                style: AppStyles.title.copyWith(fontWeight: FontWeight.w700)),
           ],
-        ),
-      );
+    ),
+  );
 
   Widget _otpTextFieldsWidget(BuildContext context, OtpController controller) {
     return Center(
@@ -140,26 +138,24 @@ class OtpVerification extends StatelessWidget {
   }
 
   Widget _reSendOtpWidget(OtpController controller) => Container(
-        padding: EdgeInsets.all(10),
-        child: Center(
-          child: RichText(
-            text: TextSpan(
-              text: "Didn’t receive code? ",
-              style: TextStyle(
-                  color: Color(0xFF363636),
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400),
+    padding: EdgeInsets.all(10),
+    child: Center(
+      child: RichText(
+        text: TextSpan(
+              text: Constants.dontReceiveOtp,
+              style: AppStyles.title
+                  .copyWith(color: textColor, fontWeight: FontWeight.w400),
               children: <TextSpan>[
                 TextSpan(
-                    text: 'Resend',
+                    text: Constants.reSend,
                     style: AppStyles.title.copyWith(
-                        color: Color(0xFF7004E3), fontWeight: FontWeight.bold),
+                        color: primaryColor, fontWeight: FontWeight.w700),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () =>
                           controller.reSendOtp('+91${controller.mobileNumber}'))
               ],
             ),
-          ),
-        ),
-      );
+      ),
+    ),
+  );
 }

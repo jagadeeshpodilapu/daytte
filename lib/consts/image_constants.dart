@@ -18,10 +18,27 @@ class ImageConstants {
   static const girl = 'assets/images/girl.jpg';
   static const placeHolder = 'assets/images/placeholder.jpg';
   static const ic_photo = 'assets/icons/Photo.png';
+  static const create_account = "assets/icon/create_account.png";
 
 //Svg icons only
-static const ic_checkbox = 'assets/icon/checkbox.svg';
-static const ic_ripples = 'assets/icon/ripples.svg';
-static const camera = 'assets/icon/camera.svg';
-
+  static const ic_checkbox = 'assets/icon/checkbox.svg';
+  static const ic_ripples = 'assets/icon/ripples.svg';
+  static const camera = 'assets/icon/camera.svg';
+  static const ic_google = 'assets/icon/google.svg';
+  static const ic_facebook = 'assets/icon/facebook.svg';
+  static const ic_twitter = 'assets/icon/twitter.svg';
+  static const verity_otp = "assets/icon/verify_otp.svg";
+  static const blue_background = 'assets/icon/blue_background.svg';
+  static const grey_background = 'assets/icon/grey_background.svg';
+  static const splash_background = 'assets/icon/splash_background.svg';
+  static const hearth_background = 'assets/icon/heart.svg';
+  static const wooly_background = 'assets/icon/wooly.svg';
+  static const person = "assets/icon/person.svg";
+  static const age = 'assets/icon/age.svg';
+  static const hobbies = 'assets/icon/hobbies.svg';
+  static const relaxiation = 'assets/icon/relaxation.svg';
+  static const study = 'assets/icon/study.svg';
+  static const match_bg = "assets/icon/match_bg.svg";
+  static const expire_banner_bg = "assets/icon/expire_banner_rename.svg";
+  static const add_media = "assets/icon/add_media.svg";
 }

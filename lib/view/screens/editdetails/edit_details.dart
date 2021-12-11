@@ -5,6 +5,7 @@ import 'package:daytte/consts/image_constants.dart';
 import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/themes/app_styles.dart';
 import 'package:daytte/themes/color_styles.dart';
+import 'package:daytte/view/screens/interested/interested.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:daytte/view/widgets/textfield_widget.dart';
@@ -59,10 +60,9 @@ class EditDetails extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(Constants.addPhoto,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 14,
-                                        color: secondaryTextColor)),
+                                    style: AppStyles.title2.copyWith(
+                                        fontWeight: FontWeight.w400,
+                                        color: Color(0xFF9A9A9A))),
                               ),
                             ],
                           ),
@@ -152,12 +152,18 @@ class EditDetails extends StatelessWidget {
                     ),
                     GestureDetector(
                         onTap: () => controller.editToggle(),
-                        child: Text("Edit"))
+                        child: Text(
+                          "Edit",
+                          style: AppStyles.title3.copyWith(
+                              color: Color(0xFF9A9A9A),
+                              fontWeight: FontWeight.w400),
+                        ))
                   ],
                 ),
                 Obx(
                   () => TextFormField(
-                    style: TextStyle(color: Colors.black),
+                    style:
+                        AppStyles.title3.copyWith(fontWeight: FontWeight.w400),
                     maxLines: 2,
                     controller: controller.aboutMeController,
                     autofocus: controller.isEdit.value,
@@ -167,19 +173,27 @@ class EditDetails extends StatelessWidget {
                 ),
               ],
             ),
-            GestureDetector(
-              onTap: () {
-                GetStorage().write("passion", "EditProfilePassion");
-                Get.toNamed(AppRoutes.PASSION);
-              },
-              child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: headingWithTextStyle(0.9, Constants.passion, 17.5),
-                  )),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: headingWithTextStyle(0.9, Constants.passion, 17.5),
+                    )),
+                GestureDetector(
+                    onTap: () {
+                      GetStorage().write("passion", "EditProfilePassion");
+                      Get.toNamed(AppRoutes.PASSION);
+                    },
+                    child: Text("Edit",
+                        style: AppStyles.title3.copyWith(
+                            color: Color(0xFF9A9A9A),
+                            fontWeight: FontWeight.w400))),
+              ],
             ),
-            /*   Wrap(
+            /* Wrap(
               spacing: 6,
               runSpacing: 6,
               crossAxisAlignment: WrapCrossAlignment.start,
@@ -202,25 +216,35 @@ class EditDetails extends StatelessWidget {
                         ),
                       );
                   }),
-            ), */
-            Align(
-                alignment: Alignment.topLeft,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: headingWithTextStyle(0.9, Constants.school, 17.5),
-                )),
-            TextFormField(
-              style: TextStyle(color: Colors.black),
-              onTap: () {
-                GetStorage().write("university", "EditProfileUniversity");
-                Get.toNamed(AppRoutes.UNIVERSITY);
-              },
-              autofocus: controller.isEdit.value,
+            ),*/
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Align(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: headingWithTextStyle(0.9, Constants.school, 17.5),
+                    )),
+                GestureDetector(
+                    onTap: () {
+                      GetStorage().write("university", "EditProfileUniversity");
+                      Get.toNamed(AppRoutes.UNIVERSITY);
+                    },
+                    child: Text("Edit",
+                        style: AppStyles.title3.copyWith(
+                            color: Color(0xFF9A9A9A),
+                            fontWeight: FontWeight.w400))),
+              ],
+            ),
+            TextFieldWidget(
+              label: '',
+              hint: '',
               readOnly: true,
               controller: controller.schoolController,
-              decoration: _inputDecoration(),
             ),
-            addVerticalSpace(10)
+            addVerticalSpace(15),
+            _genderSelectWidget(),
           ],
         ),
       ),
@@ -238,7 +262,191 @@ class EditDetails extends StatelessWidget {
     );
   }
 
-  Padding addMediaButtonWidget(
+  Widget _genderSelectWidget() {
+    return Card(
+      elevation: 4.0,
+      child: ListTile(
+        onTap: () => Get.to(() => InterestedScreen()),
+        title: _subHeadGreyText(Constants.gender),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _titleBoldText("Woman"),
+            addHorizontalSpace(8),
+            _backArrow()
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _backArrow() {
+    return Icon(
+      Icons.arrow_forward_ios,
+      size: 18,
+      color: Color(0xff363636),
+    );
+  }
+
+  Text _subHeadGreyText(String title, {double? size}) {
+    return Text(
+      title,
+      style: AppStyles.title
+          .copyWith(fontSize: size ?? 16, color: Color(0xff9A9A9A)),
+    );
+  }
+
+  Widget _titleBoldText(String header) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(header,
+          style: AppStyles.title
+              .copyWith(fontSize: 18, fontWeight: FontWeight.w400)),
+    );
+  }
+
+/*   Container detailsWidget() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 12.0),
+      decoration: BoxDecoration(
+          border: Border.all(color: const Color(0xffe5eced), width: 0.7),
+          boxShadow: [
+            BoxShadow(
+                color: const Color(0xffd4dcdd),
+                offset: Offset(3, 9),
+                blurRadius: 4,
+                spreadRadius: -9)
+          ],
+          color: const Color(0xffffffff)),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 10),
+        child: Column(
+          children: [
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: headingWithTextStyle(0.9, "About Me", 17.5),
+                    ),
+                    editIconWidget(),
+                  ],
+                ),
+                Padding(
+                    padding: EdgeInsets.symmetric(vertical: 8.0),
+                    child: headingWithTextStyle(
+                        0.6,
+                        "${controller.userController.findNearestModel?.data.users?.first.shortDescription}",
+                        13.5)),
+              ],
+            ),
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
+                        child:
+                            headingWithTextStyle(0.9, Constants.passion, 17.5)),
+                    editIconWidget(),
+                  ],
+                ),
+                Wrap(
+                  spacing: 10,
+                  crossAxisAlignment: WrapCrossAlignment.start,
+                  children: [
+                    ...List.generate(
+                        controller.userController.findNearestModel?.data.users
+                                ?.first.passion?.length ??
+                            0, (index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(
+                                color: Colors.black54,
+                              ),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 6),
+                            child: Text(
+                                "${controller.userController.findNearestModel?.data.users?.first.passion?[index].name}",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12,
+                                    color: Colors.black54)),
+                          ),
+                        ),
+                      );
+                    }),
+                  ],
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
+                        child:
+                            headingWithTextStyle(0.9, Constants.company, 17.5)),
+                    editIconWidget()
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                  child: Text(
+                    "AddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompany",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12,
+                        color: Colors.black26),
+                  ),
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
+                        child:
+                            headingWithTextStyle(0.9, Constants.school, 17.5)),
+                    Image.asset(
+                      "assets/icons/Edit.png",
+                      color: Colors.black54,
+                    )
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8.0),
+                  child: Text(
+                    "AddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompanyAddCompany",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12,
+                        color: Colors.black26),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+ */
+
+  Widget addMediaButtonWidget(
     BuildContext context,
     EditDetailsController controller,
   ) {

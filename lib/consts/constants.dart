@@ -31,14 +31,14 @@ class Constants {
   static const String chooseGender = 'Select your gender';
   static const String continueText = 'Continue';
   static const String discoverPartner = 'Discover Partner';
-  static const String editDetails = 'Edit Details';
-  static const String addPhoto = 'Add Photo';
+  static const String editDetails = 'Edit details';
+  static const String addPhoto = 'Add Photos';
   static const String saveChanges = 'Save Changes';
   static const String passion = 'Passion';
   static const String company = 'Company';
   static const String school = 'University';
   static const String addMedia = 'Add Media';
-  static const String select2Pics = 'Please select atleast 2 pictures';
+  static const String select2Pics = 'Add at least 2 photos to continue';
   static const String findNearest = 'Find the nearest';
   static const String activeNow = 'Active Now';
   static const String daysLeft = 'Days Left';
@@ -87,4 +87,16 @@ class Constants {
   static const String male = "Male";
   static const String female = "Female";
   static const String enableLocation = "Enable Location";
+  static const String createAccount = "Create Account";
+  static const String validateValidNumber = 'Please enter Valid Number';
+  static const String otpVerification = "OTP Verification";
+  static const String enterOtpSentToMobile = 'Enter the OTP sent to  ';
+  static const String dontReceiveOtp = "Didn’t receive code? ";
+  static const String reSend = 'Resend';
+  static const String location = "Bangalore - INDIA";
+  static const String cafe_movies = "Cafe , Movies";
+  static const String singing_dancing = "Singing, Dancing";
+  static const String bangaloreU = "Bangalore university";
+  static const String photo = "Photo";
+  static const String friendThinks = "See what a friend thinks";
 }

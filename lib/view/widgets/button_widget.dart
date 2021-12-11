@@ -1,6 +1,4 @@
-import 'dart:math' as math;
 
-import 'package:daytte/themes/color_styles.dart';
 import 'package:flutter/material.dart';
 
 class ButtonWidget extends StatelessWidget {
@@ -64,17 +62,19 @@ class RaisedGradientButton extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: Color(0xFF9222EC),
-              offset: Offset(0, 5),
-              blurRadius: 2,
+              offset: Offset(0.5, 3),
+              blurRadius: 4,
             ),
           ],
           gradient: LinearGradient(
             colors: <Color>[
               Color(0xFF7004E3),
-           //   Color(0xFF7004E3),
               Color(0xFF8511E6),
+              Color(0xFF9A1EE9),
             ],
-            transform: GradientRotation(math.pi / 20),
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            stops: [0.3, 1, 1],
           )),
       child: Material(
         color: Colors.transparent,
@@ -84,8 +84,8 @@ class RaisedGradientButton extends StatelessWidget {
             child: Text(
               title,
               style: const TextStyle(
-                  color: whiteColor,
-                  fontWeight: FontWeight.w500,
+                  color: const Color(0xffffffff),
+                  fontWeight: FontWeight.w400,
                   fontFamily: "Roboto",
                   fontStyle: FontStyle.normal,
                   fontSize: 20.0),

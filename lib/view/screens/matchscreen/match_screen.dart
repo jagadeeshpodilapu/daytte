@@ -1,4 +1,5 @@
 import 'package:daytte/consts/constants.dart';
+import 'package:daytte/consts/image_constants.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,7 +12,7 @@ class MatchScreen extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          SvgPicture.asset("assets/icon/match_bg.svg", fit: BoxFit.cover),
+          SvgPicture.asset(ImageConstants.match_bg, fit: BoxFit.cover),
           Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
