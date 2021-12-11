@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 
-import '../../dialogs/premium_dialogs/platinum_package.dart';
-
 class FindTheNearest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

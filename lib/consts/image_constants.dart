@@ -20,8 +20,10 @@ class ImageConstants {
   static const ic_photo = 'assets/icons/Photo.png';
   static const create_account = "assets/icon/create_account.png";
 
-
 //Svg icons only
+  static const ic_checkbox = 'assets/icon/checkbox.svg';
+  static const ic_ripples = 'assets/icon/ripples.svg';
+  static const camera = 'assets/icon/camera.svg';
   static const ic_google = 'assets/icon/google.svg';
   static const ic_facebook = 'assets/icon/facebook.svg';
   static const ic_twitter = 'assets/icon/twitter.svg';
@@ -37,6 +39,6 @@ class ImageConstants {
   static const relaxiation = 'assets/icon/relaxation.svg';
   static const study = 'assets/icon/study.svg';
   static const match_bg = "assets/icon/match_bg.svg";
-  static const expire_banner_bg ="assets/icon/expire_banner_rename.svg";
-  static const add_media ="assets/icon/add_media.svg";
+  static const expire_banner_bg = "assets/icon/expire_banner_rename.svg";
+  static const add_media = "assets/icon/add_media.svg";
 }

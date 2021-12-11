@@ -1,5 +1,7 @@
 import 'package:daytte/controllers/permissionController/permission_controller.dart';
-import 'package:daytte/view/screens/permissions/permissions.dart';
+import 'package:daytte/themes/app_styles.dart';
+import 'package:daytte/themes/color_styles.dart';
+import 'package:daytte/view/screens/permissions/enable_permission.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
@@ -33,14 +35,15 @@ class MeetPeopleNearBy extends StatelessWidget {
       """
   Your location will be used to 
  show potential matches near you""",
-      style: theme.subtitle1?.copyWith(color: Color(0xff9a9a9a)),
+      style: AppStyles.heading5
+          .copyWith(color: secondaryTextColor, fontWeight: FontWeight.w400),
     );
   }
 
   Widget _meetPeopleWidget(TextTheme theme) {
     return Text("Meet Nearby People",
-        style: theme.headline4
-            ?.copyWith(fontSize: 28, fontWeight: FontWeight.w500));
+        style: AppStyles.heading1
+            .copyWith(fontSize: 28, fontWeight: FontWeight.w500));
   }
 
   Widget _allowLocationButtonWidget(PermissionController controller) {

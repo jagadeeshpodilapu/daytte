@@ -2,6 +2,7 @@ import 'package:daytte/consts/constants.dart';
 import 'package:daytte/controllers/findnearest/find_nearest_controller.dart';
 import 'package:daytte/controllers/like/like_details_controller.dart';
 import 'package:daytte/themes/app_styles.dart';
+import 'package:daytte/themes/color_styles.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,7 @@ import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 class Liked extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).textTheme;
     return GetBuilder<InterestController>(
       init: InterestController(),
       builder: (controller) => controller.users.value != 0
@@ -22,10 +24,6 @@ class Liked extends StatelessWidget {
                         itemCount: controller.users.value,
                         gridDelegate: sliverCountAxis,
                         itemBuilder: (BuildContext context, int index) {
-                          // var age = /* controller
-                          //     .likedDetailsModel?.data.likes?[index].likedTo.firstname
-                          //     .toString(); */
-                          //     "";
                           return GestureDetector(
                               onTap: () {},
                               child: Card(
@@ -61,7 +59,7 @@ class Liked extends StatelessWidget {
                                           ),
                                           child: Container(
                                             width: Get.width,
-                                            height: 80,
+                                            height: 100,
                                             color: Colors.white,
                                             child: Padding(
                                               padding:
@@ -89,7 +87,7 @@ class Liked extends StatelessWidget {
                                                                 TextOverflow
                                                                     .ellipsis,
                                                             style: AppStyles
-                                                                .title2
+                                                                .title
                                                                 .copyWith(
                                                                     fontWeight:
                                                                         FontWeight
@@ -114,13 +112,10 @@ class Liked extends StatelessWidget {
                                                             left: 8.0),
                                                     child: Text(
                                                         "${controller.likedDetailsModel?.data.likes?[index].likedTo?.location ?? ""}",
-                                                        style: AppStyles.title3
+                                                        style: AppStyles.title2
                                                             .copyWith(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
-                                                                color: Color(
-                                                                    0xff9a9a9a))),
+                                                                color:
+                                                                    secondaryTextColor)),
                                                   ),
                                                   addVerticalSpace(5),
                                                   Padding(
@@ -128,13 +123,10 @@ class Liked extends StatelessWidget {
                                                         const EdgeInsets.only(
                                                             left: 8.0),
                                                     child: Text("Active now",
-                                                        style: AppStyles.title3
+                                                        style: AppStyles.title2
                                                             .copyWith(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
-                                                                color: Color(
-                                                                    0xff9a9a9a))),
+                                                                color:
+                                                                    secondaryTextColor)),
                                                   ),
                                                 ],
                                               ),

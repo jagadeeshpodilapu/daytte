@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/consts/image_constants.dart';
 import 'package:daytte/controllers/aboutus_controller/about_us_controller.dart';
@@ -6,6 +7,7 @@ import 'package:daytte/themes/app_styles.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../widgets/button_widget.dart';
 import '../../widgets/common_widgets.dart';
 

@@ -6,6 +6,7 @@ import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
 import '../../../controllers/choosegenderController/choose_gender_controller.dart';
 
 class ChooseGender extends StatelessWidget {
@@ -69,7 +70,7 @@ class ChooseGender extends StatelessWidget {
                     radius: 70,
                     backgroundColor: Colors.transparent,
                     child: Padding(
-                      padding: const EdgeInsets.only(left:8.0),
+                      padding: const EdgeInsets.only(left: 8.0),
                       child: SvgPicture.asset(
                         controller.genderData[index]['icon'],
                         color: controller.selectedIndex.value == index

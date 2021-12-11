@@ -1,9 +1,10 @@
-import 'package:daytte/view/widgets/button_widget.dart';
-import 'package:daytte/view/widgets/textfield_widget.dart';
+import 'package:daytte/themes/color_styles.dart';
+
+import '../../widgets/button_widget.dart';
+import '../../widgets/textfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/colors/gf_color.dart';
 import 'package:getwidget/components/checkbox/gf_checkbox.dart';
 import 'package:getwidget/types/gf_checkbox_type.dart';
 
@@ -16,8 +17,8 @@ class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarWidget(Constants.sign_up, color: Color(0xffF7F8FA)),
-      backgroundColor: Color(0xffF7F8FA),
+      appBar: appBarWidget(Constants.sign_up, color: backgroundColor),
+      backgroundColor: backgroundColor,
       body: GetBuilder<SignupController>(
         init: SignupController(),
         builder: (controller) => SingleChildScrollView(
@@ -27,31 +28,34 @@ class SignUp extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                addVerticalSpace(20),
                 Padding(
-                  padding: const EdgeInsets.all(12.0),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12.0, vertical: 20),
                   child: Card(
-                    elevation: 4,
+                    elevation: 3,
+                    color: whiteColor,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
                     child: Container(
                       margin: EdgeInsets.symmetric(horizontal: 12),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          addVerticalSpace(10),
+                          addVerticalSpace(20),
                           logoWidget(),
                           addVerticalSpace(30),
                           _firstName(controller),
-                          addVerticalSpace(10),
-                          _lastName(controller),
-                          addVerticalSpace(10),
-                          _dobWidget(context),
-                          addVerticalSpace(10),
-                          _email(controller),
-                          addVerticalSpace(10),
-                          _shareLocation(controller),
-                          //  addVerticalSpace(10),
-                          checkBoxWidget(controller),
                           addVerticalSpace(15),
+                          _lastName(controller),
+                          addVerticalSpace(15),
+                          _dobWidget(context),
+                          addVerticalSpace(15),
+                          _email(controller),
+                          addVerticalSpace(15),
+                          //  _shareLocation(controller),
+                          addVerticalSpace(20),
+                          checkBoxWidget(controller),
+                          addVerticalSpace(40),
                         ],
                       ),
                     ),
@@ -59,7 +63,7 @@ class SignUp extends StatelessWidget {
                 ),
                 addVerticalSpace(15),
                 _signupButton(controller, context),
-                 addVerticalSpace(15),
+                addVerticalSpace(15),
               ],
             ),
           ),
@@ -73,9 +77,28 @@ class SignUp extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         addHorizontalSpace(8),
-
-        Obx(
-          () =>  GFCheckbox(
+        Obx(() => GestureDetector(
+                  onTap: () => controller.handlecheckbox(),
+                  child: Container(
+                    height: 24,
+                    width: 24,
+                    decoration: BoxDecoration(
+                      border: controller.check.value?null: Border.all(
+                          color: controller.check.value
+                              ? primaryColor
+                              : secondaryTextColor,
+                          width: 2),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    child: controller.check.value
+                        ? SvgPicture.asset(ImageConstants.ic_checkbox)
+                        : const Icon(
+                            null,
+                            size: 30.0,
+                          ),
+                  ),
+                )
+            /* GFCheckbox(
             size: 23,
             type: GFCheckboxType.custom,
             value: controller.check.value,
@@ -86,11 +109,11 @@ class SignUp extends StatelessWidget {
               Icons.crop_square,
               size: 24,
             ),
-          ),
+          ), */
             // controller.check.value ?SvgPicture.asset('assets/icon/check_box.svg',width: 24,height: 24,)  :Checkbox(
             //       value: controller.check.value,
             //       onChanged: (value) => controller.handlecheckbox(value!)),
-        ),
+            ),
         addHorizontalSpace(10),
         Text(
           Constants.tcApply,

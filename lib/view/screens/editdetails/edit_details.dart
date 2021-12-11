@@ -4,13 +4,14 @@ import 'package:daytte/consts/constants.dart';
 import 'package:daytte/consts/image_constants.dart';
 import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/themes/app_styles.dart';
+import 'package:daytte/themes/color_styles.dart';
 import 'package:daytte/view/screens/interested/interested.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:daytte/view/widgets/textfield_widget.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -22,8 +23,8 @@ class EditDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xfff7f8fa),
-      appBar: appBarWidget(Constants.editDetails, color: Color(0xffF7F8FA)),
+      backgroundColor: backgroundColor,
+      appBar: appBarWidget(Constants.editDetails, color: backgroundColor),
       body: GetBuilder<EditDetailsController>(
         init: EditDetailsController(),
         didChangeDependencies: (state) => state.controller?.getUserUpdateData(),
@@ -41,21 +42,27 @@ class EditDetails extends StatelessWidget {
                       },
                       child: DottedBorder(
                         dashPattern: [5, 6],
+                        radius: Radius.circular(8),
+                        borderType: BorderType.RRect,
+                        color: secondaryTextColor,
                         child: Container(
                           height: 95,
                           width: 95,
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(10)),
+                              borderRadius: BorderRadius.circular(14)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image.asset(ImageConstants.ic_photo,
+                              SvgPicture.asset(ImageConstants.camera,
                                   width: 45, height: 30),
+                              addVerticalSpace(12),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(Constants.addPhoto,
-                                    style: AppStyles.title2.copyWith(fontWeight: FontWeight.w400,color: Color(0xFF9A9A9A))),
+                                    style: AppStyles.title2.copyWith(
+                                        fontWeight: FontWeight.w400,
+                                        color: Color(0xFF9A9A9A))),
                               ),
                             ],
                           ),
@@ -84,6 +91,7 @@ class EditDetails extends StatelessWidget {
             ),
             addVerticalSpace(10),
             addMediaButtonWidget(context, controller),
+            addVerticalSpace(10),
             detailsWidget(controller),
             addVerticalSpace(10),
             Padding(
@@ -113,19 +121,20 @@ class EditDetails extends StatelessWidget {
     controller.schoolController.text =
         controller.userModel?.data.user?.interestedIn ?? "";
     "";
-    // print('userData passion ${controller.userModel?.data.user}');
+    print('userData passion ${controller.userModel?.data.user}');
     // controller.companyController.text =
     //     controller.userModel?.data.user?.interestedIn ?? "";
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 2.0),
+      margin: EdgeInsets.symmetric(horizontal: 12.0),
       decoration: BoxDecoration(
           border: Border.all(color: Colors.white, width: 0.7),
+          borderRadius: BorderRadius.circular(12),
           boxShadow: [
-            BoxShadow(
+            /*  BoxShadow(
                 color: const Color(0xffd4dcdd),
                 offset: Offset(3, 9),
                 blurRadius: 4,
-                spreadRadius: -9)
+                spreadRadius: -9) */
           ],
           color: const Color(0xffffffff)),
       child: Padding(
@@ -143,12 +152,18 @@ class EditDetails extends StatelessWidget {
                     ),
                     GestureDetector(
                         onTap: () => controller.editToggle(),
-                        child: Text("Edit",style: AppStyles.title3.copyWith(color: Color(0xFF9A9A9A),fontWeight: FontWeight.w400),))
+                        child: Text(
+                          "Edit",
+                          style: AppStyles.title3.copyWith(
+                              color: Color(0xFF9A9A9A),
+                              fontWeight: FontWeight.w400),
+                        ))
                   ],
                 ),
                 Obx(
                   () => TextFormField(
-                    style: AppStyles.title3.copyWith(fontWeight: FontWeight.w400),
+                    style:
+                        AppStyles.title3.copyWith(fontWeight: FontWeight.w400),
                     maxLines: 2,
                     controller: controller.aboutMeController,
                     autofocus: controller.isEdit.value,
@@ -172,7 +187,10 @@ class EditDetails extends StatelessWidget {
                       GetStorage().write("passion", "EditProfilePassion");
                       Get.toNamed(AppRoutes.PASSION);
                     },
-                    child: Text("Edit",style: AppStyles.title3.copyWith(color: Color(0xFF9A9A9A),fontWeight: FontWeight.w400))),
+                    child: Text("Edit",
+                        style: AppStyles.title3.copyWith(
+                            color: Color(0xFF9A9A9A),
+                            fontWeight: FontWeight.w400))),
               ],
             ),
             /* Wrap(
@@ -213,7 +231,10 @@ class EditDetails extends StatelessWidget {
                       GetStorage().write("university", "EditProfileUniversity");
                       Get.toNamed(AppRoutes.UNIVERSITY);
                     },
-                    child: Text("Edit",style: AppStyles.title3.copyWith(color: Color(0xFF9A9A9A),fontWeight: FontWeight.w400))),
+                    child: Text("Edit",
+                        style: AppStyles.title3.copyWith(
+                            color: Color(0xFF9A9A9A),
+                            fontWeight: FontWeight.w400))),
               ],
             ),
             TextFieldWidget(
@@ -224,9 +245,6 @@ class EditDetails extends StatelessWidget {
             ),
             addVerticalSpace(15),
             _genderSelectWidget(),
-
-
-
           ],
         ),
       ),
@@ -235,8 +253,8 @@ class EditDetails extends StatelessWidget {
 
   InputDecoration _inputDecoration() {
     return InputDecoration(
-      enabledBorder: _outlineBorder(Color(0xFF9A9A9A)),
-      fillColor: Color(0xffE1E1E1).withOpacity(0.2),
+      enabledBorder: _outlineBorder(Color(0xFFe1e1e1)),
+      fillColor: Color(0xfffcfcfc),
       filled: true,
       focusedBorder: _outlineBorder(Color(0xFf7834F4)),
       errorBorder: _outlineBorder(Colors.red),
@@ -273,14 +291,17 @@ class EditDetails extends StatelessWidget {
   Text _subHeadGreyText(String title, {double? size}) {
     return Text(
       title,
-      style: AppStyles.title.copyWith(fontSize: size ?? 16, color: Color(0xff9A9A9A)),
+      style: AppStyles.title
+          .copyWith(fontSize: size ?? 16, color: Color(0xff9A9A9A)),
     );
   }
 
-  Widget _titleBoldText( String header) {
+  Widget _titleBoldText(String header) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Text(header, style:AppStyles.title.copyWith(fontSize: 18,fontWeight: FontWeight.w400)),
+      child: Text(header,
+          style: AppStyles.title
+              .copyWith(fontSize: 18, fontWeight: FontWeight.w400)),
     );
   }
 
@@ -490,14 +511,14 @@ class EditDetails extends StatelessWidget {
         Padding(
             padding: EdgeInsets.only(top: 8.0),
             child: Text(Constants.addPhoto,
-                style: AppStyles.heading3.copyWith(
-                  fontWeight: FontWeight.w500,
-                ))),
+                style:
+                    AppStyles.heading3.copyWith(fontWeight: FontWeight.w500))),
         Padding(
           padding: EdgeInsets.only(top: 5, bottom: 25),
-          child: Text(Constants.select2Pics,
-              style: AppStyles.title3.copyWith(
-                  fontWeight: FontWeight.w400, color: Color(0xFF9A9A9A))),
+          child: Text(
+            Constants.select2Pics,
+            style: AppStyles.title3.copyWith(color: secondaryTextColor),
+          ),
         ),
       ],
     );
@@ -509,12 +530,7 @@ class EditDetails extends StatelessWidget {
       child: Text(
         text,
         textAlign: TextAlign.start,
-        style: AppStyles.title.copyWith(fontWeight: FontWeight.w400)/*TextStyle(
-            color: const Color(0xff273d52),
-            fontWeight: FontWeight.w500,
-            fontFamily: "Avenir",
-            fontStyle: FontStyle.normal,
-            fontSize: size)*/,
+        style: AppStyles.title.copyWith(fontWeight: FontWeight.w500),
       ),
     );
   }
@@ -522,6 +538,6 @@ class EditDetails extends StatelessWidget {
   OutlineInputBorder _outlineBorder(Color color) {
     return OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: color, width: 1.5));
+        borderSide: BorderSide(color: color, width: 1));
   }
 }

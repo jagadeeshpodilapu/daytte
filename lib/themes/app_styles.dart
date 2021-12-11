@@ -8,18 +8,20 @@ class AppStyles {
 
   static const _kFontFamily = "Roboto";
 
-  static TextStyle heading1 =
+  static const TextStyle heading1 =
       TextStyle(fontSize: 30, color: textColor, fontFamily: _kFontFamily);
-  static TextStyle heading2 =
+  static const TextStyle heading2 =
       TextStyle(fontSize: 24, color: textColor, fontFamily: _kFontFamily);
-  static TextStyle heading3 =
+  static const TextStyle heading3 =
       TextStyle(fontSize: 22, color: textColor, fontFamily: _kFontFamily);
-  static TextStyle heading4 =
+  static const TextStyle heading4 =
       TextStyle(fontSize: 20, color: textColor, fontFamily: _kFontFamily);
-  static TextStyle title =
+  static const TextStyle heading5 =
+      TextStyle(fontSize: 18, color: textColor, fontFamily: _kFontFamily);
+  static const TextStyle title =
       TextStyle(fontSize: 16, color: textColor, fontFamily: _kFontFamily);
-  static TextStyle title2 =
+  static const TextStyle title2 =
       TextStyle(fontSize: 14, color: textColor, fontFamily: _kFontFamily);
-  static TextStyle title3 =
+  static const TextStyle title3 =
       TextStyle(fontSize: 12, color: textColor, fontFamily: _kFontFamily);
 }

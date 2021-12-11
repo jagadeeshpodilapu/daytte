@@ -1,6 +1,6 @@
 import 'package:daytte/controllers/permissionController/permission_binding.dart';
 import 'package:daytte/view/screens/matchscreen/match_screen.dart';
-import 'package:daytte/view/screens/permissions/permissions.dart';
+import 'package:daytte/view/screens/permissions/enable_permission.dart';
 
 import '../controllers/discover_partner/discover_partner_binding.dart';
 import '../controllers/edit_details/edit_detail_binding.dart';

@@ -28,15 +28,14 @@ class OtpVerification extends StatelessWidget {
             _otpTextFieldsWidget(context, controller),
             _reSendOtpWidget(controller),
             addVerticalSpace(30),
-            _verifyOtpButtonWidget(controller, context),
-          ],
-        ),
+                _verifyOtpButtonWidget(controller, context),
+              ],
+            ),
       ),
     );
   }
 
-  Widget _verifyOtpButtonWidget(
-      OtpController controller, BuildContext context) {
+  Widget _verifyOtpButtonWidget(OtpController controller, BuildContext context) {
     return SizedBox(
       width: Get.width * 0.9,
       child: RaisedGradientButton(
@@ -78,8 +77,8 @@ class OtpVerification extends StatelessWidget {
   }
 
   Widget _sentOtpMobileNumberWidget(OtpController controller) => Text.rich(
-        TextSpan(
-          children: [
+    TextSpan(
+      children: [
             TextSpan(
                 text: Constants.enterOtpSentToMobile,
                 style: AppStyles.title.copyWith(fontWeight: FontWeight.w400)),
@@ -87,8 +86,8 @@ class OtpVerification extends StatelessWidget {
                 text: '+91 ${controller.mobileNumber}',
                 style: AppStyles.title.copyWith(fontWeight: FontWeight.w700)),
           ],
-        ),
-      );
+    ),
+  );
 
   Widget _otpTextFieldsWidget(BuildContext context, OtpController controller) {
     return Center(
@@ -139,13 +138,13 @@ class OtpVerification extends StatelessWidget {
   }
 
   Widget _reSendOtpWidget(OtpController controller) => Container(
-        padding: EdgeInsets.all(10),
-        child: Center(
-          child: RichText(
-            text: TextSpan(
+    padding: EdgeInsets.all(10),
+    child: Center(
+      child: RichText(
+        text: TextSpan(
               text: Constants.dontReceiveOtp,
-              style: AppStyles.title.copyWith(
-                  color: textColor, fontWeight:FontWeight.w400),
+              style: AppStyles.title
+                  .copyWith(color: textColor, fontWeight: FontWeight.w400),
               children: <TextSpan>[
                 TextSpan(
                     text: Constants.reSend,
@@ -156,7 +155,7 @@ class OtpVerification extends StatelessWidget {
                           controller.reSendOtp('+91${controller.mobileNumber}'))
               ],
             ),
-          ),
-        ),
-      );
+      ),
+    ),
+  );
 }

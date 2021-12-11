@@ -3,10 +3,8 @@ import 'package:daytte/consts/image_constants.dart';
 import 'package:daytte/themes/app_styles.dart';
 import 'package:daytte/themes/color_styles.dart';
 import 'package:daytte/view/dialogs/premium_dialogs/platinum_package.dart';
-import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ExpireBannerWidget extends StatelessWidget {
   @override
@@ -35,7 +33,7 @@ class ExpireBannerWidget extends StatelessWidget {
                               color: whiteColor)),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(bottom:6.0,right: 10),
+                      padding: const EdgeInsets.only(bottom: 6.0, right: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -53,7 +51,7 @@ class ExpireBannerWidget extends StatelessWidget {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom:6.0,right: 10),
+                  padding: const EdgeInsets.only(bottom: 6.0, right: 10),
                   child: Container(
                     decoration: BoxDecoration(
                         color: Colors.white,

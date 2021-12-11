@@ -1,5 +1,6 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/themes/app_styles.dart';
+import 'package:daytte/themes/color_styles.dart';
 import 'package:daytte/view/widgets/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -52,8 +53,8 @@ class InterestedScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                               color: controller.selctedGender == Gender.Female
-                                  ? Color(0xFF7004E3)
-                                  : Color(0xff9a9a9a),
+                                  ? primaryColor
+                                  : secondaryTextColor,
                               width: 2)),
                       margin:
                           EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
@@ -62,7 +63,7 @@ class InterestedScreen extends StatelessWidget {
                             ? buildTextBold(Constants.interestedWomen)
                             : buildText(Constants.interestedWomen),
                         trailing: Radio(
-                            activeColor: Color(0xFF7004E3),
+                            activeColor: primaryColor,
                             value: Gender.Female,
                             groupValue: controller.selctedGender,
                             onChanged: (Gender? value) =>
@@ -74,8 +75,8 @@ class InterestedScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                               color: controller.selctedGender == Gender.Everyone
-                                  ? Color(0xFF7004E3)
-                                  : Color(0xff9a9a9a),
+                                  ? primaryColor
+                                  : secondaryTextColor,
                               width: 2)),
                       margin:
                           EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
@@ -85,7 +86,7 @@ class InterestedScreen extends StatelessWidget {
                             : buildText(Constants.interestedEveryOne),
                         trailing: Radio(
                             value: Gender.Everyone,
-                            activeColor: Color(0xFF7004E3),
+                            activeColor: primaryColor,
                             groupValue: controller.selctedGender,
                             onChanged: (Gender? value) =>
                                 controller.handleGenderChange(value)),
@@ -116,8 +117,9 @@ class InterestedScreen extends StatelessWidget {
   }
 
   Text buildText(String text) => Text(text,
-      style: AppStyles.title.copyWith(fontSize: 18,fontWeight: FontWeight.w400,color: Color(0xff9a9a9a)));
+      style: AppStyles.title
+          .copyWith(color: secondaryTextColor, fontWeight: FontWeight.w400));
 
-  buildTextBold(String text) => Text(text,
-      style: AppStyles.title.copyWith(fontSize: 18,fontWeight: FontWeight.w400));
+  buildTextBold(String text) =>
+      Text(text, style: AppStyles.title.copyWith(fontWeight: FontWeight.w400));
 }

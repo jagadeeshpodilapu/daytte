@@ -81,8 +81,8 @@ class SignupController extends BaseController {
   RxBool check = false.obs;
   RxBool shareLocation = false.obs;
 
-  void handlecheckbox(bool value) {
-    check.value = value;
+  void handlecheckbox() {
+    check.toggle();
     update();
   }
 

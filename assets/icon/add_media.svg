@@ -1,21 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="373" height="80" viewBox="0 0 373 80">
+<svg height="80" viewBox="0 0 373 80" width="373" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="linear-gradient" y1="0.602" x2="1" y2="0.596" gradientUnits="objectBoundingBox">
-      <stop offset="0" stop-color="#7004e3"/>
-      <stop offset="0.517" stop-color="#8511e6"/>
-      <stop offset="1" stop-color="#9a1ee9"/>
+    <linearGradient gradientUnits="objectBoundingBox" id="linear-gradient" x2="1" y1="0.602"
+        y2="0.596">
+      <stop offset="0" stop-color="#7004e3" />
+      <stop offset="0.517" stop-color="#8511e6" />
+      <stop offset="1" stop-color="#9a1ee9" />
     </linearGradient>
-    <filter id="Rectangle_10" x="0" y="0" width="373" height="80" filterUnits="userSpaceOnUse">
-      <feOffset dy="12" input="SourceAlpha"/>
-      <feGaussianBlur stdDeviation="6" result="blur"/>
-      <feFlood flood-color="#9222ec" flood-opacity="0.2"/>
-      <feComposite operator="in" in2="blur"/>
-      <feComposite in="SourceGraphic"/>
+    <filter filterUnits="userSpaceOnUse" height="80" id="Rectangle_10" width="373" x="0" y="0">
+      <feOffset dy="12" input="SourceAlpha" />
+      <feGaussianBlur result="blur" stdDeviation="6" />
+      <feFlood flood-color="#9222ec" flood-opacity="0.2" />
+      <feComposite in2="blur" operator="in" />
+      <feComposite in="SourceGraphic" />
     </filter>
   </defs>
-  <g id="Component_5_2" data-name="Component 5 – 2" transform="translate(18 6)">
-    <g transform="matrix(1, 0, 0, 1, -18, -6)" filter="url(#Rectangle_10)">
-      <rect id="Rectangle_10-2" data-name="Rectangle 10" width="337" height="44" rx="10" transform="translate(18 6)" fill="url(#linear-gradient)"/>
+  <g data-name="Component 5 – 2" id="Component_5_2" transform="translate(18 6)">
+    <g filter="url(#Rectangle_10)" transform="matrix(1, 0, 0, 1, -18, -6)">
+      <rect data-name="Rectangle 10" fill="url(#linear-gradient)" height="44" id="Rectangle_10-2"
+          rx="10" transform="translate(18 6)" width="337" />
     </g>
   </g>
 </svg>

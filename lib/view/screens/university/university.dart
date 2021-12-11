@@ -1,4 +1,6 @@
 import 'package:daytte/consts/constants.dart';
+import 'package:daytte/themes/app_styles.dart';
+import 'package:daytte/themes/color_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../controllers/university/university_controller.dart';
@@ -16,6 +18,8 @@ class UniversityView extends StatelessWidget {
           height: Get.height * 0.9,
           child: Card(
             elevation: 4,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -24,7 +28,16 @@ class UniversityView extends StatelessWidget {
                   child: TextFormField(
                     decoration: InputDecoration(
                       hintText: Constants.searchUniversity,
-                      prefixIcon: Icon(Icons.search),
+                      hintStyle:
+                          AppStyles.title.copyWith(color: secondaryTextColor),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide:
+                            BorderSide(color: secondaryTextColor.withOpacity(0.4), width: 2),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor, width: 2),
+                      ),
+                      // prefixIcon: Icon(Icons.search),
                     ),
                     textAlignVertical: TextAlignVertical.center,
                   ),

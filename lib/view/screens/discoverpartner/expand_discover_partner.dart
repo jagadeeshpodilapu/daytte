@@ -2,12 +2,12 @@ import 'dart:ui';
 
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/themes/app_styles.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../consts/image_constants.dart';
 import '../../../model/find_nearest_model.dart';
 import '../../widgets/common_widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ExpandPartnerDetails extends StatelessWidget {
   final User user = Get.arguments;

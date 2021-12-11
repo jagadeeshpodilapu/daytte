@@ -1,4 +1,5 @@
 import 'package:daytte/consts/constants.dart';
+import 'package:daytte/themes/color_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -30,6 +31,7 @@ class Home extends StatelessWidget {
                 topRight: Radius.circular(30.0),
               ),
               child: Container(
+                height:80,
                 decoration: BoxDecoration(
                     borderRadius:
                     BorderRadius.all(Radius.circular(34.90343995940204)),
@@ -62,7 +64,12 @@ class Home extends StatelessWidget {
                         icon: _icons('assets/icon/chat_grey.svg'),
                         label: Constants.chat),
                     BottomNavigationBarItem(
-                         activeIcon: _icons('assets/icon/profile.svg'),
+                         activeIcon:SvgPicture.asset(
+                        'assets/icon/profile_grey.svg',
+                        height: 30,
+                        width: 30,
+                        color: Color(0xFF3c0fc7),
+                      ),
                         icon: _icons('assets/icon/profile_grey.svg'),
                         label: Constants.profile),
                   ],
@@ -78,9 +85,9 @@ class Home extends StatelessWidget {
   SvgPicture _icons(String icon) {
     return SvgPicture.asset(
                         icon,
-                        height: 30,
-                        width: 30,
-                        color: Color(0xFF3c0fc7),
+                        height: 32,
+                        width: 34,
+                      //  color: Color(0xFF3c0fc7),
                       );
   }
 }
