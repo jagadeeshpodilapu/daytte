@@ -1,3 +1,5 @@
+import 'package:daytte/themes/color_styles.dart';
+import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -6,6 +8,30 @@ import '../../../controllers/premiumpackageController/premium_package_controller
 import '../../../utils/common_functions.dart';
 import '../../screens/matchscreen/match_screen.dart';
 import '../../widgets/button_widget.dart';
+
+class CheckTest extends StatelessWidget {
+  const CheckTest({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+          child: RaisedGradientButton(
+        onPressed: () => Get.dialog(
+          Dialog(
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: PremiumPackages()),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+            insetPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+          ),
+        ),
+        title: 'test',
+      )),
+    );
+  }
+}
 
 class PremiumPackages extends StatelessWidget {
   final _controller = PremiumPackageController();
@@ -17,7 +43,7 @@ class PremiumPackages extends StatelessWidget {
           clipBehavior: Clip.none,
           children: [
             Container(
-              height: 250,
+              height: 260,
               width: Get.width,
               child: PageView.builder(
                 controller: _controller.pageController,
@@ -25,17 +51,20 @@ class PremiumPackages extends StatelessWidget {
                 itemCount: _controller.onboardingPages.length,
                 itemBuilder: (context, index) {
                   return Container(
+                    width: Get.width,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.bottomLeft,
                         end: Alignment.topRight,
-                        colors: [
-                          Color(0xFF3c0fc7),
-                          Color(0xFFc86dd7),
+                        colors: <Color>[
+                          Color(0xFF7004E3),
+                          Color(0xFF8511E6),
+                          Color(0xFF9A1EE9),
                         ],
                       ),
                     ),
                     child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 4),
@@ -68,7 +97,7 @@ class PremiumPackages extends StatelessWidget {
             ),
             Positioned(
               left: 10,
-              top: 220,
+              top: 210,
               right: 10,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -77,67 +106,59 @@ class PremiumPackages extends StatelessWidget {
                   (index) => Obx(() {
                     return Container(
                       margin: const EdgeInsets.all(4),
-                      width: 12,
-                      height: 12,
+                      width: 16,
+                      height: 16,
                       decoration: BoxDecoration(
-                        color: _controller.selectedPageIndex.value == index
-                            ? Colors.white
-                            : Colors.black,
-                        shape: BoxShape.circle,
-                      ),
+                          color: _controller.selectedPageIndex.value == index
+                              ? Colors.white
+                              : Colors.transparent,
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white)),
                     );
                   }),
                 ),
               ),
             ),
             Positioned(
-              left: 5,
-              right: 5,
+              left: 0,
+              right: 0,
               top: 240,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(
-                  3,
-                  (index) => Obx(
-                    () => GestureDetector(
-                      onTap: () {
-                        _controller.selectedPremiumType.value = index;
-                      },
-                      child: Card(
-                        elevation: 0.0,
-                        color: _controller.selectedPremiumType.value == index
-                            ? Color(0xF7004E3b)
-                            : Colors.white,
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Text(
-                                _controller.premiums[index].isPopular
-                                    ? "Popular"
-                                    : '',
-                                style: TextStyle(
-                                    fontSize: 18, color: Colors.white),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
+              child: Container(
+                color: backgroundColor,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    3,
+                    (index) => Obx(
+                      () => GestureDetector(
+                        onTap: () {
+                          _controller.selectedPremiumType.value = index;
+                        },
+                        child: Card(
+                          elevation: 0.0,
+                          color: _controller.selectedPremiumType.value == index
+                              ? whiteColor
+                              : backgroundColor,
+                          child: Column(
+                            children: [
+                            
+                              Container(
                                 height: _controller.selectedPremiumType.value ==
                                         index
-                                    ? 120
-                                    : 105,
-                                width: Get.width * 0.228,
-                                color: _controller.selectedPremiumType.value ==
-                                        index
-                                    ? Color(0xFFffe8ec)
-                                    : Colors.white,
+                                    ? 130
+                                    : 115,
+                                width: Get.width * 0.25,
+                                
+                                decoration:BoxDecoration(
+                                  border: Border.all(color: _controller.selectedPremiumType.value ==
+                                        index? primaryColor:backgroundColor,width:3)
+                                ),
                                 child: Column(
                                   children: [
                                     Text(
                                       _controller.premiums[index].months,
                                       textAlign: TextAlign.center,
-                                      style: offerTextStyle(index, 50),
+                                      style: offerTextStyle(index, 50).copyWith(fontWeight: FontWeight.w500),
                                     ),
                                     Text(
                                       _controller.premiums[index].offerType,
@@ -150,14 +171,14 @@ class PremiumPackages extends StatelessWidget {
                                     Text(
                                         _controller
                                             .premiums[index].purchaseAmount,
-                                        style: offerTextStyle(index, 18)
+                                        style: offerTextStyle(index, 20)
                                             .copyWith(
                                                 fontWeight: FontWeight.bold))
                                   ],
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -170,13 +191,14 @@ class PremiumPackages extends StatelessWidget {
               child: Container(
                 height: 50,
                 child: RaisedGradientButton(
+                  width: Get.width*0.8,
                   onPressed: () => showDialog(
                       context: context, builder: (context) => MatchScreen()),
                   title: "Continue",
                 ),
               ),
             ),
-            Align(
+            /* Align(
                 alignment: Alignment(0, 0.8).add(Alignment.center),
                 child: GestureDetector(
                   onTap: () => onBackPressed(),
@@ -184,7 +206,7 @@ class PremiumPackages extends StatelessWidget {
                     "NO, THANKS",
                     style: TextStyle(fontSize: 20, color: Color(0xFFb1bacc)),
                   ),
-                ))
+                )) */
           ],
         ),
       ),

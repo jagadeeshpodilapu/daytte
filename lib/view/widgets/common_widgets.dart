@@ -1,3 +1,5 @@
+import 'package:daytte/themes/app_styles.dart';
+import 'package:daytte/themes/color_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,7 +35,7 @@ SliverGridDelegateWithFixedCrossAxisCount get sliverCountAxis {
   return SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,
       crossAxisSpacing: 4.0,
-      childAspectRatio: 2.3 / 3,
+      childAspectRatio: 2.0 / 3,
       mainAxisSpacing: 4.0);
 }
 
@@ -45,12 +47,12 @@ AppBar appBarWidget(String title, {Color? color}) {
         onPressed: () => onBackPressed(),
         icon: Icon(
           Icons.arrow_back_ios,
-          color: Color(0xff363636),
+          color:textColor,
           size: 25,
         )),
     title: Text(
       title,
-      style: Theme.of(Get.context!).textTheme.headline6,
+      style: AppStyles.heading5,
     ),
     centerTitle: true,
   );

@@ -1,5 +1,7 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/consts/image_constants.dart';
+import 'package:daytte/themes/app_styles.dart';
+import 'package:daytte/themes/color_styles.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/common_widgets.dart';
@@ -17,7 +19,9 @@ class ChatRequest extends StatelessWidget {
           itemBuilder: (context, index) => Padding(
             padding: const EdgeInsets.all(16.0),
             child: ListTile(
-              minVerticalPadding: 5,
+             // minVerticalPadding: 5,
+             contentPadding:EdgeInsets.zero,
+            
               leading: CircleAvatar(
                 radius: 30.0,
                 backgroundImage: AssetImage(ImageConstants.girl),
@@ -27,13 +31,13 @@ class ChatRequest extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 15.0),
                 child: Text(
                   "Seema khan",
-                  style: theme.subtitle1
+                  style: AppStyles.title.copyWith(fontWeight: FontWeight.w400)
               )),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   CircleAvatar(
-                      radius: 15,
+                      radius: 18,
                       backgroundColor: Color(0xff08E300),
                       child: Icon(
                         Icons.done,
@@ -41,7 +45,7 @@ class ChatRequest extends StatelessWidget {
                       )),
                   SizedBox(width: 15),
                   CircleAvatar(
-                    radius: 15,
+                    radius: 18,
                     backgroundColor: Color(0xffFF5A5A),
                     child: Icon(
                       Icons.close,
@@ -56,7 +60,7 @@ class ChatRequest extends StatelessWidget {
           separatorBuilder: (BuildContext context, int index) {
            
              
-            return Container(color: Colors.grey[300], height: 2,margin: EdgeInsets.symmetric(horizontal: 16),);;
+            return Container(color:secondaryTextColor.withOpacity(0.5), height: 2,margin: EdgeInsets.symmetric(horizontal: 16),);
           },
         ),
       ),

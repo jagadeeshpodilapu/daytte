@@ -1,3 +1,4 @@
+import 'package:daytte/themes/color_styles.dart';
 import 'package:flutter/material.dart';
 
 class TextFieldWidget extends StatelessWidget {
@@ -23,7 +24,7 @@ class TextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-        style: TextStyle(color: Colors.black),
+        style: TextStyle(color: textColor,fontSize: 18),
         onChanged: (value) => onChange,
         readOnly: readOnly??false,
         validator: (v) => validator!(v!),
@@ -32,9 +33,9 @@ class TextFieldWidget extends StatelessWidget {
         enabled: enable,
         decoration: InputDecoration(
           label: Text(label),
-          labelStyle: TextStyle(),
-          fillColor: Color(0xffE1E1E1).withOpacity(0.2),
-          filled: true,
+          labelStyle: TextStyle(color: secondaryTextColor),
+          // fillColor: Color(0xffE1E1E1).withOpacity(0.2),
+          // filled: true,
           hintText: hint,
           enabledBorder: _outlineBorder(Color(0xFF9A9A9A)),
           focusedBorder: _outlineBorder(Color(0xFf7834F4)),

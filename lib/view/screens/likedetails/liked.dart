@@ -1,6 +1,8 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/controllers/findnearest/find_nearest_controller.dart';
 import 'package:daytte/controllers/like/like_details_controller.dart';
+import 'package:daytte/themes/app_styles.dart';
+import 'package:daytte/themes/color_styles.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,10 +24,6 @@ class Liked extends StatelessWidget {
                         itemCount: controller.users.value,
                         gridDelegate: sliverCountAxis,
                         itemBuilder: (BuildContext context, int index) {
-                          // var age = /* controller
-                          //     .likedDetailsModel?.data.likes?[index].likedTo.firstname
-                          //     .toString(); */
-                          //     "";
                           return GestureDetector(
                               onTap: () {},
                               child: Card(
@@ -61,7 +59,7 @@ class Liked extends StatelessWidget {
                                           ),
                                           child: Container(
                                             width: Get.width,
-                                            height: 80,
+                                            height: 100,
                                             color: Colors.white,
                                             child: Padding(
                                               padding:
@@ -83,16 +81,17 @@ class Liked extends StatelessWidget {
                                                                     .only(
                                                                 left: 8.0),
                                                         child: Text(
-                                                            "${controller.likedDetailsModel?.data.likes?[index].likedTo?.firstname??""} ${controller.likedDetailsModel?.data.likes?[index].likedTo?.lastname??""}",
+                                                            "${controller.likedDetailsModel?.data.likes?[index].likedTo?.firstname ?? ""} ${controller.likedDetailsModel?.data.likes?[index].likedTo?.lastname ?? ""}",
                                                             maxLines: 1,
                                                             overflow:
                                                                 TextOverflow
                                                                     .ellipsis,
-                                                            style: theme
-                                                                .headline6
-                                                                ?.copyWith(
-                                                                    fontSize:
-                                                                        16)),
+                                                            style: AppStyles
+                                                                .title
+                                                                .copyWith(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500)),
                                                       ),
                                                       Padding(
                                                         padding:
@@ -111,12 +110,12 @@ class Liked extends StatelessWidget {
                                                     padding:
                                                         const EdgeInsets.only(
                                                             left: 8.0),
-                                                    child: Text("${controller.likedDetailsModel?.data.likes?[index].likedTo?.location??""}",
-                                                        style: theme.bodyText2
-                                                            ?.copyWith(
-                                                                fontSize: 12,
-                                                                color: Color(
-                                                                    0xff9a9a9a))),
+                                                    child: Text(
+                                                        "${controller.likedDetailsModel?.data.likes?[index].likedTo?.location ?? ""}",
+                                                        style: AppStyles.title2
+                                                            .copyWith(
+                                                                color:
+                                                                    secondaryTextColor)),
                                                   ),
                                                   addVerticalSpace(5),
                                                   Padding(
@@ -124,11 +123,10 @@ class Liked extends StatelessWidget {
                                                         const EdgeInsets.only(
                                                             left: 8.0),
                                                     child: Text("Active now",
-                                                        style: theme.bodyText2
-                                                            ?.copyWith(
-                                                                fontSize: 12,
-                                                                color: Color(
-                                                                    0xff9a9a9a))),
+                                                        style: AppStyles.title2
+                                                            .copyWith(
+                                                                color:
+                                                                    secondaryTextColor)),
                                                   ),
                                                 ],
                                               ),

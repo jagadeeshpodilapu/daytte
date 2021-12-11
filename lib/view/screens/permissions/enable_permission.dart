@@ -1,4 +1,8 @@
+import 'package:daytte/consts/constants.dart';
+import 'package:daytte/consts/image_constants.dart';
 import 'package:daytte/controllers/permissionController/permission_controller.dart';
+import 'package:daytte/themes/app_styles.dart';
+import 'package:daytte/themes/color_styles.dart';
 import 'package:daytte/view/screens/permissions/meet_people.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
@@ -57,15 +61,15 @@ class EnablePermsions extends StatelessWidget {
   }
 
   Widget _enableLocationTextWidget(TextTheme theme) =>
-      Text("Enable Location", style: theme.headline5);
+      Text(Constants.enableLocation, style: AppStyles.heading4.copyWith(fontWeight: FontWeight.w500,fontSize: 26));
 
   Widget _ripplesWidget() =>
-      Center(child: SvgPicture.asset('assets/icon/ripples.svg'));
+      Center(child: SvgPicture.asset(ImageConstants.ic_ripples));
 
   Widget _permissionSubText(TextTheme theme, String text) {
     return Text(
       text,
-      style: theme.subtitle1?.copyWith(color: Color(0xff9a9a9a), fontSize: 16),
+      style: AppStyles.heading5.copyWith(color: secondaryTextColor,fontWeight:FontWeight.w500)
     );
   }
 }

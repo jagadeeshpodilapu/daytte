@@ -22,11 +22,11 @@ class PremiumPackageController extends BaseController {
 
   List<PremiumPackageModel> onboardingPages = [
     PremiumPackageModel('assets/images/platinum.svg', 'Platinum Package',
-        'Lorem Ipsum is simply dummy text of the printing typesetting industry. ... will be distracted by the readable'),
+        'Lorem Ipsum is simply dummy text of the printing typesetting industry.'),
     PremiumPackageModel('assets/images/gold.svg', 'Gold Package',
-        'Lorem Ipsum is simply dummy text of the printing typesetting industry. ... will be distracted by the readable'),
+        'Lorem Ipsum is simply dummy text of the printing typesetting industry.'),
     PremiumPackageModel('assets/images/silver.svg', 'Silver Package',
-        'Lorem Ipsum is simply dummy text of the printing typesetting industry. ... will be distracted by the readable')
+        'Lorem Ipsum is simply dummy text of the printing typesetting industry.')
   ];
   List<PremiumOfferModel> premiums = [
     PremiumOfferModel(false, "10", 'Boosts', '\$130/mo'),

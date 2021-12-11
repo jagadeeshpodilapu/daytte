@@ -20,4 +20,8 @@ class ImageConstants {
   static const ic_photo = 'assets/icons/Photo.png';
 
 //Svg icons only
+static const ic_checkbox = 'assets/icon/checkbox.svg';
+static const ic_ripples = 'assets/icon/ripples.svg';
+static const camera = 'assets/icon/camera.svg';
+
 }
