@@ -40,6 +40,7 @@ class PassionController extends BaseController {
 
   Future postPassition() async {
     Map<String, dynamic> payload = {"passion": listId};
+    print("payload in passion $selected");
     DialogHelper.showLoading('Loading...');
     final response = await BaseClient()
         .patch('/users/${storage.read("id")}', payload, storage.read('token'))

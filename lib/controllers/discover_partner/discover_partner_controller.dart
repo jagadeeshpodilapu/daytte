@@ -24,12 +24,21 @@ class DiscoverPartnerController extends BaseController {
 
   final storage = GetStorage();
   UserLikedModel? userLikedModel;
-
+  RxBool isSwipeMore = true.obs;
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
   @override
   void onInit() {
     super.onInit();
+    storage.writeIfNull("isSwipe", true);
+    isSwipeMore.value = storage.read("isSwipe");
+  }
+
+  void updateIsSwipe() {
+    storage.write("isSwipe", false);
+    isSwipeMore.value = storage.read("isSwipe");
+
+    update();
   }
 
   Future fetchUserGallery(String userId) async {
