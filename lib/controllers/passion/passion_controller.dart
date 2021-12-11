@@ -1,4 +1,3 @@
-import 'package:daytte/controllers/edit_details/edit_details_controller.dart';
 import 'package:daytte/model/response_model.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -40,6 +39,7 @@ class PassionController extends BaseController {
 
   Future postPassition() async {
     Map<String, dynamic> payload = {"passion": listId};
+    print("payload in passion $selected");
     DialogHelper.showLoading('Loading...');
     final response = await BaseClient()
         .patch('/users/${storage.read("id")}', payload, storage.read('token'))
@@ -47,10 +47,11 @@ class PassionController extends BaseController {
 
     DialogHelper.hideLoading();
     if (response != null) {
-      String passionScreen = storage.read("passion")??"";
+      String passionScreen = storage.read("passion") ?? "";
       if (passionScreen == "EditProfilePassion") {
         responseModel = ResponseModel.fromJson(response);
-        Get.toNamed(AppRoutes.EDITDETAILS);
+        Get.back();
+        storage.write("passion", "");
       } else {
         responseModel = ResponseModel.fromJson(response);
         storage.write("page", "3");

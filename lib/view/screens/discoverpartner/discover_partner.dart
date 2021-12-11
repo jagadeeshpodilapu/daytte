@@ -92,12 +92,12 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
 
-    return Hero(
-      tag: 'img',
-      child: Scaffold(
-        appBar: _appBarWidget(theme),
-        backgroundColor: Color(0xffF7F8FA),
-        body: GetBuilder<DiscoverPartnerController>(
+    return Scaffold(
+      appBar: _appBarWidget(theme),
+      backgroundColor: Color(0xffF7F8FA),
+      body: Hero(
+        tag: "img",
+        child: GetBuilder<DiscoverPartnerController>(
             init: DiscoverPartnerController(),
             builder: (controller) {
               return Column(
@@ -230,34 +230,42 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
                         ),
                       ),
                     ),
-                    Visibility(
-                      visible: true,
-                      child: Positioned.fill(
-                          bottom: 15,
-                          child: Container(
-                            // color: Color(0xFF363636).withOpacity(0.8),
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15)),
-                                color: Color(0xFF363636).withOpacity(0.8)),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SvgPicture.asset(
-                                  "assets/icon/swipe_view_more.svg",
-                                  height: 70,
-                                  width: 70,
+                    Obx(
+                      () => Visibility(
+                        visible: controller.isSwipeMore.value,
+                        child: Positioned.fill(
+                            bottom: 15,
+                            child: Container(
+                              // color: Color(0xFF363636).withOpacity(0.8),
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15)),
+                                  color: Color(0xFF363636).withOpacity(0.8)),
+                              child: GestureDetector(
+                                onTap: () {
+                                  controller.updateIsSwipe();
+                                },
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SvgPicture.asset(
+                                      "assets/icon/swipe_view_more.svg",
+                                      height: 70,
+                                      width: 70,
+                                      color: Colors.white,
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      "Swipe to view more",
+                                      style: TextStyle(color: Colors.white),
+                                    )
+                                  ],
                                 ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "Swipe to view more",
-                                  style: TextStyle(color: Colors.white),
-                                )
-                              ],
-                            ),
-                          )),
+                              ),
+                            )),
+                      ),
                     ),
                     _distanceWidget(),
                     _personsMatchingPercentage(),

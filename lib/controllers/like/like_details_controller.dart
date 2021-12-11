@@ -1,7 +1,6 @@
 import 'package:daytte/controllers/base_controller/baseController.dart';
 import 'package:daytte/model/like_details_model.dart';
 import 'package:daytte/services/base_service/base_client.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -19,9 +18,10 @@ class InterestController extends BaseController {
   }
 
   Future fetchLikedPeople() async {
+    String userId = storage.read("id");
     final response = await BaseClient()
         .get(
-            '/like?page=$page&limit=$limit&likedByMe=$isActive&likedBy=61852a5860d7b5076dafdeac',
+            '/like?page=$page&limit=$limit&likedByMe=$isActive&likedBy=$userId',
             storage.read('token'))
         .catchError(BaseController().handleError);
     if (response != null) {
@@ -47,9 +47,10 @@ class YouLikedController extends BaseController {
   }
 
   Future fetchLikedPeople() async {
+    String userId = storage.read("id");
     final response = await BaseClient()
         .get(
-            '/like?page=$page&limit=$limit&likedByMe=$isActive&likedBy=61852a5860d7b5076dafdeac',
+            '/like?page=$page&limit=$limit&likedByMe=$isActive&likedBy=$userId',
             storage.read('token'))
         .catchError(BaseController().handleError);
     if (response != null) {

@@ -151,7 +151,7 @@ class Login extends StatelessWidget {
                 borderSide: BorderSide(color: textColor, width: 1)),
             isCollapsed: true,
             fillColor: whiteColor,
-            contentPadding: new EdgeInsets.fromLTRB(2, 2, 2, 2),
+            contentPadding: new EdgeInsets.fromLTRB(8, 2, 2, 2),
             prefix: DropdownButtonHideUnderline(
               child: ButtonTheme(
                 child: DropdownButton(

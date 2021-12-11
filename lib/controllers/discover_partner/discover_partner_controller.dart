@@ -1,12 +1,9 @@
 import 'package:daytte/controllers/base_controller/baseController.dart';
-import 'package:daytte/controllers/findnearest/find_nearest_controller.dart';
 import 'package:daytte/model/user_gallery_model.dart';
 import 'package:daytte/model/user_liked_model.dart';
 import 'package:daytte/services/base_service/base_client.dart';
 import 'package:daytte/services/likes_service.dart';
-import 'package:daytte/view/dialogs/dialogHelper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/diagnostics.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:story_view/story_view.dart';
@@ -24,12 +21,21 @@ class DiscoverPartnerController extends BaseController {
 
   final storage = GetStorage();
   UserLikedModel? userLikedModel;
-
+  RxBool isSwipeMore = true.obs;
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
   @override
   void onInit() {
     super.onInit();
+    storage.writeIfNull("isSwipe", true);
+    isSwipeMore.value = storage.read("isSwipe");
+  }
+
+  void updateIsSwipe() {
+    storage.write("isSwipe", false);
+    isSwipeMore.value = storage.read("isSwipe");
+
+    update();
   }
 
   Future fetchUserGallery(String userId) async {

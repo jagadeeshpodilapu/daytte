@@ -1,7 +1,9 @@
 import 'package:daytte/consts/constants.dart';
+import 'package:daytte/themes/app_styles.dart';
 import 'package:daytte/view/screens/likedetails/liked.dart';
 import 'package:daytte/view/screens/likedetails/you_liked.dart';
 import 'package:flutter/material.dart';
+
 import '../../widgets/common_widgets.dart';
 
 class LikesPage extends StatelessWidget {
@@ -52,7 +54,8 @@ class LikesPage extends StatelessWidget {
                         border: Border.all(color: Colors.white, width: 1)),
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text("0 ${Constants.likes}"),
+                      child:
+                          Text("0 ${Constants.likes}", style: tabTextStyle()),
                     ),
                   ),
                 ),
@@ -73,7 +76,7 @@ class LikesPage extends StatelessWidget {
                     ),
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text(Constants.youLiked),
+                      child: Text(Constants.youLiked, style: tabTextStyle()),
                     ),
                   ),
                 ),
@@ -89,7 +92,7 @@ class LikesPage extends StatelessWidget {
   }
 
   TextStyle tabTextStyle() {
-    return TextStyle(
-        fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold);
+    return AppStyles.heading3
+        .copyWith(fontSize: 18, fontWeight: FontWeight.w400);
   }
 }

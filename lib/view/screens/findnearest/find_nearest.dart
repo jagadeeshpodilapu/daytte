@@ -10,7 +10,6 @@ import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 class FindTheNearest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).textTheme;
     return Scaffold(
         appBar: appBarWidget(Constants.findNearest, color: Color(0xffF7F8FA)),
         backgroundColor: Color(0xffF7F8FA),
