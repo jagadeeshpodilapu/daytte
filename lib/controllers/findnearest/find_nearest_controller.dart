@@ -6,7 +6,7 @@ import 'package:get_storage/get_storage.dart';
 
 class FindNearestController extends BaseController {
 
-  int page = 0, limit = 10;
+  int page = 0, limit = 20;
   final storage = GetStorage();
   RxInt users = 0.obs;
   FindNearestModel? findNearestModel;

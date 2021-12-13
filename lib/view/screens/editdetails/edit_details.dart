@@ -120,8 +120,6 @@ class EditDetails extends StatelessWidget {
 
     controller.schoolController.text =
         controller.userModel?.data.user?.interestedIn ?? "";
-    "";
-    print('userData passion ${controller.userModel?.data.user}');
     // controller.companyController.text =
     //     controller.userModel?.data.user?.interestedIn ?? "";
     return Container(
@@ -163,7 +161,7 @@ class EditDetails extends StatelessWidget {
                 Obx(
                   () => TextFormField(
                     style:
-                        AppStyles.title3.copyWith(fontWeight: FontWeight.w400),
+                        AppStyles.title.copyWith(fontWeight: FontWeight.w400),
                     maxLines: 2,
                     controller: controller.aboutMeController,
                     autofocus: controller.isEdit.value,
@@ -244,7 +242,7 @@ class EditDetails extends StatelessWidget {
               controller: controller.schoolController,
             ),
             addVerticalSpace(15),
-            _genderSelectWidget(),
+            _genderSelectWidget(controller),
           ],
         ),
       ),
@@ -262,18 +260,18 @@ class EditDetails extends StatelessWidget {
     );
   }
 
-  Widget _genderSelectWidget() {
+  Widget _genderSelectWidget(EditDetailsController controller) {
     return Card(
-      elevation: 4.0,
+      elevation: 2.0,
       child: ListTile(
-        onTap: () => Get.to(() => InterestedScreen()),
+        //onTap: () => Get.to(() => InterestedScreen()),
         title: _subHeadGreyText(Constants.gender),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            _titleBoldText("Woman"),
+            _titleBoldText(controller.userModel?.data.user?.gender ?? ""),
             addHorizontalSpace(8),
-            _backArrow()
+            // _backArrow()
           ],
         ),
       ),
@@ -470,12 +468,11 @@ class EditDetails extends StatelessWidget {
     );
   }
 
-  Padding buildPaddingImage({
-    File? item,
-    required EditDetailsController controller,
-    required Widget image,
-    String? file,
-  }) {
+  Padding buildPaddingImage(
+      {File? item,
+      required EditDetailsController controller,
+      required Widget image,
+      String? file}) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15.0),
       child: ClipRRect(
@@ -484,7 +481,7 @@ class EditDetails extends StatelessWidget {
           clipBehavior: Clip.none,
           children: [
             Container(height: 100, width: 100, child: image),
-            Positioned(
+          /* controller.galleryImages.length>2 ? */ Positioned(
               right: -5,
               top: -5,
               child: InkWell(
@@ -498,7 +495,7 @@ class EditDetails extends StatelessWidget {
                   child: Icon(Icons.clear),
                 ),
               ),
-            )
+            )/* :SizedBox() */
           ],
         ),
       ),

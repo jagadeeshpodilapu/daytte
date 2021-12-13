@@ -2,6 +2,7 @@ import 'package:daytte/controllers/splash_controller/splash_binding.dart';
 import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/services/internet_connect_checker.dart';
 import 'package:daytte/themes/color_styles.dart';
+import 'package:daytte/view/chatModule/login.dart';
 import 'package:daytte/view/screens/chatrequest/chat_request.dart';
 import 'package:daytte/view/screens/discoverpartner/swipe.dart';
 import 'package:daytte/view/screens/permissions/enable_permission.dart';
@@ -41,9 +42,9 @@ class MyApp extends StatelessWidget with WidgetsBindingObserver {
         scaffoldBackgroundColor: backgroundColor,
         fontFamily: 'Roboto',
       ),
-    //  home: CheckTest(),
+      home: LoginScreen(),
       initialBinding: SplashBinding(),
-      initialRoute: AppRoutes.SPLASHVIEW,
+    //  initialRoute: AppRoutes.SPLASHVIEW,
       defaultTransition: Transition.rightToLeft,
       getPages: AppPages.routes,
     );

@@ -12,8 +12,8 @@ class Liked extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
-    return GetBuilder<InterestController>(
-      init: InterestController(),
+    return GetBuilder<LikedController>(
+      init: LikedController(),
       builder: (controller) => controller.users.value != 0
           ? Column(
               children: [
@@ -143,9 +143,7 @@ class Liked extends StatelessWidget {
                 ),
               ],
             )
-          : Center(
-              child: CircularProgressIndicator.adaptive(),
-            ),
+          : Center(child: Text("Not yet liked")),
     );
   }
 

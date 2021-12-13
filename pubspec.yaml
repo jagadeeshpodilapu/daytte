@@ -42,6 +42,9 @@ dependencies:
   location: ^4.3.0
   showcase: ^0.2.0
   showcaseview: ^1.1.4
+  socket_io_client: ^1.0.2
+  emoji_picker_flutter: ^1.0.8
+  #emoji_picker: ^0.1.0
 
   
 

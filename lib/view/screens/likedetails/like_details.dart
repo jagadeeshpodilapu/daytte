@@ -55,7 +55,7 @@ class LikesPage extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.center,
                       child:
-                          Text("0 ${Constants.likes}", style: tabTextStyle()),
+                          Text("0 ${Constants.likes}"),
                     ),
                   ),
                 ),
@@ -76,7 +76,7 @@ class LikesPage extends StatelessWidget {
                     ),
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text(Constants.youLiked, style: tabTextStyle()),
+                      child: Text(Constants.youLiked),
                     ),
                   ),
                 ),

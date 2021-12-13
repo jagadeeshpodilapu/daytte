@@ -66,9 +66,9 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
               getUserGallery(userIndex: i + 1);
             },
             superlikeAction: () async {
-              await controller.postLikesData(userList[i].id.toString(), true);
-              _matchEngine.currentItem?.like();
-              getUserGallery(userIndex: i + 1);
+              // await controller.postLikesData(userList[i].id.toString(), true);
+              // _matchEngine.currentItem?.like();
+              // getUserGallery(userIndex: i + 1);
             }),
       );
 
@@ -84,8 +84,13 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
   @override
   void dispose() {
     storyController.dispose();
-    _matchEngine.dispose();
+
     super.dispose();
+  }
+
+  @override
+  void setState(VoidCallback fn) {
+    if (mounted) super.setState(fn);
   }
 
   @override

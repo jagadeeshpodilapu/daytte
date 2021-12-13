@@ -12,7 +12,7 @@ class UniversityController extends BaseController {
   UniversityListModel? universityListModel;
   ResponseModel? responseModel;
   int page = 0;
-  int limit = 15;
+  int limit = 25;
   final storage = GetStorage();
 
   @override

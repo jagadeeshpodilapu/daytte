@@ -51,8 +51,11 @@ class PassionSCreen extends StatelessWidget {
                             color: Color(0xFF9A9A9A),
                             fontWeight: FontWeight.w400),
                         borderRadius: BorderRadius.circular(30),
-                        onSelected: (index, isSelected) =>
-                            controller.selected.add(controller.listId[index]),
+                        onSelected: (index, isSelected) {
+                          controller.selected.add(controller.listId[index]);
+                           print("selected passion ${controller.selected}");
+                        },
+                           
                         buttons: controller.listName,
                         selectedButtons: [],
                       ),

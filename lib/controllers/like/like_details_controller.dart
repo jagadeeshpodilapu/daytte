@@ -4,9 +4,9 @@ import 'package:daytte/services/base_service/base_client.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class InterestController extends BaseController {
+class LikedController extends BaseController {
   bool isActive = false;
-  int page = 1, limit = 10;
+  int page = 1, limit = 20;
   final storage = GetStorage();
   RxInt users = 0.obs;
   LikeDetailsModel? likedDetailsModel;
@@ -25,17 +25,17 @@ class InterestController extends BaseController {
             storage.read('token'))
         .catchError(BaseController().handleError);
     if (response != null) {
+      print("liked response $response");
       likedDetailsModel = LikeDetailsModel.fromJson(response);
       users.value = likedDetailsModel?.data.likes?.length ?? 0;
     }
     update();
   }
-
 }
 
 class YouLikedController extends BaseController {
   bool isActive = true;
-  int page = 1, limit = 10;
+  int page = 1, limit = 20;
   final storage = GetStorage();
   RxInt users = 0.obs;
   LikeDetailsModel? likedDetailsModel;
@@ -59,6 +59,4 @@ class YouLikedController extends BaseController {
     }
     update();
   }
-
 }
-

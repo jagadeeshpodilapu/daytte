@@ -38,11 +38,7 @@ class EditDetailsController extends BaseController {
   RxBool isEdit = false.obs;
   ResponseModel? responseModel;
 
-  @override
-  void onReady() {
-    super.onReady();
-    gettingImages();
-  }
+
 
   void handleGenderChange(String? value) {
     groupValue = value!;
@@ -57,7 +53,8 @@ class EditDetailsController extends BaseController {
   @override
   void onInit() {
     userId.value = storage.read('id') ?? "";
-    // getUserUpdateData();
+     gettingImages();
+    getUserUpdateData() ;
     super.onInit();
   }
 
@@ -144,7 +141,7 @@ class EditDetailsController extends BaseController {
 
       if (getEditDetailsModel != null) {
         galleryImages = getEditDetailsModel!.data.galleries;
-        getUserUpdateData();
+       getUserUpdateData();
         update();
       }
     }
@@ -175,19 +172,19 @@ class EditDetailsController extends BaseController {
   }
 
   Future getUserUpdateData() async {
-    
-    DialogHelper.showLoading('Loading...');
+    //DialogHelper.showLoading('Loading...');
     final response = await BaseClient()
         .get('/users/${storage.read("id")}', storage.read('token'))
         .catchError(handleError);
     if (response == null) return;
 
-    DialogHelper.hideLoading();
+   // DialogHelper.hideLoading();
     if (response != null) {
       print("save user Data $response");
       userModel = SingleUserModel.fromJson(response);
     }
-    update();
+    Future.delayed(Duration(seconds: 2), () => update());
+  
   }
 
   Future saveUserDetails() async {

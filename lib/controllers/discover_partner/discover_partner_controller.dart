@@ -38,6 +38,12 @@ class DiscoverPartnerController extends BaseController {
     update();
   }
 
+ /*  @override
+  void onClose() {
+    super.onClose();
+    storyController.dispose();
+  } */
+
   Future fetchUserGallery(String userId) async {
     isLoading(true);
     final response = await BaseClient()
