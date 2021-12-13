@@ -18,8 +18,6 @@ class SettingsController extends BaseController {
   SingleUserModel? userInfoModel;
   ResponseModel? responseModel;
 
-  final PermissionController location=Get.find<PermissionController>();
-
   @override
   void onInit() {
     getUserSettingsPreferences();

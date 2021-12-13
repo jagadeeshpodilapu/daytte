@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:share/share.dart';
 import '../../../consts/image_constants.dart';
 import '../interested/interested.dart';
@@ -241,7 +242,10 @@ class Settings extends StatelessWidget {
       child: Card(
         elevation: 4.0,
         child: ListTile(
-          onTap: () => Get.to(() => InterestedScreen()),
+          onTap: () {
+            GetStorage().write("setting", "selectGender");
+             Get.to(() => InterestedScreen());
+          },
           title: _subHeadGreyText(Constants.gender, theme),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,

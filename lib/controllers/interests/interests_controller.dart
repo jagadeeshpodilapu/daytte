@@ -13,6 +13,7 @@ class InterestController extends BaseController {
 
   final storage = GetStorage();
   ResponseModel? responseModel;
+
   handleGenderChange(Gender? value) {
     selctedGender = value!;
     update();
@@ -29,9 +30,16 @@ class InterestController extends BaseController {
     print("response Gender $response");
     DialogHelper.hideLoading();
     if (response != null) {
-      responseModel = ResponseModel.fromJson(response);
-      storage.write("page", "5");
-      Get.offAndToNamed(AppRoutes.ABOUTVIEW);
+      String getStorageValue = storage.read("setting") ?? "";
+      if (getStorageValue == "selectGender") {
+        responseModel = ResponseModel.fromJson(response);
+        Get.back();
+        storage.write("setting", "");
+      } else {
+        responseModel = ResponseModel.fromJson(response);
+        storage.write("page", "5");
+        Get.offAndToNamed(AppRoutes.ABOUTVIEW);
+      }
     }
   }
 }

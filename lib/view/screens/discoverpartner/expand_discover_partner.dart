@@ -19,7 +19,7 @@ class ExpandPartnerDetails extends StatelessWidget {
           shrinkWrap: true,
           slivers: <Widget>[
             SliverAppBar(
-             backgroundColor: Colors.white12,
+              backgroundColor: Colors.white12,
               expandedHeight: 250.0,
               flexibleSpace: FlexibleSpaceBar(
                 background: Image.network('${user.profileImg?.imgPath}',
@@ -217,35 +217,5 @@ class ExpandPartnerDetails extends StatelessWidget {
           style: AppStyles.title
               .copyWith(color: Color(0xFF9A9A9A), fontWeight: FontWeight.w400),
         ));
-  }
-
-  FractionallySizedBox _userProfilePicWidget() {
-    return FractionallySizedBox(
-      heightFactor: 0.5,
-      alignment: Alignment.topCenter,
-      child: Container(
-        child: Image.network('${user.profileImg?.imgPath}', fit: BoxFit.cover),
-      ),
-    );
-  }
-
-  Widget _downArrowWidget() {
-    return GestureDetector(
-      onTap: () => Get.back(),
-      child: Align(
-        alignment: Alignment.centerRight,
-        child: Container(
-          height: 40,
-          width: 40,
-          margin: EdgeInsets.symmetric(horizontal: 20),
-          decoration: BoxDecoration(
-            color: Colors.red,
-            shape: BoxShape.circle,
-            gradient: gradientColors,
-          ),
-          child: Icon(Icons.arrow_downward, color: Colors.white, size: 30),
-        ),
-      ),
-    );
   }
 }
