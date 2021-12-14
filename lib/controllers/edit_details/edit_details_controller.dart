@@ -58,6 +58,7 @@ class EditDetailsController extends BaseController {
   void onInit() {
     userId.value = storage.read('id') ?? "";
     // getUserUpdateData();
+    // storage.write("page", "7");
     super.onInit();
   }
 
@@ -122,7 +123,7 @@ class EditDetailsController extends BaseController {
       editDetailsModel = EditDetailsModel.fromJson(response);
       if (editDetailsModel != null) {
         storage.write("isLogged", true);
-        storage.write("page", "7");
+        // storage.write("page", "7");
         editDetailsModel = EditDetailsModel.fromJson(response);
         update();
         Future.delayed(Duration(seconds: 2), () async {

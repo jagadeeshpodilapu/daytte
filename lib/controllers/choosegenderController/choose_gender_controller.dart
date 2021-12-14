@@ -14,6 +14,12 @@ class ChooseGenderController extends BaseController {
     {'gender': 'Female', 'icon': ImageConstants.ic_female},
   ];
 
+  @override
+  void onInit() {
+    storage.write("page", "2");
+    super.onInit();
+  }
+
   RxInt selectedIndex = 0.obs;
 
   updateGenderStatus() async {
@@ -29,7 +35,7 @@ class ChooseGenderController extends BaseController {
     print("response Otp $response");
     DialogHelper.hideLoading();
     if (response != null) {
-      storage.write("page", "2");
+      // storage.write("page", "2");
       Get.offAndToNamed(AppRoutes.PASSION);
     }
   }
