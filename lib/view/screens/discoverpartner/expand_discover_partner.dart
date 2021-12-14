@@ -17,60 +17,55 @@ class ExpandPartnerDetails extends StatelessWidget {
     return Hero(
       tag: "img",
       child: Scaffold(
-        body: Container(
-          child: Stack(
-            fit: StackFit.expand,
-            clipBehavior: Clip.none,
-            children: [
-              _userProfilePicWidget(),
-              _downArrowWidget(),
-              _userBioDetailsWidget(),
-            ],
-          ),
+        body: CustomScrollView(
+          shrinkWrap: true,
+          slivers: <Widget>[
+            SliverAppBar(
+              backgroundColor: Colors.white12,
+              expandedHeight: 250.0,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Image.network('${user.profileImg?.imgPath}',
+                    fit: BoxFit.cover),
+              ),
+            ),
+            SliverList(
+              delegate: SliverChildListDelegate([
+                addVerticalSpace(10),
+                _userNameWidget(),
+                addVerticalSpace(10),
+                _infoWidget(Icons.business_center,
+                    "${user.institute ?? "Wildlife Photographer"}"),
+                addVerticalSpace(5),
+                _infoWidget(Icons.location_city_rounded, "Lives in New York"),
+                addVerticalSpace(5),
+                _infoWidget(Icons.person, "${user.gender}"),
+                addVerticalSpace(5),
+                _infoWidget(Icons.location_on, "2Km away"),
+                _aboutmeText("About Me"),
+                _aboutmeInfoWidget(),
+                addVerticalSpace(20),
+                _divider,
+                addVerticalSpace(20),
+                _aboutmeText("Passions"),
+                _passionListWidget(),
+                addVerticalSpace(20),
+                _divider,
+                addVerticalSpace(20),
+                _shareProfileWidget(),
+                _shareWidgetSub(),
+                addVerticalSpace(20),
+                _divider,
+                addVerticalSpace(20),
+                _reportProfileWidget(),
+                addVerticalSpace(20),
+                _divider,
+                addVerticalSpace(40),
+                _setIconsWidget(),
+                addVerticalSpace(30),
+              ]),
+            ),
+          ],
         ),
-      ),
-    );
-  }
-
-  Widget _userBioDetailsWidget() {
-    return FractionallySizedBox(
-      heightFactor: 0.5,
-      alignment: Alignment.bottomCenter,
-      child: ListView(
-        children: [
-          addVerticalSpace(10),
-          _userNameWidget(),
-          addVerticalSpace(10),
-          _infoWidget(Icons.business_center,
-              "${user.institute ?? "Wildlife Photographer"}"),
-          addVerticalSpace(5),
-          _infoWidget(Icons.location_city_rounded, "Lives in New York"),
-          addVerticalSpace(5),
-          _infoWidget(Icons.person, "${user.gender}"),
-          addVerticalSpace(5),
-          _infoWidget(Icons.location_on, "2Km away"),
-          _aboutmeText("About Me"),
-          _aboutmeInfoWidget(),
-          addVerticalSpace(20),
-          _divider,
-          addVerticalSpace(20),
-          _aboutmeText("Passions"),
-          _passionListWidget(),
-          addVerticalSpace(20),
-          _divider,
-          addVerticalSpace(20),
-          _shareProfileWidget(),
-          _shareWidgetSub(),
-          addVerticalSpace(20),
-          _divider,
-          addVerticalSpace(20),
-          _reportProfileWidget(),
-          addVerticalSpace(20),
-          _divider,
-          addVerticalSpace(40),
-          _setIconsWidget(),
-          addVerticalSpace(30),
-        ],
       ),
     );
   }
@@ -224,35 +219,5 @@ class ExpandPartnerDetails extends StatelessWidget {
           style: AppStyles.title
               .copyWith(color: Color(0xFF9A9A9A), fontWeight: FontWeight.w400),
         ));
-  }
-
-  FractionallySizedBox _userProfilePicWidget() {
-    return FractionallySizedBox(
-      heightFactor: 0.5,
-      alignment: Alignment.topCenter,
-      child: Container(
-        child: Image.network('${user.profileImg?.imgPath}', fit: BoxFit.cover),
-      ),
-    );
-  }
-
-  Widget _downArrowWidget() {
-    return GestureDetector(
-      onTap: () => Get.back(),
-      child: Align(
-        alignment: Alignment.centerRight,
-        child: Container(
-          height: 40,
-          width: 40,
-          margin: EdgeInsets.symmetric(horizontal: 20),
-          decoration: BoxDecoration(
-            color: Colors.red,
-            shape: BoxShape.circle,
-            gradient: gradientColors,
-          ),
-          child: Icon(Icons.arrow_downward, color: Colors.white, size: 30),
-        ),
-      ),
-    );
   }
 }

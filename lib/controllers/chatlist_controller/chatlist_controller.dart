@@ -1,5 +1,4 @@
 import 'package:daytte/controllers/base_controller/baseController.dart';
-import 'package:get/get.dart';
 
 class ChatListController extends BaseController {
   bool isAll = true;

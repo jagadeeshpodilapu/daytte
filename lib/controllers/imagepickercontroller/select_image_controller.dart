@@ -2,7 +2,6 @@
 
 import 'package:daytte/controllers/base_controller/baseController.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:image_picker/image_picker.dart';
 
 class SelectImagesController extends BaseController {

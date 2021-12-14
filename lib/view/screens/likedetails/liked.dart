@@ -1,5 +1,4 @@
 import 'package:daytte/consts/constants.dart';
-import 'package:daytte/controllers/findnearest/find_nearest_controller.dart';
 import 'package:daytte/controllers/like/like_details_controller.dart';
 import 'package:daytte/themes/app_styles.dart';
 import 'package:daytte/themes/color_styles.dart';
@@ -97,7 +96,7 @@ class Liked extends StatelessWidget {
                                                         padding:
                                                             const EdgeInsets
                                                                     .only(
-                                                                right: 8.0),
+                                                                right: 5.0),
                                                         child: CircleAvatar(
                                                             radius: 5,
                                                             backgroundColor:

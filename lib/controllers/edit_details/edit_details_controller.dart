@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:daytte/controllers/findnearest/find_nearest_controller.dart';
 import 'package:daytte/model/delete_gallery.dart';
 import 'package:daytte/model/response_model.dart';
 import 'package:daytte/model/single_user_model.dart';

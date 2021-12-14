@@ -104,7 +104,7 @@ class User {
   double? filterRadius;
   String? lastSeen;
   String? status;
-  dynamic? age;
+  dynamic age;
   ProfileImg? profileImg;
   String? email;
   double? lat;

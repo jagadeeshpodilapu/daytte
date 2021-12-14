@@ -1,6 +1,5 @@
 import 'package:daytte/controllers/base_controller/baseController.dart';
 import 'package:daytte/routes/app_routes.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 

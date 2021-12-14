@@ -1,4 +1,3 @@
-import 'package:daytte/services/base_service/base_client.dart';
 import 'package:dio/dio.dart';
 
 class LikesService {

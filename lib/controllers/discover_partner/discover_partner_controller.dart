@@ -38,11 +38,11 @@ class DiscoverPartnerController extends BaseController {
     update();
   }
 
- /*  @override
+  @override
   void onClose() {
     super.onClose();
     storyController.dispose();
-  } */
+  }
 
   Future fetchUserGallery(String userId) async {
     isLoading(true);
@@ -80,10 +80,7 @@ class DiscoverPartnerController extends BaseController {
             duration: Duration(milliseconds: 5000),
           ),
         );
-        swipeItems.add(
-          SwipeItem(
-              likeAction: () {}, nopeAction: () {}, superlikeAction: () {}),
-        );
+
         gallery.value = 1;
       }
     }
@@ -104,6 +101,7 @@ class DiscoverPartnerController extends BaseController {
     if (response == null) return;
 
     if (response != null) {
+      print("discover partner controller likes $response");
       userLikedModel = UserLikedModel.fromJson(response);
     }
     update();

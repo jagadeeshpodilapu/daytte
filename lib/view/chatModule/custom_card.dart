@@ -1,7 +1,6 @@
 import 'package:daytte/view/chatModule/chat_model.dart';
 import 'package:daytte/view/chatModule/individualPage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomCard extends StatelessWidget {
   const CustomCard({Key? key, this.chatModel, this.sourchat}) : super(key: key);

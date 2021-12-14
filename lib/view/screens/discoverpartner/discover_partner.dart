@@ -2,7 +2,6 @@ import 'package:daytte/consts/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:showcaseview/showcaseview.dart';
 import 'package:story_view/controller/story_controller.dart';
 import 'package:story_view/widgets/story_view.dart';
 import 'package:swipe_cards/swipe_cards.dart';
@@ -20,8 +19,7 @@ class DiscoverPartner extends StatefulWidget {
   State<DiscoverPartner> createState() => _DiscoverPartnerState();
 }
 
-class _DiscoverPartnerState extends State<DiscoverPartner>
-    with AutomaticKeepAliveClientMixin {
+class _DiscoverPartnerState extends State<DiscoverPartner> {
   final data = Get.arguments;
   late List<User> userList;
   late int selectedUser;
@@ -481,39 +479,4 @@ class _DiscoverPartnerState extends State<DiscoverPartner>
       side: BorderSide(color: Colors.white),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
-}
-
-class CustomShowcaseWidget extends StatelessWidget {
-  final Widget child;
-  final String? description;
-  final GlobalKey globalKey;
-
-  const CustomShowcaseWidget({
-    @required this.description,
-    required this.child,
-    required this.globalKey,
-  });
-
-  @override
-  Widget build(BuildContext context) => Showcase(
-        key: globalKey,
-        showcaseBackgroundColor: Colors.pink.shade400,
-        contentPadding: EdgeInsets.all(12),
-        showArrow: false,
-        disableAnimation: true,
-        // title: 'Hello',
-        // titleTextStyle: TextStyle(color: Colors.white, fontSize: 32),
-        description: description,
-        descTextStyle: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 16,
-        ),
-        // overlayColor: Colors.white,
-        // overlayOpacity: 0.7,
-        child: child,
-      );
 }

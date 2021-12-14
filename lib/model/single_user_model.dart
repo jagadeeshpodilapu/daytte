@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 class SingleUserModel {
   SingleUserModel({
@@ -52,7 +51,7 @@ class User {
     this.shortDescription,
     this.filterRadius,
     this.profileImg,
-  });
+    this.location});
 
   String? provider;
   // List<Passion>? passion;
@@ -76,17 +75,18 @@ class User {
   String? shortDescription;
   int? filterRadius;
   ProfileImg? profileImg;
+  String? location;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-        provider: json["provider"],
-        // passion:
-        //    json["passion"]!=null? List<Passion>.from(json["passion"].map((x) => Passion.fromJson(x))):[],
-        showAgeRange: List<int>.from(json["showAgeRange"].map((x) => x)),
-        showMe: json["showMe"],
-        isSuperAdmin: json["is_super_admin"],
-        isVerified: json["is_verified"],
-        isBlocked: json["is_blocked"],
-        id: json["_id"],
+      provider: json["provider"],
+      // passion:
+      //    json["passion"]!=null? List<Passion>.from(json["passion"].map((x) => Passion.fromJson(x))):[],
+      showAgeRange: List<int>.from(json["showAgeRange"].map((x) => x)),
+      showMe: json["showMe"],
+      isSuperAdmin: json["is_super_admin"],
+      isVerified: json["is_verified"],
+      isBlocked: json["is_blocked"],
+      id: json["_id"],
         mobileNumber: json["mobile_number"],
         otp: json["otp"],
         deviceToken: json["device_token"],
@@ -101,7 +101,7 @@ class User {
         shortDescription: json["shortDescription"],
         filterRadius: json["filterRadius"],
         profileImg: ProfileImg.fromJson(json["profileImg"]),
-      );
+          location: json["location"]);
 
   Map<String, dynamic> toJson() => {
         "provider": provider,
@@ -126,6 +126,7 @@ class User {
         "shortDescription": shortDescription,
         "filterRadius": filterRadius,
         "profileImg": profileImg!.toJson(),
+    'location': location
       };
 }
 

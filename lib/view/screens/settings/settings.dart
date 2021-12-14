@@ -8,6 +8,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:share/share.dart';
+
 import '../../../consts/image_constants.dart';
 import '../interested/interested.dart';
 
@@ -29,9 +30,9 @@ class Settings extends StatelessWidget {
                   addVerticalSpace(25),
                   _titleBoldText(
                       theme, Constants.discoverySettings.toUpperCase()),
-                  _locationWidget(theme),
+                  _locationWidget(theme, controller),
                   _maxmimumDistanceWidget(controller),
-                  _genderSelectWidget(theme),
+                  _genderSelectWidget(theme, controller),
                   _ageRangeWidget(controller, theme),
                   _showMeOnWooly(controller, theme),
                   _showWoolySubtitle(theme),
@@ -235,7 +236,7 @@ class Settings extends StatelessWidget {
     );
   }
 
-  Widget _genderSelectWidget(TextTheme theme) {
+  Widget _genderSelectWidget(TextTheme theme, SettingsController controller) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Card(
@@ -246,7 +247,10 @@ class Settings extends StatelessWidget {
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              _titleBoldText(theme, "Woman"),
+              _titleBoldText(
+                  theme,
+                  controller.userInfoModel?.data.user?.interestedIn ??
+                      "Female"),
               addHorizontalSpace(8),
               _backArrow()
             ],
@@ -284,7 +288,7 @@ class Settings extends StatelessWidget {
     );
   }
 
-  Widget _locationWidget(TextTheme theme) {
+  Widget _locationWidget(TextTheme theme, SettingsController controller) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Card(
@@ -294,7 +298,8 @@ class Settings extends StatelessWidget {
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              _titleBoldText(theme, "Bangalore, INDIA"),
+              _titleBoldText(
+                  theme, "${controller.userInfoModel?.data.user?.location}"),
               addHorizontalSpace(8),
               _backArrow()
             ],

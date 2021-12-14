@@ -1,5 +1,4 @@
 import 'package:daytte/controllers/base_controller/baseController.dart';
-import 'package:daytte/controllers/otpController/otp_controller.dart';
 import 'package:daytte/model/response_model.dart';
 import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/services/base_service/base_client.dart';
@@ -29,9 +28,16 @@ class InterestController extends BaseController {
     print("response Gender $response");
     DialogHelper.hideLoading();
     if (response != null) {
-      responseModel = ResponseModel.fromJson(response);
-      storage.write("page", "5");
-      Get.offAndToNamed(AppRoutes.ABOUTVIEW);
+      String getStorageValue = storage.read("setting") ?? "";
+      if (getStorageValue == "selectGender") {
+        responseModel = ResponseModel.fromJson(response);
+        Get.back();
+        storage.write("setting", "");
+      } else {
+        responseModel = ResponseModel.fromJson(response);
+        storage.write("page", "5");
+        Get.offAndToNamed(AppRoutes.ABOUTVIEW);
+      }
     }
   }
 }

@@ -103,7 +103,7 @@ class YouLikedView extends StatelessWidget {
                                                           padding:
                                                               const EdgeInsets
                                                                       .only(
-                                                                  right: 8.0),
+                                                                  right: 5.0),
                                                           child: CircleAvatar(
                                                               radius: 5,
                                                               backgroundColor:

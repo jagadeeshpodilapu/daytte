@@ -41,7 +41,7 @@ class _IndividualPageState extends State<IndividualPage> {
 
   void connect() {
     // MessageModel messageModel = MessageModel(sourceId: widget.sourceChat.id.toString(),targetId: );
-    socket = IO.io("http://192.168.0.106:5000", <String, dynamic>{
+    socket = IO.io("http://192.168.0.13:5000", <String, dynamic>{
       "transports": ["websocket"],
       "autoConnect": false,
     });
