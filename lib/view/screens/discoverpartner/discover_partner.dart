@@ -40,7 +40,6 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
     getUserGallery(userIndex: selectedUser);
 
     for (int i = 0; i < userList.length; i++) {
-      //  userList.removeWhere((element) => element == userList[selectedUser]);
       swipeItemIndex = i == selectedUser || i == 0 ? selectedUser : i;
 
       _swipeItems?.add(
