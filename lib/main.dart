@@ -2,6 +2,7 @@ import 'package:daytte/controllers/splash_controller/splash_binding.dart';
 import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/services/internet_connect_checker.dart';
 import 'package:daytte/themes/color_styles.dart';
+import 'package:daytte/view/screens/chatModule/test_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +13,7 @@ import 'routes/app_pages.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp();
+ // await Firebase.initializeApp();
   await GetStorage.init();
   runApp(MyApp());
 }
@@ -32,9 +33,9 @@ class MyApp extends StatelessWidget with WidgetsBindingObserver {
         scaffoldBackgroundColor: backgroundColor,
         fontFamily: 'Roboto',
       ),
-      // home: LoginScreen(),
+       home: TestView(),
       initialBinding: SplashBinding(),
-      initialRoute: AppRoutes.SPLASHVIEW,
+    //  initialRoute: AppRoutes.SPLASHVIEW,
       defaultTransition: Transition.rightToLeft,
       getPages: AppPages.routes,
     );
