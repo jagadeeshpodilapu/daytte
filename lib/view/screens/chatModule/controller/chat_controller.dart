@@ -52,7 +52,7 @@ class ChatController extends GetxController {
       print("isconnect" + socket.connected.toString());
       socket.on("msgToClient", (msg) {
         setMessage("destination", msg["text"], msg['userId']);
-        print("recieved messages $msg");
+        print("recieved messages $msg  ${messages.length}");
 
         print("list of messages is ${messages.length}");
 
@@ -60,7 +60,7 @@ class ChatController extends GetxController {
             duration: Duration(milliseconds: 300), curve: Curves.easeOut);
       });
     });
-    update();
+   // update();
   }
 
   void setMessage(String type, msg, String userId) {
