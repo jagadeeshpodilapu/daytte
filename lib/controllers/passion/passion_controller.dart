@@ -19,6 +19,7 @@ class PassionController extends BaseController {
   @override
   void onInit() {
     fetchPassion();
+    storage.write("page", "3");
     super.onInit();
   }
 
@@ -54,7 +55,7 @@ class PassionController extends BaseController {
         storage.write("passion", "");
       } else {
         responseModel = ResponseModel.fromJson(response);
-        storage.write("page", "3");
+        // storage.write("page", "3");
         Get.offAndToNamed(AppRoutes.UNIVERSITY);
       }
     }

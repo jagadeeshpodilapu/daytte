@@ -12,6 +12,13 @@ class InterestController extends BaseController {
 
   final storage = GetStorage();
   ResponseModel? responseModel;
+
+  @override
+  void onInit() {
+    storage.write("page", "5");
+    super.onInit();
+  }
+
   handleGenderChange(Gender? value) {
     selctedGender = value!;
     update();
@@ -35,7 +42,7 @@ class InterestController extends BaseController {
         storage.write("setting", "");
       } else {
         responseModel = ResponseModel.fromJson(response);
-        storage.write("page", "5");
+        // storage.write("page", "5");
         Get.offAndToNamed(AppRoutes.ABOUTVIEW);
       }
     }

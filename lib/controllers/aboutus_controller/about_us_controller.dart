@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:daytte/model/delete_gallery.dart';
 import 'package:daytte/model/edit_detail_model.dart';
 import 'package:daytte/model/single_user_model.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
+
 import '../../routes/app_routes.dart';
 import '../../services/base_service/base_client.dart';
 import '../../view/dialogs/dialogHelper.dart';
@@ -32,6 +34,7 @@ class AboutUsController extends BaseController {
   @override
   void onInit() {
     userId.value = storage.read('id') ?? "";
+    storage.write("page", "7");
     super.onInit();
   }
 
@@ -122,7 +125,7 @@ class AboutUsController extends BaseController {
       editDetailsModel = EditDetailsModel.fromJson(response);
       if (editDetailsModel != null) {
         storage.write("isLogged", true);
-        storage.write("page", "7");
+        // storage.write("page", "7");
         editDetailsModel = EditDetailsModel.fromJson(response);
         update();
         // Future.delayed(Duration(seconds: 2), () async {

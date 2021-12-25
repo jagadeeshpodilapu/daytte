@@ -19,6 +19,7 @@ class MessageModel {
   final String? type;
   final String? message;
   final String? time;
+  final String? userId;
 
-  MessageModel({this.type, this.message, this.time});
+  MessageModel({this.type, this.message, this.time, this.userId});
 }

@@ -18,7 +18,7 @@ class UniversityController extends BaseController {
   @override
   void onInit() {
     fetchUniversityList();
-
+    storage.write("page", "4");
     super.onInit();
   }
 
@@ -50,7 +50,7 @@ class UniversityController extends BaseController {
         storage.write("university", '');
       } else {
         responseModel = ResponseModel.fromJson(response);
-        storage.write("page", "4");
+        // storage.write("page", "4");
         Get.offAndToNamed(AppRoutes.INTERESTED);
       }
     }

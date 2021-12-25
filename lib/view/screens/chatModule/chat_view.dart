@@ -3,7 +3,6 @@ import 'package:daytte/view/screens/chatModule/controller/chat_controller.dart';
 import 'package:daytte/view/screens/chatModule/widgets/own_message_card.dart';
 import 'package:daytte/view/screens/chatModule/widgets/replay_card.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 class ChatView extends GetView<ChatController> {
@@ -19,7 +18,7 @@ class ChatView extends GetView<ChatController> {
   @override
   Widget build(BuildContext context) {
     print("chat room id ${sourceChat?.roomId}");
-    chatController.connect(sourceChat?.roomId ?? 0);
+    chatController.connect();
 
     return Scaffold(
       body: Stack(

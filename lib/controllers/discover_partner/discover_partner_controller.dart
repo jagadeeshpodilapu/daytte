@@ -21,6 +21,7 @@ class DiscoverPartnerController extends BaseController {
 
   final storage = GetStorage();
   UserLikedModel? userLikedModel;
+  UserLikedToModel? userLikedToModel;
   RxBool isSwipeMore = true.obs;
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
@@ -101,8 +102,12 @@ class DiscoverPartnerController extends BaseController {
     if (response == null) return;
 
     if (response != null) {
-      print("discover partner controller likes $response");
-      userLikedModel = UserLikedModel.fromJson(response);
+      print("response in discover partner ${response.data["isMatched"]}");
+      if (response["data"]["isMatched"] == true) {
+        userLikedToModel = UserLikedToModel.fromJson(response);
+      } else {
+        userLikedModel = UserLikedModel.fromJson(response);
+      }
     }
     update();
   }

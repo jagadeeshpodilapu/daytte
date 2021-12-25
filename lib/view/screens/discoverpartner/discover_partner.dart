@@ -28,6 +28,7 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
   final storyController = StoryController();
   List<SwipeItem>? _swipeItems = <SwipeItem>[];
   MatchEngine _matchEngine = MatchEngine();
+  bool? matched;
 
   int? swipeItemIndex;
 
@@ -48,10 +49,15 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
             likeAction: () async {
               await controller.postLikesData(userList[i].id.toString(), true);
               if (controller.userLikedModel?.data != null) {
-                bool matched =
-                    controller.userLikedModel?.data.isMatched ?? false;
-
-                matched ? Get.toNamed(AppRoutes.MATCHED) : null;
+                matched = controller.userLikedModel?.data.isMatched ?? false;
+                // matched ? Get.toNamed(AppRoutes.MATCHED) : null;
+              }
+              if (controller.userLikedToModel?.userLikedDataInfo != null) {
+                matched =
+                    controller.userLikedToModel?.userLikedDataInfo.isMatched ??
+                        true;
+                Get.toNamed(AppRoutes.MATCHED,
+                    arguments: controller.userLikedToModel?.userLikedDataInfo);
               }
 
               _matchEngine.currentItem?.like();

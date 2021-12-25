@@ -29,6 +29,7 @@ class SignupController extends BaseController {
   @override
   void onInit() {
     _getUserLocation();
+    storage.write("page", "1");
     super.onInit();
   }
 
@@ -68,7 +69,7 @@ class SignupController extends BaseController {
     print("response Otp $payload");
     DialogHelper.hideLoading();
     if (response != null) {
-      storage.write("page", "1");
+      // storage.write("page", "1");
       Get.offAndToNamed(AppRoutes.CHOOSEGENDER);
     }
   }

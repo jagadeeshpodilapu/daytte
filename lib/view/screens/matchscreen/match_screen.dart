@@ -1,11 +1,14 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/consts/image_constants.dart';
+import 'package:daytte/model/user_liked_model.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class MatchScreen extends StatelessWidget {
+  UserLikedToModel matchedData = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +54,11 @@ class MatchScreen extends StatelessWidget {
   ElevatedButton _buttonWidget(BuildContext context, String title,
       {Color? color}) {
     return ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          if (title == "Continue Swiping") {
+            Get.back();
+          }
+        },
         style: ElevatedButton.styleFrom(
             primary: Colors.white, fixedSize: Size(Get.width * 0.7, 45)),
         child: Text(title,
@@ -75,7 +82,7 @@ class MatchScreen extends StatelessWidget {
 
   Text _matchedUsersNames() {
     return Text(
-      "You and John like each other",
+      "${matchedData.userLikedDataInfo.likedBy?.firstname ?? ""} and ${matchedData.userLikedDataInfo.likedTo?.firstname ?? ""} like each other",
       style: TextStyle(
           fontSize: 18, fontWeight: FontWeight.w500, color: Colors.white),
     );
@@ -113,7 +120,7 @@ class MatchScreen extends StatelessWidget {
               radius: 74,
               backgroundColor: Colors.grey,
               backgroundImage: NetworkImage(
-                  "https://wallup.net/wp-content/uploads/2016/05/13/334355-people-model-fashion-forest-dress-portrait.jpg"),
+                  matchedData.userLikedDataInfo.likedBy?.profileImg ?? ""),
             ),
           ),
         ),
@@ -125,7 +132,8 @@ class MatchScreen extends StatelessWidget {
             child: CircleAvatar(
                 radius: 80,
                 backgroundColor: Colors.grey,
-                backgroundImage: AssetImage('assets/icon/boy.png')),
+                backgroundImage: NetworkImage(
+                    matchedData.userLikedDataInfo.likedTo?.profileImg ?? "")),
           ),
         ),
       ],

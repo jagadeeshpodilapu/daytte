@@ -113,7 +113,7 @@ class LikedTo {
   factory LikedTo.fromJson(Map<String, dynamic> json) => LikedTo(
         location: json["location"],
         id: json["_id"],
-        //dob: DateTime.parse(json["dob"] ?? ""),
+        dob: DateTime.parse(json["dob"]),
         firstname: json["firstname"],
         lastname: json["lastname"],
         gender: json["gender"],

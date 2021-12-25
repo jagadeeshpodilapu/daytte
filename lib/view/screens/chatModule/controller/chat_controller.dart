@@ -13,6 +13,8 @@ class ChatController extends GetxController {
 
   late IO.Socket socket;
 
+  String activeRoom = "general";
+
   @override
   void onInit() {
     super.onInit();
@@ -33,48 +35,55 @@ class ChatController extends GetxController {
   @override
   void onClose() {}
 
-  void connect(int sourchatId) {
-    socket = IO.io("http://65.0.174.202:9000", <String, dynamic>{
+  void connect() {
+    socket = IO.io("http://65.0.174.202:9000/chat", <String, dynamic>{
       "transports": ["websocket"],
       "autoConnect": false,
     });
     socket.connect();
 
     socket.onConnect((data) {
-      print("Connected");
+      print("Connected  $data");
+
+      socket.emit("joinRoom", this.activeRoom);
+
+      print(" isconnect " + socket.connected.toString());
       socket.on("msgToClient", (msg) {
-        setMessage("destination", msg["message"]);
-        print("recievd msg $msg");
+        setMessage("destination", msg["text"], msg['userId']);
+
+        print("list of messages is ${messages.length}");
+
         scrollController.animateTo(scrollController.position.maxScrollExtent,
             duration: Duration(milliseconds: 300), curve: Curves.easeOut);
       });
+      socket.onDisconnect((_) {
+        socket.emit('leaveRoom', activeRoom);
+      });
     });
-    update();
-    print(" isconnect " + socket.connected.toString());
+    //  update();
   }
 
-  void setMessage(String type, msg) {
+  void setMessage(String type, msg, String userId) {
     MessageModel messageModel = MessageModel(
         type: type,
         message: msg,
         time: DateTime.now().toString().substring(10, 16));
 
     messages.add(messageModel);
-    print("set message $messages");
 
     update();
   }
 
   void sendMessage(String message, int roomId, String roomName, String userId,
       String userName) {
-    setMessage("source", message);
+    setMessage("source", message, userId);
     socket.emit("msgToServer", {
       "name": userName,
       "text": message,
-      "room": 'general',
+      "room": this.activeRoom,
       "userId": userId
     });
-    print("name $userName  $message $userId");
+    print("name $userName  $message $userId ");
     update();
   }
 }

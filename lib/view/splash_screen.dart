@@ -12,11 +12,9 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  
   @override
   void initState() {
     Timer(4.seconds, () {
-      
       Get.find<SplashController>().gotoPage();
     });
     super.initState();
@@ -26,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(
-          fit: StackFit.expand,
+      fit: StackFit.expand,
       children: [
         SvgPicture.asset(
           ImageConstants.splash_background,
@@ -43,43 +41,6 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
         ),
       ],
-    )
-
-        /* SafeArea(
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            FractionallySizedBox(
-              heightFactor: 0.6,
-              alignment: Alignment.topCenter,
-              child: Container(
-                child: Image.asset(
-                  'assets/images/girl.jpg',
-                  fit: BoxFit.cover,
-                  colorBlendMode: BlendMode.colorBurn,
-                ),
-                /* decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter,
-                  colors: [Colors.blue, Colors.blue],
-                )), */
-              ),
-                 
-            ),
-            FractionallySizedBox(
-              heightFactor: 0.4,
-              alignment: Alignment.bottomCenter,
-              child: Center(
-                child: Image.asset(
-                  ImageConstants.daytte_logo,
-                  height: 200,
-                  width: 200,
-                ),
-              ),
-            ),
-          ],
-        ), */
-        );
+    ));
   }
 }
