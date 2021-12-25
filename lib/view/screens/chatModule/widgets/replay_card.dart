@@ -16,7 +16,7 @@ class ReplyCard extends StatelessWidget {
         child: Card(
           elevation: 1,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          color: Color(0xffdcf8c6),
+          color: Colors.white,
           margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
           child: Stack(
             children: [
@@ -24,17 +24,17 @@ class ReplyCard extends StatelessWidget {
                 padding: const EdgeInsets.only(
                   left: 8,
                   right: 50,
-                  top: 5,
-                  bottom: 10,
+                  top: 8,
+                  bottom: 8,
                 ),
                 child: Text(
                   message??"",
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 14,
                       color: Colors.black),
                 ),
               ),
-              Positioned(
+              /* Positioned(
                 bottom: 4,
                 right: 10,
                 child: Text(
@@ -44,7 +44,7 @@ class ReplyCard extends StatelessWidget {
                     color: Colors.grey[600],
                   ),
                 ),
-              ),
+              ), */
             ],
           ),
         ),

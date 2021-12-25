@@ -33,7 +33,9 @@ class ChatController extends GetxController {
   }
 
   @override
-  void onClose() {}
+  void onClose() {
+    socket.disconnect();
+  }
 
   void connect() {
     socket = IO.io("http://65.0.174.202:9000/chat", <String, dynamic>{
@@ -47,26 +49,25 @@ class ChatController extends GetxController {
 
       socket.emit("joinRoom", this.activeRoom);
 
-      print(" isconnect " + socket.connected.toString());
+      print("isconnect" + socket.connected.toString());
       socket.on("msgToClient", (msg) {
         setMessage("destination", msg["text"], msg['userId']);
+        print("recieved messages $msg");
 
         print("list of messages is ${messages.length}");
 
         scrollController.animateTo(scrollController.position.maxScrollExtent,
             duration: Duration(milliseconds: 300), curve: Curves.easeOut);
       });
-      socket.onDisconnect((_) {
-        socket.emit('leaveRoom', activeRoom);
-      });
     });
-    //  update();
+    update();
   }
 
   void setMessage(String type, msg, String userId) {
     MessageModel messageModel = MessageModel(
         type: type,
         message: msg,
+        userId: userId,
         time: DateTime.now().toString().substring(10, 16));
 
     messages.add(messageModel);
@@ -76,7 +77,7 @@ class ChatController extends GetxController {
 
   void sendMessage(String message, int roomId, String roomName, String userId,
       String userName) {
-    setMessage("source", message, userId);
+    // setMessage("source", message, userId);
     socket.emit("msgToServer", {
       "name": userName,
       "text": message,
@@ -84,6 +85,6 @@ class ChatController extends GetxController {
       "userId": userId
     });
     print("name $userName  $message $userId ");
-    update();
+    
   }
 }

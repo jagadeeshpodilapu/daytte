@@ -13,7 +13,7 @@ class ChatView extends GetView<ChatController> {
   ChatView({this.chatModel, this.sourceChat});
 
   ChatController chatController =
-      Get.put(ChatController()); // Controller dependency injected
+      Get.find<ChatController>(); // Controller dependency injected
 
   @override
   Widget build(BuildContext context) {
@@ -131,13 +131,16 @@ class ChatView extends GetView<ChatController> {
                                 );
                               }
 
-                              if (controller.messages[index].type == "source") {
+                              if (controller.messages[index].userId == "1234") {
+                                print(
+                                    "own message called  ${controller.messages[index].userId} ");
                                 return OwnMessageCard(
                                   message:
                                       controller.messages[index].message ?? "",
                                   // time: controller.messages[index].time,
                                 );
                               } else {
+                                print("own message rply called");
                                 return ReplyCard(
                                   message: controller.messages[index].message,
                                   // time: controller.messages[index].time,

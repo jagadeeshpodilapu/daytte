@@ -1,3 +1,4 @@
+import 'package:daytte/themes/color_styles.dart';
 import 'package:flutter/material.dart';
 
 class OwnMessageCard extends StatelessWidget {
@@ -17,7 +18,7 @@ class OwnMessageCard extends StatelessWidget {
         child: Card(
           elevation: 1,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          color: Color(0xffdcf8c6),
+          color: Color(0xff7004E3),
           margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
           child: Stack(
             children: [
@@ -25,17 +26,18 @@ class OwnMessageCard extends StatelessWidget {
                 padding: const EdgeInsets.only(
                   left: 10,
                   right: 40,
-                  top: 5,
-                  bottom: 20,
+                  top: 8,
+                  bottom: 8,
                 ),
                 child: Text(
                   message,
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 14,
+                    color: Colors.white
                   ),
                 ),
               ),
-              Positioned(
+             /*  Positioned(
                 bottom: 4,
                 right: 10,
                 child: Row(
@@ -56,7 +58,7 @@ class OwnMessageCard extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
+              ), */
             ],
           ),
         ),
