@@ -1,12 +1,16 @@
+import 'package:daytte/consts/image_constants.dart';
 import 'package:daytte/model/message_model.dart';
+import 'package:daytte/utils/common_functions.dart';
 import 'package:daytte/view/screens/chatModule/controller/chat_controller.dart';
 import 'package:daytte/view/screens/chatModule/widgets/own_message_card.dart';
 import 'package:daytte/view/screens/chatModule/widgets/replay_card.dart';
+import 'package:daytte/view/screens/video_Audio/video_audio.dart';
+import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class ChatView extends GetView<ChatController> {
-  // List<ChatModel> chatmodels;
   ChatModel? chatModel;
   ChatModel? sourceChat;
 
@@ -24,93 +28,42 @@ class ChatView extends GetView<ChatController> {
       body: Stack(
         children: [
           Scaffold(
-            backgroundColor: Colors.transparent,
-            appBar: PreferredSize(
-              preferredSize: Size.fromHeight(60),
-              child: AppBar(
-                leadingWidth: 70,
-                titleSpacing: 0,
-                leading: InkWell(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.arrow_back,
-                        size: 24,
-                      ),
-                      CircleAvatar(
-                        child: Icon(Icons.person_outline),
-                        radius: 20,
-                        backgroundColor: Colors.blueGrey,
-                      ),
-                    ],
-                  ),
-                ),
-                title: InkWell(
-                  onTap: () {},
-                  child: Container(
-                    margin: EdgeInsets.all(6),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          chatModel?.name ?? "",
-                          style: TextStyle(
-                            fontSize: 18.5,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          "last seen today at 12:05",
-                          style: TextStyle(
-                            fontSize: 13,
-                          ),
-                        )
-                      ],
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              elevation: 1,
+              automaticallyImplyLeading: false,
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+                onPressed: () => onBackPressed(),
+              ),
+              title: Text(chatModel?.name ?? "",
+                  style: TextStyle(color: Colors.black)),
+              centerTitle: false,
+              actions: [
+                GestureDetector(
+                  onTap: () => Get.to(() => AudioVideoCall(isVideoCall: false)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SvgPicture.asset(
+                      ImageConstants.ic_call,
+                      height: 36,
+                      width: 36,
                     ),
                   ),
                 ),
-                actions: [
-                  IconButton(icon: Icon(Icons.videocam), onPressed: () {}),
-                  IconButton(icon: Icon(Icons.call), onPressed: () {}),
-                  PopupMenuButton<String>(
-                    padding: EdgeInsets.all(0),
-                    onSelected: (value) {},
-                    itemBuilder: (BuildContext contesxt) {
-                      return [
-                        PopupMenuItem(
-                          child: Text("View Contact"),
-                          value: "View Contact",
-                        ),
-                        PopupMenuItem(
-                          child: Text("Media, links, and docs"),
-                          value: "Media, links, and docs",
-                        ),
-                        PopupMenuItem(
-                          child: Text("Whatsapp Web"),
-                          value: "Whatsapp Web",
-                        ),
-                        PopupMenuItem(
-                          child: Text("Search"),
-                          value: "Search",
-                        ),
-                        PopupMenuItem(
-                          child: Text("Mute Notification"),
-                          value: "Mute Notification",
-                        ),
-                        PopupMenuItem(
-                          child: Text("Wallpaper"),
-                          value: "Wallpaper",
-                        ),
-                      ];
-                    },
+                GestureDetector(
+                  onTap: () => Get.to(
+                    () => AudioVideoCall(
+                      isVideoCall: true,
+                    ),
                   ),
-                ],
-              ),
+                  child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SvgPicture.asset(ImageConstants.ic_video,
+                          width: 37, height: 37)),
+                ),
+                addHorizontalSpace(10)
+              ],
             ),
             body: Container(
               height: MediaQuery.of(context).size.height,
@@ -160,11 +113,10 @@ class ChatView extends GetView<ChatController> {
                               Row(
                                 children: [
                                   Container(
-                                    width:
-                                        MediaQuery.of(context).size.width - 60,
+                                    width: MediaQuery.of(context).size.width,
                                     child: Card(
                                       margin: EdgeInsets.only(
-                                          left: 2, right: 2, bottom: 8),
+                                          left: 10, right: 10, bottom: 5),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(25),
                                       ),
@@ -200,6 +152,7 @@ class ChatView extends GetView<ChatController> {
                                                       ? Icons.keyboard
                                                       : Icons
                                                           .emoji_emotions_outlined,
+                                                  color: Colors.grey,
                                                 ),
                                                 onPressed: () {},
                                               ),
@@ -207,8 +160,10 @@ class ChatView extends GetView<ChatController> {
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: [
                                                   IconButton(
-                                                    icon:
-                                                        Icon(Icons.attach_file),
+                                                    icon: Icon(
+                                                      Icons.attach_file,
+                                                      color: Colors.grey,
+                                                    ),
                                                     onPressed: () {
                                                       // showModalBottomSheet(
                                                       //     backgroundColor:
@@ -219,56 +174,62 @@ class ChatView extends GetView<ChatController> {
                                                     },
                                                   ),
                                                   IconButton(
-                                                    icon:
-                                                        Icon(Icons.camera_alt),
-                                                    onPressed: () {},
+                                                    icon: Container(
+                                                        height: 35,
+                                                        width: 35,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                                color:
+                                                                    Colors.grey,
+                                                                shape: BoxShape
+                                                                    .circle),
+                                                        child: Icon(
+                                                          Icons
+                                                              .arrow_forward_sharp,
+                                                          color: Colors.black,
+                                                        )),
+                                                    splashRadius: 0.2,
+                                                    onPressed: () {
+                                                      if (controller
+                                                          .sendButton.value) {
+                                                        controller
+                                                            .scrollController
+                                                            .animateTo(
+                                                                controller
+                                                                    .scrollController
+                                                                    .position
+                                                                    .maxScrollExtent,
+                                                                duration: Duration(
+                                                                    milliseconds:
+                                                                        300),
+                                                                curve: Curves
+                                                                    .easeOut);
+                                                        controller.sendMessage(
+                                                            controller
+                                                                .textController
+                                                                .text,
+                                                            sourceChat
+                                                                    ?.roomId ??
+                                                                0,
+                                                            'general',
+                                                            sourceChat?.userId
+                                                                    .toString() ??
+                                                                "",
+                                                            sourceChat?.name ??
+                                                                "");
+                                                        controller
+                                                            .textController
+                                                            .clear();
+                                                        controller.sendButton
+                                                            .value = false;
+                                                      }
+                                                    },
                                                   ),
                                                 ],
                                               ),
                                               contentPadding: EdgeInsets.all(5),
                                             ),
                                           )),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                      bottom: 8,
-                                      right: 2,
-                                      left: 2,
-                                    ),
-                                    child: CircleAvatar(
-                                      radius: 25,
-                                      backgroundColor: Color(0xFF128C7E),
-                                      child: IconButton(
-                                        icon: Obx(() => Icon(
-                                              controller.sendButton.value
-                                                  ? Icons.send
-                                                  : Icons.mic,
-                                              color: Colors.white,
-                                            )),
-                                        onPressed: () {
-                                          if (controller.sendButton.value) {
-                                            controller.scrollController
-                                                .animateTo(
-                                                    controller
-                                                        .scrollController
-                                                        .position
-                                                        .maxScrollExtent,
-                                                    duration: Duration(
-                                                        milliseconds: 300),
-                                                    curve: Curves.easeOut);
-                                            controller.sendMessage(
-                                                controller.textController.text,
-                                                sourceChat?.roomId ?? 0,
-                                                'general',
-                                                sourceChat?.userId.toString() ??
-                                                    "",
-                                                sourceChat?.name ?? "");
-                                            controller.textController.clear();
-                                            controller.sendButton.value = false;
-                                          }
-                                        },
-                                      ),
                                     ),
                                   ),
                                 ],
