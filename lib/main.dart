@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget with WidgetsBindingObserver {
       ),
     //  home: CheckTest(),
       initialBinding: SplashBinding(),
-      initialRoute: AppRoutes.SPLASHVIEW,
+      initialRoute: AppRoutes.HOMEVIEW,
       defaultTransition: Transition.rightToLeft,
       getPages: AppPages.routes,
     );
