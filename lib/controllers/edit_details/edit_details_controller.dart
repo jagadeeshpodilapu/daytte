@@ -37,8 +37,6 @@ class EditDetailsController extends BaseController {
   RxBool isEdit = false.obs;
   ResponseModel? responseModel;
 
-
-
   void handleGenderChange(String? value) {
     groupValue = value!;
     update();
@@ -54,6 +52,8 @@ class EditDetailsController extends BaseController {
     userId.value = storage.read('id') ?? "";
     // getUserUpdateData();
     // storage.write("page", "7");
+    gettingImages();
+    pickedImages.clear();
     super.onInit();
   }
 
@@ -127,9 +127,12 @@ class EditDetailsController extends BaseController {
         });
       }
     }
+    // base64Images.clear();
   }
 
   Future gettingImages() async {
+    galleryImages.clear();
+    pickedImages.clear();
     final response = await BaseClient()
         .get('/galleries?skip=0&limit=60&userId=${userId.value}',
             storage.read('token'))
@@ -140,7 +143,7 @@ class EditDetailsController extends BaseController {
 
       if (getEditDetailsModel != null) {
         galleryImages = getEditDetailsModel!.data.galleries;
-       getUserUpdateData();
+        getUserUpdateData();
         update();
       }
     }
@@ -177,13 +180,12 @@ class EditDetailsController extends BaseController {
         .catchError(handleError);
     if (response == null) return;
 
-   // DialogHelper.hideLoading();
+    // DialogHelper.hideLoading();
     if (response != null) {
       print("save user Data $response");
       userModel = SingleUserModel.fromJson(response);
     }
     Future.delayed(Duration(seconds: 2), () => update());
-  
   }
 
   Future saveUserDetails() async {
@@ -197,7 +199,6 @@ class EditDetailsController extends BaseController {
         .patch('/users/${storage.read("id")}', payload, storage.read('token'))
         .catchError(handleError);
     if (response == null) return;
-
     DialogHelper.hideLoading();
     if (response != null) {
       responseModel = ResponseModel.fromJson(response);

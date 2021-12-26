@@ -481,13 +481,17 @@ class EditDetails extends StatelessWidget {
           clipBehavior: Clip.none,
           children: [
             Container(height: 100, width: 100, child: image),
-          /* controller.galleryImages.length>2 ? */ Positioned(
+            /* controller.galleryImages.length>2 ? */ Positioned(
               right: -5,
               top: -5,
               child: InkWell(
                 onTap: () {
-                  item != null ? controller.removeImage(item) : null;
-                  file != null ? controller.deleteImageSelection(file) : null;
+                  if (controller.pickedImages.length >= 3 ||
+                      controller.galleryImages.length >= 2) {
+                    item != null ? controller.removeImage(item) : null;
+                    file != null ? controller.deleteImageSelection(file) : null;
+                  }
+                  ;
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -495,7 +499,7 @@ class EditDetails extends StatelessWidget {
                   child: Icon(Icons.clear),
                 ),
               ),
-            )/* :SizedBox() */
+            ) /* :SizedBox() */
           ],
         ),
       ),

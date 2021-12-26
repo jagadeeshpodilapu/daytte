@@ -6,7 +6,7 @@ import 'package:daytte/utils/common_functions.dart';
 import 'package:flutter/material.dart';
 
 class ChatRequest extends StatelessWidget {
-  int totalCount = 10;
+ final int totalCount = 10;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

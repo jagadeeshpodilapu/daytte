@@ -24,6 +24,7 @@ class ChatController extends GetxController {
         show.value = false;
         update();
       }
+      connect();
     });
   }
 
@@ -35,6 +36,9 @@ class ChatController extends GetxController {
   @override
   void onClose() {
     socket.disconnect();
+    socket.clearListeners();
+    socket.close();
+    print("on close called");
   }
 
   void connect() {
@@ -52,15 +56,19 @@ class ChatController extends GetxController {
       print("isconnect" + socket.connected.toString());
       socket.on("msgToClient", (msg) {
         setMessage("destination", msg["text"], msg['userId']);
-        print("recieved messages $msg  ${messages.length}");
+        // print("recieved messages $msg  ${messages.length}");
 
-        print("list of messages is ${messages.length}");
+        // print("list of messages is ${messages.length}");
 
         scrollController.animateTo(scrollController.position.maxScrollExtent,
             duration: Duration(milliseconds: 300), curve: Curves.easeOut);
       });
     });
-   // update();
+    socket.onDisconnect((_) {
+      print('disconnect');
+      socket.emit("leaveRoom", this.activeRoom);
+    });
+     update();
   }
 
   void setMessage(String type, msg, String userId) {
@@ -85,6 +93,5 @@ class ChatController extends GetxController {
       "userId": userId
     });
     print("name $userName  $message $userId ");
-    
   }
 }

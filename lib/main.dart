@@ -13,7 +13,7 @@ import 'routes/app_pages.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
- // await Firebase.initializeApp();
+  await Firebase.initializeApp();
   await GetStorage.init();
   runApp(MyApp());
 }
@@ -33,9 +33,9 @@ class MyApp extends StatelessWidget with WidgetsBindingObserver {
         scaffoldBackgroundColor: backgroundColor,
         fontFamily: 'Roboto',
       ),
-       home: TestView(),
+      home: TestView(),
       initialBinding: SplashBinding(),
-    //  initialRoute: AppRoutes.SPLASHVIEW,
+      //  initialRoute: AppRoutes.SPLASHVIEW,
       defaultTransition: Transition.rightToLeft,
       getPages: AppPages.routes,
     );
