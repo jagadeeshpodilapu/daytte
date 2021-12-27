@@ -42,6 +42,7 @@ class ChatController extends GetxController {
   }
 
   void connect() {
+   
     socket = IO.io("http://65.0.174.202:9000/chat", <String, dynamic>{
       "transports": ["websocket"],
       "autoConnect": false,
@@ -68,7 +69,7 @@ class ChatController extends GetxController {
       print('disconnect');
       socket.emit("leaveRoom", this.activeRoom);
     });
-     update();
+    update();
   }
 
   void setMessage(String type, msg, String userId) {

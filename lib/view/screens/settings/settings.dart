@@ -74,7 +74,9 @@ class Settings extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: RaisedGradientButton(
           title: Constants.logout,
-          onPressed: () {},
+          onPressed: () {
+            controller.clearStorage();
+          },
           borderRadius: 10,
           width: Get.width * 0.7),
     );

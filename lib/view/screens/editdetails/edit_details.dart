@@ -235,11 +235,12 @@ class EditDetails extends StatelessWidget {
                             fontWeight: FontWeight.w400))),
               ],
             ),
-            TextFieldWidget(
-              label: '',
-              hint: '',
+            TextFormField(
               readOnly: true,
               controller: controller.schoolController,
+              style: AppStyles.title.copyWith(fontWeight: FontWeight.w400),
+              autofocus: controller.isEdit.value,
+              decoration: _inputDecoration(),
             ),
             addVerticalSpace(15),
             _genderSelectWidget(controller),
@@ -262,7 +263,7 @@ class EditDetails extends StatelessWidget {
 
   Widget _genderSelectWidget(EditDetailsController controller) {
     return Card(
-      elevation: 2.0,
+      elevation: 1.0,
       child: ListTile(
         //onTap: () => Get.to(() => InterestedScreen()),
         title: _subHeadGreyText(Constants.gender),

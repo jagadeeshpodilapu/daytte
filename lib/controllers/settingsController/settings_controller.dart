@@ -67,6 +67,7 @@ class SettingsController extends BaseController {
 
     if (response != null) {
       responseModel = ResponseModel.fromJson(response);
+
       print("user response single settings $responseModel $response");
     }
     DialogHelper.hideLoading();
@@ -77,6 +78,7 @@ class SettingsController extends BaseController {
     storage.write("token", "");
     storage.write("page", "0");
     storage.write("isLogged", false);
+    storage.erase();
     Get.offAllNamed(AppRoutes.LOGINVIEW);
   }
 

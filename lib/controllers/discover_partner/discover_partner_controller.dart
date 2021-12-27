@@ -102,7 +102,6 @@ class DiscoverPartnerController extends BaseController {
     if (response == null) return;
 
     if (response != null) {
-      print("response in discover partner ${response.data["isMatched"]}");
       if (response["data"]["isMatched"] == true) {
         userLikedToModel = UserLikedToModel.fromJson(response);
       } else {

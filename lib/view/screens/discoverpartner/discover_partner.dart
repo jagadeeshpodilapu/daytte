@@ -59,9 +59,8 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
                 Get.toNamed(AppRoutes.MATCHED,
                     arguments: controller.userLikedToModel?.userLikedDataInfo);
               }
-
               _matchEngine.currentItem?.like();
-              await getUserGallery(userIndex: i + 1);
+               getUserGallery(userIndex: i + 1);
             },
             nopeAction: () async {
               await controller.postLikesData(userList[i].id.toString(), false);
@@ -80,14 +79,14 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
     }
   }
 
-  getUserGallery({required int userIndex}) {
+  getUserGallery({required int userIndex}) async {
     controller.fetchUserGallery(userList[userIndex].id.toString());
   }
 
   @override
   void dispose() {
     storyController.dispose();
-
+    _matchEngine.dispose();
     super.dispose();
   }
 

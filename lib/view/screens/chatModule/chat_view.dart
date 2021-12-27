@@ -11,11 +11,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class ChatView extends GetView<ChatController> {
-  
-  ChatModel? chatModel;
+  List<ChatModel>? chatModel;
   ChatModel? sourceChat;
+  int? selectedIndex;
 
-  ChatView({this.chatModel, this.sourceChat});
+  ChatView({this.chatModel, this.sourceChat, this.selectedIndex});
 
   ChatController chatController =
       Get.find<ChatController>(); // Controller dependency injected
@@ -40,7 +40,7 @@ class ChatView extends GetView<ChatController> {
                   chatController.socket.disconnect();
                 },
               ),
-              title: Text(chatModel?.name ?? "",
+              title: Text(chatModel?[selectedIndex ?? 0].name ?? "",
                   style: TextStyle(color: Colors.black)),
               centerTitle: false,
               actions: [
@@ -75,6 +75,7 @@ class ChatView extends GetView<ChatController> {
               child: WillPopScope(
                 child: Column(
                   children: [
+                    addVerticalSpace(10),
                     Expanded(
                       // height: MediaQuery.of(context).size.height - 150,
                       child: Obx(() => ListView.builder(
@@ -184,34 +185,41 @@ class ChatView extends GetView<ChatController> {
                                                         )),
                                                     splashRadius: 0.2,
                                                     onPressed: () {
-                                                      controller
-                                                          .scrollController
-                                                          .animateTo(
-                                                              controller
-                                                                  .scrollController
-                                                                  .position
-                                                                  .maxScrollExtent,
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      300),
-                                                              curve: Curves
-                                                                  .easeOut);
-                                                      controller.sendMessage(
-                                                          controller
-                                                              .textController
-                                                              .text,
-                                                          sourceChat?.roomId ??
-                                                              0,
-                                                          'general',
-                                                          sourceChat?.userId
-                                                                  .toString() ??
-                                                              "",
-                                                          sourceChat?.name ??
-                                                              "");
-                                                      controller.textController
-                                                          .clear();
-                                                      controller.sendButton
-                                                          .value = false;
+                                                      if (controller
+                                                          .textController
+                                                          .text
+                                                          .isNotEmpty) {
+                                                        controller
+                                                            .scrollController
+                                                            .animateTo(
+                                                                controller
+                                                                    .scrollController
+                                                                    .position
+                                                                    .maxScrollExtent,
+                                                                duration: Duration(
+                                                                    milliseconds:
+                                                                        300),
+                                                                curve: Curves
+                                                                    .easeOut);
+                                                        controller.sendMessage(
+                                                            controller
+                                                                .textController
+                                                                .text,
+                                                            sourceChat
+                                                                    ?.roomId ??
+                                                                0,
+                                                            'general',
+                                                            sourceChat?.userId
+                                                                    .toString() ??
+                                                                "",
+                                                            sourceChat?.name ??
+                                                                "");
+                                                        controller
+                                                            .textController
+                                                            .clear();
+                                                        controller.sendButton
+                                                            .value = false;
+                                                      }
                                                     },
                                                   ),
                                                 ],

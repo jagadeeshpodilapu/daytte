@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'routes/app_pages.dart';
+import 'view/screens/chatlist/chat_list.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,9 +34,9 @@ class MyApp extends StatelessWidget with WidgetsBindingObserver {
         scaffoldBackgroundColor: backgroundColor,
         fontFamily: 'Roboto',
       ),
-      home: TestView(),
+    //  home: ChatList(),
       initialBinding: SplashBinding(),
-      //  initialRoute: AppRoutes.SPLASHVIEW,
+      initialRoute: AppRoutes.SPLASHVIEW,
       defaultTransition: Transition.rightToLeft,
       getPages: AppPages.routes,
     );

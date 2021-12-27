@@ -1,4 +1,6 @@
 import 'package:daytte/consts/constants.dart';
+import 'package:daytte/consts/image_constants.dart';
+import 'package:daytte/view/screens/chatModule/chat_view.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,7 +9,7 @@ import '../../../controllers/chatlist_controller/chatlist_controller.dart';
 import '../chatrequest/chat_request.dart';
 import '../chatscreen/chat_screen.dart';
 
-class ChatList extends StatelessWidget {
+class ChatList extends GetView<ChatListController> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
@@ -22,7 +24,7 @@ class ChatList extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: chatRequestHeaders(controller,theme),
+                  child: chatRequestHeaders(controller, theme),
                 ),
                 messageHeaderWithActionsWidget(theme)
               ],
@@ -36,12 +38,16 @@ class ChatList extends StatelessWidget {
           init: ChatListController(),
           builder: (controller) {
             return ListView.separated(
-              itemCount: controller.profileImages.length,
+              itemCount: controller.chatmodels.length,
               itemBuilder: (context, index) {
-                return messageCard(context, controller, index,theme);
+                return messageCard(context, controller, index, theme);
               },
               separatorBuilder: (context, index) {
-                return Container(height: 2,color: Colors.grey[300],margin: EdgeInsets.symmetric(horizontal: 16),);
+                return Container(
+                  height: 2,
+                  color: Colors.grey[300],
+                  margin: EdgeInsets.symmetric(horizontal: 16),
+                );
               },
             );
           },
@@ -63,10 +69,17 @@ class ChatList extends StatelessWidget {
     );
   }
 
-  Widget messageCard(
-      BuildContext context, ChatListController controller, int index, TextTheme theme) {
+  Widget messageCard(BuildContext context, ChatListController controller,
+      int index, TextTheme theme) {
     return ListTile(
-      onTap: () => Get.to(() => ChatScreen()),
+      onTap: () {
+       // controller.sourceChat = controller.chatmodels.removeAt(index);
+        Get.to(
+          ChatView(
+              chatModel: controller.chatmodels,
+              sourceChat: controller.sourceChat,selectedIndex: index,),
+        );
+      },
       title: Container(
         width: MediaQuery.of(context).size.width,
         child: Row(
@@ -76,9 +89,9 @@ class ChatList extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                userNameWidget(controller, index,theme),
-               addVerticalSpace(5),
-                userLastMessageWidget(controller, index,theme),
+                userNameWidget(controller, index, theme),
+                addVerticalSpace(5),
+                userLastMessageWidget(controller, index, theme),
               ],
             ),
             Spacer(),
@@ -100,14 +113,14 @@ class ChatList extends StatelessWidget {
       radius: 10,
       backgroundColor: Color(0xff7004E3),
       child: Text(
-        controller.profileImages[index]["msg"],
+        '4',
         style: TextStyle(color: Colors.white),
       ),
     );
   }
 
   Widget timeLeftWidget(ChatListController controller, int index) {
-    return Text(controller.profileImages[index]["timeLeft"],
+    return Text('23 min',
         style: const TextStyle(
             color: const Color(0xff9A9A9A),
             fontWeight: FontWeight.w500,
@@ -116,16 +129,18 @@ class ChatList extends StatelessWidget {
             fontSize: 14.0));
   }
 
-  Text userLastMessageWidget(ChatListController controller, int index, TextTheme theme) {
+  Text userLastMessageWidget(
+      ChatListController controller, int index, TextTheme theme) {
     return Text(
-      controller.profileImages[index]["profileTag"],
-      style:theme.headline6?.copyWith(color:  Color(0xff9A9A9A),fontSize: 14) ,
+      "Hi EveryOne",
+      style: theme.headline6?.copyWith(color: Color(0xff9A9A9A), fontSize: 14),
     );
   }
 
-  Text userNameWidget(ChatListController controller, int index,TextTheme theme) {
+  Text userNameWidget(
+      ChatListController controller, int index, TextTheme theme) {
     return Text(
-      controller.profileImages[index]["profileName"],
+      controller.chatmodels[index].name ?? "",
       style: theme.headline6?.copyWith(fontSize: 18),
     );
   }
@@ -134,11 +149,10 @@ class ChatList extends StatelessWidget {
       ChatListController controller, int index) {
     return CircleAvatar(
       radius: 35,
-      backgroundImage:
-          AssetImage(controller.profileImages[index]["profileImage"]),
+      backgroundImage: AssetImage(ImageConstants.girl),
       child: Align(
         alignment: Alignment(1, -0.7),
-        child: controller.profileImages[index]["isOnline"]
+        child: true
             ? CircleAvatar(radius: 5, backgroundColor: Color(0xff08E300))
             : SizedBox(),
       ),
@@ -172,14 +186,15 @@ class ChatList extends StatelessWidget {
     return Row(
       children: [
         MaterialButton(
-          child: chatHeadersText("All", 18, controller.isAll,theme),
+          child: chatHeadersText("All", 18, controller.isAll, theme),
           onPressed: () {
             controller.funcIsAll(true, false);
           },
         ),
         MaterialButton(
           //color: Colors.yellow,
-          child: chatHeadersText(Constants.charRequest, 100, controller.isChat,theme),
+          child: chatHeadersText(
+              Constants.charRequest, 100, controller.isChat, theme),
           //Text("Chat Request",style: TextStyle(color: Colors.black)),
           onPressed: () {
             controller.funcIsAll(false, true);
@@ -190,13 +205,13 @@ class ChatList extends StatelessWidget {
     );
   }
 
-  Widget chatHeadersText(String text, double width, bool boolAll, TextTheme theme) {
+  Widget chatHeadersText(
+      String text, double width, bool boolAll, TextTheme theme) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          Text(text,
-              style:theme.headline6?.copyWith(fontSize: 16)),
+          Text(text, style: theme.headline6?.copyWith(fontSize: 16)),
           SizedBox(
             height: 5,
           ),

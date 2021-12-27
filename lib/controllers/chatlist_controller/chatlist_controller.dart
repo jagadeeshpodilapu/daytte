@@ -1,91 +1,42 @@
 import 'package:daytte/controllers/base_controller/baseController.dart';
+import 'package:daytte/model/message_model.dart';
 
 class ChatListController extends BaseController {
   bool isAll = true;
   bool isChat = false;
-  List<Map<String, dynamic>> profileImages = [
-    {
-      "profileImage": "assets/images/girl.jpg",
-      "profileName": "Julia Morris",
-      "profileTag": "Don't think about tomorrow",
-      "timeLeft": "23 min",
-      "msg": "4",
-      "isOnline": false
-    },
-    {
-      "profileImage": "assets/images/girl.jpg",
-      "profileName": "Maria Long",
-      "profileTag": "Don't think about tomorrow",
-      "timeLeft": "23 min",
-      "msg": "4",
-      "isOnline": false,
-    },
-    {
-      "profileImage": "assets/images/girl.jpg",
-      "profileName": "Crystal Castillo",
-      "profileTag": "Don't think about tomorrow",
-      "timeLeft": "23 min",
-      "msg": "4",
-      "isOnline": true,
-    },
-    {
-      "profileImage": "assets/images/girl.jpg",
-      "profileName": "Christina Evans",
-      "profileTag": "Don't think about tomorrow",
-      "timeLeft": "23 min",
-      "msg": "4",
-      "isOnline": true,
-    },
-    {
-      "profileImage": "assets/images/girl.jpg",
-      "profileName": "Emma Adams",
-      "profileTag": "Don't think about tomorrow",
-      "timeLeft": "23 min",
-      "msg": "4",
-      "isOnline": true,
-    },
-    {
-      "profileImage": "assets/images/girl.jpg",
-      "profileName": "Denis Burton",
-      "profileTag": "Don't think about tomorrow",
-      "timeLeft": "23 min",
-      "msg": "4",
-      "isOnline": false,
-    },
-    {
-      "profileImage": "assets/images/girl.jpg",
-      "profileName": "Ronaldo",
-      "profileTag": "Don't think about tomorrow",
-      "timeLeft": "23 min",
-      "msg": "4",
-      "isOnline": false,
-    },
-    {
-      "profileImage": "assets/images/girl.jpg",
-      "profileName": "Messey",
-      "profileTag": "Don't think about tomorrow",
-      "timeLeft": "23 min",
-      "msg": "4",
-      "isOnline": false,
-    },
-    {
-      "profileImage": "assets/images/girl.jpg",
-      "profileName": "Suresh",
-      "profileTag": "Don't think about tomorrow",
-      "timeLeft": "23 min",
-      "msg": "4",
-      "isOnline": false,
-    },
-  ];
+
+  ChatModel? sourceChat;
+  // var chatmodels = List<ChatModel>.empty(growable: true).obs;
+  List<ChatModel> chatmodels = [];
+
+  @override
+  void onInit() {
+    super.onInit();
+    addDataUser();
+  }
+
+  void addDataUser() {
+    chatmodels.add(ChatModel(
+        name: "jagadeesh",
+        messageCount: 0,
+        time: "4 ",
+        lastMessage: "Hi Everyone",
+        roomId: 1,
+        userId: '1234'));
+    chatmodels.add(ChatModel(
+        name: "Venkatesh",
+        messageCount: 0,
+        time: "4 ",
+        lastMessage: "Hi Everyone",
+        roomId: 2,
+        userId: '5678'));
+
+    update();
+  }
 
   funcIsAll(bool all, bool chat) {
     isAll = all;
     isChat = chat;
     update();
-  }
-
-  @override
-  void onInit() {
-    super.onInit();
   }
 }

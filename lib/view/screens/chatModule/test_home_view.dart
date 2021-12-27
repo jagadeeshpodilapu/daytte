@@ -25,7 +25,7 @@ class TestHomeView extends GetView<TestHomeController> {
               print(sourceChat?.roomId.toString());
               print(sourceChat?.name.toString());
               Get.to(ChatView(
-                chatModel: chatmodels?[index],
+             //   chatModel: chatmodels?[index],
                 sourceChat: sourceChat,
               ));
             },

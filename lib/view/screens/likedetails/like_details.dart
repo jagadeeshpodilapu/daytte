@@ -31,16 +31,39 @@ class LikesPage extends StatelessWidget {
       ),
       child: Column(
         children: [
-          TabBar(
-              indicatorColor: Colors.white,
-              unselectedLabelColor: Colors.grey,
-              labelColor: Colors.black,
-              indicatorSize: TabBarIndicatorSize.label,
-              tabs: [
-                Tab(
-                  child: Container(
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
+          Padding(
+            padding: const EdgeInsets.only(top:18.0),
+            child: TabBar(
+                indicatorColor: Colors.white,
+                unselectedLabelColor: Colors.grey,
+                labelColor: Colors.black,
+                indicatorSize: TabBarIndicatorSize.label,
+                tabs: [
+                  Tab(
+                    child: Container(
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 1.0,
+                              spreadRadius: 0.0,
+                              offset: Offset(1.0, 1.0),
+                            )
+                          ],
+                          border: Border.all(color: Colors.white, width: 1)),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child:
+                            Text("0 ${Constants.likes}"),
+                      ),
+                    ),
+                  ),
+                  Tab(
+                    child: Container(
+                      decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(12),
                         boxShadow: [
@@ -51,36 +74,16 @@ class LikesPage extends StatelessWidget {
                             offset: Offset(1.0, 1.0),
                           )
                         ],
-                        border: Border.all(color: Colors.white, width: 1)),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child:
-                          Text("0 ${Constants.likes}"),
+                        border: Border.all(color: Colors.white, width: 1),
+                      ),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(Constants.youLiked),
+                      ),
                     ),
                   ),
-                ),
-                Tab(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey,
-                          blurRadius: 1.0,
-                          spreadRadius: 0.0,
-                          offset: Offset(1.0, 1.0),
-                        )
-                      ],
-                      border: Border.all(color: Colors.white, width: 1),
-                    ),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text(Constants.youLiked),
-                    ),
-                  ),
-                ),
-              ]),
+                ]),
+          ),
           Expanded(
             child: TabBarView(
               children: [Liked(), YouLikedView()],

@@ -48,9 +48,10 @@ class YouLikedController extends BaseController {
 
   Future fetchLikedPeople() async {
     String userId = storage.read("id");
+    
     final response = await BaseClient()
         .get(
-            '/like?page=$page&limit=$limit&likedByMe=$isActive&likedBy=$userId',
+            '/like?like?page=1&limit=10&likedByMe=false&likedBy=$userId',
             storage.read('token'))
         .catchError(BaseController().handleError);
     if (response != null) {
