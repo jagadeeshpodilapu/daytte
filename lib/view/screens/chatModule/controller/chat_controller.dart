@@ -1,6 +1,7 @@
 import 'package:daytte/model/message_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class ChatController extends GetxController {
@@ -10,6 +11,9 @@ class ChatController extends GetxController {
   RxList<MessageModel> messages = RxList<MessageModel>();
   TextEditingController textController = TextEditingController();
   ScrollController scrollController = ScrollController();
+  bool isAll = true;
+  bool isChat = false;
+  final storage = GetStorage();
 
   late IO.Socket socket;
 
@@ -57,9 +61,6 @@ class ChatController extends GetxController {
       print("isconnect" + socket.connected.toString());
       socket.on("msgToClient", (msg) {
         setMessage("destination", msg["text"], msg['userId']);
-        // print("recieved messages $msg  ${messages.length}");
-
-        // print("list of messages is ${messages.length}");
 
         scrollController.animateTo(scrollController.position.maxScrollExtent,
             duration: Duration(milliseconds: 300), curve: Curves.easeOut);
@@ -94,5 +95,11 @@ class ChatController extends GetxController {
       "userId": userId
     });
     print("name $userName  $message $userId ");
+  }
+
+  funcIsAll(bool all, bool chat) {
+    isAll = all;
+    isChat = chat;
+    update();
   }
 }

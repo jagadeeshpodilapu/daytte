@@ -49,8 +49,7 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
             likeAction: () async {
               await controller.postLikesData(userList[i].id.toString(), true);
               if (controller.userLikedModel?.data != null) {
-                matched = controller.userLikedModel?.data.isMatched ?? false;
-                // matched ? Get.toNamed(AppRoutes.MATCHED) : null;
+                matched = controller.userLikedModel!.data.isMatched;
               }
               if (controller.userLikedToModel?.userLikedDataInfo != null) {
                 matched =
@@ -60,7 +59,7 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
                     arguments: controller.userLikedToModel?.userLikedDataInfo);
               }
               _matchEngine.currentItem?.like();
-               getUserGallery(userIndex: i + 1);
+              getUserGallery(userIndex: i + 1);
             },
             nopeAction: () async {
               await controller.postLikesData(userList[i].id.toString(), false);

@@ -1,15 +1,20 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/consts/image_constants.dart';
+import 'package:daytte/model/message_model.dart';
 import 'package:daytte/view/screens/chatModule/chat_view.dart';
+import 'package:daytte/view/screens/chatModule/controller/chat_controller.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controllers/chatlist_controller/chatlist_controller.dart';
 import '../chatrequest/chat_request.dart';
-import '../chatscreen/chat_screen.dart';
 
-class ChatList extends GetView<ChatListController> {
+class ChatList extends GetView<ChatController> {
+  List<ChatModel>? chatmodels;
+  ChatModel? sourceChat;
+
+  ChatList({this.chatmodels, this.sourceChat});
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
@@ -18,8 +23,8 @@ class ChatList extends GetView<ChatListController> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(120.0),
         child: SafeArea(
-          child: GetBuilder<ChatListController>(
-            init: ChatListController(),
+          child: GetBuilder<ChatController>(
+            init: ChatController(),
             builder: (controller) => Column(
               children: [
                 Padding(
@@ -34,13 +39,13 @@ class ChatList extends GetView<ChatListController> {
       ),
       body: Container(
         decoration: shadowBackground(),
-        child: GetBuilder<ChatListController>(
-          init: ChatListController(),
+        child: GetBuilder<ChatController>(
+          init: ChatController(),
           builder: (controller) {
             return ListView.separated(
-              itemCount: controller.chatmodels.length,
+              itemCount: chatmodels?.length ?? 0,
               itemBuilder: (context, index) {
-                return messageCard(context, controller, index, theme);
+                return messageCard(context, index, theme);
               },
               separatorBuilder: (context, index) {
                 return Container(
@@ -69,37 +74,38 @@ class ChatList extends GetView<ChatListController> {
     );
   }
 
-  Widget messageCard(BuildContext context, ChatListController controller,
-      int index, TextTheme theme) {
+  Widget messageCard(BuildContext context, int index, TextTheme theme) {
     return ListTile(
       onTap: () {
-       // controller.sourceChat = controller.chatmodels.removeAt(index);
+        // controller.sourceChat = controller.chatmodels.removeAt(index);
         Get.to(
           ChatView(
-              chatModel: controller.chatmodels,
-              sourceChat: controller.sourceChat,selectedIndex: index,),
+            chatModel: chatmodels,
+            sourceChat: sourceChat,
+            selectedIndex: index,
+          ),
         );
       },
       title: Container(
         width: MediaQuery.of(context).size.width,
         child: Row(
           children: [
-            userCircleAvatarWidget(controller, index),
+            userCircleAvatarWidget(),
             addHorizontalSpace(10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                userNameWidget(controller, index, theme),
+                userNameWidget(index, theme),
                 addVerticalSpace(5),
-                userLastMessageWidget(controller, index, theme),
+                userLastMessageWidget(index, theme),
               ],
             ),
             Spacer(),
             Column(
               children: [
-                timeLeftWidget(controller, index),
+                timeLeftWidget(index),
                 SizedBox(height: 5),
-                messageCountWidget(controller, index)
+                messageCountWidget()
               ],
             )
           ],
@@ -108,7 +114,7 @@ class ChatList extends GetView<ChatListController> {
     );
   }
 
-  Widget messageCountWidget(ChatListController controller, int index) {
+  Widget messageCountWidget() {
     return CircleAvatar(
       radius: 10,
       backgroundColor: Color(0xff7004E3),
@@ -119,7 +125,7 @@ class ChatList extends GetView<ChatListController> {
     );
   }
 
-  Widget timeLeftWidget(ChatListController controller, int index) {
+  Widget timeLeftWidget(int index) {
     return Text('23 min',
         style: const TextStyle(
             color: const Color(0xff9A9A9A),
@@ -129,24 +135,21 @@ class ChatList extends GetView<ChatListController> {
             fontSize: 14.0));
   }
 
-  Text userLastMessageWidget(
-      ChatListController controller, int index, TextTheme theme) {
+  Text userLastMessageWidget(int index, TextTheme theme) {
     return Text(
       "Hi EveryOne",
       style: theme.headline6?.copyWith(color: Color(0xff9A9A9A), fontSize: 14),
     );
   }
 
-  Text userNameWidget(
-      ChatListController controller, int index, TextTheme theme) {
+  Text userNameWidget(int index, TextTheme theme) {
     return Text(
-      controller.chatmodels[index].name ?? "",
+      chatmodels?[index].name ?? "",
       style: theme.headline6?.copyWith(fontSize: 18),
     );
   }
 
-  CircleAvatar userCircleAvatarWidget(
-      ChatListController controller, int index) {
+  CircleAvatar userCircleAvatarWidget() {
     return CircleAvatar(
       radius: 35,
       backgroundImage: AssetImage(ImageConstants.girl),
@@ -182,7 +185,7 @@ class ChatList extends GetView<ChatListController> {
     );
   }
 
-  Widget chatRequestHeaders(ChatListController controller, TextTheme theme) {
+  Widget chatRequestHeaders(ChatController controller, TextTheme theme) {
     return Row(
       children: [
         MaterialButton(

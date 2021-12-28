@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:story_view/story_view.dart';
-import 'package:story_view/widgets/story_view.dart';
 import 'package:swipe_cards/swipe_cards.dart';
 
 class DiscoverPartnerController extends BaseController {
@@ -89,7 +88,6 @@ class DiscoverPartnerController extends BaseController {
   }
 
   Future postLikesData(String likedTo, bool isLiked) async {
-    print("this post like method called");
     Map<String, dynamic> payload = {
       "likedBy": storage.read('id'),
       "likedTo": likedTo,

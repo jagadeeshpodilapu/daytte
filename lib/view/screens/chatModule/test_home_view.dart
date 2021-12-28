@@ -2,7 +2,6 @@ import 'package:daytte/model/message_model.dart';
 import 'package:daytte/view/screens/chatModule/chat_view.dart';
 import 'package:daytte/view/screens/chatModule/controller/test_home_controller.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 class TestHomeView extends GetView<TestHomeController> {
@@ -25,7 +24,7 @@ class TestHomeView extends GetView<TestHomeController> {
               print(sourceChat?.roomId.toString());
               print(sourceChat?.name.toString());
               Get.to(ChatView(
-             //   chatModel: chatmodels?[index],
+                chatModel: chatmodels,
                 sourceChat: sourceChat,
               ));
             },

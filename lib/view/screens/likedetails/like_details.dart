@@ -1,12 +1,16 @@
 import 'package:daytte/consts/constants.dart';
+import 'package:daytte/controllers/like/like_details_controller.dart';
 import 'package:daytte/themes/app_styles.dart';
 import 'package:daytte/view/screens/likedetails/liked.dart';
 import 'package:daytte/view/screens/likedetails/you_liked.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../widgets/common_widgets.dart';
 
 class LikesPage extends StatelessWidget {
+  final controller = Get.put(LikedController());
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -32,7 +36,7 @@ class LikesPage extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top:18.0),
+            padding: const EdgeInsets.only(top: 18.0),
             child: TabBar(
                 indicatorColor: Colors.white,
                 unselectedLabelColor: Colors.grey,
@@ -56,8 +60,8 @@ class LikesPage extends StatelessWidget {
                           border: Border.all(color: Colors.white, width: 1)),
                       child: Align(
                         alignment: Alignment.center,
-                        child:
-                            Text("0 ${Constants.likes}"),
+                        child: Text(
+                            "${controller.users.value} ${Constants.likes}"),
                       ),
                     ),
                   ),

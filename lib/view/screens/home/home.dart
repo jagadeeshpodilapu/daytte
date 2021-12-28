@@ -1,11 +1,10 @@
 import 'package:daytte/consts/constants.dart';
-import 'package:daytte/themes/color_styles.dart';
+import 'package:daytte/view/screens/chatModule/test_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../controllers/home/home_controller.dart';
-import '../chatlist/chat_list.dart';
 import '../editdetails/edit_details.dart';
 import '../findnearest/find_nearest.dart';
 import '../likedetails/like_details.dart';
@@ -22,7 +21,7 @@ class Home extends StatelessWidget {
             body: [
               FindTheNearest(),
               LikesPage(),
-              ChatList(),
+              TestView(),
               EditDetails(),
             ].elementAt(controller.currentIndex).paddingOnly(bottom: 8),
             bottomNavigationBar: ClipRRect(

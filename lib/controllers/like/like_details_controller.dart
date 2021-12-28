@@ -51,7 +51,7 @@ class YouLikedController extends BaseController {
     
     final response = await BaseClient()
         .get(
-            '/like?like?page=1&limit=10&likedByMe=false&likedBy=$userId',
+            '/like?like?page=1&limit=10&likedByMe=$isActive&likedBy=$userId',
             storage.read('token'))
         .catchError(BaseController().handleError);
     if (response != null) {
