@@ -151,8 +151,8 @@ class Settings extends StatelessWidget {
                         style: TextButton.styleFrom(
                           backgroundColor: Colors.grey,
                         ),
-                        onPressed: () {
-                          controller.updateUserPreferences(1);
+                        onPressed: () async {
+                          await controller.updateUserPreferences(1);
                           controller.clearStorage();
                         },
                         child: Text(Constants.yes,
