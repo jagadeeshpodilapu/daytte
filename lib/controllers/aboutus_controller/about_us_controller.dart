@@ -75,24 +75,10 @@ class AboutUsController extends BaseController {
 
       if (getEditDetailsModel != null) {
         galleryImages = getEditDetailsModel!.data.galleries;
-        getUserUpdateData();
+
         update();
       }
     }
-  }
-
-  Future getUserUpdateData() async {
-    DialogHelper.showLoading('Loading...');
-    final response = await BaseClient()
-        .get('/users/${storage.read("id")}', storage.read('token'))
-        .catchError(handleError);
-    if (response == null) return;
-
-    DialogHelper.hideLoading();
-    if (response != null) {
-      userModel = SingleUserModel.fromJson(response);
-    }
-    update();
   }
 
   Future<void> baseConvert() async {
@@ -122,18 +108,12 @@ class AboutUsController extends BaseController {
 
     DialogHelper.hideLoading();
     if (response != null) {
+      storage.write("isLogged", true);
       editDetailsModel = EditDetailsModel.fromJson(response);
-      if (editDetailsModel != null) {
-        storage.write("isLogged", true);
-        // storage.write("page", "7");
-        editDetailsModel = EditDetailsModel.fromJson(response);
-        update();
-        // Future.delayed(Duration(seconds: 2), () async {
-        await gettingImages();
-        Get.offAndToNamed(AppRoutes.HOMEVIEW);
-        // });
-      }
+
+      Get.offAndToNamed(AppRoutes.HOMEVIEW);
     }
+    // update();
   }
 
   deleteImageSelection(String deleteId) {
