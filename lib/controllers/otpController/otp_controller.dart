@@ -48,6 +48,7 @@ class OtpController extends BaseController {
   @override
   void onInit() {
     super.onInit();
+    storage.write('page', "1");
     mobileNumber = Get.arguments ?? "";
     getDeviceToken();
     startTimer();
@@ -87,7 +88,6 @@ class OtpController extends BaseController {
 
     if (userInfoModel != null) {
       if (userInfoModel!.userProperties.user!.newUser!) {
-        storage.write('page', "1");
         var location = await Location().hasPermission();
         if (location != PermissionStatus.granted) {
           Get.off(() => EnablePermsions());
@@ -96,7 +96,7 @@ class OtpController extends BaseController {
         }
       } else {
         storage.write('page', "8");
-        Get.offAndToNamed(AppRoutes.HOMEVIEW);
+        Navigator.pushReplacementNamed(Get.context!, AppRoutes.HOMEVIEW);
       }
     }
     print("otp response $response");
