@@ -9,6 +9,7 @@
         android:label="daytte"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true"
+       android:allowBackup="false"
         >
         <activity
             android:name=".MainActivity"
