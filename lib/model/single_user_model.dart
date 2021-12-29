@@ -1,4 +1,3 @@
-
 class SingleUserModel {
   SingleUserModel({
     required this.message,
@@ -28,30 +27,30 @@ class Data {
 }
 
 class User {
-  User({
-    this.provider,
-    // this.passion,
-    this.showAgeRange,
-    this.showMe,
-    this.isSuperAdmin,
-    this.isVerified,
-    this.isBlocked,
-    this.id,
-    this.mobileNumber,
-    this.otp,
-    this.deviceToken,
-    this.dob,
-    this.email,
-    this.firstname,
-    this.lastname,
-    this.lat,
-    this.long,
-    this.gender,
-    this.interestedIn,
-    this.shortDescription,
-    this.filterRadius,
-    this.profileImg,
-    this.location});
+  User(
+      {this.provider,
+      // this.passion,
+      this.showAgeRange,
+      this.showMe,
+      this.isSuperAdmin,
+      this.isVerified,
+      this.isBlocked,
+      this.id,
+      this.mobileNumber,
+      this.otp,
+      this.deviceToken,
+      this.dob,
+      this.email,
+      this.firstname,
+      this.lastname,
+      this.lat,
+      this.long,
+      this.gender,
+      this.interestedIn,
+      this.shortDescription,
+      this.filterRadius,
+      this.profileImg,
+      this.location});
 
   String? provider;
   // List<Passion>? passion;
@@ -87,21 +86,23 @@ class User {
       isVerified: json["is_verified"],
       isBlocked: json["is_blocked"],
       id: json["_id"],
-        mobileNumber: json["mobile_number"],
-        otp: json["otp"],
-        deviceToken: json["device_token"],
-        dob: DateTime.parse(json["dob"]),
-        email: json["email"],
-        firstname: json["firstname"],
-        lastname: json["lastname"],
-        lat: json["lat"].toDouble(),
-        long: json["long"].toDouble(),
-        gender: json["gender"],
-        interestedIn: json["interestedIn"],
-        shortDescription: json["shortDescription"],
-        filterRadius: json["filterRadius"],
-        profileImg: ProfileImg.fromJson(json["profileImg"]),
-          location: json["location"]);
+      mobileNumber: json["mobile_number"],
+      otp: json["otp"],
+      deviceToken: json["device_token"],
+      dob: DateTime.parse(json["dob"]),
+      email: json["email"],
+      firstname: json["firstname"],
+      lastname: json["lastname"],
+      lat: json["lat"].toDouble(),
+      long: json["long"].toDouble(),
+      gender: json["gender"],
+      interestedIn: json["interestedIn"],
+      shortDescription: json["shortDescription"],
+      filterRadius: json["filterRadius"],
+      profileImg: json.containsKey("profileImg")
+          ? ProfileImg.fromJson(json["profileImg"])
+          : ProfileImg(),
+      location: json["location"]);
 
   Map<String, dynamic> toJson() => {
         "provider": provider,
@@ -126,7 +127,7 @@ class User {
         "shortDescription": shortDescription,
         "filterRadius": filterRadius,
         "profileImg": profileImg!.toJson(),
-    'location': location
+        'location': location
       };
 }
 

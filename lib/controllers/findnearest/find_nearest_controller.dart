@@ -31,6 +31,7 @@ class FindNearestController extends BaseController {
           .removeWhere((element) => element.id == storage.read('id'));
       users.value = findNearestModel?.data.users?.length ?? 0;
       userIds = findNearestModel?.data.users ?? [];
+      print("userIds $userIds");
     }
     update();
   }

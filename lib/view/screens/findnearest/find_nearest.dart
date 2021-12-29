@@ -25,6 +25,7 @@ class FindTheNearest extends StatelessWidget {
                             itemCount: controller.users.value,
                             gridDelegate: sliverCountAxis,
                             itemBuilder: (BuildContext context, int index) {
+                              print("screen find nearst ${controller.findNearestModel?.data.users![index].id}");
                               var age = controller
                                   .findNearestModel?.data.users?[index].age
                                   .toString()

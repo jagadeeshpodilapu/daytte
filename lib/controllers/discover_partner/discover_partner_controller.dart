@@ -1,6 +1,7 @@
 import 'package:daytte/controllers/base_controller/baseController.dart';
 import 'package:daytte/model/user_gallery_model.dart';
 import 'package:daytte/model/user_liked_model.dart';
+import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/services/base_service/base_client.dart';
 import 'package:daytte/services/likes_service.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class DiscoverPartnerController extends BaseController {
   UserGalleryModel? userGalleryModel;
   RxInt gallery = 0.obs;
   RxBool isLoading = true.obs;
-
+  bool? matched;
   final storage = GetStorage();
   UserLikedModel? userLikedModel;
   UserLikedToModel? userLikedToModel;
@@ -97,6 +98,7 @@ class DiscoverPartnerController extends BaseController {
 
     final response =
         await LikesService().postLikes(payload, storage.read('token'));
+    print("response $response");
     if (response == null) return;
 
     if (response != null) {
@@ -105,6 +107,20 @@ class DiscoverPartnerController extends BaseController {
       } else {
         userLikedModel = UserLikedModel.fromJson(response);
       }
+    }
+    update();
+  }
+
+  isMatched(){
+    if (userLikedModel?.data != null) {
+      matched = userLikedModel!.data.isMatched;
+    }
+    if (userLikedToModel?.userLikedDataInfo != null) {
+      matched =
+          userLikedToModel?.userLikedDataInfo.isMatched ??
+              true;
+      Get.toNamed(AppRoutes.MATCHED,
+          arguments: userLikedToModel?.userLikedDataInfo);
     }
     update();
   }
