@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget with WidgetsBindingObserver {
       ),
     //  home: ChatList(),
       initialBinding: SplashBinding(),
-      initialRoute: AppRoutes.ABOUTVIEW,
+      initialRoute: AppRoutes.SPLASHVIEW,
       defaultTransition: Transition.rightToLeft,
       getPages: AppPages.routes,
     );

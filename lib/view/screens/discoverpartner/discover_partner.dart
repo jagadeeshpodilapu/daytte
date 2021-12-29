@@ -22,7 +22,7 @@ class DiscoverPartner extends StatefulWidget {
 class _DiscoverPartnerState extends State<DiscoverPartner> {
   final data = Get.arguments;
   late List<User> userList;
- 
+
   final keyOne = GlobalKey();
   final controller = Get.find<DiscoverPartnerController>();
   final storyController = StoryController();
@@ -37,12 +37,10 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
     super.initState();
 
     userList = data['usersList'];
-   
+
     getUserGallery(userIndex: 0);
 
     for (int i = 0; i < userList.length; i++) {
-     
-
       _swipeItems?.add(
         SwipeItem(
             content: userList[i],
@@ -150,40 +148,19 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
                                                   itemBuilder:
                                                       (BuildContext context,
                                                           int index) {
-                                                    if (index == 0) {
-                                                      return GestureDetector(
-                                                        onTap: () {
-                                                          Get.toNamed(
-                                                              AppRoutes
-                                                                  .PROFILEVIEW,
-                                                              arguments: userList[
-                                                                  index]);
-                                                        },
-                                                        child: userCard(
-                                                            controller,
-                                                            theme,
-                                                            index),
-                                                      );
-                                                    } else if (index > 0) {
-                                                      return GestureDetector(
-                                                        onTap: () {
-                                                          Get.toNamed(
-                                                              AppRoutes
-                                                                  .PROFILEVIEW,
-                                                              arguments:
-                                                                  userList[
-                                                                      index]);
-                                                        },
-                                                        child: userCard(
-                                                            controller,
-                                                            theme,
-                                                            index),
-                                                      );
-                                                    } else {
-                                                      return Container(
-                                                        color: Colors.red,
-                                                      );
-                                                    }
+                                                    return GestureDetector(
+                                                      onTap: () {
+                                                        Get.toNamed(
+                                                            AppRoutes
+                                                                .PROFILEVIEW,
+                                                            arguments: userList[
+                                                                index]);
+                                                      },
+                                                      child: userCard(
+                                                          controller,
+                                                          theme,
+                                                          index),
+                                                    );
                                                   },
                                                   onStackFinished: () {
                                                     Get.back();

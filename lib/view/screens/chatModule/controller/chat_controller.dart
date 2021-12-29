@@ -23,13 +23,13 @@ class ChatController extends GetxController {
   void onInit() {
     super.onInit();
 
-    focusNode.addListener(() {
+   /*  focusNode.addListener(() {
       if (focusNode.hasFocus) {
         show.value = false;
         update();
       }
-      connect();
-    });
+    }); */
+    connect();
   }
 
   @override
@@ -46,7 +46,6 @@ class ChatController extends GetxController {
   }
 
   void connect() {
-   
     socket = IO.io("http://65.0.174.202:9000/chat", <String, dynamic>{
       "transports": ["websocket"],
       "autoConnect": false,
