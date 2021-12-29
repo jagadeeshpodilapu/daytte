@@ -22,7 +22,7 @@ class DiscoverPartner extends StatefulWidget {
 class _DiscoverPartnerState extends State<DiscoverPartner> {
   final data = Get.arguments;
   late List<User> userList;
-  late int selectedUser;
+ 
   final keyOne = GlobalKey();
   final controller = Get.find<DiscoverPartnerController>();
   final storyController = StoryController();
@@ -37,11 +37,11 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
     super.initState();
 
     userList = data['usersList'];
-    selectedUser = data['selecteduser'];
-    getUserGallery(userIndex: selectedUser);
+   
+    getUserGallery(userIndex: 0);
 
     for (int i = 0; i < userList.length; i++) {
-      swipeItemIndex = i == selectedUser || i == 0 ? selectedUser : i;
+     
 
       _swipeItems?.add(
         SwipeItem(
@@ -157,12 +157,12 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
                                                               AppRoutes
                                                                   .PROFILEVIEW,
                                                               arguments: userList[
-                                                                  selectedUser]);
+                                                                  index]);
                                                         },
                                                         child: userCard(
                                                             controller,
                                                             theme,
-                                                            selectedUser),
+                                                            index),
                                                       );
                                                     } else if (index > 0) {
                                                       return GestureDetector(

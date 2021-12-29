@@ -9,7 +9,6 @@ class FindNearestController extends BaseController {
   final storage = GetStorage();
   RxInt users = 0.obs;
   FindNearestModel? findNearestModel;
-  List<User> userIds = [];
 
   @override
   void onInit() {
@@ -30,8 +29,7 @@ class FindNearestController extends BaseController {
       findNearestModel?.data.users!
           .removeWhere((element) => element.id == storage.read('id'));
       users.value = findNearestModel?.data.users?.length ?? 0;
-      userIds = findNearestModel?.data.users ?? [];
+      update();
     }
-    update();
   }
 }

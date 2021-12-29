@@ -1,5 +1,6 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/controllers/findnearest/find_nearest_controller.dart';
+import 'package:daytte/model/find_nearest_model.dart';
 import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/themes/app_styles.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
@@ -32,11 +33,17 @@ class FindTheNearest extends StatelessWidget {
                               print("Age $age");
                               return GestureDetector(
                                   onTap: () {
+                                    User? removedItem = controller
+                                        .findNearestModel?.data.users!
+                                        .removeAt(index);
+                                    print("removed item index is $removedItem");
+                                    controller.findNearestModel?.data.users!
+                                        .insert(0, removedItem!);
                                     final users =
                                         controller.findNearestModel?.data.users;
                                     Get.toNamed(AppRoutes.DISCOVER, arguments: {
                                       "usersList": users,
-                                      "selecteduser": index
+                                     
                                     });
                                   },
                                   child: Card(
