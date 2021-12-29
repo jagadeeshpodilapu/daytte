@@ -27,6 +27,8 @@ class LikedController extends BaseController {
     if (response != null) {
       print("liked response $response");
       likedDetailsModel = LikeDetailsModel.fromJson(response);
+      likedDetailsModel?.data.likes!
+          .removeWhere((element) => element.likedTo?.id == storage.read('id'));
       users.value = likedDetailsModel?.data.likes?.length ?? 0;
     }
     update();
@@ -48,7 +50,7 @@ class YouLikedController extends BaseController {
 
   Future fetchLikedPeople() async {
     String userId = storage.read("id");
-    
+
     final response = await BaseClient()
         .get(
             '/like?page=$page&limit=$limit&likedByMe=true&likedBy=${storage.read('id')}',
@@ -56,6 +58,8 @@ class YouLikedController extends BaseController {
         .catchError(BaseController().handleError);
     if (response != null) {
       likedDetailsModel = LikeDetailsModel.fromJson(response);
+      likedDetailsModel?.data.likes!
+          .removeWhere((element) => element.likedTo?.id == userId);
       users.value = likedDetailsModel?.data.likes?.length ?? 0;
     }
     update();
