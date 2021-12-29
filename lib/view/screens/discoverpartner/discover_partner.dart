@@ -80,6 +80,7 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
 
   getUserGallery({required int userIndex}) async {
     controller.fetchUserGallery(userList[userIndex].id.toString());
+    setState(() {});
   }
 
   @override

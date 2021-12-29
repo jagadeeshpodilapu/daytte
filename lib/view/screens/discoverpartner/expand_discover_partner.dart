@@ -22,7 +22,7 @@ class ExpandPartnerDetails extends StatelessWidget {
           slivers: <Widget>[
             SliverAppBar(
               backgroundColor: Colors.white12,
-              expandedHeight: 250.0,
+              expandedHeight: 350.0,
               flexibleSpace: FlexibleSpaceBar(
                 background: Image.network('${user.profileImg?.imgPath}',
                     fit: BoxFit.cover),
