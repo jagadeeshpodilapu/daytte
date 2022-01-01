@@ -23,7 +23,7 @@ class ChatView extends GetView<ChatController> {
   @override
   Widget build(BuildContext context) {
     print("chat room id ${sourceChat?.roomId}");
-    // chatController.connect();
+    chatController.isConnect == false ? chatController.connect() : null;
 
     return Scaffold(
       body: Stack(

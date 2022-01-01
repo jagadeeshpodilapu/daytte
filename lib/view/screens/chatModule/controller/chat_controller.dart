@@ -14,7 +14,7 @@ class ChatController extends GetxController {
   bool isAll = true;
   bool isChat = false;
   final storage = GetStorage();
-
+  bool isConnect = false;
   late IO.Socket socket;
 
   String activeRoom = "general";
@@ -23,18 +23,19 @@ class ChatController extends GetxController {
   void onInit() {
     super.onInit();
 
-   /*  focusNode.addListener(() {
-      if (focusNode.hasFocus) {
-        show.value = false;
-        update();
-      }
-    }); */
-    connect();
+    // focusNode.addListener(() {
+    //   if (focusNode.hasFocus) {
+    //     show.value = false;
+    //     update();
+    //   }
+    // });
+   // connect();
   }
 
   @override
   void onReady() {
     super.onReady();
+    isConnect = false;
   }
 
   @override
@@ -42,6 +43,7 @@ class ChatController extends GetxController {
     socket.disconnect();
     socket.clearListeners();
     socket.close();
+    isConnect = false;
     print("on close called");
   }
 
@@ -53,10 +55,10 @@ class ChatController extends GetxController {
     socket.connect();
 
     socket.onConnect((data) {
+
       print("Connected  $data");
-
+      isConnect = true;
       socket.emit("joinRoom", this.activeRoom);
-
       print("isconnect" + socket.connected.toString());
       socket.on("msgToClient", (msg) {
         setMessage("destination", msg["text"], msg['userId']);
@@ -64,12 +66,16 @@ class ChatController extends GetxController {
         scrollController.animateTo(scrollController.position.maxScrollExtent,
             duration: Duration(milliseconds: 300), curve: Curves.easeOut);
       });
+
     });
+
     socket.onDisconnect((_) {
+      isConnect = false;
       print('disconnect');
       socket.emit("leaveRoom", this.activeRoom);
     });
-    update();
+    isConnect = true;
+   // update();
   }
 
   void setMessage(String type, msg, String userId) {

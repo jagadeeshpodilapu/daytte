@@ -96,7 +96,7 @@ class OtpController extends BaseController {
         }
       } else {
         storage.write('page', "8");
-        Navigator.pushReplacementNamed(Get.context!, AppRoutes.HOMEVIEW);
+        Navigator.popAndPushNamed(Get.context!, AppRoutes.HOMEVIEW);
       }
     }
     print("otp response $response");

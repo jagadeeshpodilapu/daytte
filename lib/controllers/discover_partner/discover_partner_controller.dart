@@ -1,6 +1,7 @@
 import 'package:daytte/controllers/base_controller/baseController.dart';
 import 'package:daytte/model/user_gallery_model.dart';
 import 'package:daytte/model/user_liked_model.dart';
+import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/services/base_service/base_client.dart';
 import 'package:daytte/services/likes_service.dart';
 import 'package:flutter/material.dart';
@@ -102,6 +103,9 @@ class DiscoverPartnerController extends BaseController {
     if (response != null) {
       if (response["data"]["isMatched"] == true) {
         userLikedToModel = UserLikedToModel.fromJson(response);
+
+        Get.toNamed(AppRoutes.MATCHED,
+            arguments: userLikedToModel?.userLikedDataInfo);
       } else {
         userLikedModel = UserLikedModel.fromJson(response);
       }
