@@ -98,7 +98,7 @@ class DiscoverPartnerController extends BaseController {
 
     final response =
         await LikesService().postLikes(payload, storage.read('token'));
-    if (response == null) return;
+    
 
     if (response != null) {
       if (response["data"]["isMatched"] == true) {

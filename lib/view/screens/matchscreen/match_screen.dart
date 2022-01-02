@@ -1,13 +1,16 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/consts/image_constants.dart';
 import 'package:daytte/model/user_liked_model.dart';
+import 'package:daytte/routes/app_routes.dart';
+import 'package:daytte/view/screens/chatModule/chat_view.dart';
+import 'package:daytte/view/screens/home/home.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class MatchScreen extends StatelessWidget {
-  UserLikedToModel matchedData = Get.arguments;
+  UserLikedData matchedData = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +44,14 @@ class MatchScreen extends StatelessWidget {
                 ],
               ),
               addVerticalSpace(50),
-              _buttonWidget(context, Constants.chatNow),
+              _buttonWidget(context, Constants.chatNow,
+                  onTapEvent: () =>
+                      Get.toNamed(AppRoutes.HOMEVIEW, arguments: 2)),
               addVerticalSpace(20),
-              _buttonWidget(context, "Continue Swiping", color: Colors.black),
+              _buttonWidget(context, "Continue Swiping", color: Colors.black,
+                  onTapEvent: () {
+                return Get.back();
+              }),
             ],
           ),
         ],
@@ -52,13 +60,9 @@ class MatchScreen extends StatelessWidget {
   }
 
   ElevatedButton _buttonWidget(BuildContext context, String title,
-      {Color? color}) {
+      {Color? color, Function()? onTapEvent}) {
     return ElevatedButton(
-        onPressed: () {
-          if (title == "Continue Swiping") {
-            Get.back();
-          }
-        },
+        onPressed: onTapEvent,
         style: ElevatedButton.styleFrom(
             primary: Colors.white, fixedSize: Size(Get.width * 0.7, 45)),
         child: Text(title,
@@ -82,7 +86,7 @@ class MatchScreen extends StatelessWidget {
 
   Text _matchedUsersNames() {
     return Text(
-      "${matchedData.userLikedDataInfo.likedBy?.firstname ?? ""} and ${matchedData.userLikedDataInfo.likedTo?.firstname ?? ""} like each other",
+      "${matchedData.likedBy?.firstname ?? ""} and ${matchedData.likedTo?.firstname ?? ""} like each other",
       style: TextStyle(
           fontSize: 18, fontWeight: FontWeight.w500, color: Colors.white),
     );
@@ -119,8 +123,8 @@ class MatchScreen extends StatelessWidget {
             child: CircleAvatar(
               radius: 74,
               backgroundColor: Colors.grey,
-              backgroundImage: NetworkImage(
-                  matchedData.userLikedDataInfo.likedBy?.profileImg ?? ""),
+              backgroundImage:
+                  NetworkImage(matchedData.likedBy?.profileImg ?? ""),
             ),
           ),
         ),
@@ -128,12 +132,13 @@ class MatchScreen extends StatelessWidget {
           left: -20,
           child: CircleAvatar(
             radius: 80,
+            
             backgroundColor: Colors.white,
             child: CircleAvatar(
-                radius: 80,
+                radius: 76,
                 backgroundColor: Colors.grey,
-                backgroundImage: NetworkImage(
-                    matchedData.userLikedDataInfo.likedTo?.profileImg ?? "")),
+                backgroundImage:
+                    NetworkImage(matchedData.likedTo?.profileImg ?? "")),
           ),
         ),
       ],

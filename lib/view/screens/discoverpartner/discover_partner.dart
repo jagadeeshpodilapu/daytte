@@ -48,7 +48,7 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
               await controller.postLikesData(userList[i].id.toString(), true);
             
               _matchEngine.currentItem?.like();
-              getUserGallery(userIndex: i + 1);
+             getUserGallery(userIndex: i + 1);
             },
             nopeAction: () async {
               await controller.postLikesData(userList[i].id.toString(), false);
