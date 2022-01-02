@@ -135,7 +135,7 @@ class FindTheNearest extends StatelessWidget {
                                                                     .only(
                                                                 left: 8.0),
                                                         child: Text(
-                                                            "NewYork,USA",
+                                                            "Banglore",
                                                             style: AppStyles
                                                                 .title3
                                                                 .copyWith(
