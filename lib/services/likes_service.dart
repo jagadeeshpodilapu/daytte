@@ -15,6 +15,8 @@ class LikesService {
       );
       print("service response ${response.data}");
       return response.data;
-    } on DioError {}
+    } on DioError catch (e) {
+      print("exception $e");
+    }
   }
 }

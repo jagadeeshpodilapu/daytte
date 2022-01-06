@@ -50,6 +50,7 @@ class EditDetailsController extends BaseController {
   @override
   void onInit() {
     userId.value = storage.read('id') ?? "";
+    schoolController.text = "Bangalore university";
     // getUserUpdateData();
     // storage.write("page", "7");
     gettingImages();

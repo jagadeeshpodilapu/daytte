@@ -16,7 +16,8 @@ class UserInfoModel {
   });
 
   String message;
-  UserProperties userProperties;
+ UserProperties userProperties;
+
 
   factory UserInfoModel.fromJson(Map<String, dynamic> json) => UserInfoModel(
         message: json["message"],
@@ -64,7 +65,7 @@ class User {
     this.deviceToken,
     this.newUser,
     this.profileImg,
-   // this.filterRadius,
+    // this.filterRadius,
   });
 
   String? provider;
@@ -80,11 +81,13 @@ class User {
   String? deviceToken;
   bool? newUser;
   String? profileImg;
-  // double? filterRadius;
+// double? filterRadius;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         provider: json["provider"],
-        passion:json["passion"]!=null? List<dynamic>.from(json["passion"].map((x) => x)):[],
+        passion: json["passion"] != null
+            ? List<dynamic>.from(json["passion"].map((x) => x))
+            : [],
         showAgeRange: List<dynamic>.from(json["showAgeRange"].map((x) => x)),
         showMe: json["showMe"],
         isSuperAdmin: json["is_super_admin"],

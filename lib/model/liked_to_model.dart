@@ -1,16 +1,12 @@
-// To parse this JSON data, do
-//
-//     final likedModel = likedModelFromJson(jsonString);
-
 import 'dart:convert';
 
-LikedModel likedModelFromJson(String str) =>
-    LikedModel.fromJson(json.decode(str));
+LikedToModel likedToModelFromJson(String str) =>
+    LikedToModel.fromJson(json.decode(str));
 
-String likedModelToJson(LikedModel data) => json.encode(data.toJson());
+String likedToModelToJson(LikedToModel data) => json.encode(data.toJson());
 
-class LikedModel {
-  LikedModel({
+class LikedToModel {
+  LikedToModel({
     required this.message,
     required this.data,
   });
@@ -18,7 +14,7 @@ class LikedModel {
   String message;
   Data data;
 
-  factory LikedModel.fromJson(Map<String, dynamic> json) => LikedModel(
+  factory LikedToModel.fromJson(Map<String, dynamic> json) => LikedToModel(
         message: json["message"],
         data: Data.fromJson(json["data"]),
       );
@@ -52,29 +48,29 @@ class Data {
 class Like {
   Like({
     this.id,
-    this.likedBy,
+    this.likedTo,
     this.likeId,
   });
 
   String? id;
-  LikedBy? likedBy;
+  LikedTo? likedTo;
   String? likeId;
 
   factory Like.fromJson(Map<String, dynamic> json) => Like(
         id: json["_id"],
-        likedBy: LikedBy.fromJson(json["likedBy"]),
+        likedTo: LikedTo.fromJson(json["likedTo"]),
         likeId: json["id"],
       );
 
   Map<String, dynamic> toJson() => {
         "_id": id,
-        "likedBy": likedBy?.toJson(),
+        "likedTo": likedTo?.toJson() ?? "",
         "id": likeId,
       };
 }
 
-class LikedBy {
-  LikedBy({
+class LikedTo {
+  LikedTo({
     this.location,
     this.id,
     this.dob,
@@ -92,7 +88,7 @@ class LikedBy {
   String? gender;
   String? profileImg;
 
-  factory LikedBy.fromJson(Map<String, dynamic> json) => LikedBy(
+  factory LikedTo.fromJson(Map<String, dynamic> json) => LikedTo(
         location: json["location"],
         id: json["_id"],
         dob: DateTime.parse(json["dob"]),
@@ -105,12 +101,10 @@ class LikedBy {
   Map<String, dynamic> toJson() => {
         "location": location,
         "_id": id,
-        "dob": dob!.toIso8601String(),
+        "dob": dob?.toIso8601String() ?? "",
         "firstname": firstname,
         "lastname": lastname,
         "gender": gender,
         "profileImg": profileImg,
       };
 }
-
-

@@ -301,7 +301,7 @@ class Settings extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               _titleBoldText(
-                  theme, "${controller.userInfoModel?.data.user?.location}"),
+                  theme, "${controller.userInfoModel?.data.user?.location ??"Bangalore"}"),
               addHorizontalSpace(8),
               _backArrow()
             ],

@@ -16,7 +16,7 @@ class LikesPage extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: appBarWidget(Constants.likedDetails, color: Color(0xffF7F8FA)),
+        appBar: appBarWidget(Constants.likedDetails, color: Color(0xffF7F8FA),isBack: false),
         backgroundColor: Color(0xffF7F8FA),
 
         body: getBody(context),

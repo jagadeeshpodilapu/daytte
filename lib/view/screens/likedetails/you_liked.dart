@@ -10,7 +10,6 @@ import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 class YouLikedView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).textTheme;
     return GetBuilder<YouLikedController>(
       init: YouLikedController(),
       builder: (controller) => controller.users.value != 0
@@ -49,7 +48,7 @@ class YouLikedView extends StatelessWidget {
                                       FractionallySizedBox(
                                         alignment: Alignment.topCenter,
                                         child: Image.network(
-                                          "${controller.likedDetailsModel?.data.likes?[index].likedTo?.profileImg ?? Constants.emtptyImageUrl}",
+                                          "${controller.likedToModel?.data.likes?[index].likedTo?.profileImg ?? Constants.emtptyImageUrl}",
                                           fit: BoxFit.cover,
                                         ),
                                       ),
@@ -88,7 +87,7 @@ class YouLikedView extends StatelessWidget {
                                                                     .only(
                                                                 left: 8.0),
                                                         child: Text(
-                                                            "${controller.likedDetailsModel?.data.likes?[index].likedTo?.firstname ?? ""} ${controller.likedDetailsModel?.data.likes?[index].likedTo?.lastname ?? ""}",
+                                                            "${controller.likedToModel?.data.likes?[index].likedTo?.firstname ?? ""} ${controller.likedToModel?.data.likes?[index].likedTo?.lastname ?? ""}",
                                                             maxLines: 1,
                                                             overflow:
                                                                 TextOverflow
@@ -118,7 +117,7 @@ class YouLikedView extends StatelessWidget {
                                                         const EdgeInsets.only(
                                                             left: 8.0),
                                                     child: Text(
-                                                        "${controller.likedDetailsModel?.data.likes?[index].likedTo?.location ?? ""}",
+                                                        "${controller.likedToModel?.data.likes?[index].likedTo?.location ?? ""}",
                                                         style: AppStyles.title2
                                                             .copyWith(
                                                                 color:
@@ -151,7 +150,7 @@ class YouLikedView extends StatelessWidget {
               ],
             )
           : Center(
-              child: CircularProgressIndicator.adaptive(),
+              child: Text("No records found",style: TextStyle(fontSize: 16,color: Colors.black),),
             ),
     );
   }

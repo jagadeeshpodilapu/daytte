@@ -41,17 +41,18 @@ SliverGridDelegateWithFixedCrossAxisCount get sliverCountAxis {
       mainAxisSpacing: 4.0);
 }
 
-AppBar appBarWidget(String title, {Color? color}) {
+AppBar appBarWidget(String title, {Color? color,isBack=true}) {
   return AppBar(
     backgroundColor: color ?? Colors.white,
+    
     elevation: 0.0,
-    leading: IconButton(
+    leading:isBack? IconButton(
         onPressed: () => onBackPressed(),
         icon: Icon(
           Icons.arrow_back_ios,
           color:textColor,
           size: 25,
-        )),
+        )):SizedBox(),
     title: Text(
       title,
       style:

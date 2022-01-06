@@ -12,7 +12,7 @@ class FindTheNearest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: appBarWidget(Constants.findNearest, color: Color(0xffF7F8FA)),
+        appBar: appBarWidget(Constants.findNearest, color: Color(0xffF7F8FA),isBack: false),
         backgroundColor: Color(0xffF7F8FA),
         body: GetBuilder<FindNearestController>(
           init: FindNearestController(),

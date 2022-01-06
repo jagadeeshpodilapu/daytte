@@ -3,7 +3,6 @@ import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/view/dialogs/dialogHelper.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
 import '../../model/university_model.dart';
 import '../../services/base_service/base_client.dart';
 import '../base_controller/baseController.dart';

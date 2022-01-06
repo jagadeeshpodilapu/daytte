@@ -57,6 +57,7 @@ class User {
     this.passion,
     this.showAgeRange,
     this.showMe,
+    this.location,
     this.isSuperAdmin,
     this.isVerified,
     this.isBlocked,
@@ -65,27 +66,27 @@ class User {
     this.otp,
     this.deviceToken,
     this.dob,
-    this.emailId,
+    this.email,
     this.firstname,
     this.lastname,
+    this.lat,
+    this.long,
     this.gender,
-    this.institute,
     this.interestedIn,
-    this.shortDescription,
-    this.filterRadius,
+    this.institute,
     this.lastSeen,
     this.status,
     this.age,
     this.profileImg,
-    this.email,
-    this.lat,
-    this.long,
+    this.shortDescription,
+    this.filterRadius,
   });
 
   String? provider;
-  List<Institute>? passion;
+  List<Passion>? passion;
   List<int>? showAgeRange;
   bool? showMe;
+  String? location;
   bool? isSuperAdmin;
   bool? isVerified;
   bool? isBlocked;
@@ -94,28 +95,28 @@ class User {
   String? otp;
   String? deviceToken;
   DateTime? dob;
-  String? emailId;
+  String? email;
   String? firstname;
   String? lastname;
+  double? lat;
+  double? long;
   String? gender;
-  Institute? institute;
   String? interestedIn;
-  String? shortDescription;
-  double? filterRadius;
+  String? institute;
   String? lastSeen;
   String? status;
   dynamic age;
   ProfileImg? profileImg;
-  String? email;
-  double? lat;
-  double? long;
+  String? shortDescription;
+  int? filterRadius;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         provider: json["provider"],
-        // passion: List<Institute>.from(
-        //     json["passion"].map((x) => Institute.fromJson(x))),
+        passion:
+            List<Passion>.from(json["passion"].map((x) => Passion.fromJson(x))),
         showAgeRange: List<int>.from(json["showAgeRange"].map((x) => x)),
         showMe: json["showMe"],
+        location: json["location"],
         isSuperAdmin: json["is_super_admin"],
         isVerified: json["is_verified"],
         isBlocked: json["is_blocked"],
@@ -124,29 +125,25 @@ class User {
         otp: json["otp"],
         deviceToken: json["device_token"],
         dob: json["dob"] == null ? null : DateTime.parse(json["dob"]),
-        emailId: json["emailId"] == null ? null : json["emailId"],
+        email: json["email"] == null ? null : json["email"],
         firstname: json["firstname"] == null ? null : json["firstname"],
         lastname: json["lastname"] == null ? null : json["lastname"],
+        lat: json["lat"] == null ? null : json["lat"].toDouble(),
+        long: json["long"] == null ? null : json["long"].toDouble(),
         gender: json["gender"] == null ? null : json["gender"],
-        institute: json["institute"] == null
-            ? null
-            : Institute.fromJson(json["institute"]),
         interestedIn:
             json["interestedIn"] == null ? null : json["interestedIn"],
-        shortDescription:
-            json["shortDescription"] == null ? null : json["shortDescription"],
-        filterRadius: json["filterRadius"] == null
-            ? null
-            : json["filterRadius"].toDouble(),
+        institute: json["institute"] == null ? null : json["institute"],
         lastSeen: json["lastSeen"],
         status: json["status"],
         age: json["age"],
         profileImg: json["profileImg"] == null
             ? null
             : ProfileImg.fromJson(json["profileImg"]),
-        email: json["email"] == null ? null : json["email"],
-        lat: json["lat"] == null ? null : json["lat"].toDouble(),
-        long: json["long"] == null ? null : json["long"].toDouble(),
+        shortDescription:
+            json["shortDescription"] == null ? null : json["shortDescription"],
+        filterRadius:
+            json["filterRadius"] == null ? null : json["filterRadius"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -154,6 +151,7 @@ class User {
         "passion": List<dynamic>.from(passion!.map((x) => x.toJson())),
         "showAgeRange": List<dynamic>.from(showAgeRange!.map((x) => x)),
         "showMe": showMe,
+        "location": location,
         "is_super_admin": isSuperAdmin,
         "is_verified": isVerified,
         "is_blocked": isBlocked,
@@ -162,39 +160,42 @@ class User {
         "otp": otp,
         "device_token": deviceToken,
         "dob": dob == null ? null : dob!.toIso8601String(),
-        "emailId": emailId == null ? null : emailId,
+        "email": email == null ? null : email,
         "firstname": firstname == null ? null : firstname,
         "lastname": lastname == null ? null : lastname,
+        "lat": lat == null ? null : lat,
+        "long": long == null ? null : long,
         "gender": gender == null ? null : gender,
-        "institute": institute == null ? null : institute!.toJson(),
         "interestedIn": interestedIn == null ? null : interestedIn,
-        "shortDescription": shortDescription == null ? null : shortDescription,
-        "filterRadius": filterRadius == null ? null : filterRadius,
+        "institute": institute == null ? null : institute,
         "lastSeen": lastSeen,
         "status": status,
         "age": age,
-        "profileImg": profileImg == null ? null : profileImg!.toJson(),
-        "email": email == null ? null : email,
-        "lat": lat == null ? null : lat,
-        "long": long == null ? null : long,
+        "profileImg": profileImg == null ? null : profileImg?.toJson(),
+        "shortDescription": shortDescription == null ? null : shortDescription,
+        "filterRadius": filterRadius == null ? null : filterRadius,
       };
 }
 
-class Institute {
-  Institute({
+class Passion {
+  Passion({
+    this.isActiveStatus,
     this.id,
     this.name,
   });
 
+  bool? isActiveStatus;
   String? id;
   String? name;
 
-  factory Institute.fromJson(Map<String, dynamic> json) => Institute(
+  factory Passion.fromJson(Map<String, dynamic> json) => Passion(
+        isActiveStatus: json["is_active_status"],
         id: json["_id"],
         name: json["name"],
       );
 
   Map<String, dynamic> toJson() => {
+        "is_active_status": isActiveStatus,
         "_id": id,
         "name": name,
       };

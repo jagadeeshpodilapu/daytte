@@ -1,14 +1,11 @@
 import 'dart:io';
-
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/consts/image_constants.dart';
 import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/themes/app_styles.dart';
 import 'package:daytte/themes/color_styles.dart';
-import 'package:daytte/view/screens/interested/interested.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
-import 'package:daytte/view/widgets/textfield_widget.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -24,7 +21,8 @@ class EditDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
-      appBar: appBarWidget(Constants.editDetails, color: backgroundColor),
+      appBar: appBarWidget(Constants.editDetails,
+          color: backgroundColor, isBack: false),
       body: GetBuilder<EditDetailsController>(
         init: EditDetailsController(),
         didChangeDependencies: (state) => state.controller?.getUserUpdateData(),
@@ -72,12 +70,13 @@ class EditDetails extends StatelessWidget {
                   //   listOfImagesSelected(item),
                   for (var item in controller.pickedImages)
                     buildPaddingImage(
-                        item: item,
-                        controller: controller,
-                        image: Image.file(
-                          File(item.path),
-                          fit: BoxFit.cover,
-                        )),
+                      item: item,
+                      controller: controller,
+                      image: Image.file(
+                        File(item.path),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   for (var im in controller.galleryImages)
                     buildPaddingImage(
                         controller: controller,
@@ -118,8 +117,8 @@ class EditDetails extends StatelessWidget {
     controller.aboutMeController.text =
         controller.userModel?.data.user?.shortDescription ?? "";
 
-    controller.schoolController.text =
-        controller.userModel?.data.user?.interestedIn ?? "";
+    // controller.schoolController.text =
+    //     controller.userModel?.data.user?.interestedIn ?? "";
     // controller.companyController.text =
     //     controller.userModel?.data.user?.interestedIn ?? "";
     return Container(
@@ -198,8 +197,6 @@ class EditDetails extends StatelessWidget {
               children: List.generate(
                   controller.userModel?.data.user?.passion?.length ?? 0,
                   (index) {
-                    // print("userDetails0 ${controller.userModel?.data.user?.passion}");
-                    // print("userDetails1 ${controller.userModel?.data.user?.passion?.first.name}");
                     return Container(
                         padding:
                             EdgeInsets.symmetric(horizontal: 8, vertical: 6),

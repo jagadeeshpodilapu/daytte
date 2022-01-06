@@ -1,5 +1,6 @@
 import 'package:daytte/controllers/base_controller/baseController.dart';
 import 'package:daytte/model/like_details_model.dart';
+import 'package:daytte/model/liked_to_model.dart';
 import 'package:daytte/services/base_service/base_client.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -9,7 +10,7 @@ class LikedController extends BaseController {
   int page = 1, limit = 20;
   final storage = GetStorage();
   RxInt users = 0.obs;
-  LikeDetailsModel? likedDetailsModel;
+  LikedModel? likedModel;
 
   @override
   void onInit() {
@@ -26,10 +27,10 @@ class LikedController extends BaseController {
         .catchError(BaseController().handleError);
     if (response != null) {
       print("liked response $response");
-      likedDetailsModel = LikeDetailsModel.fromJson(response);
-      likedDetailsModel?.data.likes!
-          .removeWhere((element) => element.likedTo?.id == storage.read('id'));
-      users.value = likedDetailsModel?.data.likes?.length ?? 0;
+      likedModel = LikedModel.fromJson(response);
+      likedModel?.data.likes!
+          .removeWhere((element) => element.likedBy?.id == storage.read('id'));
+      users.value = likedModel?.data.likes?.length ?? 0;
     }
     update();
   }
@@ -40,7 +41,7 @@ class YouLikedController extends BaseController {
   int page = 1, limit = 20;
   final storage = GetStorage();
   RxInt users = 0.obs;
-  LikeDetailsModel? likedDetailsModel;
+  LikedToModel? likedToModel;
 
   @override
   void onInit() {
@@ -56,11 +57,12 @@ class YouLikedController extends BaseController {
             '/like?page=$page&limit=$limit&likedByMe=true&likedBy=${storage.read('id')}',
             storage.read('token'))
         .catchError(BaseController().handleError);
+    if (response == null) return;
     if (response != null) {
-      likedDetailsModel = LikeDetailsModel.fromJson(response);
-      likedDetailsModel?.data.likes!
+      likedToModel = LikedToModel.fromJson(response);
+      likedToModel?.data.likes!
           .removeWhere((element) => element.likedTo?.id == userId);
-      users.value = likedDetailsModel?.data.likes?.length ?? 0;
+      users.value = likedToModel?.data.likes?.length ?? 0;
     }
     update();
   }
