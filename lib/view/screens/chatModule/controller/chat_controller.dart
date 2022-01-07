@@ -29,7 +29,7 @@ class ChatController extends GetxController {
     //     update();
     //   }
     // });
-   // connect();
+    // connect();
   }
 
   @override
@@ -55,7 +55,6 @@ class ChatController extends GetxController {
     socket.connect();
 
     socket.onConnect((data) {
-
       print("Connected  $data");
       isConnect = true;
       socket.emit("joinRoom", this.activeRoom);
@@ -66,7 +65,6 @@ class ChatController extends GetxController {
         scrollController.animateTo(scrollController.position.maxScrollExtent,
             duration: Duration(milliseconds: 300), curve: Curves.easeOut);
       });
-
     });
 
     socket.onDisconnect((_) {
@@ -75,7 +73,7 @@ class ChatController extends GetxController {
       socket.emit("leaveRoom", this.activeRoom);
     });
     isConnect = true;
-   // update();
+    // update();
   }
 
   void setMessage(String type, msg, String userId) {
@@ -94,10 +92,12 @@ class ChatController extends GetxController {
       String userName) {
     // setMessage("source", message, userId);
     socket.emit("msgToServer", {
-      "name": userName,
-      "text": message,
+      "sender": storage.read('id'),
+      "receiver": userId,
+      "message": message,
       "room": this.activeRoom,
-      "userId": userId
+      "isRead": true,
+      "messageType": 1
     });
     print("name $userName  $message $userId ");
   }

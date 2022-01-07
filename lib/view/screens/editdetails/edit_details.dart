@@ -118,7 +118,7 @@ class EditDetails extends StatelessWidget {
         controller.userModel?.data.user?.shortDescription ?? "";
 
     // controller.schoolController.text =
-    //     controller.userModel?.data.user?.interestedIn ?? "";
+    //     controller.userModel?.data.user?.institute?.name ?? "Bangalore university";
     // controller.companyController.text =
     //     controller.userModel?.data.user?.interestedIn ?? "";
     return Container(
@@ -190,7 +190,7 @@ class EditDetails extends StatelessWidget {
                             fontWeight: FontWeight.w400))),
               ],
             ),
-            /* Wrap(
+            Wrap(
               spacing: 6,
               runSpacing: 6,
               crossAxisAlignment: WrapCrossAlignment.start,
@@ -211,7 +211,7 @@ class EditDetails extends StatelessWidget {
                         ),
                       );
                   }),
-            ),*/
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

@@ -14,11 +14,11 @@ class TestView extends GetView<TestController> {
           itemBuilder: (contex, index) => InkWell(
                 onTap: () {
                   controller.sourceChat = controller.chatmodels.removeAt(index);
-                  Get.to(
-                    ChatList(
-                        chatmodels: controller.chatmodels,
-                        sourceChat: controller.sourceChat),
-                  );
+                  // Get.to(
+                  //   ChatList(
+                  //       chatmodels: controller.chatmodels,
+                  //       sourceChat: controller.sourceChat),
+                  // );
                 },
                 child: ListTile(
                   leading: CircleAvatar(

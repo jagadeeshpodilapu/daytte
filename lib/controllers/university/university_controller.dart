@@ -1,3 +1,4 @@
+import 'package:daytte/model/pasion_model.dart';
 import 'package:daytte/model/response_model.dart';
 import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/view/dialogs/dialogHelper.dart';
@@ -8,7 +9,7 @@ import '../../services/base_service/base_client.dart';
 import '../base_controller/baseController.dart';
 
 class UniversityController extends BaseController {
-  UniversityListModel? universityListModel;
+  PassionModel? universityListModel;
   ResponseModel? responseModel;
   int page = 0;
   int limit = 25;
@@ -27,16 +28,16 @@ class UniversityController extends BaseController {
         .catchError(BaseController().handleError);
     if (response == null) return;
     if (response != null) {
-      universityListModel = UniversityListModel.fromJson(response);
+      universityListModel = PassionModel.fromJson(response);
     }
     update();
   }
 
   Future postUniversityList(String university) async {
-    Map<String, dynamic> payload = {"name": university};
+    Map<String, dynamic> payload = {"institute": university};
     DialogHelper.showLoading('Loading...');
     final response = await BaseClient()
-        .post('/institution', payload)
+        .patch('/users/${storage.read('id')}', payload,storage.read('token'))
         .catchError(BaseController().handleError);
     if (response == null) return;
     DialogHelper.hideLoading();

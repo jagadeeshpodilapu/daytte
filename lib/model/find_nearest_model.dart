@@ -4,116 +4,112 @@
 
 import 'dart:convert';
 
-FindNearestModel findNearestModelFromJson(String str) =>
-    FindNearestModel.fromJson(json.decode(str));
+FindNearestModel findNearestModelFromJson(String str) => FindNearestModel.fromJson(json.decode(str));
 
-String findNearestModelToJson(FindNearestModel data) =>
-    json.encode(data.toJson());
+String findNearestModelToJson(FindNearestModel data) => json.encode(data.toJson());
 
 class FindNearestModel {
-  FindNearestModel({
-    required this.message,
-    required this.data,
-  });
+    FindNearestModel({
+      required  this.message,
+     required   this.data,
+    });
 
-  String message;
-  Data data;
+    String message;
+    Data data;
 
-  factory FindNearestModel.fromJson(Map<String, dynamic> json) =>
-      FindNearestModel(
+    factory FindNearestModel.fromJson(Map<String, dynamic> json) => FindNearestModel(
         message: json["message"],
         data: Data.fromJson(json["data"]),
-      );
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "message": message,
         "data": data.toJson(),
-      };
+    };
 }
 
 class Data {
-  Data({
-    this.users,
-    this.totalCount,
-  });
+    Data({
+        this.users,
+        this.totalCount,
+    });
 
-  List<User>? users;
-  int? totalCount;
+    List<User>? users;
+    int? totalCount;
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+    factory Data.fromJson(Map<String, dynamic> json) => Data(
         users: List<User>.from(json["users"].map((x) => User.fromJson(x))),
         totalCount: json["total_count"],
-      );
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "users": List<dynamic>.from(users!.map((x) => x.toJson())),
         "total_count": totalCount,
-      };
+    };
 }
 
 class User {
-  User({
-    this.provider,
-    this.passion,
-    this.showAgeRange,
-    this.showMe,
-    this.location,
-    this.isSuperAdmin,
-    this.isVerified,
-    this.isBlocked,
-    this.id,
-    this.mobileNumber,
-    this.otp,
-    this.deviceToken,
-    this.dob,
-    this.email,
-    this.firstname,
-    this.lastname,
-    this.lat,
-    this.long,
-    this.gender,
-    this.interestedIn,
-    this.institute,
-    this.lastSeen,
-    this.status,
-    this.age,
-    this.profileImg,
-    this.shortDescription,
-    this.filterRadius,
-  });
+    User({
+        this.provider,
+        this.passion,
+        this.showAgeRange,
+        this.showMe,
+        this.location,
+        this.isSuperAdmin,
+        this.isVerified,
+        this.isBlocked,
+        this.id,
+        this.mobileNumber,
+        this.otp,
+        this.deviceToken,
+        this.dob,
+        this.email,
+        this.firstname,
+        this.lastname,
+        this.lat,
+        this.long,
+        this.gender,
+        this.interestedIn,
+        this.institute,
+        this.lastSeen,
+        this.status,
+        this.age,
+        this.profileImg,
+        this.shortDescription,
+        this.filterRadius,
+    });
 
-  String? provider;
-  List<Passion>? passion;
-  List<int>? showAgeRange;
-  bool? showMe;
-  String? location;
-  bool? isSuperAdmin;
-  bool? isVerified;
-  bool? isBlocked;
-  String? id;
-  String? mobileNumber;
-  String? otp;
-  String? deviceToken;
-  DateTime? dob;
-  String? email;
-  String? firstname;
-  String? lastname;
-  double? lat;
-  double? long;
-  String? gender;
-  String? interestedIn;
-  String? institute;
-  String? lastSeen;
-  String? status;
-  dynamic age;
-  ProfileImg? profileImg;
-  String? shortDescription;
-  int? filterRadius;
+    String? provider;
+    List<Passion>? passion;
+    List<int>? showAgeRange;
+    bool? showMe;
+    String? location;
+    bool? isSuperAdmin;
+    bool? isVerified;
+    bool? isBlocked;
+    String? id;
+    String? mobileNumber;
+    String? otp;
+    String? deviceToken;
+    DateTime? dob;
+    String? email;
+    String? firstname;
+    String? lastname;
+    double? lat;
+    double? long;
+    String? gender;
+    String? interestedIn;
+    Institute? institute;
+    String? lastSeen;
+    String? status;
+    dynamic age;
+    ProfileImg? profileImg;
+    String? shortDescription;
+    int? filterRadius;
 
-  factory User.fromJson(Map<String, dynamic> json) => User(
+    factory User.fromJson(Map<String, dynamic> json) => User(
         provider: json["provider"],
-        passion:
-            List<Passion>.from(json["passion"].map((x) => Passion.fromJson(x))),
+        passion: List<Passion>.from(json["passion"].map((x) => Passion.fromJson(x))),
         showAgeRange: List<int>.from(json["showAgeRange"].map((x) => x)),
         showMe: json["showMe"],
         location: json["location"],
@@ -131,22 +127,17 @@ class User {
         lat: json["lat"] == null ? null : json["lat"].toDouble(),
         long: json["long"] == null ? null : json["long"].toDouble(),
         gender: json["gender"] == null ? null : json["gender"],
-        interestedIn:
-            json["interestedIn"] == null ? null : json["interestedIn"],
-        institute: json["institute"] == null ? null : json["institute"],
+        interestedIn: json["interestedIn"] == null ? null : json["interestedIn"],
+        institute: json["institute"] == null ? null : Institute.fromJson(json["institute"]),
         lastSeen: json["lastSeen"],
         status: json["status"],
         age: json["age"],
-        profileImg: json["profileImg"] == null
-            ? null
-            : ProfileImg.fromJson(json["profileImg"]),
-        shortDescription:
-            json["shortDescription"] == null ? null : json["shortDescription"],
-        filterRadius:
-            json["filterRadius"] == null ? null : json["filterRadius"],
-      );
+        profileImg: json["profileImg"] == null ? null : ProfileImg.fromJson(json["profileImg"]),
+        shortDescription: json["shortDescription"] == null ? null : json["shortDescription"],
+        filterRadius: json["filterRadius"] == null ? null : json["filterRadius"],
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "provider": provider,
         "passion": List<dynamic>.from(passion!.map((x) => x.toJson())),
         "showAgeRange": List<dynamic>.from(showAgeRange!.map((x) => x)),
@@ -167,60 +158,80 @@ class User {
         "long": long == null ? null : long,
         "gender": gender == null ? null : gender,
         "interestedIn": interestedIn == null ? null : interestedIn,
-        "institute": institute == null ? null : institute,
+        "institute": institute == null ? null : institute!.toJson(),
         "lastSeen": lastSeen,
         "status": status,
         "age": age,
-        "profileImg": profileImg == null ? null : profileImg?.toJson(),
+        "profileImg": profileImg == null ? null : profileImg!.toJson(),
         "shortDescription": shortDescription == null ? null : shortDescription,
         "filterRadius": filterRadius == null ? null : filterRadius,
-      };
+    };
+}
+
+class Institute {
+    Institute({
+        this.id,
+        this.name,
+    });
+
+    String? id;
+    String? name;
+
+    factory Institute.fromJson(Map<String, dynamic> json) => Institute(
+        id: json["_id"],
+        name: json["name"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "_id": id,
+        "name": name,
+    };
 }
 
 class Passion {
-  Passion({
-    this.isActiveStatus,
-    this.id,
-    this.name,
-  });
+    Passion({
+        this.isActiveStatus,
+        this.id,
+        this.name,
+    });
 
-  bool? isActiveStatus;
-  String? id;
-  String? name;
+    bool? isActiveStatus;
+    String? id;
+    String? name;
 
-  factory Passion.fromJson(Map<String, dynamic> json) => Passion(
+    factory Passion.fromJson(Map<String, dynamic> json) => Passion(
         isActiveStatus: json["is_active_status"],
         id: json["_id"],
         name: json["name"],
-      );
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "is_active_status": isActiveStatus,
         "_id": id,
         "name": name,
-      };
+    };
 }
 
 class ProfileImg {
-  ProfileImg({
-    this.id,
-    this.userId,
-    this.imgPath,
-  });
+    ProfileImg({
+        this.id,
+        this.userId,
+        this.imgPath,
+    });
 
-  String? id;
-  String? userId;
-  String? imgPath;
+    String? id;
+    String? userId;
+    String? imgPath;
 
-  factory ProfileImg.fromJson(Map<String, dynamic> json) => ProfileImg(
+    factory ProfileImg.fromJson(Map<String, dynamic> json) => ProfileImg(
         id: json["_id"],
         userId: json["userId"],
         imgPath: json["imgPath"],
-      );
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "_id": id,
         "userId": userId,
         "imgPath": imgPath,
-      };
+    };
 }

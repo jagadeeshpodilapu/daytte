@@ -50,12 +50,18 @@ class EditDetailsController extends BaseController {
   @override
   void onInit() {
     userId.value = storage.read('id') ?? "";
-    schoolController.text = "Bangalore university";
+
     // getUserUpdateData();
     // storage.write("page", "7");
     gettingImages();
     pickedImages.clear();
     super.onInit();
+  }
+
+@override
+  onReady() {
+    super.onReady();
+    getUserUpdateData();
   }
 
   editToggle() {
@@ -185,6 +191,8 @@ class EditDetailsController extends BaseController {
     if (response != null) {
       print("save user Data $response");
       userModel = SingleUserModel.fromJson(response);
+      schoolController.text =
+          userModel?.data.user?.institute?.name ?? "Bangalore university";
     }
     Future.delayed(Duration(seconds: 2), () => update());
   }

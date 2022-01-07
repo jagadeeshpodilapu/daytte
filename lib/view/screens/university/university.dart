@@ -42,18 +42,18 @@ class UniversityView extends StatelessWidget {
                     textAlignVertical: TextAlignVertical.center,
                   ),
                 ),
-                controller.universityListModel?.universityList.passion.length !=
+                controller.universityListModel?.data.passion?.length!=
                         0
                     ? Expanded(
                         child: ListView.builder(
                           itemCount: controller.universityListModel
-                                  ?.universityList.passion.length ??
+                                  ?.data.passion?.length ??
                               0,
                           shrinkWrap: true,
                           itemBuilder: (context, index) => GestureDetector(
                             onTap: () async {
                               await controller.postUniversityList(
-                                  "${controller.universityListModel!.universityList.passion[index].name}");
+                                  "${controller.universityListModel!.data.passion?[index].id}");
                               if (controller.responseModel != null) {
                                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                     content: Text(
@@ -72,7 +72,7 @@ class UniversityView extends StatelessWidget {
                                   ),
                                 ),
                                 child: Text(
-                                  "${controller.universityListModel?.universityList.passion[index].name}",
+                                  "${controller.universityListModel?.data.passion?[index].name}",
                                   style: Theme.of(context)
                                       .textTheme
                                       .headline6
