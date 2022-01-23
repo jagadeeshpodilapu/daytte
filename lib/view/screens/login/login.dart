@@ -3,7 +3,6 @@ import 'package:daytte/themes/color_styles.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 

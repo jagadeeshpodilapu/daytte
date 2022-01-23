@@ -1,5 +1,5 @@
 import 'package:daytte/consts/image_constants.dart';
-import 'package:daytte/model/message_model.dart';
+import 'package:daytte/model/chat_all_model.dart';
 import 'package:daytte/utils/common_functions.dart';
 import 'package:daytte/view/screens/chatModule/controller/chat_controller.dart';
 import 'package:daytte/view/screens/chatModule/widgets/own_message_card.dart';
@@ -11,19 +11,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class ChatView extends GetView<ChatController> {
-  List<ChatModel>? chatModel;
-  ChatModel? sourceChat;
-  int? selectedIndex;
+  User? user;
 
-  ChatView({this.chatModel, this.sourceChat, this.selectedIndex});
-
-  ChatController chatController =
-      Get.find<ChatController>(); // Controller dependency injected
+  ChatView({required this.user}); // Controller dependency injected
 
   @override
   Widget build(BuildContext context) {
-    print("chat room id ${sourceChat?.roomId}");
-    chatController.isConnect == false ? chatController.connect() : null;
+    controller.isConnect == false ? controller.connect() : null;
 
     return Scaffold(
       body: Stack(
@@ -37,10 +31,10 @@ class ChatView extends GetView<ChatController> {
                 icon: Icon(Icons.arrow_back_ios, color: Colors.black),
                 onPressed: () {
                   onBackPressed();
-                  chatController.socket.disconnect();
+                  controller.socket.disconnect();
                 },
               ),
-              title: Text(chatModel?[selectedIndex ?? 0].name ?? "",
+              title: Text(user?.chatUser?.firstname ?? "",
                   style: TextStyle(color: Colors.black)),
               centerTitle: false,
               actions: [
@@ -77,36 +71,36 @@ class ChatView extends GetView<ChatController> {
                   children: [
                     addVerticalSpace(10),
                     Expanded(
-                      // height: MediaQuery.of(context).size.height - 150,
-                      child: Obx(() => ListView.builder(
-                            shrinkWrap: true,
-                            controller: controller.scrollController,
-                            itemCount: controller.messages.length + 1,
-                            itemBuilder: (context, index) {
-                              if (index == controller.messages.length) {
-                                return Container(
-                                  height: 70,
-                                );
-                              }
+                      child: Obx(() {
+                        print("is reveres ${controller.isTyping.value}");
+                        return ListView.builder(
+                          shrinkWrap: true,
+                          reverse: controller.isTyping.value,
+                          controller: controller.scrollController,
+                          itemCount: controller.messages.length,
+                          itemBuilder: (context, index) {
+                            print(
+                                "message is came ${controller.messages.length}");
+                            if (index == controller.messages.length) {
+                              return Container(
+                                height: 70,
+                              );
+                            }
 
-                              if (controller.messages[index].userId ==
-                                  sourceChat?.userId) {
-                                print(
-                                    "own message called  ${controller.messages[index].userId} ");
-                                return OwnMessageCard(
-                                  message:
-                                      controller.messages[index].message ?? "",
-                                  // time: controller.messages[index].time,
-                                );
-                              } else {
-                                print("own message rply called");
-                                return ReplyCard(
-                                  message: controller.messages[index].message,
-                                  // time: controller.messages[index].time,
-                                );
-                              }
-                            },
-                          )),
+                            if (controller.messages[index].senderId ==
+                                controller.storage.read('id')) {
+                              return OwnMessageCard(
+                                message:
+                                    controller.messages[index].message ?? "",
+                              );
+                            } else {
+                              return ReplyCard(
+                                message: controller.messages[index].message,
+                              );
+                            }
+                          },
+                        );
+                      }),
                     ),
                     Align(
                       alignment: Alignment.bottomCenter,
@@ -170,19 +164,18 @@ class ChatView extends GetView<ChatController> {
                                                   ),
                                                   IconButton(
                                                     icon: Container(
-                                                        height: 35,
-                                                        width: 35,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                                color:
-                                                                    Colors.grey,
-                                                                shape: BoxShape
-                                                                    .circle),
-                                                        child: Icon(
-                                                          Icons
-                                                              .arrow_forward_sharp,
-                                                          color: Colors.black,
-                                                        )),
+                                                      height: 35,
+                                                      width: 35,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors.grey,
+                                                          shape:
+                                                              BoxShape.circle),
+                                                      child: Icon(
+                                                        Icons
+                                                            .arrow_forward_sharp,
+                                                        color: Colors.black,
+                                                      ),
+                                                    ),
                                                     splashRadius: 0.2,
                                                     onPressed: () {
                                                       if (controller
@@ -201,24 +194,24 @@ class ChatView extends GetView<ChatController> {
                                                                         300),
                                                                 curve: Curves
                                                                     .easeOut);
+
                                                         controller.sendMessage(
-                                                            controller
+                                                            message: controller
                                                                 .textController
                                                                 .text,
-                                                            sourceChat
-                                                                    ?.roomId ??
-                                                                0,
-                                                            'general',
-                                                            sourceChat?.userId
-                                                                    .toString() ??
+                                                            receiverId: user
+                                                                    ?.chatUser
+                                                                    ?.id ??
                                                                 "",
-                                                            sourceChat?.name ??
-                                                                "");
+                                                            senderId: controller
+                                                                .storage
+                                                                .read('id'));
                                                         controller
                                                             .textController
                                                             .clear();
-                                                        controller.sendButton
-                                                            .value = false;
+
+                                                        controller
+                                                            .isListRevere();
                                                       }
                                                     },
                                                   ),

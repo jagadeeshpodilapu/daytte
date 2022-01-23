@@ -1,16 +1,16 @@
-import 'package:daytte/model/message_model.dart';
+/* import 'package:daytte/model/message_model.dart';
 import 'package:get/get.dart';
 
 class TestController extends GetxController {
-  ChatModel? sourceChat;
-  // var chatmodels = List<ChatModel>.empty(growable: true).obs;
-  List<ChatModel> chatmodels = [];
+  // ChatModel? sourceChat;
+  // // var chatmodels = List<ChatModel>.empty(growable: true).obs;
+  // List<ChatModel> chatmodels = [];
 
   final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
-    addDataUser();
+   // addDataUser();
   }
 
   @override
@@ -22,7 +22,7 @@ class TestController extends GetxController {
   void onClose() {}
   void increment() => count.value++;
 
-  void addDataUser() {
+/*   void addDataUser() {
     chatmodels.add(new ChatModel(
       name: "jagadeesh",
       messageCount: 0,
@@ -41,7 +41,8 @@ class TestController extends GetxController {
     ));
 
     update();
-  }
+  } */
 
   
 }
+ */

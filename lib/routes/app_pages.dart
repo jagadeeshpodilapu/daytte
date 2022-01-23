@@ -1,4 +1,5 @@
 import 'package:daytte/controllers/permissionController/permission_binding.dart';
+import 'package:daytte/view/screens/chatModule/chat_binding.dart';
 import 'package:daytte/view/screens/matchscreen/match_screen.dart';
 import 'package:daytte/view/screens/permissions/enable_permission.dart';
 
@@ -74,7 +75,7 @@ class AppPages {
     GetPage(
         name: AppRoutes.HOMEVIEW,
         page: () => Home(),
-        bindings: [FindNearestBinding()]),
+        bindings: [FindNearestBinding(),ChatBinding()]),
     GetPage(
         name: AppRoutes.PROFILEVIEW, page: () => ProfileView(), bindings: []),
     GetPage(name: AppRoutes.LIKESVIEW, page: () => LikesPage(), bindings: []),

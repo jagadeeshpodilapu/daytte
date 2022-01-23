@@ -5,8 +5,7 @@ import '../../widgets/textfield_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/components/checkbox/gf_checkbox.dart';
-import 'package:getwidget/types/gf_checkbox_type.dart';
+
 
 import '../../../consts/constants.dart';
 import '../../../consts/image_constants.dart';

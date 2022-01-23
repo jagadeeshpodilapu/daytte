@@ -1,7 +1,4 @@
 import 'package:daytte/consts/constants.dart';
-import 'package:daytte/consts/image_constants.dart';
-import 'package:daytte/controllers/chatlist_controller/chatlist_controller.dart';
-import 'package:daytte/model/message_model.dart';
 import 'package:daytte/view/screens/chatModule/chat_view.dart';
 import 'package:daytte/view/screens/chatModule/controller/chat_controller.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
@@ -10,7 +7,7 @@ import 'package:get/get.dart';
 
 import '../chatrequest/chat_request.dart';
 
-class ChatList extends GetView<ChatListController> {
+class ChatList extends GetView<ChatController> {
   // List<ChatModel>? chatmodels;
   // ChatModel? sourceChat;
 
@@ -24,8 +21,8 @@ class ChatList extends GetView<ChatListController> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(120.0),
         child: SafeArea(
-          child: GetBuilder<ChatListController>(
-            init: ChatListController(),
+          child: GetBuilder<ChatController>(
+            init: ChatController(),
             builder: (controller) => Column(
               children: [
                 Padding(
@@ -40,8 +37,8 @@ class ChatList extends GetView<ChatListController> {
       ),
       body: Container(
         decoration: shadowBackground(),
-        child: GetBuilder<ChatListController>(
-          init: ChatListController(),
+        child: GetBuilder<ChatController>(
+          init: ChatController(),
           builder: (controller) {
             return ListView.separated(
               itemCount: controller.chatmodel?.data.users?.length ?? 0,
@@ -78,25 +75,24 @@ class ChatList extends GetView<ChatListController> {
   Widget messageCard(BuildContext context, int index, TextTheme theme) {
     return ListTile(
       onTap: () {
-        // controller.sourceChat = controller.chatmodels.removeAt(index);
         Get.to(
-          ChatView(
-            
-          ),
+          () => ChatView(user: controller.chatmodel?.data.users![index]),
         );
+        controller.fetchChatAllDetails(
+            "", controller.chatmodel?.data.users![index].chatUser?.id ?? "");
       },
       title: Container(
         width: MediaQuery.of(context).size.width,
         child: Row(
           children: [
-            userCircleAvatarWidget(controller,index),
+            userCircleAvatarWidget(controller, index),
             addHorizontalSpace(10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                userNameWidget(controller,index, theme),
+                userNameWidget(controller, index, theme),
                 addVerticalSpace(5),
-                userLastMessageWidget(controller,index, theme),
+                userLastMessageWidget(controller, index, theme),
               ],
             ),
             Spacer(),
@@ -134,30 +130,29 @@ class ChatList extends GetView<ChatListController> {
             fontSize: 14.0));
   }
 
-  Text userLastMessageWidget(ChatListController controller,int index, TextTheme theme) {
+  Text userLastMessageWidget(
+      ChatController controller, int index, TextTheme theme) {
     return Text(
-      controller.chatmodel?.data.users?[index].chatUser?.msg?.message??"",
+      controller.chatmodel?.data.users?[index].chatUser?.msg?.message ?? "",
       style: theme.headline6?.copyWith(color: Color(0xff9A9A9A), fontSize: 14),
     );
   }
 
-  Text userNameWidget(ChatListController controller,int index, TextTheme theme) {
+  Text userNameWidget(ChatController controller, int index, TextTheme theme) {
     return Text(
       controller.chatmodel?.data.users?[index].chatUser?.firstname ?? "",
       style: theme.headline6?.copyWith(fontSize: 18),
     );
   }
 
-  CircleAvatar userCircleAvatarWidget(ChatListController controller, int index) {
+  CircleAvatar userCircleAvatarWidget(ChatController controller, int index) {
     return CircleAvatar(
       radius: 35,
-      backgroundImage: NetworkImage(controller.chatmodel?.data?.users?[index].chatUser?.profileImg??""),
+      backgroundImage: NetworkImage(
+          controller.chatmodel?.data.users?[index].chatUser?.profileImg ?? ""),
       child: Align(
-        alignment: Alignment(1, -0.7),
-        child: true
-            ? CircleAvatar(radius: 5, backgroundColor: Color(0xff08E300))
-            : SizedBox(),
-      ),
+          alignment: Alignment(1, -0.7),
+          child: CircleAvatar(radius: 5, backgroundColor: Color(0xff08E300))),
     );
   }
 
@@ -184,7 +179,7 @@ class ChatList extends GetView<ChatListController> {
     );
   }
 
-  Widget chatRequestHeaders(ChatListController controller, TextTheme theme) {
+  Widget chatRequestHeaders(ChatController controller, TextTheme theme) {
     return Row(
       children: [
         MaterialButton(

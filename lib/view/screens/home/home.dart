@@ -1,5 +1,4 @@
 import 'package:daytte/consts/constants.dart';
-import 'package:daytte/view/screens/chatModule/test_view.dart';
 import 'package:daytte/view/screens/chatlist/chat_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

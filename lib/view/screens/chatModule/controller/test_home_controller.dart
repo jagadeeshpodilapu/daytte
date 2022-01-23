@@ -1,4 +1,4 @@
-import 'package:get/get.dart';
+/* import 'package:get/get.dart';
 
 class TestHomeController extends GetxController {
   //TODO: Implement HomeController
@@ -20,3 +20,4 @@ class TestHomeController extends GetxController {
   void onClose() {}
   void increment() => count.value++;
 }
+ */

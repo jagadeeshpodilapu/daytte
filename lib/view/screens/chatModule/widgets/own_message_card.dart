@@ -1,4 +1,3 @@
-import 'package:daytte/themes/color_styles.dart';
 import 'package:flutter/material.dart';
 
 class OwnMessageCard extends StatelessWidget {

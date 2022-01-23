@@ -276,13 +276,7 @@ class EditDetails extends StatelessWidget {
     );
   }
 
-  Widget _backArrow() {
-    return Icon(
-      Icons.arrow_forward_ios,
-      size: 18,
-      color: Color(0xff363636),
-    );
-  }
+ 
 
   Text _subHeadGreyText(String title, {double? size}) {
     return Text(

@@ -2,8 +2,7 @@ import 'package:daytte/consts/constants.dart';
 import 'package:daytte/consts/image_constants.dart';
 import 'package:daytte/model/user_liked_model.dart';
 import 'package:daytte/routes/app_routes.dart';
-import 'package:daytte/view/screens/chatModule/chat_view.dart';
-import 'package:daytte/view/screens/home/home.dart';
+
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

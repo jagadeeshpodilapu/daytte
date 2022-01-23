@@ -1,6 +1,3 @@
-// To parse this JSON data, do
-//
-//     final findNearestModel = findNearestModelFromJson(jsonString);
 
 import 'dart:convert';
 
@@ -105,7 +102,7 @@ class User {
     dynamic age;
     ProfileImg? profileImg;
     String? shortDescription;
-    int? filterRadius;
+    dynamic filterRadius;
 
     factory User.fromJson(Map<String, dynamic> json) => User(
         provider: json["provider"],

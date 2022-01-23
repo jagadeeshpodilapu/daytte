@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/themes/app_styles.dart';

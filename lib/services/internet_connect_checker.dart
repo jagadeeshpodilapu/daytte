@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:daytte/view/widgets/no_internet_widget.dart';
 import 'package:get/get.dart';
-import 'package:get/utils.dart';
 
 class NetworkUtils {
+  // ignore: cancel_subscriptions
   static StreamSubscription? subscription;
   static Future<Null> Function(ConnectivityResult result)? networkListener;
 
