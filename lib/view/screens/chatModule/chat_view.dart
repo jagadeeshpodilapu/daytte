@@ -17,6 +17,7 @@ class ChatView extends GetView<ChatController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.activeRoom = user?.chatUser?.id??"";
     controller.isConnect == false ? controller.connect() : null;
 
     return Scaffold(

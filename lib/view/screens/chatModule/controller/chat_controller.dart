@@ -113,11 +113,10 @@ class ChatController extends BaseController {
       "sender": senderId,
       "receiver": receiverId,
       "message": message,
-      "room": this.activeRoom,
+      "room": receiverId,
       "isRead": true,
       "messageType": 1,
     });
-    print("name   $message $receiverId ");
   }
 
   funcIsAll(bool all, bool chat) {
@@ -128,7 +127,7 @@ class ChatController extends BaseController {
 
   isListRevere() {
     isTyping.value = false;
-    update();
+  
   }
 
   Future fetchChatUsers() async {
