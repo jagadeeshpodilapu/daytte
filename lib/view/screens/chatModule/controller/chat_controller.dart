@@ -100,7 +100,7 @@ class ChatController extends BaseController {
     );
 
     messages.add(messageModel);
-    // messages.value = messages.reversed.toList();
+
     update();
   }
 
@@ -127,7 +127,6 @@ class ChatController extends BaseController {
 
   isListRevere() {
     isTyping.value = false;
-  
   }
 
   Future fetchChatUsers() async {
@@ -150,15 +149,18 @@ class ChatController extends BaseController {
   Future fetchChatAllDetails(String sender, String reciever) async {
     final response = await ChatHistoryService()
         .getChatHistory(
-            "61cc7208a5541d18568e3b05", "61c99db3a5541d18568e382e", 1, 150)
+            "$sender", "$reciever", 1, 150)
         .catchError(BaseController().handleError);
 
     if (response != null) {
       chatHistoryModel = ChatHistoryModel.fromJson(response);
+      chatHistoryModel?.data.chats
+          ?.sort((a, b) => a.createdAt!.compareTo(b.createdAt!));
 
       if (chatHistoryModel!.data.chats!.isNotEmpty) {
         chatHistoryModel?.data.chats?.forEach((element) {
-          print("chat history list reversed ${element.message}");
+          print(
+              "chat history list reversed ${element.message}  ${element.createdAt}");
 
           setMessage(
             "destination",

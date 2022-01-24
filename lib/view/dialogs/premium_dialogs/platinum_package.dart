@@ -190,8 +190,7 @@ class PremiumPackages extends StatelessWidget {
                 height: 50,
                 child: RaisedGradientButton(
                   width: Get.width*0.8,
-                  onPressed: () => showDialog(
-                      context: context, builder: (context) => MatchScreen()),
+                  onPressed: () => Get.back(),
                   title: "Continue",
                 ),
               ),

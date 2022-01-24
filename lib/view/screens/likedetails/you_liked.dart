@@ -50,6 +50,12 @@ class YouLikedView extends StatelessWidget {
                                         child: Image.network(
                                           "${controller.likedToModel?.data.likes?[index].likedTo?.profileImg ?? Constants.emtptyImageUrl}",
                                           fit: BoxFit.cover,
+                                           errorBuilder: (context, _, __) {
+                                            return Image.asset(
+                                              "assets/images/placeholder.jpg",
+                                              fit: BoxFit.cover,
+                                            );
+                                          },
                                         ),
                                       ),
                                       Positioned(

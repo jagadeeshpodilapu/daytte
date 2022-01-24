@@ -44,8 +44,10 @@ class MatchScreen extends StatelessWidget {
               ),
               addVerticalSpace(50),
               _buttonWidget(context, Constants.chatNow,
-                  onTapEvent: () =>
-                      Get.toNamed(AppRoutes.HOMEVIEW, arguments: 2)),
+                  onTapEvent: () {
+                    
+                    return Get.toNamed(AppRoutes.HOMEVIEW, arguments: 2);
+                  }),
               addVerticalSpace(20),
               _buttonWidget(context, "Continue Swiping", color: Colors.black,
                   onTapEvent: () {

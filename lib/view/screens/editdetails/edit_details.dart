@@ -75,6 +75,12 @@ class EditDetails extends StatelessWidget {
                       image: Image.file(
                         File(item.path),
                         fit: BoxFit.cover,
+                        errorBuilder: (context, _, __) {
+                          return Image.asset(
+                            "assets/images/placeholder.jpg",
+                            fit: BoxFit.cover,
+                          );
+                        },
                       ),
                     ),
                   for (var im in controller.galleryImages)
@@ -83,6 +89,12 @@ class EditDetails extends StatelessWidget {
                         image: Image.network(
                           im.imgPath,
                           fit: BoxFit.fill,
+                          errorBuilder: (context, _, __) {
+                            return Image.asset(
+                              "assets/images/placeholder.jpg",
+                              fit: BoxFit.cover,
+                            );
+                          },
                         ),
                         file: im.id),
                 ],
@@ -197,20 +209,19 @@ class EditDetails extends StatelessWidget {
               children: List.generate(
                   controller.userModel?.data.user?.passion?.length ?? 0,
                   (index) {
-                    return Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: Colors.grey)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "${controller.userModel?.data.user?.passion?[index].name}",
-                          ),
-                        ),
-                      );
-                  }),
+                return Container(
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: Colors.grey)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "${controller.userModel?.data.user?.passion?[index].name}",
+                    ),
+                  ),
+                );
+              }),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -275,8 +286,6 @@ class EditDetails extends StatelessWidget {
       ),
     );
   }
-
- 
 
   Text _subHeadGreyText(String title, {double? size}) {
     return Text(

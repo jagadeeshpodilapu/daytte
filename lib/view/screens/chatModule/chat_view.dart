@@ -76,7 +76,7 @@ class ChatView extends GetView<ChatController> {
                         print("is reveres ${controller.isTyping.value}");
                         return ListView.builder(
                           shrinkWrap: true,
-                          reverse: controller.isTyping.value,
+                         // reverse: controller.isTyping.value,
                           controller: controller.scrollController,
                           itemCount: controller.messages.length,
                           itemBuilder: (context, index) {

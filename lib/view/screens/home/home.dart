@@ -10,20 +10,20 @@ import '../findnearest/find_nearest.dart';
 import '../likedetails/like_details.dart';
 
 class Home extends StatelessWidget {
-
+  int index = Get.arguments ?? 0;
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: SafeArea(
         child: GetBuilder<HomeController>(
-          init: HomeController(),
+          init: HomeController(index),
           builder: (controller) => Scaffold(
             backgroundColor: Colors.grey[200],
             body: [
               FindTheNearest(),
               LikesPage(),
-             ChatList(),
+              ChatList(),
               EditDetails(),
             ].elementAt(controller.currentIndex).paddingOnly(bottom: 8),
             bottomNavigationBar: ClipRRect(

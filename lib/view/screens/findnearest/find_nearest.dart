@@ -12,7 +12,8 @@ class FindTheNearest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: appBarWidget(Constants.findNearest, color: Color(0xffF7F8FA),isBack: false),
+        appBar: appBarWidget(Constants.findNearest,
+            color: Color(0xffF7F8FA), isBack: false),
         backgroundColor: Color(0xffF7F8FA),
         body: GetBuilder<FindNearestController>(
           init: FindNearestController(),
@@ -43,7 +44,6 @@ class FindTheNearest extends StatelessWidget {
                                         controller.findNearestModel?.data.users;
                                     Get.toNamed(AppRoutes.DISCOVER, arguments: {
                                       "usersList": users,
-                                     
                                     });
                                   },
                                   child: Card(
@@ -64,6 +64,9 @@ class FindTheNearest extends StatelessWidget {
                                             child: Image.network(
                                               "${controller.findNearestModel?.data.users?[index].profileImg?.imgPath ?? Constants.emtptyImageUrl}",
                                               fit: BoxFit.cover,
+                                              errorBuilder: (context, _, __) {
+                                                return Image.asset("assets/images/placeholder.jpg",fit: BoxFit.cover,);
+                                              },
                                             ),
                                           ),
                                           Positioned(
@@ -134,8 +137,7 @@ class FindTheNearest extends StatelessWidget {
                                                             const EdgeInsets
                                                                     .only(
                                                                 left: 8.0),
-                                                        child: Text(
-                                                            "Banglore",
+                                                        child: Text("Banglore",
                                                             style: AppStyles
                                                                 .title3
                                                                 .copyWith(
