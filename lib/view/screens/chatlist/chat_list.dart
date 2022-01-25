@@ -8,10 +8,7 @@ import 'package:get/get.dart';
 import '../chatrequest/chat_request.dart';
 
 class ChatList extends GetView<ChatController> {
-  // List<ChatModel>? chatmodels;
-  // ChatModel? sourceChat;
 
-  // ChatList({this.chatmodels, this.sourceChat});
 
   @override
   Widget build(BuildContext context) {

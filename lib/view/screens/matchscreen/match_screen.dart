@@ -1,15 +1,37 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/consts/image_constants.dart';
+import 'package:daytte/controllers/base_controller/baseController.dart';
 import 'package:daytte/model/user_liked_model.dart';
 import 'package:daytte/routes/app_routes.dart';
+import 'package:daytte/services/base_service/base_client.dart';
+import 'package:daytte/services/base_service/create_chat.dart';
 
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
-class MatchScreen extends StatelessWidget {
+class MatchScreen extends StatefulWidget {
+  @override
+  State<MatchScreen> createState() => _MatchScreenState();
+}
+
+class _MatchScreenState extends State<MatchScreen> {
   UserLikedData matchedData = Get.arguments;
+  final storage = GetStorage();
+
+  Future createChat() {
+    var payload = {
+      "sender": "${storage.read('id')}",
+      "receiver": "${matchedData.likedTo?.id}",
+      "message": "",
+      "isRead": true,
+      "messageType": 1
+    };
+    final result = CreateChatService().chatCreate(payload);
+    return result;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +65,11 @@ class MatchScreen extends StatelessWidget {
                 ],
               ),
               addVerticalSpace(50),
-              _buttonWidget(context, Constants.chatNow,
-                  onTapEvent: () {
-                    
-                    return Get.toNamed(AppRoutes.HOMEVIEW, arguments: 2);
-                  }),
+              _buttonWidget(context, Constants.chatNow, onTapEvent: () async {
+                await createChat();
+
+                return Get.toNamed(AppRoutes.HOMEVIEW, arguments: 2);
+              }),
               addVerticalSpace(20),
               _buttonWidget(context, "Continue Swiping", color: Colors.black,
                   onTapEvent: () {
@@ -133,7 +155,6 @@ class MatchScreen extends StatelessWidget {
           left: -20,
           child: CircleAvatar(
             radius: 80,
-            
             backgroundColor: Colors.white,
             child: CircleAvatar(
                 radius: 76,

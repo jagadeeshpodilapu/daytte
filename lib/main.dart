@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget with WidgetsBindingObserver {
         scaffoldBackgroundColor: backgroundColor,
         fontFamily: 'Roboto',
       ),
-    //  home: ChatList(),
+      //  home: ChatList(),
       initialBinding: SplashBinding(),
       initialRoute: AppRoutes.SPLASHVIEW,
       defaultTransition: Transition.rightToLeft,
