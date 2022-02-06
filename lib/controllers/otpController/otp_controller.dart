@@ -48,7 +48,7 @@ class OtpController extends BaseController {
   @override
   void onInit() {
     super.onInit();
-    storage.write('page', "1");
+    storage.write('page', "0");
     mobileNumber = Get.arguments ?? "";
     getDeviceToken();
     startTimer();
@@ -92,6 +92,7 @@ class OtpController extends BaseController {
         if (location != PermissionStatus.granted) {
           Get.off(() => EnablePermsions());
         } else {
+          storage.write('page', "1");
           Get.offAndToNamed(AppRoutes.SIGNUPVIEW);
         }
       } else {

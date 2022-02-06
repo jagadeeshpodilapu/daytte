@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":emoji_picker_flutter" external.linked.project.path="C:/src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/emoji_picker_flutter-1.0.8/android" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="com.fintays.emoji_picker_flutter" external.system.module.version="1.0-SNAPSHOT" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="android-gradle" name="Android-Gradle">
+      <configuration>
+        <option name="GRADLE_PROJECT_PATH" value=":emoji_picker_flutter" />
+        <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" value="4.1.0" />
+        <option name="LAST_KNOWN_AGP_VERSION" value="4.1.0" />
+      </configuration>
+    </facet>
+    <facet type="kotlin-language" name="Kotlin">
+      <configuration version="4" platform="JVM 1.6" allPlatforms="JVM [1.6]" useProjectSettings="false">
+        <compilerSettings>
+          <option name="additionalArguments" value="-Xallow-no-source-files" />
+        </compilerSettings>
+        <compilerArguments>
+          <option name="destination" value="$MODULE_DIR$/../../../../build/emoji_picker_flutter/tmp/kotlin-classes/debug" />
+          <option name="classpath" value="$MODULE_DIR$/../../../../build/emoji_picker_flutter/intermediates/compile_r_class_jar/debug/R.jar;C:/Users/jagadeesh/.gradle/caches/transforms-2/files-2.1/351c2d1c5da97ad61af3d3f5d9fa9151/jetified-flutter_embedding_debug-1.0.0-890a5fca2e34db413be624fc83aeea8e61d42ce6.jar;C:/Users/jagadeesh/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common-java8/2.2.0/cd3478503da69b1a7e0319bd2d1389943db9b364/lifecycle-common-java8-2.2.0.jar;C:/Users/jagadeesh/.gradle/caches/transforms-2/files-2.1/8e99b0fd36bf43aaa90684df6d5ca326/fragment-1.1.0-api.jar;C:/Users/jagadeesh/.gradle/caches/transforms-2/files-2.1/ce49e61a28108acd2f991aece3383449/viewpager-1.0.0-api.jar;C:/Users/jagadeesh/.gradle/caches/transforms-2/files-2.1/22d8a2141e87a3abb84a645e591e6266/loader-1.0.0-api.jar;C:/Users/jagadeesh/.gradle/caches/transforms-2/files-2.1/82f4069e776a90db17c5ebf1b97fdfcb/jetified-activity-1.0.0-api.jar;C:/Users/jagadeesh/.gradle/caches/transforms-2/files-2.1/1feb97f7aa656e55651067f6e35c99cc/customview-1.0.0-api.jar;C:/Users/jagadeesh/.gradle/caches/transforms-2/files-2.1/daaf625a2b92b6e80ae57638d84feb76/core-1.6.0-api.jar;C:/Users/jagadeesh/.gradle/caches/transforms-2/files-2.1/94e8b0f652b64e5b5cee4b823d90c331/lifecycle-runtime-2.2.0-api.jar;C:/Users/jagadeesh/.gradle/caches/transforms-2/files-2.1/8cffb1b4c01ab5172d9dcac3611f6b01/jetified-savedstate-1.0.0-api.jar;C:/Users/jagadeesh/.gradle/caches/transforms-2/files-2.1/3a105fe3be14aa1cffe3a742d9d6f880/lifecycle-livedata-2.0.0-api.jar;C:/Users/jagadeesh/.gradle/caches/transforms-2/files-2.1/2607154ca9001e4590bdbac1c70478cd/lifecycle-livedata-core-2.0.0-api.jar;C:/Users/jagadeesh/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.2.0/4ef09a745007778eef83b92f8f23987a8ea59496/lifecycle-common-2.2.0.jar;C:/Users/jagadeesh/.gradle/caches/transforms-2/files-2.1/716d2b8f2ff1ad2a3072ba81f3895cd0/core-runtime-2.0.0-api.jar;C:/Users/jagadeesh/.gradle/caches/modules-2/files-2.1/androidx.arch.core/core-common/2.1.0/b3152fc64428c9354344bd89848ecddc09b6f07e/core-common-2.1.0.jar;C:/Users/jagadeesh/.gradle/caches/transforms-2/files-2.1/3681b83226924d7fe92768d03d37c73a/versionedparcelable-1.1.1-api.jar;C:/Users/jagadeesh/.gradle/caches/modules-2/files-2.1/androidx.collection/collection/1.1.0/1f27220b47669781457de0d600849a5de0e89909/collection-1.1.0.jar;C:/Users/jagadeesh/.gradle/caches/transforms-2/files-2.1/6021e8d3c7a25903d008396e92d60b5f/lifecycle-viewmodel-2.1.0-api.jar;C:/Users/jagadeesh/.gradle/caches/modules-2/files-2.1/androidx.annotation/annotation/1.2.0/57136ff68ee784c6e19db34ed4a175338fadfde1/annotation-1.2.0.jar;C:/Users/jagadeesh/.gradle/caches/transforms-2/files-2.1/b4067cb918e0540896bab5b9605b3b56/jetified-annotation-experimental-1.1.0-api.jar;C:/Users/jagadeesh/.gradle/caches/transforms-2/files-2.1/f1bd12ea6c46836718a2669dc57316fd/jetified-tracing-1.0.0-api.jar;C:/Users/jagadeesh/.gradle/caches/transforms-2/files-2.1/27d93f72ab459db7832f58879ef7eb4b/jetified-kotlin-stdlib-jdk7-1.3.72.jar;C:/Users/jagadeesh/.gradle/caches/transforms-2/files-2.1/b1cd346fe26ac46b0ed75cea0829706f/jetified-kotlin-stdlib-1.3.72.jar;C:/Users/jagadeesh/.gradle/caches/transforms-2/files-2.1/de20ea5c7294e6c6a761e6cd4c9b0e8e/jetified-kotlin-stdlib-common-1.3.72.jar;C:/Users/jagadeesh/.gradle/caches/transforms-2/files-2.1/02bfb652f0498df8a910c5f32e03b23d/jetified-annotations-13.0.jar;C:/Users/jagadeesh/AppData/Local/Android/sdk/platforms/android-31/android.jar" />
+          <option name="noStdlib" value="true" />
+          <option name="noReflect" value="true" />
+          <option name="moduleName" value="emoji_picker_flutter_debug" />
+          <option name="jvmTarget" value="1.6" />
+          <option name="languageVersion" value="1.3" />
+          <option name="apiVersion" value="1.3" />
+          <option name="pluginOptions">
+            <array />
+          </option>
+          <option name="pluginClasspaths">
+            <array />
+          </option>
+          <option name="errors">
+            <ArgumentParseErrors />
+          </option>
+        </compilerArguments>
+      </configuration>
+    </facet>
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="SELECTED_BUILD_VARIANT" value="debug" />
+        <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
+        <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugSources" />
+        <afterSyncTasks>
+          <task>generateDebugSources</task>
+        </afterSyncTasks>
+        <option name="ALLOW_USER_CONFIGURATION" value="false" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://C:/src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/emoji_picker_flutter-1.0.8/android/src/main/res;file://C:/src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/emoji_picker_flutter-1.0.8/android/src/debug/res;file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/generated/res/rs/debug;file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/generated/res/resValues/debug" />
+        <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="file://C:/src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/emoji_picker_flutter-1.0.8/android/src/androidTest/res;file://C:/src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/emoji_picker_flutter-1.0.8/android/src/androidTestDebug/res;file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/generated/res/rs/androidTest/debug;file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/generated/res/resValues/androidTest/debug" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
+        <option name="PROJECT_TYPE" value="1" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7">
+    <output url="file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/intermediates/javac/debug/classes" />
+    <output-test url="file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/intermediates/javac/debugUnitTest/classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/generated/aidl_source_output_dir/debug/out" />
+    <content url="file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/generated/aidl_source_output_dir/debugAndroidTest/out" />
+    <content url="file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/generated/ap_generated_sources/debug/out">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/generated/ap_generated_sources/debug/out" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/generated/ap_generated_sources/debug/out" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/generated/ap_generated_sources/debugAndroidTest/out" />
+    <content url="file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/generated/ap_generated_sources/debugUnitTest/out" />
+    <content url="file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/generated/renderscript_source_output_dir/debug/out" />
+    <content url="file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/generated/renderscript_source_output_dir/debugAndroidTest/out" />
+    <content url="file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/generated/res/resValues/androidTest/debug" />
+    <content url="file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/generated/res/resValues/debug">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/generated/res/resValues/debug" type="java-resource" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/generated/res/rs/androidTest/debug" />
+    <content url="file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/generated/res/rs/debug" />
+    <content url="file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/generated/source/buildConfig/androidTest/debug" />
+    <content url="file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/generated/source/buildConfig/debug">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../build/emoji_picker_flutter/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
+    </content>
+    <content url="file://C:/src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/emoji_picker_flutter-1.0.8/android">
+      <sourceFolder url="file://C:/src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/emoji_picker_flutter-1.0.8/android/src/main/kotlin" isTestSource="false" />
+      <excludeFolder url="file://C:/src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/emoji_picker_flutter-1.0.8/android/.gradle" />
+    </content>
+    <orderEntry type="jdk" jdkName="Android API 30 Platform" jdkType="Android SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Gradle: io.flutter:flutter_embedding_debug:1.0.0-890a5fca2e34db413be624fc83aeea8e61d42ce6" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common-java8:2.2.0" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common:2.2.0" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.arch.core:core-common:2.1.0" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.collection:collection:1.1.0" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.annotation:annotation:1.2.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.3.72" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.3.72" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.fragment:fragment:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.viewpager:viewpager:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.loader:loader:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.activity:activity:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.customview:customview:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.core:core:1.6.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-runtime:2.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.savedstate:savedstate:1.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata:2.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata-core:2.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.arch.core:core-runtime:2.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.versionedparcelable:versionedparcelable:1.1.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-viewmodel:2.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.annotation:annotation-experimental:1.1.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: androidx.tracing:tracing:1.0.0@aar" level="project" />
+  </component>
+</module>

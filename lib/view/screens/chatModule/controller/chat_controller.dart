@@ -125,9 +125,7 @@ class ChatController extends BaseController {
     update();
   }
 
-  isListRevere() {
-    isTyping.value = false;
-  }
+ 
 
   Future fetchChatUsers() async {
     final response = await BaseClient()

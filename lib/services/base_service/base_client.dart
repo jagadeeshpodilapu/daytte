@@ -95,7 +95,7 @@ class BaseClient {
     } on TimeoutException {
       throw ApiNotRespondingException(
           'API not responded in time', uri.toString());
-    } 
+    }
   }
 
   dynamic _processResponse(response) {
@@ -114,7 +114,7 @@ class BaseClient {
       case 500:
       default:
         throw FetchDataException(
-            'Error occured with code : ${response.statusCode}',
+            'Error occurred with code : ${response.statusCode}',
             response.request!.url.toString());
     }
   }

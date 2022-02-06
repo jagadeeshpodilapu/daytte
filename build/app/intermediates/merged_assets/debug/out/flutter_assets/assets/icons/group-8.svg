@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35" height="37" viewBox="0 0 35 37">
+    <defs>
+        <linearGradient id="dimklm5tca" x1="0%" x2="130.394%" y1="145.854%" y2="-15.547%">
+            <stop offset="0%" stop-color="#3C0FC7"/>
+            <stop offset="100%" stop-color="#C86DD7"/>
+        </linearGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g>
+            <g transform="translate(-7 -739) translate(7 739)">
+                <ellipse cx="17.5" cy="19.5" fill="url(#dimklm5tca)" rx="17.5" ry="17"/>
+                <text fill="#FFF" font-family="Roboto-Regular, Roboto" font-size="27">
+                    <tspan x="10.347" y="28">+</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

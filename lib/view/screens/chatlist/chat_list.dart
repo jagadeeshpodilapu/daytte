@@ -1,15 +1,13 @@
-import 'package:daytte/consts/constants.dart';
-import 'package:daytte/view/screens/chatModule/chat_view.dart';
-import 'package:daytte/view/screens/chatModule/controller/chat_controller.dart';
-import 'package:daytte/view/widgets/common_widgets.dart';
+import '../../../consts/constants.dart';
+import '../chatModule/chat_view.dart';
+import '../chatModule/controller/chat_controller.dart';
+import '../../widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../chatrequest/chat_request.dart';
 
 class ChatList extends GetView<ChatController> {
-
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
@@ -206,18 +204,14 @@ class ChatList extends GetView<ChatController> {
       child: Column(
         children: [
           Text(text, style: theme.headline6?.copyWith(fontSize: 16)),
-          SizedBox(
-            height: 5,
-          ),
+          SizedBox(height: 5),
           boolAll
               ? Container(
                   height: 4,
                   width: width,
                   color: Color(0xFF3c0fc7),
                 )
-              : SizedBox(
-                  height: 5,
-                )
+              : SizedBox(height: 5)
         ],
       ),
     );

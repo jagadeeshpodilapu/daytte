@@ -17,7 +17,7 @@ class ChatView extends GetView<ChatController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.activeRoom = user?.chatUser?.id??"";
+    controller.activeRoom = user?.chatUser?.id ?? "";
     controller.isConnect == false ? controller.connect() : null;
 
     return Scaffold(
@@ -76,7 +76,7 @@ class ChatView extends GetView<ChatController> {
                         print("is reveres ${controller.isTyping.value}");
                         return ListView.builder(
                           shrinkWrap: true,
-                         // reverse: controller.isTyping.value,
+                          // reverse: controller.isTyping.value,
                           controller: controller.scrollController,
                           itemCount: controller.messages.length,
                           itemBuilder: (context, index) {
@@ -210,9 +210,6 @@ class ChatView extends GetView<ChatController> {
                                                         controller
                                                             .textController
                                                             .clear();
-
-                                                        controller
-                                                            .isListRevere();
                                                       }
                                                     },
                                                   ),

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">503343013262-82jhhnnmgsapomvj33ulei2njngvl6lg.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">503343013262</string>
+    <string name="google_api_key" translatable="false">AIzaSyCKmNc0N1gkeXnHYXOUs9NGEjyZSLRDal0</string>
+    <string name="google_app_id" translatable="false">1:503343013262:android:3126f97e751d60986658df</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCKmNc0N1gkeXnHYXOUs9NGEjyZSLRDal0</string>
+    <string name="google_storage_bucket" translatable="false">wooly-619e2.appspot.com</string>
+    <string name="project_id" translatable="false">wooly-619e2</string>
+</resources>
