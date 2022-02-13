@@ -20,7 +20,6 @@ class BaseController extends GetxController {
   }
 
   void handleError(error) {
-    print("service handle error $error  ${error.message}");
     hideLoading();
     if (error is BadRequestException) {
       var message = error.message;

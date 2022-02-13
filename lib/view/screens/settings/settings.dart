@@ -223,17 +223,26 @@ class Settings extends StatelessWidget {
             "${controller.rangeValues.value.start.toInt()}-${controller.rangeValues.value.end.toInt()}",
             style: _textStyle,
           ),
-          subtitle: RangeSlider(
-            values: controller.rangeValues.value,
-            min: 18.0,
-            max: 50.0,
-            onChanged: (values) => controller.updateAgeRange(values),
-            inactiveColor: Colors.grey[400],
-            activeColor: Color(0xFF7004E3),
+          subtitle: SliderTheme(
+            data: _sliderCircle(),
+            child: RangeSlider(
+              values: controller.rangeValues.value,
+              min: 18.0,
+              max: 50.0,
+              onChanged: (values) => controller.updateAgeRange(values),
+              inactiveColor: Colors.grey[400],
+              activeColor: Color(0xFF7004E3),
+            ),
           ),
         ),
       ),
     );
+  }
+
+  SliderThemeData _sliderCircle() {
+    return SliderThemeData(
+        trackHeight: 2,
+        rangeThumbShape: RoundRangeSliderThumbShape(enabledThumbRadius: 8));
   }
 
   Widget _genderSelectWidget(TextTheme theme, SettingsController controller) {
@@ -274,14 +283,17 @@ class Settings extends StatelessWidget {
             "${controller.maxDistance.value.toInt()} Km",
             style: TextStyle(fontSize: 16),
           ),
-          subtitle: Slider(
-            value: controller.maxDistance.value,
-            onChanged: (value) => controller.changeMaxDistance(value),
-            min: 0.0,
-            max: 100,
-            thumbColor: Color(0xFF7004E3),
-            inactiveColor: Colors.grey[400],
-            activeColor: Color(0xFF7004E3),
+          subtitle: SliderTheme(
+            data: _sliderCircle(),
+            child: Slider(
+              value: controller.maxDistance.value,
+              onChanged: (value) => controller.changeMaxDistance(value),
+              min: 0.0,
+              max: 100,
+              thumbColor: Color(0xFF7004E3),
+              inactiveColor: Colors.grey[400],
+              activeColor: Color(0xFF7004E3),
+            ),
           ),
         ),
       ),
@@ -298,8 +310,8 @@ class Settings extends StatelessWidget {
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              _titleBoldText(
-                  theme, "${controller.userInfoModel?.data.user?.location ??"Bangalore"}"),
+              _titleBoldText(theme,
+                  "${controller.userInfoModel?.data.user?.location ?? "Bangalore"}"),
               addHorizontalSpace(8),
               _backArrow()
             ],

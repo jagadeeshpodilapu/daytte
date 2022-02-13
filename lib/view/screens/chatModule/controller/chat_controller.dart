@@ -43,7 +43,7 @@ class ChatController extends BaseController {
 
   @override
   void onClose() {
-    socket.disconnect();
+    //socket.disconnect();
     socket.clearListeners();
     socket.close();
     isConnect = false;

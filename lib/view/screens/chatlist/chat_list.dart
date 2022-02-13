@@ -1,10 +1,10 @@
-import '../../../consts/constants.dart';
-import '../chatModule/chat_view.dart';
-import '../chatModule/controller/chat_controller.dart';
-import '../../widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../consts/constants.dart';
+import '../../widgets/common_widgets.dart';
+import '../chatModule/chat_view.dart';
+import '../chatModule/controller/chat_controller.dart';
 import '../chatrequest/chat_request.dart';
 
 class ChatList extends GetView<ChatController> {
@@ -14,19 +14,22 @@ class ChatList extends GetView<ChatController> {
     return Scaffold(
       backgroundColor: Color(0xffF7F8FA),
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(120.0),
+        preferredSize: const Size.fromHeight(80.0),
         child: SafeArea(
           child: GetBuilder<ChatController>(
             init: ChatController(),
             builder: (controller) => Column(
               children: [
-                Padding(
+                SizedBox(
+                  height: 20,
+                ),
+                /* Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: chatRequestHeaders(controller, theme),
-                ),
+                ), */
                 messageHeaderWithActionsWidget(theme)
               ],
-            ),
+                ),
           ),
         ),
       ),
@@ -71,7 +74,7 @@ class ChatList extends GetView<ChatController> {
     return ListTile(
       onTap: () {
         Get.to(
-          () => ChatView(user: controller.chatmodel?.data.users![index]),
+              () => ChatView(user: controller.chatmodel?.data.users![index]),
         );
         controller.fetchChatAllDetails(
             "", controller.chatmodel?.data.users![index].chatUser?.id ?? "");
@@ -125,8 +128,7 @@ class ChatList extends GetView<ChatController> {
             fontSize: 14.0));
   }
 
-  Text userLastMessageWidget(
-      ChatController controller, int index, TextTheme theme) {
+  Text userLastMessageWidget(ChatController controller, int index, TextTheme theme) {
     return Text(
       controller.chatmodel?.data.users?[index].chatUser?.msg?.message ?? "",
       style: theme.headline6?.copyWith(color: Color(0xff9A9A9A), fontSize: 14),
@@ -197,8 +199,7 @@ class ChatList extends GetView<ChatController> {
     );
   }
 
-  Widget chatHeadersText(
-      String text, double width, bool boolAll, TextTheme theme) {
+  Widget chatHeadersText(String text, double width, bool boolAll, TextTheme theme) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -207,10 +208,10 @@ class ChatList extends GetView<ChatController> {
           SizedBox(height: 5),
           boolAll
               ? Container(
-                  height: 4,
-                  width: width,
-                  color: Color(0xFF3c0fc7),
-                )
+            height: 4,
+            width: width,
+            color: Color(0xFF3c0fc7),
+          )
               : SizedBox(height: 5)
         ],
       ),
