@@ -4,6 +4,7 @@ import 'package:daytte/themes/app_styles.dart';
 import 'package:daytte/themes/color_styles.dart';
 import 'package:daytte/utils/common_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChatRequest extends StatelessWidget {
  final int totalCount = 10;
@@ -15,18 +16,18 @@ class ChatRequest extends StatelessWidget {
       body: Card(
         child: ListView.separated(
           itemBuilder: (context, index) => Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding:  EdgeInsets.all(16.0.w),
             child: ListTile(
               // minVerticalPadding: 5,
               contentPadding: EdgeInsets.zero,
 
               leading: CircleAvatar(
-                radius: 30.0,
+                radius: 30.0.r,
                 backgroundImage: AssetImage(ImageConstants.girl),
                 backgroundColor: Colors.transparent,
               ),
               title: Padding(
-                padding: const EdgeInsets.only(left: 15.0),
+                padding:  EdgeInsets.only(left: 15.0.w),
                 child: Text(
                   "Seema khan",
                   style: AppStyles.title.copyWith(fontWeight: FontWeight.w400)
@@ -35,7 +36,7 @@ class ChatRequest extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   CircleAvatar(
-                      radius: 18,
+                      radius: 18.r,
                       backgroundColor: Color(0xff08E300),
                       child: Icon(
                         Icons.done,
@@ -43,7 +44,7 @@ class ChatRequest extends StatelessWidget {
                       )),
                   SizedBox(width: 15),
                   CircleAvatar(
-                    radius: 18,
+                    radius: 18.r,
                     backgroundColor: Color(0xffFF5A5A),
                     child: Icon(
                       Icons.close,
@@ -59,7 +60,7 @@ class ChatRequest extends StatelessWidget {
             return Container(
               color: secondaryTextColor.withOpacity(0.5),
               height: 2,
-              margin: EdgeInsets.symmetric(horizontal: 16),
+              margin: EdgeInsets.symmetric(horizontal: 16.w),
             );
           },
         ),
@@ -76,12 +77,12 @@ class ChatRequest extends StatelessWidget {
             icon: Icon(
               Icons.arrow_back_ios,
               color: Color(0xff363636),
-              size: 25,
+              size: 25.w,
             )),
         title: Text(
           title,
           style: AppStyles.title
-              .copyWith(fontWeight: FontWeight.w400, fontSize: 18),
+              .copyWith(fontWeight: FontWeight.w400, fontSize: 18.sp),
         ),
         centerTitle: true,
         actions: [
@@ -90,7 +91,7 @@ class ChatRequest extends StatelessWidget {
             child: Icon(
               Icons.more_vert,
               color: Colors.black,
-              size: 28,
+              size: 28.w,
             ),
           )
         ]);

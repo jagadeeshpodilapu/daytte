@@ -1,5 +1,6 @@
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -25,11 +26,11 @@ class ChatScreen extends StatelessWidget {
           GestureDetector(
             onTap: () => Get.to(() => AudioVideoCall(isVideoCall: false)),
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding:  EdgeInsets.all(8.0.w),
               child: SvgPicture.asset(
                 ImageConstants.ic_call,
-                height: 36,
-                width: 36,
+                height: 36.h,
+                width: 36.w,
               ),
             ),
           ),
@@ -40,17 +41,17 @@ class ChatScreen extends StatelessWidget {
               ),
             ),
             child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding:  EdgeInsets.all(8.0.w),
                 child: SvgPicture.asset(ImageConstants.ic_video,
-                    width: 37, height: 37)),
+                    width: 37.w, height: 37.h)),
           ),
-          addHorizontalSpace(10)
+          addHorizontalSpace(10.w)
         ],
       ),
       body: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding:  EdgeInsets.all(8.0.w),
             child: Column(
               children: [
                 Center(
@@ -59,7 +60,7 @@ class ChatScreen extends StatelessWidget {
                       style: TextStyle(color: Colors.black26),
                     )),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:  EdgeInsets.all(8.0.w),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -70,24 +71,24 @@ class ChatScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w400, fontSize: 12)),
                       ), */
                       Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
+                        padding:  EdgeInsets.only(left: 8.0.w),
                         child: Container(
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
-                                  bottomRight: Radius.circular(10),
-                                  bottomLeft: Radius.circular(10),
-                                  topRight: Radius.circular(10)),
+                                  bottomRight: Radius.circular(10.r),
+                                  bottomLeft: Radius.circular(10.r),
+                                  topRight: Radius.circular(10.r)),
                               boxShadow: [
                                 BoxShadow(color: Colors.black26, blurRadius: 2)
                               ]),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 14.0, horizontal: 12),
+                            padding:  EdgeInsets.symmetric(
+                                vertical: 14.0.h, horizontal: 12.w),
                             child: Text(
                               "Hello, I want to request",
                               style: TextStyle(
-                                  fontWeight: FontWeight.w400, fontSize: 18),
+                                  fontWeight: FontWeight.w400, fontSize: 18.sp),
                             ),
                           ),
                         ),
@@ -96,23 +97,23 @@ class ChatScreen extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:  EdgeInsets.all(8.0.w),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
+                        padding:  EdgeInsets.only(right: 8.0.w),
                         child: Container(
                           decoration: _boxDecoration(),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 14.0, horizontal: 12),
+                            padding:  EdgeInsets.symmetric(
+                                vertical: 14.0.h, horizontal: 12.w),
                             child: Text(
                               "Hello, I want to request",
                               style: TextStyle(
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 18,
+                                  fontSize: 18.sp,
                                   color: Colors.white),
                             ),
                           ),
@@ -128,7 +129,7 @@ class ChatScreen extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:  EdgeInsets.all(8.0.w),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -139,24 +140,24 @@ class ChatScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w400, fontSize: 12)),
                       ), */
                       Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
+                        padding:  EdgeInsets.only(left: 8.0.w),
                         child: Container(
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.only(
-                                  bottomRight: Radius.circular(10),
-                                  bottomLeft: Radius.circular(10),
-                                  topRight: Radius.circular(10)),
+                                  bottomRight: Radius.circular(10.r),
+                                  bottomLeft: Radius.circular(10.r),
+                                  topRight: Radius.circular(10.r)),
                               boxShadow: [
                                 BoxShadow(color: Colors.black26, blurRadius: 2)
                               ]),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 14.0, horizontal: 12),
+                            padding:  EdgeInsets.symmetric(
+                                vertical: 14.0.h, horizontal: 12.w),
                             child: Text(
                               "Hello, I want to request",
                               style: TextStyle(
-                                  fontWeight: FontWeight.w400, fontSize: 18),
+                                  fontWeight: FontWeight.w400, fontSize: 18.sp),
                             ),
                           ),
                         ),
@@ -165,23 +166,23 @@ class ChatScreen extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:  EdgeInsets.all(8.0.w),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
+                        padding:  EdgeInsets.only(right: 8.0.w),
                         child: Container(
                           decoration: _boxDecoration(),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 14.0, horizontal: 12),
+                            padding:  EdgeInsets.symmetric(
+                                vertical: 14.0.h, horizontal: 12.w),
                             child: Text(
                               "Hello, I want to request",
                               style: TextStyle(
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 18,
+                                  fontSize: 18.sp,
                                   color: Colors.white),
                             ),
                           ),
@@ -197,7 +198,7 @@ class ChatScreen extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:  EdgeInsets.all(8.0.w),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

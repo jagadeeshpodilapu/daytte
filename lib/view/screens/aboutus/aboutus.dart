@@ -6,6 +6,7 @@ import 'package:daytte/controllers/aboutus_controller/about_us_controller.dart';
 import 'package:daytte/themes/app_styles.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../widgets/button_widget.dart';
@@ -24,9 +25,9 @@ class AboutUs extends StatelessWidget {
           children: [
             addPhotoHeadingWidget,
             Padding(
-              padding: EdgeInsets.only(left: 24.0),
+              padding: EdgeInsets.only(left: 24.0.w),
               child: Wrap(
-                spacing: 10,
+                spacing: 10.w,
                 children: [
                   InkWell(
                       onTap: () {
@@ -35,18 +36,18 @@ class AboutUs extends StatelessWidget {
                       child: DottedBorder(
                         dashPattern: [5, 6],
                         child: Container(
-                          height: 95,
-                          width: 95,
+                          height: 95.h,
+                          width: 95.w,
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(10)),
+                              borderRadius: BorderRadius.circular(10.r)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(ImageConstants.ic_photo,
-                                  width: 45, height: 30),
+                                  width: 45.w, height: 30.h),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding:  EdgeInsets.all(8.0.w),
                                 child: Text(Constants.addPhoto,
                                     style: AppStyles.title2.copyWith(
                                         fontWeight: FontWeight.w400,
@@ -77,7 +78,7 @@ class AboutUs extends StatelessWidget {
                 ],
               ),
             ),
-            addVerticalSpace(10),
+            addVerticalSpace(10.h),
             addMediaButtonWidget(context, controller),
           ],
         ),
@@ -92,13 +93,13 @@ class AboutUs extends StatelessWidget {
     String? file,
   }) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 15.0),
+      padding:  EdgeInsets.only(bottom: 15.0.h),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(5.0),
+        borderRadius: BorderRadius.circular(5.0.r),
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            Container(height: 100, width: 100, child: image),
+            Container(height: 100.h, width: 100.w, child: image),
             Positioned(
               right: -5,
               top: -5,
@@ -125,7 +126,7 @@ class AboutUs extends StatelessWidget {
     AboutUsController controller,
   ) {
     return Padding(
-      padding: const EdgeInsets.all(14.0),
+      padding:  EdgeInsets.all(14.0.w),
       child: RaisedGradientButton(
           title: Constants.addMedia,
           onPressed: () async {
@@ -148,13 +149,13 @@ class AboutUs extends StatelessWidget {
     return Card(
       elevation: 2,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding:  EdgeInsets.all(8.0.w),
         child: TextFormField(
           controller: controller.shortDisc,
           decoration: InputDecoration(
             hintText: Constants.aboutYou,
             border: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey, width: 1),
+              borderSide: BorderSide(color: Colors.grey, width: 1.w),
             ),
           ),
           maxLines: 10,
@@ -167,13 +168,13 @@ class AboutUs extends StatelessWidget {
     return Column(
       children: [
         Padding(
-            padding: EdgeInsets.only(top: 8.0),
+            padding: EdgeInsets.only(top: 8.0.w),
             child: Text(Constants.addPhoto,
                 style: AppStyles.heading3.copyWith(
                   fontWeight: FontWeight.w500,
                 ))),
         Padding(
-          padding: EdgeInsets.only(top: 5, bottom: 25),
+          padding: EdgeInsets.only(top: 5.h, bottom: 25.h),
           child: Text(
             Constants.select2Pics,
             style: AppStyles.title3.copyWith(

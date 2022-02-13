@@ -4,9 +4,9 @@ import 'package:daytte/services/internet_connect_checker.dart';
 import 'package:daytte/themes/color_styles.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
 import 'routes/app_pages.dart';
 
 void main() async {
@@ -24,19 +24,22 @@ class MyApp extends StatelessWidget with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Daytte',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: backgroundColor,
-        fontFamily: 'Roboto',
+    return ScreenUtilInit(
+      designSize: Size(375, 720),
+      builder: () => GetMaterialApp(
+        title: 'Daytte',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          scaffoldBackgroundColor: backgroundColor,
+          fontFamily: 'Roboto',
+        ),
+        //  home: ChatList(),
+        initialBinding: SplashBinding(),
+        initialRoute: AppRoutes.SPLASHVIEW,
+        defaultTransition: Transition.rightToLeft,
+        getPages: AppPages.routes,
       ),
-      //  home: ChatList(),
-      initialBinding: SplashBinding(),
-      initialRoute: AppRoutes.SPLASHVIEW,
-      defaultTransition: Transition.rightToLeft,
-      getPages: AppPages.routes,
     );
   }
 }

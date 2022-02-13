@@ -1,6 +1,7 @@
 import 'package:daytte/themes/app_styles.dart';
 import 'package:daytte/themes/color_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../utils/common_functions.dart';
 
@@ -26,7 +27,7 @@ LinearGradient get gradientColors => LinearGradient(
 } */
 
 Widget addHorizontalSpace(double width) {
-  return SizedBox(width: width);
+  return SizedBox(width: width.w);
 }
 
 Widget addVerticalSpace(double height) {

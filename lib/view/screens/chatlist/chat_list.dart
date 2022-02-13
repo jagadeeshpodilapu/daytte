@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../consts/constants.dart';
@@ -14,14 +15,14 @@ class ChatList extends GetView<ChatController> {
     return Scaffold(
       backgroundColor: Color(0xffF7F8FA),
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(80.0),
+        preferredSize:  Size.fromHeight(80.0.h),
         child: SafeArea(
           child: GetBuilder<ChatController>(
             init: ChatController(),
             builder: (controller) => Column(
               children: [
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
                 /* Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -45,9 +46,9 @@ class ChatList extends GetView<ChatController> {
               },
               separatorBuilder: (context, index) {
                 return Container(
-                  height: 2,
+                  height: 2.h,
                   color: Colors.grey[300],
-                  margin: EdgeInsets.symmetric(horizontal: 16),
+                  margin: EdgeInsets.symmetric(horizontal: 16.w),
                 );
               },
             );
@@ -63,7 +64,7 @@ class ChatList extends GetView<ChatController> {
         BoxShadow(
             color: const Color(0x0d000000),
             offset: Offset(0, 0),
-            blurRadius: 10,
+            blurRadius: 10.r,
             spreadRadius: 0)
       ],
       color: const Color(0xffffffff),
@@ -89,7 +90,7 @@ class ChatList extends GetView<ChatController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 userNameWidget(controller, index, theme),
-                addVerticalSpace(5),
+                addVerticalSpace(5.h),
                 userLastMessageWidget(controller, index, theme),
               ],
             ),
@@ -97,7 +98,7 @@ class ChatList extends GetView<ChatController> {
             Column(
               children: [
                 timeLeftWidget(index),
-                SizedBox(height: 5),
+                SizedBox(height: 5.h),
                 messageCountWidget()
               ],
             )
@@ -109,7 +110,7 @@ class ChatList extends GetView<ChatController> {
 
   Widget messageCountWidget() {
     return CircleAvatar(
-      radius: 10,
+      radius: 10.r,
       backgroundColor: Color(0xff7004E3),
       child: Text(
         '4',
@@ -120,31 +121,31 @@ class ChatList extends GetView<ChatController> {
 
   Widget timeLeftWidget(int index) {
     return Text('23 min',
-        style: const TextStyle(
-            color: const Color(0xff9A9A9A),
+        style:  TextStyle(
+            color:  Color(0xff9A9A9A),
             fontWeight: FontWeight.w500,
             fontFamily: "SFProDisplay",
             fontStyle: FontStyle.normal,
-            fontSize: 14.0));
+            fontSize: 14.0.sp));
   }
 
   Text userLastMessageWidget(ChatController controller, int index, TextTheme theme) {
     return Text(
       controller.chatmodel?.data.users?[index].chatUser?.msg?.message ?? "",
-      style: theme.headline6?.copyWith(color: Color(0xff9A9A9A), fontSize: 14),
+      style: theme.headline6?.copyWith(color: Color(0xff9A9A9A), fontSize: 14.sp),
     );
   }
 
   Text userNameWidget(ChatController controller, int index, TextTheme theme) {
     return Text(
       controller.chatmodel?.data.users?[index].chatUser?.firstname ?? "",
-      style: theme.headline6?.copyWith(fontSize: 18),
+      style: theme.headline6?.copyWith(fontSize: 18.sp),
     );
   }
 
   CircleAvatar userCircleAvatarWidget(ChatController controller, int index) {
     return CircleAvatar(
-      radius: 35,
+      radius: 35.r,
       backgroundImage: NetworkImage(
           controller.chatmodel?.data.users?[index].chatUser?.profileImg ?? ""),
       child: Align(
@@ -162,14 +163,14 @@ class ChatList extends GetView<ChatController> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 12.0),
+            padding:  EdgeInsets.only(left: 12.0.w),
             child: Text(Constants.message,
-                style: theme.headline6?.copyWith(fontSize: 22)),
+                style: theme.headline6?.copyWith(fontSize: 22.sp)),
           ),
           Icon(
             Icons.more_vert,
             color: Colors.black,
-            size: 28,
+            size: 28.w,
           )
         ],
       ),

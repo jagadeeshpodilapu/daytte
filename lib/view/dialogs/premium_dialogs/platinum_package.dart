@@ -1,5 +1,6 @@
 import 'package:daytte/themes/color_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -18,11 +19,11 @@ class CheckTest extends StatelessWidget {
         onPressed: () => Get.dialog(
           Dialog(
             child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(20.r),
                 child: PremiumPackages()),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-            insetPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+            insetPadding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 50.h),
           ),
         ),
         title: 'test',
@@ -41,7 +42,7 @@ class PremiumPackages extends StatelessWidget {
           clipBehavior: Clip.none,
           children: [
             Container(
-              height: 260,
+              height: 260.h,
               width: Get.width,
               child: PageView.builder(
                 controller: _controller.pageController,
@@ -65,26 +66,26 @@ class PremiumPackages extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 8, bottom: 4),
+                          padding:  EdgeInsets.only(top: 8.h, bottom: 4.h),
                           child: Text(
                             _controller.onboardingPages[index].title,
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 22,
+                                fontSize: 22.sp,
                                 fontWeight: FontWeight.w500),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(4.0),
+                          padding:  EdgeInsets.symmetric(vertical: 4.h,horizontal: 4.w),
                           child: SvgPicture.asset(
                               _controller.onboardingPages[index].imageAsset),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                          padding:  EdgeInsets.symmetric(horizontal: 30.w),
                           child: Text(
                             _controller.onboardingPages[index].description,
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 18, color: Colors.white),
+                            style: TextStyle(fontSize: 18.sp, color: Colors.white),
                           ),
                         ),
                       ],
@@ -94,18 +95,18 @@ class PremiumPackages extends StatelessWidget {
               ),
             ),
             Positioned(
-              left: 10,
-              top: 210,
-              right: 10,
+              left: 10.w,
+              top: 210.h,
+              right: 10.w,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(
                   _controller.onboardingPages.length,
                   (index) => Obx(() {
                     return Container(
-                      margin: const EdgeInsets.all(4),
-                      width: 16,
-                      height: 16,
+                      margin:  EdgeInsets.all(4.w),
+                      width: 16.w,
+                      height: 16.h,
                       decoration: BoxDecoration(
                           color: _controller.selectedPageIndex.value == index
                               ? Colors.white
@@ -120,7 +121,7 @@ class PremiumPackages extends StatelessWidget {
             Positioned(
               left: 0,
               right: 0,
-              top: 240,
+              top: 240.h,
               child: Container(
                 color: backgroundColor,
                 child: Row(
@@ -145,7 +146,7 @@ class PremiumPackages extends StatelessWidget {
                                         index
                                     ? 130
                                     : 115,
-                                width: Get.width * 0.25,
+                                width: Get.width * 0.25.w,
                                 
                                 decoration:BoxDecoration(
                                   border: Border.all(color: _controller.selectedPremiumType.value ==
@@ -156,20 +157,20 @@ class PremiumPackages extends StatelessWidget {
                                     Text(
                                       _controller.premiums[index].months,
                                       textAlign: TextAlign.center,
-                                      style: offerTextStyle(index, 50).copyWith(fontWeight: FontWeight.w500),
+                                      style: offerTextStyle(index, 50.sp).copyWith(fontWeight: FontWeight.w500),
                                     ),
                                     Text(
                                       _controller.premiums[index].offerType,
                                       textAlign: TextAlign.center,
-                                      style: offerTextStyle(index, 16),
+                                      style: offerTextStyle(index, 16.sp),
                                     ),
                                     SizedBox(
-                                      height: 5,
+                                      height: 5.h,
                                     ),
                                     Text(
                                         _controller
                                             .premiums[index].purchaseAmount,
-                                        style: offerTextStyle(index, 20)
+                                        style: offerTextStyle(index, 20.sp)
                                             .copyWith(
                                                 fontWeight: FontWeight.bold))
                                   ],
@@ -187,9 +188,9 @@ class PremiumPackages extends StatelessWidget {
             Align(
               alignment: Alignment(0, 0.67).add(Alignment.center),
               child: Container(
-                height: 50,
+                height: 50.h,
                 child: RaisedGradientButton(
-                  width: Get.width*0.8,
+                  width: Get.width*0.8.w,
                   onPressed: () => Get.back(),
                   title: "Continue",
                 ),

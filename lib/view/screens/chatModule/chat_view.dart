@@ -7,6 +7,7 @@ import 'package:daytte/view/screens/chatModule/widgets/replay_card.dart';
 import 'package:daytte/view/screens/video_Audio/video_audio.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -42,11 +43,11 @@ class ChatView extends GetView<ChatController> {
                 GestureDetector(
                   onTap: () => Get.to(() => AudioVideoCall(isVideoCall: false)),
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding:  EdgeInsets.all(8.0.w),
                     child: SvgPicture.asset(
                       ImageConstants.ic_call,
-                      height: 36,
-                      width: 36,
+                      height: 36.h,
+                      width: 36.w,
                     ),
                   ),
                 ),
@@ -57,9 +58,9 @@ class ChatView extends GetView<ChatController> {
                     ),
                   ),
                   child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding:  EdgeInsets.all(8.0.w),
                       child: SvgPicture.asset(ImageConstants.ic_video,
-                          width: 37, height: 37)),
+                          width: 37.w, height: 37.h)),
                 ),
                 addHorizontalSpace(10)
               ],
@@ -70,7 +71,7 @@ class ChatView extends GetView<ChatController> {
               child: WillPopScope(
                 child: Column(
                   children: [
-                    addVerticalSpace(10),
+                    addVerticalSpace(10.h),
                     Expanded(
                       child: Obx(() {
                         print("is reveres ${controller.isTyping.value}");
@@ -84,7 +85,7 @@ class ChatView extends GetView<ChatController> {
                                 "message is came ${controller.messages.length}");
                             if (index == controller.messages.length) {
                               return Container(
-                                height: 70,
+                                height: 70.h,
                               );
                             }
 
@@ -106,7 +107,7 @@ class ChatView extends GetView<ChatController> {
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: Container(
-                        height: 70,
+                        height: 70.h,
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -117,9 +118,9 @@ class ChatView extends GetView<ChatController> {
                                     width: MediaQuery.of(context).size.width,
                                     child: Card(
                                       margin: EdgeInsets.only(
-                                          left: 10, right: 10, bottom: 5),
+                                          left: 10.w, right: 10.w, bottom: 5.h),
                                       shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(25),
+                                        borderRadius: BorderRadius.circular(25.r),
                                       ),
                                       child: Obx(() => TextFormField(
                                             controller:
@@ -165,8 +166,8 @@ class ChatView extends GetView<ChatController> {
                                                   ),
                                                   IconButton(
                                                     icon: Container(
-                                                      height: 35,
-                                                      width: 35,
+                                                      height: 35.h,
+                                                      width: 35.w,
                                                       decoration: BoxDecoration(
                                                           color: Colors.grey,
                                                           shape:
@@ -215,7 +216,7 @@ class ChatView extends GetView<ChatController> {
                                                   ),
                                                 ],
                                               ),
-                                              contentPadding: EdgeInsets.all(5),
+                                              contentPadding: EdgeInsets.all(5.w),
                                             ),
                                           )),
                                     ),
