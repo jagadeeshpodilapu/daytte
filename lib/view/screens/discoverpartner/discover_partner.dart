@@ -1,5 +1,6 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:story_view/controller/story_controller.dart';
@@ -103,10 +104,10 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
                     children: [
                       Container(
                         child: Container(
-                          height: Get.height * 0.75,
+                          height: (Get.height * 0.75).h,
                           width: Get.width,
                           margin:
-                              EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                              EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
                           child: Stack(
                             children: [
                               controller.isLoading.value
@@ -115,24 +116,24 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
                                       ? Stack(
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 8, top: 8, right: 8.0),
+                                              padding:  EdgeInsets.only(
+                                                  left: 8.w, top: 8.h, right: 8.0.w),
                                               child: Card(
                                                 shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            12)),
+                                                            12.r)),
                                                 child: Center(),
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 15.0),
+                                              padding:  EdgeInsets.only(
+                                                  bottom: 15.0.h),
                                               child: Card(
                                                 shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            12)),
+                                                            12.r)),
                                                 elevation: 4,
                                                 child: SwipeCards(
                                                   matchEngine: _matchEngine,
@@ -187,16 +188,16 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
           child: Column(
             children: [
               Container(
-                height: Get.height * 0.47,
+                height: (Get.height * 0.47).h,
                 child: Stack(
                   children: [
                     Container(
-                      height: Get.height * 0.45,
+                      height: (Get.height * 0.45).h,
                       width: Get.width,
                       alignment: Alignment.center,
                       color: Colors.transparent,
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15.0),
+                        borderRadius: BorderRadius.circular(15.0.r),
                         child: StoryView(
                           controller: storyController,
                           storyItems: controller.profilePics,
@@ -209,12 +210,12 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
                       () => Visibility(
                         visible: controller.isSwipeMore.value,
                         child: Positioned.fill(
-                            bottom: 15,
+                            bottom: 15.h,
                             child: Container(
                               // color: Color(0xFF363636).withOpacity(0.8),
                               decoration: BoxDecoration(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(15)),
+                                      BorderRadius.all(Radius.circular(15.r)),
                                   color: Color(0xFF363636).withOpacity(0.8)),
                               child: GestureDetector(
                                 onTap: () {
@@ -225,12 +226,12 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
                                   children: [
                                     SvgPicture.asset(
                                       "assets/icon/swipe_view_more.svg",
-                                      height: 70,
-                                      width: 70,
+                                      height: 70.h,
+                                      width: 70.w,
                                       color: Colors.white,
                                     ),
                                     SizedBox(
-                                      height: 5,
+                                      height: 5.h,
                                     ),
                                     Text(
                                       "Swipe to view more",
@@ -252,11 +253,11 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    addVerticalSpace(8),
+                    addVerticalSpace(8.h),
                     _userNamesWidget(theme, index),
-                    addVerticalSpace(8),
+                    addVerticalSpace(8.h),
                     _usersShortDescriptionWidget(theme, index),
-                    addVerticalSpace(10),
+                    addVerticalSpace(10.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -275,8 +276,8 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
           ),
         ),
         Positioned(
-          top: Get.height * 0.42,
-          right: 10,
+          top: (Get.height * 0.42).h,
+          right: 10.r,
           child: GestureDetector(
               onTap: () => Get.to(() => ExpandPartnerDetails(),
                   arguments: userList[index]),
@@ -292,14 +293,14 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
         overflow: TextOverflow.ellipsis,
         textAlign: TextAlign.center,
         style: theme.subtitle2
-            ?.copyWith(fontSize: 18, fontWeight: FontWeight.normal));
+            ?.copyWith(fontSize: 18.sp, fontWeight: FontWeight.normal));
   }
 
   Text _userNamesWidget(TextTheme theme, int index) {
     return Text(
       "${userList[index].firstname} ${userList[index].lastname}",
       style:
-          theme.headline5?.copyWith(fontSize: 22, fontWeight: FontWeight.w700),
+          theme.headline5?.copyWith(fontSize: 22.sp, fontWeight: FontWeight.w700),
     );
   }
 
@@ -308,12 +309,12 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
       visible: false,
       child: Positioned(
         bottom: 0,
-        left: Get.width * 0.25,
+        left: (Get.width * 0.25).w,
         child: Container(
-          height: 40,
+          height: 40.h,
           padding: EdgeInsets.only(
-            left: 10,
-            right: 10,
+            left: 10.w,
+            right: 10.w,
           ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
@@ -397,12 +398,12 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
       DiscoverPartnerController controller) {
     return Container(
       color: Colors.white,
-      height: 50,
-      width: 50,
+      height: 50.h,
+      width: 50.w,
       child: MaterialButton(
         color: Colors.white,
         shape: buildRoundedRectangleBorder(),
-        padding: EdgeInsets.all(8),
+        padding: EdgeInsets.all(8.w),
         onPressed: () {
           if (icon == ImageConstants.ic_rewind) {
             //  _matchEngine.currentItem?.nope();
@@ -414,8 +415,8 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
         },
         child: Image.asset(
           icon,
-          height: height,
-          width: width,
+          height: height.h,
+          width: width.w,
         ),
       ),
     );

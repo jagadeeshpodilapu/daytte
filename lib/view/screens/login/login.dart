@@ -3,6 +3,7 @@ import 'package:daytte/themes/color_styles.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -22,27 +23,27 @@ class Login extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 16),
+        margin: EdgeInsets.symmetric(horizontal: 16.w),
         child: Form(
           key: _formKey,
           child: SingleChildScrollView(
             child: Column(
               children: [
-                addVerticalSpace(40),
+                addVerticalSpace(40.h),
                 _createAccountImageWidget(),
-                addVerticalSpace(30),
+                addVerticalSpace(30.h),
                 _createAccountTextWidget(),
-                addVerticalSpace(20),
+                addVerticalSpace(20.h),
                 _textfield(),
-                addVerticalSpace(20),
+                addVerticalSpace(20.h),
                 _requestOtpWidget(),
-                addVerticalSpace(20),
+                addVerticalSpace(20.h),
                 _termsAndConditionsWidget(),
-                addVerticalSpace(15),
+                addVerticalSpace(15.h),
                 _signUpMethod(),
-                addVerticalSpace(30),
+                addVerticalSpace(30.h),
                 _socialMediaText(),
-                addVerticalSpace(30),
+                addVerticalSpace(30.h),
                 _socialButtons(),
               ],
             ),
@@ -86,7 +87,7 @@ class Login extends StatelessWidget {
 
   Container _signUpMethod() {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(10.w),
       child: Center(
         child: RichText(
           text: TextSpan(
@@ -111,22 +112,22 @@ class Login extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         socialIcon(ImageConstants.ic_google),
-        addHorizontalSpace(15),
+        addHorizontalSpace(15.w),
         socialIcon(ImageConstants.ic_facebook),
-        addHorizontalSpace(15),
+        addHorizontalSpace(15.w),
         socialIcon(ImageConstants.ic_twitter),
       ],
     );
   }
 
   Widget socialIcon(String src) {
-    return SvgPicture.asset(src, width: 50, height: 50);
+    return SvgPicture.asset(src, width: 50.w, height: 50.h);
   }
 
   Widget _createAccountImageWidget() {
     return Container(
       width: Get.width,
-      height: Get.height * 0.3,
+      height: Get.height * 0.3.h,
       child: Image.asset(ImageConstants.create_account),
     );
   }
@@ -144,13 +145,13 @@ class Login extends StatelessWidget {
         controller: controller.mobileController,
         decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(width: 1, color: Color(0xFF7834F4)),
+              borderSide: BorderSide(width: 1.w, color: Color(0xFF7834F4)),
             ),
-            border: const OutlineInputBorder(
-                borderSide: BorderSide(color: textColor, width: 1)),
+            border:  OutlineInputBorder(
+                borderSide: BorderSide(color: textColor, width: 1.w)),
             isCollapsed: true,
             fillColor: whiteColor,
-            contentPadding: new EdgeInsets.fromLTRB(8, 2, 2, 2),
+            contentPadding: new EdgeInsets.fromLTRB(8.w, 2.h, 2.w, 2.h),
             prefix: DropdownButtonHideUnderline(
               child: ButtonTheme(
                 child: DropdownButton(
