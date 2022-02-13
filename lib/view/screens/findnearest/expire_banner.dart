@@ -5,6 +5,7 @@ import 'package:daytte/themes/color_styles.dart';
 import 'package:daytte/view/dialogs/premium_dialogs/platinum_package.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -27,10 +28,10 @@ class ExpireBannerWidget extends StatelessWidget {
                 Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding:  EdgeInsets.all(8.0.w),
                       child: Text("25",
                           style: AppStyles.heading1.copyWith(
-                              fontSize: 40,
+                              fontSize: 40.sp,
                               fontWeight: FontWeight.w500,
                               color: whiteColor)),
                     ),
@@ -47,22 +48,22 @@ class ExpireBannerWidget extends StatelessWidget {
                                 color: whiteColor)),
                       ],
                     ),
-                    addHorizontalSpace(20),
+                    addHorizontalSpace(20.w),
                     Container(
                       decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(20.r)),
                       child: InkWell(
                         onTap: () {
                           Get.dialog(
                             Dialog(
                               child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(20),
+                                  borderRadius: BorderRadius.circular(20.r),
                                   child: PremiumPackages()),
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(24)),
+                                  borderRadius: BorderRadius.circular(24.r)),
                               insetPadding: EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 50),
+                                  horizontal: 20.w, vertical: 50.h),
                             ),
                           );
                           /*showDialog(
@@ -77,7 +78,7 @@ class ExpireBannerWidget extends StatelessWidget {
                         },
                         child: Padding(
                           padding: EdgeInsets.symmetric(
-                              horizontal: 15.0, vertical: 4),
+                              horizontal: 15.0.w, vertical: 4.h),
                           child: Text(
                             Constants.updatePlan,
                             style: AppStyles.title3

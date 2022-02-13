@@ -8,6 +8,7 @@ import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -32,7 +33,7 @@ class EditDetails extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 24.0),
               child: Wrap(
-                spacing: 10,
+                spacing: 10.w,
                 children: [
                   InkWell(
                       onTap: () {
@@ -40,23 +41,23 @@ class EditDetails extends StatelessWidget {
                       },
                       child: DottedBorder(
                         dashPattern: [5, 6],
-                        radius: Radius.circular(8),
+                        radius: Radius.circular(8.r),
                         borderType: BorderType.RRect,
                         color: secondaryTextColor,
                         child: Container(
-                          height: 95,
-                          width: 95,
+                          height: 95.h,
+                          width: 95.w,
                           decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(14)),
+                              borderRadius: BorderRadius.circular(14.r)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               SvgPicture.asset(ImageConstants.camera,
-                                  width: 45, height: 30),
-                              addVerticalSpace(12),
+                                  width: 45.w, height: 30.r),
+                              addVerticalSpace(12.h),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding:  EdgeInsets.all(8.0.w),
                                 child: Text(Constants.addPhoto,
                                     style: AppStyles.title2.copyWith(
                                         fontWeight: FontWeight.w400,
@@ -100,13 +101,13 @@ class EditDetails extends StatelessWidget {
                 ],
               ),
             ),
-            addVerticalSpace(10),
+            addVerticalSpace(10.h),
             addMediaButtonWidget(context, controller),
-            addVerticalSpace(10),
+            addVerticalSpace(10.h),
             detailsWidget(controller),
-            addVerticalSpace(10),
+            addVerticalSpace(10.h),
             Padding(
-              padding: const EdgeInsets.all(14.0),
+              padding:  EdgeInsets.all(14.0.w),
               child: RaisedGradientButton(
                   title: Constants.saveChanges,
                   onPressed: () async {
@@ -117,7 +118,7 @@ class EditDetails extends StatelessWidget {
                   }),
             ),
             SizedBox(
-              height: 20,
+              height: 20.h,
             ),
           ],
         ),
@@ -134,10 +135,10 @@ class EditDetails extends StatelessWidget {
     // controller.companyController.text =
     //     controller.userModel?.data.user?.interestedIn ?? "";
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 12.0),
+      margin: EdgeInsets.symmetric(horizontal: 12.0.w),
       decoration: BoxDecoration(
           border: Border.all(color: Colors.white, width: 0.7),
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(12.r),
           boxShadow: [
             /*  BoxShadow(
                 color: const Color(0xffd4dcdd),
@@ -147,7 +148,7 @@ class EditDetails extends StatelessWidget {
           ],
           color: const Color(0xffffffff)),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 10.h),
         child: Column(
           children: [
             Column(
@@ -156,7 +157,7 @@ class EditDetails extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      padding: EdgeInsets.symmetric(vertical: 8.0.h),
                       child: headingWithTextStyle(0.9, "About Me", 17.5),
                     ),
                     GestureDetector(
@@ -188,7 +189,7 @@ class EditDetails extends StatelessWidget {
                 Align(
                     alignment: Alignment.topLeft,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding:  EdgeInsets.all(8.0.w),
                       child: headingWithTextStyle(0.9, Constants.passion, 17.5),
                     )),
                 GestureDetector(
@@ -203,19 +204,19 @@ class EditDetails extends StatelessWidget {
               ],
             ),
             Wrap(
-              spacing: 6,
-              runSpacing: 6,
+              spacing: 6.w,
+              runSpacing: 6.w,
               crossAxisAlignment: WrapCrossAlignment.start,
               children: List.generate(
                   controller.userModel?.data.user?.passion?.length ?? 0,
                   (index) {
                 return Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.h),
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(8.r),
                       border: Border.all(color: Colors.grey)),
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding:  EdgeInsets.all(8.0.w),
                     child: Text(
                       "${controller.userModel?.data.user?.passion?[index].name}",
                     ),
@@ -229,7 +230,7 @@ class EditDetails extends StatelessWidget {
                 Align(
                     alignment: Alignment.topLeft,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding:  EdgeInsets.all(8.0.w),
                       child: headingWithTextStyle(0.9, Constants.school, 17.5),
                     )),
                 GestureDetector(
@@ -279,7 +280,7 @@ class EditDetails extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             _titleBoldText(controller.userModel?.data.user?.gender ?? ""),
-            addHorizontalSpace(8),
+            addHorizontalSpace(8.w),
             // _backArrow()
           ],
         ),
@@ -291,7 +292,7 @@ class EditDetails extends StatelessWidget {
     return Text(
       title,
       style: AppStyles.title
-          .copyWith(fontSize: size ?? 16, color: Color(0xff9A9A9A)),
+          .copyWith(fontSize: size?.sp ?? 16.sp, color: Color(0xff9A9A9A)),
     );
   }
 
@@ -300,7 +301,7 @@ class EditDetails extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Text(header,
           style: AppStyles.title
-              .copyWith(fontSize: 18, fontWeight: FontWeight.w400)),
+              .copyWith(fontSize: 18.sp, fontWeight: FontWeight.w400)),
     );
   }
 
@@ -450,7 +451,7 @@ class EditDetails extends StatelessWidget {
     EditDetailsController controller,
   ) {
     return Padding(
-      padding: const EdgeInsets.all(14.0),
+      padding:  EdgeInsets.all(14.0.w),
       child: RaisedGradientButton(
           title: Constants.addMedia,
           onPressed: () async {
@@ -475,16 +476,16 @@ class EditDetails extends StatelessWidget {
       required Widget image,
       String? file}) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 15.0),
+      padding:  EdgeInsets.only(bottom: 15.0.h),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(5.0),
+        borderRadius: BorderRadius.circular(5.0.r),
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            Container(height: 100, width: 100, child: image),
+            Container(height: 100.h, width: 100.w, child: image),
             /* controller.galleryImages.length>2 ? */ Positioned(
-              right: -5,
-              top: -5,
+              right: -5.w,
+              top: -5.h,
               child: InkWell(
                 onTap: () {
                   if (controller.pickedImages.length >= 3 ||
@@ -511,12 +512,12 @@ class EditDetails extends StatelessWidget {
     return Column(
       children: [
         Padding(
-            padding: EdgeInsets.only(top: 8.0),
+            padding: EdgeInsets.only(top: 8.0.h),
             child: Text(Constants.addPhoto,
                 style:
                     AppStyles.heading3.copyWith(fontWeight: FontWeight.w500))),
         Padding(
-          padding: EdgeInsets.only(top: 5, bottom: 25),
+          padding: EdgeInsets.only(top: 5.h, bottom: 25.h),
           child: Text(
             Constants.select2Pics,
             style: AppStyles.title3.copyWith(color: secondaryTextColor),
@@ -539,7 +540,7 @@ class EditDetails extends StatelessWidget {
 
   OutlineInputBorder _outlineBorder(Color color) {
     return OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: color, width: 1));
+        borderRadius: BorderRadius.circular(8.r),
+        borderSide: BorderSide(color: color, width: 1.w));
   }
 }

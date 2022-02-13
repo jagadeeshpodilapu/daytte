@@ -4,6 +4,7 @@ import 'package:daytte/themes/app_styles.dart';
 import 'package:daytte/themes/color_styles.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 
@@ -34,14 +35,14 @@ class YouLikedView extends StatelessWidget {
                               },
                               child: Card(
                                 margin: EdgeInsets.symmetric(
-                                    horizontal: 6, vertical: 6),
+                                    horizontal: 6.w, vertical: 6.h),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(16.0),
+                                  borderRadius: BorderRadius.circular(16.0.r),
                                 ),
                                 elevation: 4,
                                 color: Colors.white,
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(15.0),
+                                  borderRadius: BorderRadius.circular(15.0.r),
                                   child: Stack(
                                     fit: StackFit.expand,
                                     children: [
@@ -65,17 +66,17 @@ class YouLikedView extends StatelessWidget {
                                         child: ClipRRect(
                                           borderRadius: new BorderRadius.only(
                                             topLeft:
-                                                const Radius.circular(15.0),
+                                                 Radius.circular(15.0.r),
                                             topRight:
-                                                const Radius.circular(15.0),
+                                                 Radius.circular(15.0.r),
                                           ),
                                           child: Container(
                                             width: Get.width,
-                                            height: 100,
+                                            height: 100.h,
                                             color: Colors.white,
                                             child: Padding(
                                               padding:
-                                                  const EdgeInsets.all(5.0),
+                                                   EdgeInsets.all(5.0.w),
                                               child: Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
@@ -89,9 +90,9 @@ class YouLikedView extends StatelessWidget {
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsets
+                                                             EdgeInsets
                                                                     .only(
-                                                                left: 8.0),
+                                                                left: 8.0.w),
                                                         child: Text(
                                                             "${controller.likedToModel?.data.likes?[index].likedTo?.firstname ?? ""} ${controller.likedToModel?.data.likes?[index].likedTo?.lastname ?? ""}",
                                                             maxLines: 1,
@@ -107,21 +108,21 @@ class YouLikedView extends StatelessWidget {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsets
+                                                             EdgeInsets
                                                                     .only(
-                                                                right: 5.0),
+                                                                right: 5.0.w),
                                                         child: CircleAvatar(
-                                                            radius: 5,
+                                                            radius: 5.r,
                                                             backgroundColor:
                                                                 Colors.green),
                                                       )
                                                     ],
                                                   ),
-                                                  addVerticalSpace(5),
+                                                  addVerticalSpace(5.h),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsets.only(
-                                                            left: 8.0),
+                                                         EdgeInsets.only(
+                                                            left: 8.0.w),
                                                     child: Text(
                                                         "${controller.likedToModel?.data.likes?[index].likedTo?.location ?? ""}",
                                                         style: AppStyles.title2
@@ -129,11 +130,11 @@ class YouLikedView extends StatelessWidget {
                                                                 color:
                                                                     secondaryTextColor)),
                                                   ),
-                                                  addVerticalSpace(6),
+                                                  addVerticalSpace(6.h),
                                                   Padding(
                                                     padding:
-                                                        const EdgeInsets.only(
-                                                            left: 8.0),
+                                                         EdgeInsets.only(
+                                                            left: 8.0.w),
                                                     child: Text("Active now",
                                                         style: AppStyles.title2
                                                             .copyWith(
@@ -156,7 +157,7 @@ class YouLikedView extends StatelessWidget {
               ],
             )
           : Center(
-              child: Text("No records found",style: TextStyle(fontSize: 16,color: Colors.black),),
+              child: Text("No records found",style: TextStyle(fontSize: 16.sp,color: Colors.black),),
             ),
     );
   }

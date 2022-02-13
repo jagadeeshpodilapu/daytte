@@ -4,6 +4,7 @@ import 'package:daytte/themes/app_styles.dart';
 import 'package:daytte/view/screens/likedetails/liked.dart';
 import 'package:daytte/view/screens/likedetails/you_liked.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../widgets/common_widgets.dart';
@@ -30,7 +31,7 @@ class LikesPage extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
             begin: Alignment(0, 0),
-            end: Alignment(1, 1),
+            end: Alignment(1.w, 1.w),
             colors: [const Color(0xffffffff), const Color(0xffe4e6eb)]),
       ),
       child: Column(
@@ -54,10 +55,10 @@ class LikesPage extends StatelessWidget {
                               color: Colors.grey,
                               blurRadius: 1.0,
                               spreadRadius: 0.0,
-                              offset: Offset(1.0, 1.0),
+                              offset: Offset(1.0.w, 1.0.w),
                             )
                           ],
-                          border: Border.all(color: Colors.white, width: 1)),
+                          border: Border.all(color: Colors.white, width: 1.w)),
                       child: Align(
                         alignment: Alignment.center,
                         child: Text(
@@ -69,13 +70,13 @@ class LikesPage extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12.r),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey,
                             blurRadius: 1.0,
                             spreadRadius: 0.0,
-                            offset: Offset(1.0, 1.0),
+                            offset: Offset(1.0.w, 1.0.w),
                           )
                         ],
                         border: Border.all(color: Colors.white, width: 1),
@@ -100,6 +101,6 @@ class LikesPage extends StatelessWidget {
 
   TextStyle tabTextStyle() {
     return AppStyles.heading3
-        .copyWith(fontSize: 18, fontWeight: FontWeight.w400);
+        .copyWith(fontSize: 18.sp, fontWeight: FontWeight.w400);
   }
 }

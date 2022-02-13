@@ -344,32 +344,32 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
 
   Widget _distanceWidget() {
     return Positioned(
-      left: 20,
-      bottom: 30,
+      left: 20.w,
+      bottom: 30.h,
       child: Container(
-        height: 35,
+        height: 35.h,
         padding: EdgeInsets.only(
-          left: 10,
-          right: 10,
+          left: 10.w,
+          right: 10.w,
         ),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(20.r),
             color: Color(0xff363636).withOpacity(0.3)),
         child: TextButton.icon(
             onPressed: () {},
             icon: Icon(
               Icons.location_on,
-              size: 20,
+              size: 20.w,
               color: Colors.white,
             ),
             label: Text(
               "2.3Km away",
-              style: const TextStyle(
+              style:  TextStyle(
                   color: const Color(0xffffffff),
                   fontWeight: FontWeight.w700,
                   fontFamily: "Roboto",
                   fontStyle: FontStyle.normal,
-                  fontSize: 12.0),
+                  fontSize: 12.0.sp),
             )),
       ),
     );
@@ -424,7 +424,7 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
 
   TextStyle buildTextStyle(double fontSize, Color color) {
     return TextStyle(
-      fontSize: fontSize,
+      fontSize: fontSize.sp,
       color: color,
     );
   }
@@ -433,22 +433,22 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
-        height: 40,
-        width: 40,
-        margin: EdgeInsets.symmetric(horizontal: 20),
+        height: 40.h,
+        width: 40.w,
+        margin: EdgeInsets.symmetric(horizontal: 20.w),
         decoration: BoxDecoration(
           color: Colors.red,
           shape: BoxShape.circle,
           gradient: gradientColors,
         ),
-        child: Icon(Icons.arrow_downward, color: Colors.white, size: 30),
+        child: Icon(Icons.arrow_downward, color: Colors.white, size: 30.w),
       ),
     );
   }
 
   RoundedRectangleBorder buildRoundedRectangleBorder() {
     return RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(25),
+      borderRadius: BorderRadius.circular(25.r),
       side: BorderSide(color: Colors.white),
     );
   }

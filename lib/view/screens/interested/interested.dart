@@ -3,6 +3,7 @@ import 'package:daytte/themes/app_styles.dart';
 import 'package:daytte/themes/color_styles.dart';
 import 'package:daytte/view/widgets/enums.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../controllers/interests/interests_controller.dart';
@@ -19,13 +20,13 @@ class InterestedScreen extends StatelessWidget {
         builder: (controller) => Column(
           children: [
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 12),
-              height: Get.height * 0.7,
+              margin: EdgeInsets.symmetric(horizontal: 12.w),
+              height: (Get.height * 0.7).h,
               child: Card(
                 elevation: 4,
                 child: Column(
                   children: [
-                    addVerticalSpace(10),
+                    addVerticalSpace(10.h),
                     Container(
                       child: ListTile(
                         leading: controller.selctedGender == Gender.Male
@@ -39,25 +40,25 @@ class InterestedScreen extends StatelessWidget {
                                 controller.handleGenderChange(value)),
                       ),
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12.r),
                           border: Border.all(
                               color: controller.selctedGender == Gender.Male
                                   ? Color(0xFF7004E3)
                                   : Color(0xff9a9a9a),
                               width: 2)),
                       margin:
-                          EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+                          EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 8.0.h),
                     ),
                     Container(
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12.r),
                           border: Border.all(
                               color: controller.selctedGender == Gender.Female
                                   ? primaryColor
                                   : secondaryTextColor,
-                              width: 2)),
+                              width: 2.w)),
                       margin:
-                          EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+                          EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 8.0.h),
                       child: ListTile(
                         leading: controller.selctedGender == Gender.Female
                             ? buildTextBold(Constants.interestedWomen)
@@ -72,14 +73,14 @@ class InterestedScreen extends StatelessWidget {
                     ),
                     Container(
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12.r),
                           border: Border.all(
                               color: controller.selctedGender == Gender.Everyone
                                   ? primaryColor
                                   : secondaryTextColor,
-                              width: 2)),
+                              width: 2.w)),
                       margin:
-                          EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+                          EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 8.0.h),
                       child: ListTile(
                         leading: controller.selctedGender == Gender.Everyone
                             ? buildTextBold(Constants.interestedEveryOne)
@@ -97,10 +98,10 @@ class InterestedScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding:  EdgeInsets.all(12.0.w),
               child: RaisedGradientButton(
                 title: Constants.next,
-                borderRadius: 12,
+                borderRadius: 12.r,
                 onPressed: () async {
                   await controller.updateInterestedStatus();
                   if (controller.responseModel != null) {

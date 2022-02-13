@@ -1,6 +1,7 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/view/screens/chatlist/chat_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -28,11 +29,11 @@ class Home extends StatelessWidget {
             ].elementAt(controller.currentIndex).paddingOnly(bottom: 8),
             bottomNavigationBar: ClipRRect(
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30.0),
-                topRight: Radius.circular(30.0),
+                topLeft: Radius.circular(30.0.r),
+                topRight: Radius.circular(30.0.r),
               ),
               child: Container(
-                height: 80,
+                height: 80.h,
                 decoration: BoxDecoration(
                     borderRadius:
                         BorderRadius.all(Radius.circular(34.90343995940204)),
@@ -40,7 +41,7 @@ class Home extends StatelessWidget {
                       BoxShadow(
                           color: const Color(0x0d000000),
                           offset: Offset(0, -6),
-                          blurRadius: 27,
+                          blurRadius: 27.r,
                           spreadRadius: 0)
                     ],
                     color: const Color(0xffffffff)),
@@ -67,8 +68,8 @@ class Home extends StatelessWidget {
                     BottomNavigationBarItem(
                         activeIcon: SvgPicture.asset(
                           'assets/icon/profile_grey.svg',
-                          height: 30,
-                          width: 30,
+                          height: 30.h,
+                          width: 30.w,
                           color: Color(0xFF3c0fc7),
                         ),
                         icon: _icons('assets/icon/profile_grey.svg'),
@@ -86,8 +87,8 @@ class Home extends StatelessWidget {
   SvgPicture _icons(String icon) {
     return SvgPicture.asset(
       icon,
-      height: 32,
-      width: 34,
+      height: 32.h,
+      width: 34.w,
       //  color: Color(0xFF3c0fc7),
     );
   }

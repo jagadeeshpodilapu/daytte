@@ -5,6 +5,7 @@ import 'package:daytte/routes/app_routes.dart';
 import 'package:daytte/themes/app_styles.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 
@@ -48,14 +49,14 @@ class FindTheNearest extends StatelessWidget {
                                   },
                                   child: Card(
                                     margin: EdgeInsets.symmetric(
-                                        horizontal: 6, vertical: 6),
+                                        horizontal: 6.w, vertical: 6.h),
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(16.0),
+                                      borderRadius: BorderRadius.circular(16.0.r),
                                     ),
                                     elevation: 4,
                                     color: Colors.white,
                                     child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(15.0),
+                                      borderRadius: BorderRadius.circular(15.0.r),
                                       child: Stack(
                                         fit: StackFit.expand,
                                         children: [
@@ -77,17 +78,17 @@ class FindTheNearest extends StatelessWidget {
                                               borderRadius:
                                                   new BorderRadius.only(
                                                 topLeft:
-                                                    const Radius.circular(15.0),
+                                                     Radius.circular(15.0.r),
                                                 topRight:
-                                                    const Radius.circular(15.0),
+                                                     Radius.circular(15.0.r),
                                               ),
                                               child: Container(
                                                 width: Get.width,
-                                                height: 80,
+                                                height: 80.h,
                                                 color: Colors.white,
                                                 child: Padding(
                                                   padding:
-                                                      const EdgeInsets.all(8.0),
+                                                       EdgeInsets.all(8.0.w),
                                                   child: Column(
                                                     crossAxisAlignment:
                                                         CrossAxisAlignment
@@ -103,9 +104,9 @@ class FindTheNearest extends StatelessWidget {
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsets
+                                                                 EdgeInsets
                                                                         .only(
-                                                                    left: 8.0),
+                                                                    left: 8.0.w),
                                                             child: Text(
                                                                 "${controller.findNearestModel?.data.users?[index].firstname}, ${age?.first}",
                                                                 maxLines: 1,
@@ -120,23 +121,23 @@ class FindTheNearest extends StatelessWidget {
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                const EdgeInsets
+                                                                 EdgeInsets
                                                                         .only(
-                                                                    right: 8.0),
+                                                                    right: 8.0.w),
                                                             child: CircleAvatar(
-                                                                radius: 5,
+                                                                radius: 5.r,
                                                                 backgroundColor:
                                                                     Colors
                                                                         .green),
                                                           )
                                                         ],
                                                       ),
-                                                      addVerticalSpace(5),
+                                                      addVerticalSpace(5.h),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsets
+                                                             EdgeInsets
                                                                     .only(
-                                                                left: 8.0),
+                                                                left: 8.0.w),
                                                         child: Text("Banglore",
                                                             style: AppStyles
                                                                 .title3
@@ -147,12 +148,12 @@ class FindTheNearest extends StatelessWidget {
                                                                     color: Color(
                                                                         0xff9a9a9a))),
                                                       ),
-                                                      addVerticalSpace(5),
+                                                      addVerticalSpace(5.h),
                                                       Padding(
                                                         padding:
-                                                            const EdgeInsets
+                                                             EdgeInsets
                                                                     .only(
-                                                                left: 8.0),
+                                                                left: 8.0.w),
                                                         child: Text("Active now",
                                                             style: AppStyles
                                                                 .title3
@@ -170,8 +171,8 @@ class FindTheNearest extends StatelessWidget {
                                             ),
                                           ),
                                           Positioned(
-                                              bottom: 82,
-                                              right: 8,
+                                              bottom: 82.h,
+                                              right: 8.w,
                                               child: _distanceWidget())
                                         ],
                                       ),
@@ -190,20 +191,20 @@ class FindTheNearest extends StatelessWidget {
 
   Widget _distanceWidget() {
     return Container(
-      height: 30,
+      height: 30.h,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20), color: Color(0xff363636)),
+          borderRadius: BorderRadius.circular(20.r), color: Color(0xff363636)),
       child: TextButton.icon(
           onPressed: () {},
           icon: SizedBox(),
           label: Text(
             "2.3Km",
-            style: const TextStyle(
+            style:  TextStyle(
                 color: const Color(0xffffffff),
                 fontWeight: FontWeight.w700,
                 fontFamily: "Roboto",
                 fontStyle: FontStyle.normal,
-                fontSize: 12.0),
+                fontSize: 12.0.sp),
           )),
     );
   }

@@ -2,6 +2,7 @@
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/themes/app_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../consts/image_constants.dart';
@@ -21,7 +22,7 @@ class ExpandPartnerDetails extends StatelessWidget {
           slivers: <Widget>[
             SliverAppBar(
               backgroundColor: Colors.white12,
-              expandedHeight: 350.0,
+              expandedHeight: 350.0.h,
               flexibleSpace: FlexibleSpaceBar(
                 background: Image.network('${user.profileImg?.imgPath}',
                     fit: BoxFit.cover),
@@ -29,38 +30,38 @@ class ExpandPartnerDetails extends StatelessWidget {
             ),
             SliverList(
               delegate: SliverChildListDelegate([
-                addVerticalSpace(10),
+                addVerticalSpace(10.h),
                 _userNameWidget(),
-                addVerticalSpace(10),
+                addVerticalSpace(10.h),
                 _infoWidget(Icons.business_center,
                     "${user.institute ?? "Wildlife Photographer"}"),
-                addVerticalSpace(5),
+                addVerticalSpace(5.h),
                 _infoWidget(Icons.location_city_rounded, "Lives in New York"),
-                addVerticalSpace(5),
+                addVerticalSpace(5.h),
                 _infoWidget(Icons.person, "${user.gender}"),
-                addVerticalSpace(5),
+                addVerticalSpace(5.h),
                 _infoWidget(Icons.location_on, "2Km away"),
                 _aboutmeText("About Me"),
                 _aboutmeInfoWidget(),
-                addVerticalSpace(20),
+                addVerticalSpace(20.h),
                 _divider,
-                addVerticalSpace(20),
+                addVerticalSpace(20.h),
                 _aboutmeText("Passions"),
                 _passionListWidget(),
-                addVerticalSpace(20),
+                addVerticalSpace(20.h),
                 _divider,
-                addVerticalSpace(20),
+                addVerticalSpace(20.h),
                 _shareProfileWidget(),
                 _shareWidgetSub(),
-                addVerticalSpace(20),
+                addVerticalSpace(20.h),
                 _divider,
-                addVerticalSpace(20),
+                addVerticalSpace(20.h),
                 _reportProfileWidget(),
-                addVerticalSpace(20),
+                addVerticalSpace(20.h),
                 _divider,
-                addVerticalSpace(40),
+                addVerticalSpace(40.h),
                 _setIconsWidget(),
-                addVerticalSpace(30),
+                addVerticalSpace(30.h),
               ]),
             ),
           ],
@@ -101,9 +102,9 @@ class ExpandPartnerDetails extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _tinderIcons(ImageConstants.ic_rewind),
-        addHorizontalSpace(50),
+        addHorizontalSpace(50.w),
         _tinderIcons(ImageConstants.ic_love),
-        addHorizontalSpace(50),
+        addHorizontalSpace(50.w),
         _tinderIcons(ImageConstants.ic_close),
       ],
     );
@@ -111,15 +112,15 @@ class ExpandPartnerDetails extends StatelessWidget {
 
   Widget _tinderIcons(String icon) {
     return Container(
-      height: 50,
-      width: 50,
+      height: 50.h,
+      width: 50.w,
       child: MaterialButton(
         color: Colors.white,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(25.r),
           side: BorderSide(color: Colors.white),
         ),
-        padding: EdgeInsets.all(8),
+        padding: EdgeInsets.all(8.w),
         onPressed: () {
           if (icon == ImageConstants.ic_rewind) {
             // controller.matchEngine?.currentItem?.nope();
@@ -131,8 +132,8 @@ class ExpandPartnerDetails extends StatelessWidget {
         },
         child: Image.asset(
           icon,
-          height: icon == ImageConstants.ic_close ? 24 : 30,
-          width: icon == ImageConstants.ic_close ? 24 : 30,
+          height: icon == ImageConstants.ic_close ? 24.h : 30.h,
+          width: icon == ImageConstants.ic_close ? 24.w : 30.w,
         ),
       ),
     );
@@ -140,18 +141,18 @@ class ExpandPartnerDetails extends StatelessWidget {
 
   Widget _passionListWidget() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
+      padding:  EdgeInsets.symmetric(horizontal: 12.w),
       child: Wrap(
         runSpacing: 5,
         children: List.generate(
             user.passion?.length ?? 0,
             (index) => Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:  EdgeInsets.all(8.0.w),
                   child: Container(
-                    padding: const EdgeInsets.all(10.0),
+                    padding:  EdgeInsets.all(10.0.w),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Color(0xff7004E3), width: 2)),
+                        borderRadius: BorderRadius.circular(10.r),
+                        border: Border.all(color: Color(0xff7004E3), width: 2.w)),
                     child: Text("${user.passion?[index].name}",
                         style: AppStyles.title2.copyWith(
                             color: Color(0xff7004E3),
@@ -164,7 +165,7 @@ class ExpandPartnerDetails extends StatelessWidget {
 
   Padding _aboutmeInfoWidget() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 3),
+      padding:  EdgeInsets.symmetric(horizontal: 14.w, vertical: 3.h),
       child: Text(
         "${user.shortDescription}",
         style: AppStyles.title.copyWith(
@@ -185,7 +186,7 @@ class ExpandPartnerDetails extends StatelessWidget {
     return Align(
         alignment: Alignment.topLeft,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 10),
+          padding:  EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 10.h),
           child: Text(text,
               style: AppStyles.heading3.copyWith(fontWeight: FontWeight.w500)),
         ));
@@ -196,10 +197,10 @@ class ExpandPartnerDetails extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          padding:  EdgeInsets.symmetric(horizontal: 8.0.w),
           child: Icon(src, color: Colors.grey),
         ),
-        addHorizontalSpace(10),
+        addHorizontalSpace(10.w),
         Text(
           text,
           style: AppStyles.title
