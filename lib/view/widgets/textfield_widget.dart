@@ -1,5 +1,6 @@
 import 'package:daytte/themes/color_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final String label;
@@ -24,7 +25,7 @@ class TextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-        style: TextStyle(color: textColor,fontSize: 18),
+        style: TextStyle(color: textColor,fontSize: 18.sp),
         onChanged: (value) => onChange,
         readOnly: readOnly??false,
         validator: (v) => validator!(v!),
@@ -46,7 +47,7 @@ class TextFieldWidget extends StatelessWidget {
 
   OutlineInputBorder _outlineBorder(Color color) {
     return OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: color, width: 1.5));
+        borderRadius: BorderRadius.circular(8.r),
+        borderSide: BorderSide(color: color, width: 1.5.w));
   }
 }

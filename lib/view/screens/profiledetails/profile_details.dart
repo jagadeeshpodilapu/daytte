@@ -3,6 +3,7 @@ import 'package:daytte/consts/image_constants.dart';
 import 'package:daytte/controllers/profileDetails/profile_details_controller.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -28,8 +29,8 @@ class ProfileView extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                     gradient: LinearGradient(
-                        begin: Alignment(0, 2),
-                        end: Alignment(1, 1),
+                        begin: Alignment(0, 2.w),
+                        end: Alignment(1.w, 1.w),
                         colors: [
                           const Color(0xffffffff),
                           const Color(0xffe4e6eb)
@@ -53,11 +54,11 @@ class ProfileView extends StatelessWidget {
                               BorderRadius.circular(0),
                               color: Colors.grey,
                             ),
-                            height: 400,
+                            height: 400.h,
                           )
                               : SizedBox(),
                           Positioned(
-                            bottom: -200,
+                            bottom: -200.h,
                             left: 0,
                             right: 0,
                             child: Column(
@@ -65,11 +66,11 @@ class ProfileView extends StatelessWidget {
                               children: [
                                 Container(
                                   width:
-                                  MediaQuery.of(context).size.width /
-                                      1.1,
+                                  (MediaQuery.of(context).size.width /
+                                      1.1).w,
                                   decoration: BoxDecoration(
                                       borderRadius:
-                                      BorderRadius.circular(20),
+                                      BorderRadius.circular(20.r),
                                       color: Colors.white,
                                       boxShadow: [
                                         BoxShadow(
@@ -77,7 +78,7 @@ class ProfileView extends StatelessWidget {
                                             blurRadius: 6)
                                       ]),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(24.0),
+                                    padding:  EdgeInsets.all(24.0.w),
                                     child: Column(
                                       children: [
                                               Text(
@@ -87,7 +88,7 @@ class ProfileView extends StatelessWidget {
                                                           fontWeight:
                                                               FontWeight.w500)),
                                               SizedBox(
-                                                height: 8,
+                                                height: 8.h,
                                               ),
                                               Text(
                                                 Constants.location,
@@ -98,24 +99,24 @@ class ProfileView extends StatelessWidget {
                                                         color:
                                                             Color(0xff9A9A9A)),
                                               ),
-                                              addVerticalSpace(8),
+                                              addVerticalSpace(8.h),
                                               Padding(
                                                 padding: EdgeInsets.symmetric(
-                                                    vertical: 4.0),
+                                                    vertical: 4.0.h),
                                                 child: Row(
                                                   children: [
                                                     Padding(
-                                                      padding: const EdgeInsets
+                                                      padding:  EdgeInsets
                                                               .symmetric(
-                                                          horizontal: 8.0),
+                                                          horizontal: 8.0.w),
                                                       child: _icons(
                                                           ImageConstants
                                                               .person),
                                                     ),
                                               Padding(
-                                                padding: const EdgeInsets
+                                                padding:  EdgeInsets
                                                     .symmetric(
-                                                    horizontal: 4.0),
+                                                    horizontal: 4.0.w),
                                                 child: Text(
                                                   "${controller.user?.firstname} ${controller.user?.lastname}",
                                                         style: AppStyles.title
@@ -130,20 +131,20 @@ class ProfileView extends StatelessWidget {
                                         ),
                                         Padding(
                                           padding: EdgeInsets.symmetric(
-                                              vertical: 4.0),
+                                              vertical: 4.0.h),
                                           child: Row(
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets
+                                                padding:  EdgeInsets
                                                               .symmetric(
-                                                          horizontal: 8.0),
+                                                          horizontal: 8.0.w),
                                                       child: _icons(
                                                           ImageConstants.age),
                                                     ),
                                               Padding(
-                                                padding: const EdgeInsets
+                                                padding:  EdgeInsets
                                                     .symmetric(
-                                                    horizontal: 4.0),
+                                                    horizontal: 4.0.w),
                                                 child: Text(
                                                   "${controller.user?.age ?? 21} years",
                                                         style: AppStyles.title
@@ -158,21 +159,21 @@ class ProfileView extends StatelessWidget {
                                         ),
                                         Padding(
                                           padding: EdgeInsets.symmetric(
-                                              vertical: 4.0),
+                                              vertical: 4.0.h),
                                           child: Row(
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets
+                                                padding:  EdgeInsets
                                                               .symmetric(
-                                                          horizontal: 8.0),
+                                                          horizontal: 8.0.w),
                                                       child: _icons(
                                                           ImageConstants
                                                               .hobbies),
                                                     ),
                                               Padding(
-                                                padding: const EdgeInsets
+                                                padding:  EdgeInsets
                                                     .symmetric(
-                                                    horizontal: 4.0),
+                                                    horizontal: 4.0.w),
                                                 child: Text(
                                                         Constants.cafe_movies,
                                                         style: AppStyles.title
@@ -187,21 +188,21 @@ class ProfileView extends StatelessWidget {
                                         ),
                                         Padding(
                                           padding: EdgeInsets.symmetric(
-                                              vertical: 4.0),
+                                              vertical: 4.0.h),
                                           child: Row(
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets
+                                                padding:  EdgeInsets
                                                               .symmetric(
-                                                          horizontal: 8.0),
+                                                          horizontal: 8.0.w),
                                                       child: _icons(
                                                           ImageConstants
                                                               .relaxiation),
                                                     ),
                                               Padding(
-                                                padding: const EdgeInsets
+                                                padding:  EdgeInsets
                                                     .symmetric(
-                                                    horizontal: 4.0),
+                                                    horizontal: 4.0.w),
                                                 child: Text(
                                                         Constants
                                                             .singing_dancing,
@@ -217,20 +218,20 @@ class ProfileView extends StatelessWidget {
                                         ),
                                         Padding(
                                           padding: EdgeInsets.symmetric(
-                                              vertical: 4.0),
+                                              vertical: 4.0.h),
                                           child: Row(
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets
+                                                padding:  EdgeInsets
                                                               .symmetric(
-                                                          horizontal: 8.0),
+                                                          horizontal: 8.0.w),
                                                       child: _icons(
                                                           ImageConstants.study),
                                                     ),
                                               Padding(
-                                                padding: const EdgeInsets
+                                                padding:  EdgeInsets
                                                     .symmetric(
-                                                    horizontal: 4.0),
+                                                    horizontal: 4.0.w),
                                                 child: Text(
                                                         Constants.bangaloreU,
                                                         style: AppStyles.title
@@ -255,7 +256,7 @@ class ProfileView extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: Get.height * 0.35,
+                      height: (Get.height * 0.35).h,
                           ),
                     Column(
                       children: [
@@ -324,20 +325,20 @@ class ProfileView extends StatelessWidget {
                                     height: 280,
                                   ),*/
                                   Padding(
-                              padding: EdgeInsets.only(bottom: 24.0),
+                              padding: EdgeInsets.only(bottom: 24.0.h),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment:
                                 CrossAxisAlignment.start,
                                 children: [
                                   Container(
-                                    width: MediaQuery.of(context)
+                                    width: (MediaQuery.of(context)
                                         .size
                                         .width /
-                                        1.1,
+                                        1.1).w,
                                     decoration: BoxDecoration(
                                         borderRadius:
-                                        BorderRadius.circular(20),
+                                        BorderRadius.circular(20.r),
                                         color: Colors.white,
                                         boxShadow: [
                                           BoxShadow(
@@ -345,21 +346,21 @@ class ProfileView extends StatelessWidget {
                                               blurRadius: 6)
                                         ]),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(20.0),
+                                      padding:  EdgeInsets.all(20.0.w),
                                       child: Column(
                                         crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           Padding(
-                                            padding: const EdgeInsets
+                                            padding:  EdgeInsets
                                                 .symmetric(
-                                                horizontal: 4.0,
-                                                vertical: 4),
+                                                horizontal: 4.0.w,
+                                                vertical: 4.h),
                                             child: Padding(
                                               padding:
-                                              const EdgeInsets.all(
-                                                  8.0),
+                                               EdgeInsets.all(
+                                                  8.0.w),
                                               child: Text(
                                                       Constants.photo,
                                                       style: AppStyles.title
@@ -372,7 +373,7 @@ class ProfileView extends StatelessWidget {
                                           ),
                                           Container(
                                             color: Colors.white,
-                                            height: 200,
+                                            height: 200.h,
                                             child: GridView.builder(
                                                 padding: EdgeInsets.zero,
                                                 itemCount: controller
@@ -383,23 +384,23 @@ class ProfileView extends StatelessWidget {
                                                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                                     crossAxisCount: 2,
                                                               crossAxisSpacing:
-                                                                  4.0,
+                                                                  4.0.w,
                                                               childAspectRatio:
                                                                   1,
                                                               mainAxisSpacing:
-                                                                  4.0),
+                                                                  4.0.w),
                                                 itemBuilder:
                                                     (BuildContext context,
                                                     int index) {
                                                   return Padding(
                                                     padding:
-                                                    const EdgeInsets
-                                                        .all(8.0),
+                                                     EdgeInsets
+                                                        .all(8.0.w),
                                                     child: ClipRRect(
                                                       borderRadius:
                                                       BorderRadius
                                                           .circular(
-                                                          10),
+                                                          10.r),
                                                       child:
                                                       Image.network(
                                                         "${controller.userGalleryModel?.data.galleries?[index].imgPath}",
@@ -431,16 +432,16 @@ class ProfileView extends StatelessWidget {
   Widget _icons(String src) {
     return SvgPicture.asset(
       src,
-      height: 15,
-      width: 15,
+      height: 15.h,
+      width: 15.w,
     );
   }
 
   Positioned _appBar() {
     return Positioned(
-      top: 20,
-      left: 10,
-      right: 10,
+      top: 20.h,
+      left: 10.w,
+      right: 10.w,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -454,7 +455,7 @@ class ProfileView extends StatelessWidget {
               onPressed: () {},
               icon: Icon(
                 Icons.more_vert,
-                size: 30,
+                size: 30.w,
                 color: Colors.white,
               ))
         ],
@@ -463,11 +464,11 @@ class ProfileView extends StatelessWidget {
   }
 
   TextStyle buildTextStyle() => AppStyles.title2.copyWith(
-      color: Color(0xFF757e90), fontSize: 16, fontFamily: 'Helvetica');
+      color: Color(0xFF757e90), fontSize: 16.sp, fontFamily: 'Helvetica');
 
   RoundedRectangleBorder buildRoundedRectangleBorder() {
     return RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(20),
+      borderRadius: BorderRadius.circular(20.r),
     );
   }
 }

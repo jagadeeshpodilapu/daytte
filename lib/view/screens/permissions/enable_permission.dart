@@ -7,6 +7,7 @@ import 'package:daytte/view/screens/permissions/meet_people.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:location/location.dart';
@@ -22,15 +23,15 @@ class EnablePermsions extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _ripplesWidget(),
-            addVerticalSpace(20),
+            addVerticalSpace(20.h),
             _enableLocationTextWidget(theme),
-            addVerticalSpace(20),
+            addVerticalSpace(20.h),
             _permissionSubText(theme, """
        You’ll need to enable your 
       location in order to use Wooly"""),
-            addVerticalSpace(Get.height * 0.2),
+            addVerticalSpace((Get.height * 0.2).h),
             SizedBox(
-              width: Get.width * 0.8,
+              width: (Get.width * 0.8).w,
               child: RaisedGradientButton(
                 onPressed: () {
                   if (controller.permissionGranted == PermissionStatus.granted)
@@ -40,7 +41,7 @@ class EnablePermsions extends StatelessWidget {
                 title: "Allow Location",
               ),
             ),
-            addVerticalSpace(20),
+            addVerticalSpace(20.h),
             GestureDetector(
               onTap: () {
                 Get.to(() => MeetPeopleNearBy(),
@@ -50,7 +51,7 @@ class EnablePermsions extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   _permissionSubText(theme, "Tell Me More"),
-                  Icon(Icons.expand_more, color: Colors.grey, size: 30)
+                  Icon(Icons.expand_more, color: Colors.grey, size: 30.w)
                 ],
               ),
             )
@@ -61,7 +62,7 @@ class EnablePermsions extends StatelessWidget {
   }
 
   Widget _enableLocationTextWidget(TextTheme theme) =>
-      Text(Constants.enableLocation, style: AppStyles.heading4.copyWith(fontWeight: FontWeight.w500,fontSize: 26));
+      Text(Constants.enableLocation, style: AppStyles.heading4.copyWith(fontWeight: FontWeight.w500,fontSize: 26.sp));
 
   Widget _ripplesWidget() =>
       Center(child: SvgPicture.asset(ImageConstants.ic_ripples));

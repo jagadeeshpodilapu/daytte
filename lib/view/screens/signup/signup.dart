@@ -1,4 +1,5 @@
 import 'package:daytte/themes/color_styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../widgets/button_widget.dart';
 import '../../widgets/textfield_widget.dart';
@@ -28,41 +29,41 @@ class SignUp extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 12.0, vertical: 20),
+                  padding:  EdgeInsets.symmetric(
+                      horizontal: 12.0.w, vertical: 20.h),
                   child: Card(
                     elevation: 3,
                     color: whiteColor,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
+                        borderRadius: BorderRadius.circular(12.r)),
                     child: Container(
-                      margin: EdgeInsets.symmetric(horizontal: 12),
+                      margin: EdgeInsets.symmetric(horizontal: 12.w),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          addVerticalSpace(20),
+                          addVerticalSpace(20.h),
                           logoWidget(),
-                          addVerticalSpace(30),
+                          addVerticalSpace(30.h),
                           _firstName(controller),
-                          addVerticalSpace(15),
+                          addVerticalSpace(15.h),
                           _lastName(controller),
-                          addVerticalSpace(15),
+                          addVerticalSpace(15.h),
                           _dobWidget(context),
-                          addVerticalSpace(15),
+                          addVerticalSpace(15.h),
                           _email(controller),
-                          addVerticalSpace(15),
+                          addVerticalSpace(15.h),
                           //  _shareLocation(controller),
-                          addVerticalSpace(20),
+                          addVerticalSpace(20.h),
                           checkBoxWidget(controller),
-                          addVerticalSpace(40),
+                          addVerticalSpace(40.h),
                         ],
                       ),
                     ),
                   ),
                 ),
-                addVerticalSpace(15),
+                addVerticalSpace(15.h),
                 _signupButton(controller, context),
-                addVerticalSpace(15),
+                addVerticalSpace(15.h),
               ],
             ),
           ),
@@ -75,25 +76,25 @@ class SignUp extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        addHorizontalSpace(8),
+        addHorizontalSpace(8.w),
         Obx(() => GestureDetector(
                   onTap: () => controller.handlecheckbox(),
                   child: Container(
-                    height: 24,
-                    width: 24,
+                    height: 24.h,
+                    width: 24.w,
                     decoration: BoxDecoration(
                       border: controller.check.value?null: Border.all(
                           color: controller.check.value
                               ? primaryColor
                               : secondaryTextColor,
-                          width: 2),
-                      borderRadius: BorderRadius.circular(4),
+                          width: 2.w),
+                      borderRadius: BorderRadius.circular(4.r),
                     ),
                     child: controller.check.value
                         ? SvgPicture.asset(ImageConstants.ic_checkbox)
-                        : const Icon(
+                        :  Icon(
                             null,
-                            size: 30.0,
+                            size: 30.0.w,
                           ),
                   ),
                 )
@@ -128,7 +129,7 @@ class SignUp extends StatelessWidget {
       child: Obx(
         () => Row(
           children: [
-            addHorizontalSpace(8),
+            addHorizontalSpace(8.w),
             Text(Constants.shareLocation),
             Spacer(),
             Switch(
@@ -171,12 +172,12 @@ class SignUp extends StatelessWidget {
           hintText: "XXXX",
           // isCollapsed: true,
           // isDense: true,
-          contentPadding: EdgeInsets.all(16),
+          contentPadding: EdgeInsets.all(16.w),
           prefix: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 3.0, vertical: 3.0),
+            padding:  EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 3.0.h),
             child: Icon(
               Icons.calendar_today_outlined,
-              size: 16,
+              size: 16.w,
             ),
           ),
           enabledBorder: _outlineBorder(Color(0xFF9A9A9A)),
@@ -210,8 +211,8 @@ class SignUp extends StatelessWidget {
     return Center(
       child: SvgPicture.asset(
         ImageConstants.daytte_logo,
-        height: 120,
-        width: 120,
+        height: 120.h,
+        width: 120.w,
       ),
     );
   }
@@ -219,7 +220,7 @@ class SignUp extends StatelessWidget {
   Center _signupButton(SignupController controller, BuildContext context) {
     return Center(
       child: SizedBox(
-        width: Get.width * 0.85,
+        width: (Get.width * 0.85).w,
         child: RaisedGradientButton(
             title: 'Sign Up',
             onPressed: () {
@@ -240,11 +241,11 @@ class SignUp extends StatelessWidget {
   }
 
   EdgeInsets get paddingWidget =>
-      EdgeInsets.symmetric(horizontal: 2, vertical: 5);
+      EdgeInsets.symmetric(horizontal: 2.w, vertical: 5.h);
 
   Widget textFieldName(String name) {
     return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
+      padding:  EdgeInsets.only(top: 8.0.h),
       child: Text(
         name,
         style: TextStyle(
@@ -263,7 +264,7 @@ class SignUp extends StatelessWidget {
 
   OutlineInputBorder _outlineBorder(Color color) {
     return OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: color, width: 1.5));
+        borderRadius: BorderRadius.circular(8.r),
+        borderSide: BorderSide(color: color, width: 1.5.w));
   }
 }

@@ -8,6 +8,7 @@ import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -27,7 +28,7 @@ class OtpVerification extends StatelessWidget {
             _sentOtpMobileNumberWidget(controller),
             _otpTextFieldsWidget(context, controller),
             _reSendOtpWidget(controller),
-            addVerticalSpace(30),
+            addVerticalSpace(30.h),
                 _verifyOtpButtonWidget(controller, context),
               ],
             ),
@@ -37,7 +38,7 @@ class OtpVerification extends StatelessWidget {
 
   Widget _verifyOtpButtonWidget(OtpController controller, BuildContext context) {
     return SizedBox(
-      width: Get.width * 0.9,
+      width: (Get.width * 0.9).w,
       child: RaisedGradientButton(
           title: 'Verify and Create Account',
           onPressed: () async {
@@ -62,7 +63,7 @@ class OtpVerification extends StatelessWidget {
       title: Text(
         Constants.otpVerification,
         style: AppStyles.heading4
-            .copyWith(fontSize: 18, fontWeight: FontWeight.w400),
+            .copyWith(fontSize: 18.sp, fontWeight: FontWeight.w400),
       ),
       centerTitle: true,
     );
@@ -71,7 +72,7 @@ class OtpVerification extends StatelessWidget {
   Widget get _otpImageWidget {
     return Container(
       width: Get.width,
-      height: Get.height * 0.3,
+      height: (Get.height * 0.3).h,
       child: SvgPicture.asset(ImageConstants.verity_otp),
     );
   }
@@ -92,7 +93,7 @@ class OtpVerification extends StatelessWidget {
   Widget _otpTextFieldsWidget(BuildContext context, OtpController controller) {
     return Center(
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+        margin: EdgeInsets.symmetric(horizontal: 50.w, vertical: 20.h),
         width: MediaQuery.of(context).size.width,
         child: PinCodeTextField(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -126,8 +127,8 @@ class OtpVerification extends StatelessWidget {
     return PinTheme(
       shape: PinCodeFieldShape.circle,
       errorBorderColor: Colors.white,
-      fieldHeight: 60,
-      fieldWidth: 60,
+      fieldHeight: 60.h,
+      fieldWidth: 60.w,
       activeColor: const Color(0xff7004E3),
       activeFillColor: const Color(0xff7004E3),
       inactiveColor: const Color(0xFFE1E1E1),
@@ -138,7 +139,7 @@ class OtpVerification extends StatelessWidget {
   }
 
   Widget _reSendOtpWidget(OtpController controller) => Container(
-    padding: EdgeInsets.all(10),
+    padding: EdgeInsets.all(10.w),
     child: Center(
       child: RichText(
         text: TextSpan(

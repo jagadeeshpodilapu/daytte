@@ -2,9 +2,9 @@ import 'package:daytte/consts/constants.dart';
 import 'package:daytte/themes/app_styles.dart';
 import 'package:daytte/utils/common_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:group_button/group_button.dart';
-
 import '../../../controllers/passion/passion_controller.dart';
 import '../../widgets/button_widget.dart';
 
@@ -34,14 +34,14 @@ class PassionSCreen extends StatelessWidget {
               backgroundColor: Color(0xffF7F8FA),
               body: ListView(
                 children: [
-                  SizedBox(height: 20),
+                  SizedBox(height: 20.h),
                   ...List.generate(1, (index) {
                     return Theme(
                       data: ThemeData(
                         primarySwatch: blue,
                       ),
                       child: GroupButton(
-                        spacing: 5,
+                        spacing: 5.w,
                         isRadio: false,
                         selectedShadow: const [],
                         unselectedShadow: const [],
@@ -50,7 +50,7 @@ class PassionSCreen extends StatelessWidget {
                         unselectedTextStyle: AppStyles.title2.copyWith(
                             color: Color(0xFF9A9A9A),
                             fontWeight: FontWeight.w400),
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(30.r),
                         onSelected: (index, isSelected) {
                           controller.selected.add(controller.listId[index]);
                            print("selected passion ${controller.selected}");
@@ -61,11 +61,11 @@ class PassionSCreen extends StatelessWidget {
                       ),
                     );
                   }),
-                  SizedBox(height: 40),
+                  SizedBox(height: 40.h),
                 ],
               ),
               floatingActionButton: SizedBox(
-                width: Get.width * 0.9,
+                width: (Get.width * 0.9).w,
                 child: RaisedGradientButton(
                   title: Constants.continueText,
                   onPressed: () async {
@@ -98,12 +98,12 @@ class PassionSCreen extends StatelessWidget {
           icon: Icon(
             Icons.arrow_back_ios,
             color: Color(0xff363636),
-            size: 20,
+            size: 20.w,
           )),
       title: Text(
         Constants.passion,
         style: AppStyles.heading4
-            .copyWith(fontWeight: FontWeight.w400, fontSize: 18),
+            .copyWith(fontWeight: FontWeight.w400, fontSize: 18.sp),
       ),
       centerTitle: true,
     );

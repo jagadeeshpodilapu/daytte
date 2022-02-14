@@ -3,10 +3,10 @@ import 'package:daytte/controllers/settingsController/settings_controller.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:share/share.dart';
-
 import '../../../consts/image_constants.dart';
 import '../interested/interested.dart';
 
@@ -25,7 +25,7 @@ class Settings extends StatelessWidget {
             builder: (controller) {
               return ListView(
                 children: [
-                  addVerticalSpace(25),
+                  addVerticalSpace(25.h),
                   _titleBoldText(
                       theme, Constants.discoverySettings.toUpperCase()),
                   _locationWidget(theme, controller),
@@ -39,11 +39,11 @@ class Settings extends StatelessWidget {
                   _rateUsWidget(),
                   _shareWoolyAppWidget(),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    padding: EdgeInsets.symmetric(horizontal: 8.0.w),
                     child: _titleBoldText(theme, Constants.legal),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    padding:  EdgeInsets.symmetric(horizontal: 8.0.w),
                     child: Card(
                       color: Colors.white,
                       child: Column(
@@ -55,13 +55,13 @@ class Settings extends StatelessWidget {
                       ),
                     ),
                   ),
-                  addVerticalSpace(8),
+                  addVerticalSpace(8.h),
                   _logoutWidget(),
                   // _singleNameCard(Constants.logout, align: TextAlign.center),
                   _logoWidget(),
-                  SizedBox(height: 15),
+                  SizedBox(height: 15.h),
                   _deletedAccount(context, controller),
-                  SizedBox(height: 25),
+                  SizedBox(height: 25.h),
                 ],
               );
             }));
@@ -69,14 +69,14 @@ class Settings extends StatelessWidget {
 
   Padding _logoutWidget() {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding:  EdgeInsets.all(8.0.w),
       child: RaisedGradientButton(
           title: Constants.logout,
           onPressed: () {
             controller.clearStorage();
           },
-          borderRadius: 10,
-          width: Get.width * 0.7),
+          borderRadius: 10.r,
+          width: (Get.width * 0.7).w),
     );
   }
 
@@ -95,12 +95,12 @@ class Settings extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 10,
+            height: 10.h,
           ),
           SvgPicture.asset(
             ImageConstants.daytte_logo,
-            height: 100,
-            width: 100,
+            height: 100.h,
+            width: 100.w,
           ),
           Text(
             Constants.version,
@@ -129,9 +129,9 @@ class Settings extends StatelessWidget {
                 children: [
                   Text(
                     "Are you sure delete the Account ?",
-                    style: _textStyle.copyWith(fontSize: 16),
+                    style: _textStyle.copyWith(fontSize: 16.sp),
                   ),
-                  SizedBox(height: 5),
+                  SizedBox(height: 5.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -144,7 +144,7 @@ class Settings extends StatelessWidget {
                           ),
                           child: Text(Constants.no,
                               style: _textStyle.copyWith(color: Colors.white))),
-                      SizedBox(width: 50),
+                      SizedBox(width: 50.w),
                       TextButton(
                         style: TextButton.styleFrom(
                           backgroundColor: Colors.grey,
@@ -174,24 +174,24 @@ class Settings extends StatelessWidget {
 
   Padding _contactUsTextWidget(TextTheme theme) {
     return Padding(
-      padding: EdgeInsets.all(8),
+      padding: EdgeInsets.all(8.w),
       child: _titleBoldText(theme, Constants.contactUs),
     );
   }
 
   Padding _showWoolySubtitle(TextTheme theme) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 2),
+      padding:  EdgeInsets.symmetric(horizontal: 15.0.w, vertical: 2.h),
       child: _subHeadGreyText(
           "Turning this on will show your profile to single users near you.",
           theme,
-          size: 12),
+          size: 12.w),
     );
   }
 
   Widget _showMeOnWooly(SettingsController controller, TextTheme theme) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+      padding:  EdgeInsets.symmetric(horizontal: 8.0.w, vertical: 4.0.h),
       child: Card(
         color: Colors.white,
         elevation: 4.0,
@@ -211,7 +211,7 @@ class Settings extends StatelessWidget {
 
   Widget _ageRangeWidget(SettingsController controller, TextTheme theme) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding:  EdgeInsets.all(8.0.w),
       child: Card(
         elevation: 4.0,
         child: ListTile(
@@ -241,13 +241,13 @@ class Settings extends StatelessWidget {
 
   SliderThemeData _sliderCircle() {
     return SliderThemeData(
-        trackHeight: 2,
+        trackHeight: 2.h,
         rangeThumbShape: RoundRangeSliderThumbShape(enabledThumbRadius: 8));
   }
 
   Widget _genderSelectWidget(TextTheme theme, SettingsController controller) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding:  EdgeInsets.all(8.0.w),
       child: Card(
         elevation: 4.0,
         child: ListTile(
@@ -260,7 +260,7 @@ class Settings extends StatelessWidget {
                   theme,
                   controller.userInfoModel?.data.user?.interestedIn ??
                       "Female"),
-              addHorizontalSpace(8),
+              addHorizontalSpace(8.w),
               _backArrow()
             ],
           ),
@@ -281,7 +281,7 @@ class Settings extends StatelessWidget {
           ),
           trailing: Text(
             "${controller.maxDistance.value.toInt()} Km",
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(fontSize: 16.sp),
           ),
           subtitle: SliderTheme(
             data: _sliderCircle(),
@@ -302,7 +302,7 @@ class Settings extends StatelessWidget {
 
   Widget _locationWidget(TextTheme theme, SettingsController controller) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding:  EdgeInsets.symmetric(horizontal: 8.0.w),
       child: Card(
         elevation: 2.0,
         child: ListTile(
@@ -312,7 +312,7 @@ class Settings extends StatelessWidget {
             children: [
               _titleBoldText(theme,
                   "${controller.userInfoModel?.data.user?.location ?? "Bangalore"}"),
-              addHorizontalSpace(8),
+              addHorizontalSpace(8.w),
               _backArrow()
             ],
           ),
@@ -324,7 +324,7 @@ class Settings extends StatelessWidget {
   Widget _backArrow() {
     return Icon(
       Icons.arrow_forward_ios,
-      size: 18,
+      size: 18.w,
       color: Color(0xff363636),
     );
   }
@@ -333,13 +333,13 @@ class Settings extends StatelessWidget {
     return Text(
       title,
       style: theme.subtitle1
-          ?.copyWith(fontSize: size ?? 16, color: Color(0xff9A9A9A)),
+          ?.copyWith(fontSize: size?.sp ?? 16.sp, color: Color(0xff9A9A9A)),
     );
   }
 
   Widget _titleBoldText(TextTheme theme, String header) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding:  EdgeInsets.all(8.0.w),
       child: Text(header, style: theme.headline6?.copyWith(fontSize: 18)),
     );
   }
@@ -351,7 +351,7 @@ class Settings extends StatelessWidget {
           icon: Icon(
             Icons.arrow_back_ios,
             color: Colors.black,
-            size: 22,
+            size: 22.w,
           )),
       automaticallyImplyLeading: true,
       title: Text(
@@ -370,7 +370,7 @@ class Settings extends StatelessWidget {
             }
           },
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding:  EdgeInsets.all(8.0.w),
             child: Center(
               child: Text(
                 "Done",
@@ -379,7 +379,7 @@ class Settings extends StatelessWidget {
                     color: Color(
                       0xFFfe5068,
                     ),
-                    fontSize: 18),
+                    fontSize: 18.sp),
               ),
             ),
           ),
@@ -400,7 +400,7 @@ class Settings extends StatelessWidget {
 
   Widget _singleNameCard(String title, {TextAlign? align}) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding:  EdgeInsets.symmetric(horizontal: 8.0.w),
       child: Card(
         color: Colors.white,
         child: ListTile(
@@ -415,11 +415,11 @@ class Settings extends StatelessWidget {
   }
 
   TextStyle get _textStyle {
-    return const TextStyle(
+    return  TextStyle(
         color: const Color(0xff000000),
         fontWeight: FontWeight.w500,
         fontFamily: "ProximaNovaSoft",
         fontStyle: FontStyle.normal,
-        fontSize: 18.0);
+        fontSize: 18.0.sp);
   }
 }

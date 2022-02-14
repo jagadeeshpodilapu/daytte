@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ButtonWidget extends StatelessWidget {
   final String buttonTitle;
@@ -10,22 +11,22 @@ class ButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 20, right: 20, top: 5),
+      padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 5.h),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        height: 50,
+        height: 50.h,
         decoration: BoxDecoration(
-          borderRadius: new BorderRadius.circular(20.0),
+          borderRadius: new BorderRadius.circular(20.0.r),
         ),
         child: ElevatedButton(
           child: Text(
             buttonTitle,
-            style: const TextStyle(
+            style:  TextStyle(
                 color: const Color(0xffffffff),
                 fontWeight: FontWeight.w600,
                 fontFamily: "Avenir",
                 fontStyle: FontStyle.normal,
-                fontSize: 20.0),
+                fontSize: 20.0.sp),
           ),
           style: ElevatedButton.styleFrom(
             onPrimary: Colors.white,
@@ -56,9 +57,9 @@ class RaisedGradientButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width ?? double.infinity,
-      height: 50.0,
+      height: 50.0.h,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(borderRadius ?? 14.0),
+          borderRadius: BorderRadius.circular(borderRadius?.r ?? 14.0.r),
           boxShadow: [
             BoxShadow(
               color: Color(0xFF9222EC),
@@ -83,12 +84,12 @@ class RaisedGradientButton extends StatelessWidget {
           child: Center(
             child: Text(
               title,
-              style: const TextStyle(
+              style:  TextStyle(
                   color: const Color(0xffffffff),
                   fontWeight: FontWeight.w400,
                   fontFamily: "Roboto",
                   fontStyle: FontStyle.normal,
-                  fontSize: 20.0),
+                  fontSize: 20.0.sp),
             ),
           ),
         ),

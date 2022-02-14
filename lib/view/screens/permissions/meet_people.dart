@@ -5,6 +5,7 @@ import 'package:daytte/view/screens/permissions/enable_permission.dart';
 import 'package:daytte/view/widgets/button_widget.dart';
 import 'package:daytte/view/widgets/common_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:location/location.dart';
 
@@ -17,12 +18,12 @@ class MeetPeopleNearBy extends StatelessWidget {
         init: PermissionController(),
         builder: (controller) => Column(
           children: [
-            addVerticalSpace(50),
+            addVerticalSpace(50.h),
             _expandLessButtonWidget(),
             _allowLocationButtonWidget(controller),
-            addVerticalSpace(Get.height * 0.15),
+            addVerticalSpace((Get.height * 0.15).h),
             _meetPeopleWidget(theme),
-            addVerticalSpace(20),
+            addVerticalSpace(20.h),
             _subTextWidget(theme),
           ],
         ),
@@ -43,13 +44,13 @@ class MeetPeopleNearBy extends StatelessWidget {
   Widget _meetPeopleWidget(TextTheme theme) {
     return Text("Meet Nearby People",
         style: AppStyles.heading1
-            .copyWith(fontSize: 28, fontWeight: FontWeight.w500));
+            .copyWith(fontSize: 28.sp, fontWeight: FontWeight.w500));
   }
 
   Widget _allowLocationButtonWidget(PermissionController controller) {
     return Center(
       child: SizedBox(
-        width: Get.width * 0.8,
+        width: (Get.width * 0.8).w,
         child: RaisedGradientButton(
           onPressed: () {
             if (controller.permissionGranted == PermissionStatus.granted)
@@ -67,5 +68,5 @@ class MeetPeopleNearBy extends StatelessWidget {
           onPressed: () {
             Get.to(() => EnablePermsions(), transition: Transition.upToDown);
           },
-          icon: Icon(Icons.expand_less, size: 30, color: Colors.grey)));
+          icon: Icon(Icons.expand_less, size: 30.w, color: Colors.grey)));
 }

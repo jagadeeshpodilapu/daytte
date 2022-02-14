@@ -52,7 +52,7 @@ AppBar appBarWidget(String title, {Color? color,isBack=true}) {
         icon: Icon(
           Icons.arrow_back_ios,
           color:textColor,
-          size: 25,
+          size: 25.w,
         )):SizedBox(),
     title: Text(
       title,
@@ -65,7 +65,7 @@ AppBar appBarWidget(String title, {Color? color,isBack=true}) {
 
 TextStyle tileTextStyle() {
   return TextStyle(
-      color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18);
+      color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18.sp);
 }
 
 void snackbarMessage(String message, BuildContext context) {

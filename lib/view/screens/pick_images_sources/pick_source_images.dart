@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -35,24 +36,24 @@ class SelectImagesSource extends StatelessWidget {
 
   Widget buildSourceWidget(String icon, String sourceText) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: 10.h),
       decoration:
-          BoxDecoration(border: Border.all(color: Colors.grey, width: 2)),
+          BoxDecoration(border: Border.all(color: Colors.grey, width: 2.w)),
       child: Padding(
-        padding: const EdgeInsets.all(18.0),
+        padding:  EdgeInsets.all(18.0.w),
         child: Row(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 14.0),
+              padding:  EdgeInsets.only(left: 14.0.w),
               child: Image.asset(
                 icon,
               ),
             ),
-            SizedBox(width: 50),
+            SizedBox(width: 50.w),
             Text(
               sourceText,
               style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 18.sp,
                   color: Color(0xff9A9A9A),
                   fontWeight: FontWeight.bold),
             ),

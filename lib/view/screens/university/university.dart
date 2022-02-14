@@ -2,6 +2,7 @@ import 'package:daytte/consts/constants.dart';
 import 'package:daytte/themes/app_styles.dart';
 import 'package:daytte/themes/color_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../controllers/university/university_controller.dart';
 import '../../widgets/common_widgets.dart';
@@ -14,17 +15,17 @@ class UniversityView extends StatelessWidget {
       body: GetBuilder<UniversityController>(
         init: UniversityController(),
         builder: (controller) => Container(
-          padding: EdgeInsets.all(8),
-          height: Get.height * 0.9,
+          padding: EdgeInsets.all(8.w),
+          height: (Get.height * 0.9).h,
           child: Card(
             elevation: 4,
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(12.0),
+                  padding:  EdgeInsets.all(12.0.r),
                   child: TextFormField(
                     decoration: InputDecoration(
                       hintText: Constants.searchUniversity,
@@ -32,10 +33,10 @@ class UniversityView extends StatelessWidget {
                           AppStyles.title.copyWith(color: secondaryTextColor),
                       enabledBorder: UnderlineInputBorder(
                         borderSide:
-                            BorderSide(color: secondaryTextColor.withOpacity(0.4), width: 2),
+                            BorderSide(color: secondaryTextColor.withOpacity(0.4), width: 2.w),
                       ),
                       focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: primaryColor, width: 2),
+                        borderSide: BorderSide(color: primaryColor, width: 2.w),
                       ),
                       // prefixIcon: Icon(Icons.search),
                     ),
@@ -61,12 +62,12 @@ class UniversityView extends StatelessWidget {
                               }
                             },
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding:  EdgeInsets.all(8.0.w),
                               child: Container(
-                                padding: EdgeInsets.all(8),
-                                margin: EdgeInsets.symmetric(horizontal: 4),
+                                padding: EdgeInsets.all(8.w),
+                                margin: EdgeInsets.symmetric(horizontal: 4.w),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(6),
+                                  borderRadius: BorderRadius.circular(6.r),
                                   border: Border.all(
                                     color: Color(0xff9a9a9a),
                                   ),
