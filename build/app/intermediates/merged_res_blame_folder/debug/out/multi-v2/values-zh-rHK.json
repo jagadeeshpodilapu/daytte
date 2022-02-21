@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\jagadeesh\\Desktop\\daytte\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh-rHK\\values-zh-rHK.xml",
+            "outputFile": "C:\\Users\\wstll\\AndroidStudioProjects\\daytte\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh-rHK\\values-zh-rHK.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\jagadeesh\\.gradle\\caches\\transforms-2\\files-2.1\\86cae1ed7f87903c37ea187d62abf974\\core-1.6.0\\res\\values-zh-rHK\\values-zh-rHK.xml",
+                    "source": "C:\\Users\\wstll\\.gradle\\caches\\transforms-2\\files-2.1\\86cae1ed7f87903c37ea187d62abf974\\core-1.6.0\\res\\values-zh-rHK\\values-zh-rHK.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -21,24 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\jagadeesh\\.gradle\\caches\\transforms-2\\files-2.1\\9b688bd187fb4c6f9f0994ed4d821fcb\\jetified-play-services-basement-17.0.0\\res\\values-zh-rHK\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "251",
-                        "endColumns": "166",
-                        "endOffsets": "417"
-                    },
-                    "to": {
-                        "startLines": "10",
-                        "startColumns": "4",
-                        "startOffsets": "1127",
-                        "endColumns": "166",
-                        "endOffsets": "1289"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\jagadeesh\\.gradle\\caches\\transforms-2\\files-2.1\\b2bf26007281557ff9878dc69efd664e\\jetified-firebase-messaging-23.0.0\\res\\values-zh-rHK\\values.xml",
+                    "source": "C:\\Users\\wstll\\.gradle\\caches\\transforms-2\\files-2.1\\b2bf26007281557ff9878dc69efd664e\\jetified-firebase-messaging-23.0.0\\res\\values-zh-rHK\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -55,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\jagadeesh\\.gradle\\caches\\transforms-2\\files-2.1\\29c043093002ceeda2b8d4af2a20fc73\\jetified-play-services-base-17.0.0\\res\\values-zh-rHK\\values.xml",
+                    "source": "C:\\Users\\wstll\\.gradle\\caches\\transforms-2\\files-2.1\\29c043093002ceeda2b8d4af2a20fc73\\jetified-play-services-base-17.0.0\\res\\values-zh-rHK\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -69,6 +52,23 @@
                         "startOffsets": "105,208,368,485,589,755,873,1005,1294,1463,1566,1726,1843,2009,2147,2232,2319",
                         "endColumns": "102,159,116,103,165,117,131,121,168,102,159,116,165,137,84,86,100",
                         "endOffsets": "203,363,480,584,750,868,1000,1122,1458,1561,1721,1838,2004,2142,2227,2314,2415"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\wstll\\.gradle\\caches\\transforms-2\\files-2.1\\9b688bd187fb4c6f9f0994ed4d821fcb\\jetified-play-services-basement-17.0.0\\res\\values-zh-rHK\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "251",
+                        "endColumns": "166",
+                        "endOffsets": "417"
+                    },
+                    "to": {
+                        "startLines": "10",
+                        "startColumns": "4",
+                        "startOffsets": "1127",
+                        "endColumns": "166",
+                        "endOffsets": "1289"
                     }
                 }
             ]

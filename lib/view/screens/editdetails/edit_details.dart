@@ -31,7 +31,7 @@ class EditDetails extends StatelessWidget {
           children: [
             addPhotoHeadingWidget,
             Padding(
-              padding: EdgeInsets.only(left: 24.0),
+              padding: EdgeInsets.symmetric(horizontal: 24.0),
               child: Wrap(
                 spacing: 10.w,
                 children: [
@@ -129,7 +129,6 @@ class EditDetails extends StatelessWidget {
   Container detailsWidget(EditDetailsController controller) {
     controller.aboutMeController.text =
         controller.userModel?.data.user?.shortDescription ?? "";
-
     // controller.schoolController.text =
     //     controller.userModel?.data.user?.institute?.name ?? "Bangalore university";
     // controller.companyController.text =
@@ -148,7 +147,7 @@ class EditDetails extends StatelessWidget {
           ],
           color: const Color(0xffffffff)),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 10.h),
+        padding: EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 10.h),
         child: Column(
           children: [
             Column(
@@ -533,7 +532,7 @@ class EditDetails extends StatelessWidget {
       child: Text(
         text,
         textAlign: TextAlign.start,
-        style: AppStyles.title.copyWith(fontWeight: FontWeight.w500),
+        style: AppStyles.title.copyWith(fontWeight: FontWeight.w400),
       ),
     );
   }

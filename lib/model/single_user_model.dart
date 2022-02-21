@@ -121,7 +121,7 @@ class User {
         filterRadius: json["filterRadius"],
         shortDescription: json["shortDescription"],
         institute: Institute.fromJson(json["institute"]),
-        profileImg: ProfileImg.fromJson(json["profileImg"]),
+        profileImg: json.containsKey("profileImg") ? ProfileImg.fromJson(json["profileImg"]):ProfileImg(),
     );
 
     Map<String, dynamic> toJson() => {

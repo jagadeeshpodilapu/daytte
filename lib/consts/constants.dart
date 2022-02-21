@@ -99,4 +99,5 @@ class Constants {
   static const String bangaloreU = "Bangalore university";
   static const String photo = "Photo";
   static const String friendThinks = "See what a friend thinks";
+  static const String passionMsg = "select passions should be 5";
 }

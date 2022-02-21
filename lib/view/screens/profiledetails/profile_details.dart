@@ -14,6 +14,7 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("user in profileview $user");
     return Scaffold(
       backgroundColor: Color(0xffF7F8FA),
       body: GetBuilder<ProfileDetailsController>(

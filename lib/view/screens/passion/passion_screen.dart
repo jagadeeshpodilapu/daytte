@@ -52,8 +52,8 @@ class PassionSCreen extends StatelessWidget {
                             fontWeight: FontWeight.w400),
                         borderRadius: BorderRadius.circular(30.r),
                         onSelected: (index, isSelected) {
-                          controller.selected.add(controller.listId[index]);
-                           print("selected passion ${controller.selected}");
+                            controller.selected.add(controller.listId[index]);
+                            print("selected passion ${controller.selected}");
                         },
                            
                         buttons: controller.listName,
@@ -78,7 +78,7 @@ class PassionSCreen extends StatelessWidget {
                       }
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text(Constants.select2Pics),
+                        content: Text(Constants.passionMsg),
                       ));
                     }
                   },

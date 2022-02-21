@@ -182,15 +182,19 @@ class EditDetailsController extends BaseController {
 
   Future getUserUpdateData() async {
     //DialogHelper.showLoading('Loading...');
+    print("userId=====> ${storage.read("id")} ${storage.read('token')}");
     final response = await BaseClient()
         .get('/users/${storage.read("id")}', storage.read('token'))
         .catchError(handleError);
     if (response == null) return;
 
     // DialogHelper.hideLoading();
+    print("save user Data ${response}");
+
     if (response != null) {
-      print("save user Data $response");
+
       userModel = SingleUserModel.fromJson(response);
+
       schoolController.text =
           userModel?.data.user?.institute?.name ?? "Bangalore university";
     }
