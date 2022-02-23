@@ -15,7 +15,7 @@ class ChatList extends GetView<ChatController> {
     return Scaffold(
       backgroundColor: Color(0xffF7F8FA),
       appBar: PreferredSize(
-        preferredSize:  Size.fromHeight(80.0.h),
+        preferredSize: Size.fromHeight(80.0.h),
         child: SafeArea(
           child: GetBuilder<ChatController>(
             init: ChatController(),
@@ -30,7 +30,7 @@ class ChatList extends GetView<ChatController> {
                 ), */
                 messageHeaderWithActionsWidget(theme)
               ],
-                ),
+            ),
           ),
         ),
       ),
@@ -39,19 +39,26 @@ class ChatList extends GetView<ChatController> {
         child: GetBuilder<ChatController>(
           init: ChatController(),
           builder: (controller) {
-            return ListView.separated(
-              itemCount: controller.chatmodel?.data.users?.length ?? 0,
-              itemBuilder: (context, index) {
-                return messageCard(context, index, theme);
-              },
-              separatorBuilder: (context, index) {
-                return Container(
-                  height: 2.h,
-                  color: Colors.grey[300],
-                  margin: EdgeInsets.symmetric(horizontal: 16.w),
-                );
-              },
-            );
+            return controller.usersLength != 0
+                ? ListView.separated(
+                    itemCount: controller.chatmodel?.data.users?.length ?? 0,
+                    itemBuilder: (context, index) {
+                      return messageCard(context, index, theme);
+                    },
+                    separatorBuilder: (context, index) {
+                      return Container(
+                        height: 2.h,
+                        color: Colors.grey[300],
+                        margin: EdgeInsets.symmetric(horizontal: 16.w),
+                      );
+                    },
+                  )
+                : Center(
+                    child: Text(
+                      "No chat Users",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  );
           },
         ),
       ),
@@ -75,7 +82,7 @@ class ChatList extends GetView<ChatController> {
     return ListTile(
       onTap: () {
         Get.to(
-              () => ChatView(user: controller.chatmodel?.data.users![index]),
+          () => ChatView(user: controller.chatmodel?.data.users![index]),
         );
         controller.fetchChatAllDetails(
             "", controller.chatmodel?.data.users![index].chatUser?.id ?? "");
@@ -121,18 +128,20 @@ class ChatList extends GetView<ChatController> {
 
   Widget timeLeftWidget(int index) {
     return Text('23 min',
-        style:  TextStyle(
-            color:  Color(0xff9A9A9A),
+        style: TextStyle(
+            color: Color(0xff9A9A9A),
             fontWeight: FontWeight.w500,
             fontFamily: "SFProDisplay",
             fontStyle: FontStyle.normal,
             fontSize: 14.0.sp));
   }
 
-  Text userLastMessageWidget(ChatController controller, int index, TextTheme theme) {
+  Text userLastMessageWidget(
+      ChatController controller, int index, TextTheme theme) {
     return Text(
       controller.chatmodel?.data.users?[index].chatUser?.msg?.message ?? "",
-      style: theme.headline6?.copyWith(color: Color(0xff9A9A9A), fontSize: 14.sp),
+      style:
+          theme.headline6?.copyWith(color: Color(0xff9A9A9A), fontSize: 14.sp),
     );
   }
 
@@ -163,7 +172,7 @@ class ChatList extends GetView<ChatController> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
-            padding:  EdgeInsets.only(left: 12.0.w),
+            padding: EdgeInsets.only(left: 12.0.w),
             child: Text(Constants.message,
                 style: theme.headline6?.copyWith(fontSize: 22.sp)),
           ),
@@ -200,7 +209,8 @@ class ChatList extends GetView<ChatController> {
     );
   }
 
-  Widget chatHeadersText(String text, double width, bool boolAll, TextTheme theme) {
+  Widget chatHeadersText(
+      String text, double width, bool boolAll, TextTheme theme) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -209,10 +219,10 @@ class ChatList extends GetView<ChatController> {
           SizedBox(height: 5),
           boolAll
               ? Container(
-            height: 4,
-            width: width,
-            color: Color(0xFF3c0fc7),
-          )
+                  height: 4,
+                  width: width,
+                  color: Color(0xFF3c0fc7),
+                )
               : SizedBox(height: 5)
         ],
       ),

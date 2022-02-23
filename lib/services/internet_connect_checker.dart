@@ -25,6 +25,7 @@ class NetworkUtils {
 
   streamSubscribeConnectivityListener() {
     networkListener = (ConnectivityResult result) async {
+
       switch (result) {
         case ConnectivityResult.wifi:
           isConnected();
@@ -35,11 +36,13 @@ class NetworkUtils {
           break;
         case ConnectivityResult.none:
           await Get.dialog(NoInternetWidget(), barrierDismissible: false);
-
           await 2.seconds.delay();
+          break;
+        case ConnectivityResult.bluetooth:
           break;
       }
     };
+    
     subscription = Connectivity().onConnectivityChanged.listen(networkListener);
   }
 

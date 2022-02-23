@@ -24,8 +24,8 @@ class ExpandPartnerDetails extends StatelessWidget {
               backgroundColor: Colors.white12,
               expandedHeight: 350.0.h,
               flexibleSpace: FlexibleSpaceBar(
-                background: Image.network('${user.profileImg?.imgPath}',
-                    fit: BoxFit.cover),
+                background:user.profileImg?.imgPath !=null ? Image.network('${user.profileImg?.imgPath}',
+                    fit: BoxFit.cover):Image.asset(ImageConstants.placeHolder, fit: BoxFit.cover),
               ),
             ),
             SliverList(

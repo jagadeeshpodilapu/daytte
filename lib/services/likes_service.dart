@@ -13,7 +13,8 @@ class LikesService {
           },
         ),
       );
-      print("service response ${response.data}");
+      print("likes service payload ${response.data}");
+      print("likes service response ${response.data}");
       return response.data;
     } on DioError catch (e) {
       print("exception $e");

@@ -125,13 +125,13 @@ class ChatController extends BaseController {
     update();
   }
 
- 
-
   Future fetchChatUsers() async {
     final response = await BaseClient()
         .get('/users/chat/all?page=1&limit=10&userId=${storage.read('id')}',
             storage.read('token'))
         .catchError(BaseController().handleError);
+
+    print("chat users list response is $response");
 
     if (response != null) {
       chatmodel = ChatAllModel.fromJson(response);
@@ -146,8 +146,7 @@ class ChatController extends BaseController {
 
   Future fetchChatAllDetails(String sender, String reciever) async {
     final response = await ChatHistoryService()
-        .getChatHistory(
-            "$sender", "$reciever", 1, 150)
+        .getChatHistory("$sender", "$reciever", 1, 150)
         .catchError(BaseController().handleError);
 
     if (response != null) {
