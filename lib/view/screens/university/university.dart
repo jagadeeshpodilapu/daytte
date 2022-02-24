@@ -4,6 +4,7 @@ import 'package:daytte/themes/color_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../../../controllers/edit_details/edit_details_controller.dart';
 import '../../../controllers/university/university_controller.dart';
 import '../../widgets/common_widgets.dart';
 
@@ -56,9 +57,12 @@ class UniversityView extends StatelessWidget {
                               await controller.postUniversityList(
                                   "${controller.universityListModel!.data.passion?[index].id}");
                               if (controller.responseModel != null) {
-                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                    content: Text(
-                                        "${controller.responseModel?.message}")));
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                          content: Text(
+                                              "${controller.responseModel
+                                                  ?.message}")));
+
                               }
                             },
                             child: Padding(

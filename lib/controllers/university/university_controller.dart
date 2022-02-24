@@ -7,6 +7,7 @@ import 'package:get_storage/get_storage.dart';
 
 import '../../services/base_service/base_client.dart';
 import '../base_controller/baseController.dart';
+import '../edit_details/edit_details_controller.dart';
 
 class UniversityController extends BaseController {
   PassionModel? universityListModel;
@@ -44,9 +45,9 @@ class UniversityController extends BaseController {
     if (response != null) {
       String universityScreen = storage.read("university") ?? "";
       if (universityScreen == "EditProfileUniversity") {
-        print("edit details edit");
         responseModel = ResponseModel.fromJson(response);
         Get.back();
+        Get.find<EditDetailsController>().saveUserDetails();
         storage.write("university", '');
       } else {
         responseModel = ResponseModel.fromJson(response);

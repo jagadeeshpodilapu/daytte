@@ -7,7 +7,7 @@ import 'package:get_storage/get_storage.dart';
 
 class ProfileDetailsController extends BaseController {
   final storage = GetStorage();
-  User? user;
+  User? userData;
   RxBool isLoading = true.obs;
   UserGalleryModel? userGalleryModel;
 
@@ -19,8 +19,8 @@ class ProfileDetailsController extends BaseController {
 
     if (response != null) {
       isLoading(false);
-      user = User.fromJson(response['data']['user']);
-      print("find nearest response $response  $user");
+      userData = User.fromJson(response['data']['user']);
+      print("find nearest response $response  $userData");
     }
     update();
   }

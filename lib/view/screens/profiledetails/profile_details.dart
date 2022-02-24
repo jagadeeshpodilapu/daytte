@@ -14,7 +14,7 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("user in profileview $user");
+    print("user in profileview ${user}");
     return Scaffold(
       backgroundColor: Color(0xffF7F8FA),
       body: GetBuilder<ProfileDetailsController>(
@@ -24,6 +24,7 @@ class ProfileView extends StatelessWidget {
             await state.controller?.fetchUserGallery(user.id);
           },
           builder: (controller) {
+            print("user name and age ${controller.userData?.age} ${controller.userData?.firstname} ${controller.userData?.lastname}");
             return controller.isLoading.value
                 ? Center(child: CircularProgressIndicator())
                 : SingleChildScrollView(
@@ -83,7 +84,7 @@ class ProfileView extends StatelessWidget {
                                     child: Column(
                                       children: [
                                               Text(
-                                                  "${controller.user?.firstname}${controller.user?.lastname}",
+                                                  "${controller.userData?.firstname}${controller.userData?.lastname}",
                                                   style: AppStyles.heading4
                                                       .copyWith(
                                                           fontWeight:
@@ -119,7 +120,7 @@ class ProfileView extends StatelessWidget {
                                                     .symmetric(
                                                     horizontal: 4.0.w),
                                                 child: Text(
-                                                  "${controller.user?.firstname} ${controller.user?.lastname}",
+                                                  "${controller.userData?.firstname} ${controller.userData?.lastname}",
                                                         style: AppStyles.title
                                                             .copyWith(
                                                                 fontWeight:
@@ -147,7 +148,7 @@ class ProfileView extends StatelessWidget {
                                                     .symmetric(
                                                     horizontal: 4.0.w),
                                                 child: Text(
-                                                  "${controller.user?.age ?? 21} years",
+                                                  "${controller.userData?.age ?? 21} years",
                                                         style: AppStyles.title
                                                             .copyWith(
                                                                 fontWeight:
