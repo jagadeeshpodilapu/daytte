@@ -141,20 +141,20 @@ class ExpandPartnerDetails extends StatelessWidget {
 
   Widget _passionListWidget() {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 12.w),
+      padding:  EdgeInsets.symmetric(horizontal: 18.w),
       child: Wrap(
         runSpacing: 5,
         children: List.generate(
             user.passion?.length ?? 0,
             (index) => Padding(
-                  padding:  EdgeInsets.all(8.0.w),
+                  padding:  EdgeInsets.all(4.0.w),
                   child: Container(
-                    padding:  EdgeInsets.all(10.0.w),
+                    padding:  EdgeInsets.all(8.0.w),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10.r),
+                        borderRadius: BorderRadius.circular(20.r),
                         border: Border.all(color: Color(0xff7004E3), width: 2.w)),
                     child: Text("${user.passion?[index].name}",
-                        style: AppStyles.title2.copyWith(
+                        style: AppStyles.title.copyWith(
                             color: Color(0xff7004E3),
                             fontWeight: FontWeight.w400)),
                   ),
@@ -165,7 +165,7 @@ class ExpandPartnerDetails extends StatelessWidget {
 
   Padding _aboutmeInfoWidget() {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 14.w, vertical: 3.h),
+      padding:  EdgeInsets.symmetric(horizontal: 27.w, vertical: 3.h),
       child: Text(
         "${user.shortDescription}",
         style: AppStyles.title.copyWith(
@@ -177,36 +177,36 @@ class ExpandPartnerDetails extends StatelessWidget {
   }
 
   Container get _divider => Container(
-        height: 2,
+        height: 1.2,
         color: Colors.grey,
-        margin: EdgeInsets.symmetric(horizontal: 24),
+        margin: EdgeInsets.symmetric(horizontal: 27),
       );
 
-  Align _aboutmeText(String text) {
-    return Align(
-        alignment: Alignment.topLeft,
-        child: Padding(
-          padding:  EdgeInsets.symmetric(horizontal: 14.0.w, vertical: 10.h),
+  Widget _aboutmeText(String text) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 27.w,vertical: 10.h),
+      child: Align(
+          alignment: Alignment.topLeft,
           child: Text(text,
-              style: AppStyles.heading3.copyWith(fontWeight: FontWeight.w500)),
-        ));
+              style: AppStyles.heading3.copyWith(fontWeight: FontWeight.w500))),
+    );
   }
 
   Widget _infoWidget(IconData src, String text) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Padding(
-          padding:  EdgeInsets.symmetric(horizontal: 8.0.w),
-          child: Icon(src, color: Colors.grey),
-        ),
-        addHorizontalSpace(10.w),
-        Text(
-          text,
-          style: AppStyles.title
-              .copyWith(color: Color(0xFF9A9A9A), fontWeight: FontWeight.w400),
-        )
-      ],
+    return Padding(
+      padding:EdgeInsets.symmetric(horizontal: 24.w),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(src, color: Colors.grey),
+          addHorizontalSpace(10.w),
+          Text(
+            text,
+            style: AppStyles.title
+                .copyWith(color: Color(0xFF9A9A9A), fontWeight: FontWeight.w400),
+          )
+        ],
+      ),
     );
   }
 

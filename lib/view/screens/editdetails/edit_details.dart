@@ -57,7 +57,7 @@ class EditDetails extends StatelessWidget {
                                   width: 45.w, height: 30.r),
                               addVerticalSpace(12.h),
                               Padding(
-                                padding:  EdgeInsets.all(8.0.w),
+                                padding: EdgeInsets.all(8.0.w),
                                 child: Text(Constants.addPhoto,
                                     style: AppStyles.title2.copyWith(
                                         fontWeight: FontWeight.w400,
@@ -107,7 +107,7 @@ class EditDetails extends StatelessWidget {
             detailsWidget(controller),
             addVerticalSpace(10.h),
             Padding(
-              padding:  EdgeInsets.all(14.0.w),
+              padding: EdgeInsets.all(14.0.w),
               child: RaisedGradientButton(
                   title: Constants.saveChanges,
                   onPressed: () async {
@@ -188,7 +188,7 @@ class EditDetails extends StatelessWidget {
                 Align(
                     alignment: Alignment.topLeft,
                     child: Padding(
-                      padding:  EdgeInsets.all(8.0.w),
+                      padding: EdgeInsets.all(8.0.w),
                       child: headingWithTextStyle(0.9, Constants.passion, 17.5),
                     )),
                 GestureDetector(
@@ -215,7 +215,7 @@ class EditDetails extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8.r),
                       border: Border.all(color: Colors.grey)),
                   child: Padding(
-                    padding:  EdgeInsets.all(8.0.w),
+                    padding: EdgeInsets.all(8.0.w),
                     child: Text(
                       "${controller.userModel?.data.user?.passion?[index].name}",
                     ),
@@ -229,7 +229,7 @@ class EditDetails extends StatelessWidget {
                 Align(
                     alignment: Alignment.topLeft,
                     child: Padding(
-                      padding:  EdgeInsets.all(8.0.w),
+                      padding: EdgeInsets.all(8.0.w),
                       child: headingWithTextStyle(0.9, Constants.school, 17.5),
                     )),
                 GestureDetector(
@@ -271,20 +271,26 @@ class EditDetails extends StatelessWidget {
 
   Widget _genderSelectWidget(EditDetailsController controller) {
     return Card(
-      elevation: 1.0,
-      child: ListTile(
-        //onTap: () => Get.to(() => InterestedScreen()),
-        title: _subHeadGreyText(Constants.gender),
-        trailing: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _titleBoldText(controller.userModel?.data.user?.gender ?? ""),
-            addHorizontalSpace(8.w),
-            // _backArrow()
-          ],
-        ),
-      ),
-    );
+          elevation: 0,
+          color: Color(0xfffcfcfc),
+          child: Container(
+            // padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.h),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5.r),
+                border: Border.all(color:Color(0xFFe1e1e1),width: 1)),
+            child: ListTile(
+            //onTap: () => Get.to(() => InterestedScreen()),
+            title: _subHeadGreyText(Constants.gender),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                _titleBoldText(controller.userModel?.data.user?.gender ?? ""),
+                addHorizontalSpace(8.w),
+                // _backArrow()
+              ],
+            ),
+          ),
+        ));
   }
 
   Text _subHeadGreyText(String title, {double? size}) {
@@ -450,7 +456,7 @@ class EditDetails extends StatelessWidget {
     EditDetailsController controller,
   ) {
     return Padding(
-      padding:  EdgeInsets.all(14.0.w),
+      padding: EdgeInsets.all(14.0.w),
       child: RaisedGradientButton(
           title: Constants.addMedia,
           onPressed: () async {
@@ -475,7 +481,7 @@ class EditDetails extends StatelessWidget {
       required Widget image,
       String? file}) {
     return Padding(
-      padding:  EdgeInsets.only(bottom: 15.0.h),
+      padding: EdgeInsets.only(bottom: 15.0.h),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(5.0.r),
         child: Stack(
