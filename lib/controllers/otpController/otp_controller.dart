@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:daytte/view/screens/permissions/enable_permission.dart';
+import 'package:daytte/view/screens/signup/signup.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -93,7 +94,10 @@ class OtpController extends BaseController {
           Get.off(() => EnablePermsions());
         } else {
           storage.write('page', "1");
-          Get.offAndToNamed(AppRoutes.SIGNUPVIEW);
+          // Get.offAndToNamed(AppRoutes.SIGNUPVIEW);
+          // Navigator.popUntil(Get.context!, ModalRoute.withName(AppRoutes.SIGNUPVIEW));
+          Navigator.of(Get.context!)
+              .pushNamedAndRemoveUntil(AppRoutes.SIGNUPVIEW, (Route<dynamic> route) => false);
         }
       } else {
         storage.write('page', "8");
