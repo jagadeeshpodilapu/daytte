@@ -11,6 +11,9 @@ import '../../widgets/button_widget.dart';
 import '../../widgets/common_widgets.dart';
 
 class InterestedScreen extends StatelessWidget {
+  String? navigateFrom = "";
+  InterestedScreen({this.navigateFrom});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,8 +49,8 @@ class InterestedScreen extends StatelessWidget {
                                   ? Color(0xFF7004E3)
                                   : Color(0xff9a9a9a),
                               width: 2)),
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 8.0.h),
+                      margin: EdgeInsets.symmetric(
+                          horizontal: 12.0.w, vertical: 8.0.h),
                     ),
                     Container(
                       decoration: BoxDecoration(
@@ -57,8 +60,8 @@ class InterestedScreen extends StatelessWidget {
                                   ? primaryColor
                                   : secondaryTextColor,
                               width: 2.w)),
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 8.0.h),
+                      margin: EdgeInsets.symmetric(
+                          horizontal: 12.0.w, vertical: 8.0.h),
                       child: ListTile(
                         leading: controller.selctedGender == Gender.Female
                             ? buildTextBold(Constants.interestedWomen)
@@ -79,8 +82,8 @@ class InterestedScreen extends StatelessWidget {
                                   ? primaryColor
                                   : secondaryTextColor,
                               width: 2.w)),
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 12.0.w, vertical: 8.0.h),
+                      margin: EdgeInsets.symmetric(
+                          horizontal: 12.0.w, vertical: 8.0.h),
                       child: ListTile(
                         leading: controller.selctedGender == Gender.Everyone
                             ? buildTextBold(Constants.interestedEveryOne)
@@ -98,15 +101,21 @@ class InterestedScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding:  EdgeInsets.all(12.0.w),
+              padding: EdgeInsets.all(12.0.w),
               child: RaisedGradientButton(
                 title: Constants.next,
                 borderRadius: 12.r,
                 onPressed: () async {
-                  await controller.updateInterestedStatus();
-                  if (controller.responseModel != null) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text("${controller.responseModel?.message}")));
+                  if (navigateFrom != "") {
+                    Get.back();
+
+                  } else {
+                    await controller.updateInterestedStatus();
+                    if (controller.responseModel != null) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content:
+                              Text("${controller.responseModel?.message}")));
+                    }
                   }
                 },
               ),
