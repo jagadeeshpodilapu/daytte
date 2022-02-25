@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
+
 ChatHistoryModel chatHistoryModelFromJson(String str) =>
     ChatHistoryModel.fromJson(json.decode(str));
 
@@ -94,6 +96,7 @@ class Chat {
         v: json["__v"],
         chatId: json["id"],
       );
+
 
   Map<String, dynamic> toJson() => {
         "isRead": isRead,
