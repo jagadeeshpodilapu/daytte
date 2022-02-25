@@ -1,13 +1,10 @@
 import 'dart:async';
-
 import 'package:daytte/view/screens/permissions/enable_permission.dart';
-import 'package:daytte/view/screens/signup/signup.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:location/location.dart';
-
 import '../../model/user_info_model.dart';
 import '../../routes/app_routes.dart';
 import '../../services/base_service/base_client.dart';
@@ -72,8 +69,6 @@ class OtpController extends BaseController {
       "otp": otp,
       "device_token": deviceToken.value
     };
-
-    print("payload otp $payload");
     DialogHelper.showLoading('Verifying Otp');
     final response = await BaseClient()
         .post('/auth/verifyOtp', payload)
@@ -96,8 +91,8 @@ class OtpController extends BaseController {
           storage.write('page', "1");
           // Get.offAndToNamed(AppRoutes.SIGNUPVIEW);
           // Navigator.popUntil(Get.context!, ModalRoute.withName(AppRoutes.SIGNUPVIEW));
-          Navigator.of(Get.context!)
-              .pushNamedAndRemoveUntil(AppRoutes.SIGNUPVIEW, (Route<dynamic> route) => false);
+          Navigator.of(Get.context!).pushNamedAndRemoveUntil(
+              AppRoutes.SIGNUPVIEW, (Route<dynamic> route) => false);
         }
       } else {
         storage.write('page', "8");

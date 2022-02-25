@@ -1,4 +1,3 @@
-
 import 'package:daytte/consts/constants.dart';
 import 'package:daytte/themes/app_styles.dart';
 import 'package:flutter/material.dart';
@@ -27,8 +26,11 @@ class ExpandPartnerDetails extends GetView<DiscoverPartnerController> {
               backgroundColor: Colors.white12,
               expandedHeight: 350.0.h,
               flexibleSpace: FlexibleSpaceBar(
-                background:user.profileImg?.imgPath !=null ? Image.network('${user.profileImg?.imgPath}',
-                    fit: BoxFit.cover):Image.asset(ImageConstants.placeHolder, fit: BoxFit.cover),
+                background: user.profileImg?.imgPath != null
+                    ? Image.network('${user.profileImg?.imgPath}',
+                        fit: BoxFit.cover)
+                    : Image.asset(ImageConstants.placeHolder,
+                        fit: BoxFit.cover),
               ),
             ),
             SliverList(
@@ -128,19 +130,19 @@ class ExpandPartnerDetails extends GetView<DiscoverPartnerController> {
           side: BorderSide(color: Colors.white),
         ),
         padding: EdgeInsets.all(8.w),
-        onPressed: () {
+        onPressed: () async {
           if (icon == ImageConstants.ic_rewind) {
-            // controller.matchEngine?.currentItem?.nope();
           } else if (icon == ImageConstants.ic_love) {
-            //  controller.matchEngine?.currentItem?.like();
-            // await controller.postLikesData(userList[i].id.toString(), true);
-            // getUserGallery(userIndex: i + 1);
-
+            await controller.postLikesData(user.id ?? "", true);
+            Future.delayed(Duration(seconds: 2), () {
+              Get.back();
+            });
           } else if (icon == ImageConstants.ic_close) {
-            // controller.matchEngine?.currentItem?.superLike();
+            await controller.postLikesData(user.id ?? "", false);
+            Future.delayed(Duration(seconds: 2), () {
+              Get.back();
+            });
           }
-
-
         },
         child: Image.asset(
           icon,
@@ -153,18 +155,19 @@ class ExpandPartnerDetails extends GetView<DiscoverPartnerController> {
 
   Widget _passionListWidget() {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 18.w),
+      padding: EdgeInsets.symmetric(horizontal: 18.w),
       child: Wrap(
         runSpacing: 5,
         children: List.generate(
             user.passion?.length ?? 0,
             (index) => Padding(
-                  padding:  EdgeInsets.all(4.0.w),
+                  padding: EdgeInsets.all(4.0.w),
                   child: Container(
-                    padding:  EdgeInsets.all(8.0.w),
+                    padding: EdgeInsets.all(8.0.w),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20.r),
-                        border: Border.all(color: Color(0xff7004E3), width: 2.w)),
+                        border:
+                            Border.all(color: Color(0xff7004E3), width: 2.w)),
                     child: Text("${user.passion?[index].name}",
                         style: AppStyles.title.copyWith(
                             color: Color(0xff7004E3),
@@ -177,7 +180,7 @@ class ExpandPartnerDetails extends GetView<DiscoverPartnerController> {
 
   Padding _aboutmeInfoWidget() {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 27.w, vertical: 3.h),
+      padding: EdgeInsets.symmetric(horizontal: 27.w, vertical: 3.h),
       child: Text(
         "${user.shortDescription}",
         style: AppStyles.title.copyWith(
@@ -196,7 +199,7 @@ class ExpandPartnerDetails extends GetView<DiscoverPartnerController> {
 
   Widget _aboutmeText(String text) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 27.w,vertical: 10.h),
+      padding: EdgeInsets.symmetric(horizontal: 27.w, vertical: 10.h),
       child: Align(
           alignment: Alignment.topLeft,
           child: Text(text,
@@ -206,7 +209,7 @@ class ExpandPartnerDetails extends GetView<DiscoverPartnerController> {
 
   Widget _infoWidget(IconData src, String text) {
     return Padding(
-      padding:EdgeInsets.symmetric(horizontal: 24.w),
+      padding: EdgeInsets.symmetric(horizontal: 24.w),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -214,8 +217,8 @@ class ExpandPartnerDetails extends GetView<DiscoverPartnerController> {
           addHorizontalSpace(10.w),
           Text(
             text,
-            style: AppStyles.title
-                .copyWith(color: Color(0xFF9A9A9A), fontWeight: FontWeight.w400),
+            style: AppStyles.title.copyWith(
+                color: Color(0xFF9A9A9A), fontWeight: FontWeight.w400),
           )
         ],
       ),
