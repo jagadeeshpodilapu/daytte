@@ -251,7 +251,7 @@ class Settings extends StatelessWidget {
       child: Card(
         elevation: 4.0,
         child: ListTile(
-          onTap: () => Get.to(() => InterestedScreen()),
+          onTap: () => Get.to(() => InterestedScreen(navigateFrom:"settings")),
           title: _subHeadGreyText(Constants.gender, theme),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,

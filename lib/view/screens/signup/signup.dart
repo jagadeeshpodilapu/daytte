@@ -17,7 +17,7 @@ class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarWidget(Constants.sign_up, color: backgroundColor),
+      appBar: appBarWidget(Constants.sign_up, color: backgroundColor,isBack: false),
       backgroundColor: backgroundColor,
       body: GetBuilder<SignupController>(
         init: SignupController(),

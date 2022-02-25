@@ -38,7 +38,7 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
     super.initState();
 
     userList = data['usersList'];
-
+    print("init state calles after exapandle");
     getUserGallery(userIndex: 0);
 
     for (int i = 0; i < userList.length; i++) {
@@ -96,6 +96,10 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
         tag: "img",
         child: GetBuilder<DiscoverPartnerController>(
             init: DiscoverPartnerController(),
+            didChangeDependencies: (state){
+              print("did change dependency called ");
+
+            },
             builder: (controller) {
               return Column(
                 children: [
@@ -279,7 +283,7 @@ class _DiscoverPartnerState extends State<DiscoverPartner> {
           top: (Get.height * 0.42).h,
           right: 10.r,
           child: GestureDetector(
-              onTap: () => Get.to(() => ExpandPartnerDetails(),
+              onTap: () => Get.to(() => ExpandPartnerDetails(index),
                   arguments: userList[index]),
               child: _downArrowWidget),
         ),

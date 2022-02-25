@@ -6,11 +6,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../consts/image_constants.dart';
+import '../../../controllers/discover_partner/discover_partner_controller.dart';
 import '../../../model/find_nearest_model.dart';
 import '../../widgets/common_widgets.dart';
 
-class ExpandPartnerDetails extends StatelessWidget {
+class ExpandPartnerDetails extends GetView<DiscoverPartnerController> {
   final User user = Get.arguments;
+  final int index;
+  ExpandPartnerDetails(this.index);
 
   @override
   Widget build(BuildContext context) {
@@ -110,6 +113,10 @@ class ExpandPartnerDetails extends StatelessWidget {
     );
   }
 
+  getUserGallery({required int userIndex}) async {
+    // controller.fetchUserGallery();
+  }
+
   Widget _tinderIcons(String icon) {
     return Container(
       height: 50.h,
@@ -126,9 +133,14 @@ class ExpandPartnerDetails extends StatelessWidget {
             // controller.matchEngine?.currentItem?.nope();
           } else if (icon == ImageConstants.ic_love) {
             //  controller.matchEngine?.currentItem?.like();
+            // await controller.postLikesData(userList[i].id.toString(), true);
+            // getUserGallery(userIndex: i + 1);
+
           } else if (icon == ImageConstants.ic_close) {
             // controller.matchEngine?.currentItem?.superLike();
           }
+
+
         },
         child: Image.asset(
           icon,
